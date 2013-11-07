@@ -4,11 +4,11 @@
   <title><![CDATA[Scutech QA Blog]]></title>
   <link href="http://fencerfan.github.io/atom.xml" rel="self"/>
   <link href="http://fencerfan.github.io/"/>
-  <updated>2013-11-07T17:18:47+08:00</updated>
+  <updated>2013-11-07T17:34:26+08:00</updated>
   <id>http://fencerfan.github.io/</id>
   <author>
     <name><![CDATA[Scutech QA]]></name>
-    
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
