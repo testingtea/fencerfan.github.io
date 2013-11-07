@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 操作系统 | Scutech QA Blog]]></title>
   <link href="http://fencerfan.github.io/blog/categories/cao-zuo-xi-tong/atom.xml" rel="self"/>
   <link href="http://fencerfan.github.io/"/>
-  <updated>2013-11-07T20:07:05+08:00</updated>
+  <updated>2013-11-07T20:33:12+08:00</updated>
   <id>http://fencerfan.github.io/</id>
   <author>
     <name><![CDATA[Scutech QA]]></name>
@@ -56,28 +56,6 @@ iconv -f gbk -tutf8 原文本.txt > 新文本.txt
 从Windows的IE/360等浏览器导出html书签，拷贝到Ubuntu 12.04下，导入后发现中文书签名称全变成乱码。用了很多转换方法都不行，包括把Windows的IE/360等浏览器的字符编码设为跟Linux的Firefox的一致再导出导入，还是有乱码。
 最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
 其他版本的Linux及浏览器有待验证。</p>
-
-<p><strong>9、终端查询日期年月日星期等字符有乱码</strong>
-问题：</p>
-
-<h1>date</h1>
-
-<p>2013�� 11�� 06�� ������ 10:04:38 CST
-解决办法：</p>
-
-<h1>echo $LANG</h1>
-
-<p>en_US.UTF-8</p>
-
-<h1>LANG=“en_US.UTF-8”</h1>
-
-<h1>echo $LANG</h1>
-
-<p>“en_US.UTF-8”</p>
-
-<h1>date</h1>
-
-<p>Wed Nov  6 13:41:36 CST 2013</p>
 
 <p>还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续&hellip;</p>
 ]]></content>

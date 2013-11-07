@@ -193,28 +193,6 @@ iconv -f gbk -tutf8 原文本.txt > 新文本.txt
 最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
 其他版本的Linux及浏览器有待验证。</p>
 
-<p><strong>9、终端查询日期年月日星期等字符有乱码</strong>
-问题：</p>
-
-<h1>date</h1>
-
-<p>2013�� 11�� 06�� ������ 10:04:38 CST
-解决办法：</p>
-
-<h1>echo $LANG</h1>
-
-<p>en_US.UTF-8</p>
-
-<h1>LANG=“en_US.UTF-8”</h1>
-
-<h1>echo $LANG</h1>
-
-<p>“en_US.UTF-8”</p>
-
-<h1>date</h1>
-
-<p>Wed Nov  6 13:41:36 CST 2013</p>
-
 <p>还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续&hellip;</p>
 </div>
   
@@ -286,153 +264,6 @@ sudo ntfsfix /dev/sdb1 //检查一个ntfs分区的设备</p></li>
 
 
 <p>结语:从插入设备开始备份到校验数据整个过程完成才能称做一次完整的备份过程。本人就因为内存损坏致使同步数据总是有问题，幸好明白数据要校验这个道理才能保证数据安全性，否则备份到头来成了做无用功。校验的时候没问题最好，若有问题则要考虑上面提到的因素。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-04T14:46:58+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/#disqus_thread"
-             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Prepare the installation package
-Server:<a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-server-5.2.3-0.glibc23.i386.rpm</a>
-Client: <a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-client-5.2.3-0.glibc23.i386.rpm</a>
-Perl(DBI) :<a href="http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+...&amp;system=&amp;arch">http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+&hellip;&amp;system=&amp;arch/perl-DBI-1.617-1.el5.rfx.i386.rpm
-</a>libstdc++.so.5:<a href="http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm">http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm</a></p>
-
-<p>Installation  steps
-1、Switch to the root user
-$>su &ndash; root
-2、Install Perl(DBI)</p>
-
-<h1>>rpm -ivh perl-DBI-1.617-1.el5.rfx.i386.rpm</h1>
-
-<p>3、Install libstdc++.so.5</p>
-
-<h1>>rpm -ivh compat-libstdc++-33-3.2.3-47.3.i386.rpm</h1>
-
-<p>4、Install MySQL-server &amp; MySQL-client</p>
-
-<h1>>rpm -ivh MySQL-server-5.2.3-0.glibc23.i386.rpm</h1>
-
-<h1>>rpm -ivh MySQL-client-5.2.3-0.glibc23.i386.rpm</h1>
-
-<p>5、 Set the password for the MySQL root user</p>
-
-<h1>>mysqladmin -uroot password &lsquo;new-password&rsquo;</h1>
-
-<p>6、End</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-04T10:11:14+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/#disqus_thread"
-             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/04/mysql-4-2-1-for-rhel3/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>MySQL安装包：</strong></p>
-
-<p>mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
-<a href="http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz">http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz</a></p>
-
-<p><strong>安装步骤：</strong></p>
-
-<p>1、# chmod 755 mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
-2、# tar xfz mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz　　//将解压后生成的目录,复制到/usr/local/下并改名为mysql
-3、# groupadd mysql    　　　　// 建立mysql组</p>
-
-<h1>useradd mysql -g mysql  　 // 建立mysql用户并且加入到mysql组中</h1>
-
-<p>4、# cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf         //在 support-files目录下有4个模版文件，我们选择其中一个座位Mysql的配置文件，覆盖/etc/my.cnf(系统默认的配置，其中设置了性能参数和Mysql的一些路径参数)
-5、# cd /usr/local/mysql</p>
-
-<h1>./scripts/mysql_install_db &mdash;user=mysql         //初试化表并且规定用mysql用户来访问。初始化表以后就开始给mysql和root用户设定访问权限</h1>
-
-<p>6、# chown -R root .  　　　　　//设定root能访问/usr/local/mysql
-7、# chown -R mysql data  　　　//设定mysql用户能访问/usr/local/mysql/data ,里面存的是mysql的数据库文件.这个目录是在/etc/my.cnf中有配置，在mysql_install_db时产生。
-8、# chown -R mysql data/. 　　//设定mysql用户能访问/usr/local/mysql/data/mysql下的所有文件
-9、# chgrp -R mysql .  　　　　//设定mysql组能够访问/usr/local/mysql
-10、# /usr/local/mysql/bin/mysqld_safe &mdash;user=mysql &amp;  　　//运行mysql,如果没有问题的话,应该会出现类似这样的提示:[1]42264</p>
-
-<h1>Starting mysqld daemon with databases from /usr/local/mysql/var 如果出现 mysql ended这样的语句，表示Mysql 没有正常启动，你可以到log中查找问题，Log文件的通常在/etc/my.cnf中配置。大多数问题是权限设置不正确引起的。</h1>
-
-<p>11、# /usr/local/mysql/bin/mysqladmin -u root password yourpassword //默认安装密码为空，为了安全你必须马上修改.</p>
-
-<p>12、#cp support-files/mysql.server /etc/rc.d/init.d/mysqld  　　//copy编译目录的一个脚本</p>
-
-<h1>chmod 700 /etc/init.d/mysqld 　　　　//设置使mysql每次启动都能自动运行</h1>
-
-<h1>chkconfig &mdash;add mysqld</h1>
-
-<h1>chkconfig &mdash;level 345 mysqld on</h1>
-
-<p>13、#service mysqld start 　　//启动mysqld服务</p>
-
-<h1>netstat -atln 　　　　    //查看3306端口是否打开。要注意在防火墙中开放该端口</h1>
-
-<p>安装完之后，需要输入/usr/local/mysql/bin/mysql -uroot -p才能登录mysql，设了环境变量export mysql=/usr/local/mysql/bin还是无法通过输入mysql -uroot -p登录mysql，仍在想方法解决。
-解决方法：vi ~/.bash_profile
-在后面加上export PATH=$PATH:/usr/local/mysql/bin</p>
 </div>
   
   
@@ -695,6 +526,148 @@ $>su &ndash; root
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/">Oracle热备份的原理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-25T17:26:17+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。</p>
+
+<p><a href="http://www.linuxidc.com/Linux/2012-01/52398.htm">http://www.linuxidc.com/Linux/2012-01/52398.htm</a></p>
+
+<p>1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态，oracle数据块可能在不断的被修改，被读写，使用操作系统命令复制数据文件时，是根据操作系统块大小进行copy的，也就是说复制一个操作系统块的时候，首先锁定这个块，复制完成以后，解锁这个块，这样这个块在复制前和复制后是一致的。但是对于一个Oracle数据库来说，一个块要分成几次进行复制，有可能在复制一个操作系统数据块的时候，另外一个操作系统数据块被改变了，导致oracle数据块在复制到备份介质以后，前一半是没有改动过的，后一半是改动过的，数据块的状态就出现了不一致的情况，这时候备份也就是无效的，这叫做分离数据块现象。</p>
+
+<p>2、为了修复分离数据块现象，我们在备份某个表空间或者数据文件的的时候，首先发出begin backup命令，通知数据库我要开始开始备份了，在没有发出end backup命令之前，只要是进程修改了被备份的表空间所包含的数据块，oracle就会把该数据块中所包含的所有的数据行的数据生成重做记录，记录到日志文件中。</p>
+
+<p>通过发出begin backup以后，第一次修改数据块中的数据行之前，在联机重做日志文件中记录数据块的修改前的数据，这样在需要恢复数据的时候，发现某个数据块是分离的，就会利用日志文件里的重做记录的数据对整个数据块进行恢复</p>
+
+<p>3、备份表空间中的所有的被修改过的数据块的所有数据行都被保存在了联机重做日志文件中，而不是只记录被修改的数据行的记录，因此在热备份过程中，会发现生成的联机重做日志文件的量比较大，这取决于业务的繁忙程度，例如DML量比较大，那么产生的日志会非常的多</p>
+
+<p>4、发出begin backup命令以后，oracle会对被备份的表空间所对应的数据文件触发文件级别的检查点进程，将内存中属于该表空间的所有脏数据块写入数据文件，检查点结束以后，数据文件头部（第一个和第一个数据块）的检查点SCN和日志序列号都不在变化，直至发出end backup，数据文件头部的SCN和日志序列号才被更新</p>
+
+<p>5、在热备份的过程中，数据文件头部的SCN和日志序列号被冻结，但是数据文件本身还是最新的，和正常一样的更新和使用，DML更新了某个表，这些更新都会被写入到数据文件中去。冻结数据文件头部的SCN号和日志序列号，是为了将来使用热备份进行恢复的时候，能够知道应该从哪里开始应用重做记录，也就是备份的数据文件头部所记录的SCN和日志序列号，定位到日志文件中，从日志文件中找到开始的SCN，向后应用所有的日志文件</p>
+
+<p>6、发出end backup命令以后，所有的数据文件的头部SCN号和日志序列号更新到最新，因为数据文件本身就是最新的。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/">最小化Linux系统安装</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-06T16:21:39+08:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>安装CentOS 5.9:</strong></p>
+
+<ol>
+<li><p> 基于vbox虚拟机，虚拟机内存1 G，虚拟硬盘大小8 G</p></li>
+<li><p> 虚拟网卡使用host only方式</p></li>
+<li><p> 创建卷组centos</p></li>
+<li><p> 独立的boot分区</p></li>
+<li><p> home, root和swap分区皆是卷组centos的逻辑卷</p></li>
+<li><p> 保持boot，home，root和swap大小合理</p></li>
+<li><p> 关闭selinux</p></li>
+<li><p> 关闭防火墙</p></li>
+<li><p> 最小化安装</p></li>
+</ol>
+
+
+<p><strong>练习时间：</strong></p>
+
+<p>14：30开始 16：30结束，请将整个过程书面化记录下来，作为测试结果来提交。</p>
+
+<p><strong>课后作业：</strong></p>
+
+<p>IBM 101系列培训</p>
+
+<p><a href="http://www/">http://www</a>.ibm.com/developerworks/cn/linux/l-lpic1-v3-map/</p>
+
+<p><strong>分区参考在本案：</strong></p>
+
+<p>boot分区最多 100M</p>
+
+<p>swap分区与虚拟内存相等 1024M</p>
+
+<p>home 用户自定义</p>
+
+<p>根分区 1G-2G (最少要150–250MB)</p>
+
+<p><strong>完成情况（按提交顺序，按作业情况阐述判断）：</strong></p>
+
+<ol>
+<li><p> 刘亚东   分区不合理****</p></li>
+<li><p> 卢世龙  分区不合理</p></li>
+<li><p> 李金钗  分区不合理（另描述不够全面）</p></li>
+<li><p> 郑志腾   </p></li>
+<li><p> 王水仙  分区不合理</p></li>
+<li><p> 李小桃   </p></li>
+<li><p> 马美玲  不合格，描述不清楚</p></li>
+<li><p> 梁仲兴   超时  合格</p></li>
+<li><p> 汪胜任   超时 不合格 还有图形化界面 分区不合理</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -722,11 +695,11 @@ $>su &ndash; root
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
       </li>
     
   </ul>

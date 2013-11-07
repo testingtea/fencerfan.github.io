@@ -9,7 +9,7 @@
   <meta name="author" content="Scutech QA">
 
   
-  <meta name="description" content="文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。 http://www.linuxidc.com/Linux/2012-01/52398.htm 1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态， &hellip;">
+  <meta name="description" content="DocBook 是一种基于SGML/XML的、面向结构的文档撰写模式，由OASIS的DocBook技术委员会维护。尤其适用于关于计算机硬件和软件的书籍和论文（绝不限于这些应用），其主要结构符合一般概念所构成的&#8221;书&#8221;，是一种易于理解、广泛应用和非常受欢迎的模式。 LaTeX &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,148 +79,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/">Oracle热备份的原理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-25T17:26:17+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/#disqus_thread"
-             data-disqus-identifier="http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。</p>
-
-<p><a href="http://www.linuxidc.com/Linux/2012-01/52398.htm">http://www.linuxidc.com/Linux/2012-01/52398.htm</a></p>
-
-<p>1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态，oracle数据块可能在不断的被修改，被读写，使用操作系统命令复制数据文件时，是根据操作系统块大小进行copy的，也就是说复制一个操作系统块的时候，首先锁定这个块，复制完成以后，解锁这个块，这样这个块在复制前和复制后是一致的。但是对于一个Oracle数据库来说，一个块要分成几次进行复制，有可能在复制一个操作系统数据块的时候，另外一个操作系统数据块被改变了，导致oracle数据块在复制到备份介质以后，前一半是没有改动过的，后一半是改动过的，数据块的状态就出现了不一致的情况，这时候备份也就是无效的，这叫做分离数据块现象。</p>
-
-<p>2、为了修复分离数据块现象，我们在备份某个表空间或者数据文件的的时候，首先发出begin backup命令，通知数据库我要开始开始备份了，在没有发出end backup命令之前，只要是进程修改了被备份的表空间所包含的数据块，oracle就会把该数据块中所包含的所有的数据行的数据生成重做记录，记录到日志文件中。</p>
-
-<p>通过发出begin backup以后，第一次修改数据块中的数据行之前，在联机重做日志文件中记录数据块的修改前的数据，这样在需要恢复数据的时候，发现某个数据块是分离的，就会利用日志文件里的重做记录的数据对整个数据块进行恢复</p>
-
-<p>3、备份表空间中的所有的被修改过的数据块的所有数据行都被保存在了联机重做日志文件中，而不是只记录被修改的数据行的记录，因此在热备份过程中，会发现生成的联机重做日志文件的量比较大，这取决于业务的繁忙程度，例如DML量比较大，那么产生的日志会非常的多</p>
-
-<p>4、发出begin backup命令以后，oracle会对被备份的表空间所对应的数据文件触发文件级别的检查点进程，将内存中属于该表空间的所有脏数据块写入数据文件，检查点结束以后，数据文件头部（第一个和第一个数据块）的检查点SCN和日志序列号都不在变化，直至发出end backup，数据文件头部的SCN和日志序列号才被更新</p>
-
-<p>5、在热备份的过程中，数据文件头部的SCN和日志序列号被冻结，但是数据文件本身还是最新的，和正常一样的更新和使用，DML更新了某个表，这些更新都会被写入到数据文件中去。冻结数据文件头部的SCN号和日志序列号，是为了将来使用热备份进行恢复的时候，能够知道应该从哪里开始应用重做记录，也就是备份的数据文件头部所记录的SCN和日志序列号，定位到日志文件中，从日志文件中找到开始的SCN，向后应用所有的日志文件</p>
-
-<p>6、发出end backup命令以后，所有的数据文件的头部SCN号和日志序列号更新到最新，因为数据文件本身就是最新的。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/">最小化Linux系统安装</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-06T16:21:39+08:00" pubdate data-updated="true">Sep 6<span>th</span>, 2013</time>
-        
-           | <a href="/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/#disqus_thread"
-             data-disqus-identifier="http://fencerfan.github.io/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>安装CentOS 5.9:</strong></p>
-
-<ol>
-<li><p> 基于vbox虚拟机，虚拟机内存1 G，虚拟硬盘大小8 G</p></li>
-<li><p> 虚拟网卡使用host only方式</p></li>
-<li><p> 创建卷组centos</p></li>
-<li><p> 独立的boot分区</p></li>
-<li><p> home, root和swap分区皆是卷组centos的逻辑卷</p></li>
-<li><p> 保持boot，home，root和swap大小合理</p></li>
-<li><p> 关闭selinux</p></li>
-<li><p> 关闭防火墙</p></li>
-<li><p> 最小化安装</p></li>
-</ol>
-
-
-<p><strong>练习时间：</strong></p>
-
-<p>14：30开始 16：30结束，请将整个过程书面化记录下来，作为测试结果来提交。</p>
-
-<p><strong>课后作业：</strong></p>
-
-<p>IBM 101系列培训</p>
-
-<p><a href="http://www/">http://www</a>.ibm.com/developerworks/cn/linux/l-lpic1-v3-map/</p>
-
-<p><strong>分区参考在本案：</strong></p>
-
-<p>boot分区最多 100M</p>
-
-<p>swap分区与虚拟内存相等 1024M</p>
-
-<p>home 用户自定义</p>
-
-<p>根分区 1G-2G (最少要150–250MB)</p>
-
-<p><strong>完成情况（按提交顺序，按作业情况阐述判断）：</strong></p>
-
-<ol>
-<li><p> 刘亚东   分区不合理****</p></li>
-<li><p> 卢世龙  分区不合理</p></li>
-<li><p> 李金钗  分区不合理（另描述不够全面）</p></li>
-<li><p> 郑志腾   </p></li>
-<li><p> 王水仙  分区不合理</p></li>
-<li><p> 李小桃   </p></li>
-<li><p> 马美玲  不合格，描述不清楚</p></li>
-<li><p> 梁仲兴   超时  合格</p></li>
-<li><p> 汪胜任   超时 不合格 还有图形化界面 分区不合理</p></li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -939,6 +797,138 @@ swap /dev/hda5 大约内存大小(建议至少512MB)
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/">Linux Ntp时间同步服务器搭建与使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-30T23:01:25+08:00" pubdate data-updated="true">Jun 30<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有时为了测试需要，要多台服务器时间一致（同步），ntp服务器可以帮你一个大忙。本文以Ubuntu 12.10为例说明，Ubuntu 12.10作为ntp服务器，其他linux作为ntp客户端。</p>
+
+<p>一、服务端</p>
+
+<p>1、在线安装ntp
+apt-get install ntp</p>
+
+<p>2、安装后默认启动服务，如果没有启动，手动启动。
+/etc/init.d/ntp start</p>
+
+<p>3、vi /etc/ntp.conf，修改ntp.conf文件，其中192.168.88.0为ntp同步的网段，ntp服务器、客户端都在该网段以内：</p>
+
+<p>restrict default nomodify notrap noquery
+restrict 127.0.0.1
+restrict 192.168.88.0 mask 255.255.255.0 nomodify
+server 0.pool.ntp.org
+server 1.pool.ntp.org
+server 2.pool.ntp.org
+server  127.127.1.0     # local clock
+fudge   127.127.1.0 stratum 10</p>
+
+<p>driftfile /var/lib/ntp/drift
+broadcastdelay  0.008
+keys            /etc/ntp/keys</p>
+
+<p>4、重启ntp服务
+/etc/init.d/ntp restart</p>
+
+<p>二、客户端</p>
+
+<p>1、先设置ntp服务器时间，如2013年6月25日16:53:00
+date -s &ldquo;2013-6-25 16:53:00&rdquo;
+hwclock -w</p>
+
+<p>2、用ntpdate命令使客户端与ntp服务器时间同步，如果不存在这个命令，则先安装apt-get install ntp或yum install ntp。假设服务端的IP为192.168.88.167，使客户端与ntp服务器时间同步的命令如下：</p>
+
+<p>ntpdate 192.168.88.167</p>
+
+<p>3、修改crontab设置定时同步。vi /etc/crontab</p>
+
+<p>30 01 * * * /usr/sbin/ntpdate 192.168.88.167</p>
+
+<p>系统便会在每天早上1点30分自动将系统时间同步到ntp服务器的时间。</p>
+
+<p>这里crontab的时间是指客户端的时间，同步后与ntp服务器的时间一致。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/">主机资源监控&#8211;New Relic</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-09T14:22:16+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>缺点是，监控的主机要连接到Internet；</p>
+
+<p>官方地址：<a href="https://rpm.newrelic.com">https://rpm.newrelic.com</a></p>
+
+<p>使用方法：</p>
+
+<p>1、注册一个帐号，并且登录；</p>
+
+<p>2、在左则导航栏选择“Servers”，按照教程在所要监控的主机上安装newrelic工具；</p>
+
+<p>3、安装成功后，过几分钟刷新页面就可以看在基本的资源使用信息了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -968,11 +958,11 @@ swap /dev/hda5 大约内存大小(建议至少512MB)
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
       </li>
     
   </ul>
