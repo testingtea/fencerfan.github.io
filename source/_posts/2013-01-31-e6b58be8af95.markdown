@@ -1,0 +1,30 @@
+---
+author: fencer
+comments: true
+date: 2013-01-31 10:40:29+00:00
+layout: post
+slug: '%e6%b5%8b%e8%af%95'
+title: 测试部内部博客开通
+wordpress_id: 25
+categories:
+- 部门管理
+- 自动化测试
+- 英文翻译
+- 功能测试
+- 学习报告
+- 操作系统
+- 数据库
+- 测试方法
+---
+
+![](http://getyourbizsavvy.com/wp-content/uploads/2011/10/2560666767_82edc1b3fb.jpg)
+
+**        在新的一年里希望各位测试部的兄弟姐妹们，能在这个内部博客上书写自己的生活或工作上的所得，让写作成为一种习惯，更成为一种推动进步的动力。**
+
+**        最后以乔布斯的“Stay Hungry，Stay Foolish.”与各位共勉。**
+
+
+
+**                                                                                                                     樊立明**
+
+**                                                                                                                     2013.01.31**

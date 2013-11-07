@@ -1,0 +1,35 @@
+---
+author: wangsx
+comments: true
+date: 2013-02-22 03:13:11+00:00
+layout: post
+slug: oracle%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b8%b8%e8%a7%84%e6%93%8d%e4%bd%9c
+title: Oracle的一些常规操作
+wordpress_id: 71
+categories:
+- 学习报告
+---
+
+
+	
+  1. 查看表空间大小
+select b.file_name 物理文件名,b.tablespace_name 表空间名,b.bytes/1024/1024 大小M,(b.bytes-sum(nvl(a.bytes,0)))/1024/1024 已使用M,substr((b.bytes-sum(nvl(a.bytes,0)))/(b.bytes)*100,1,5) 利用率 from dba_free_space a,dba_data_files b where a.file_id=b.file_id group by b.tablespace_name,b.file_name,b.bytes order by b.tablespace_name;
+
+	
+  2. 增加表空间大小，扩展到1024M
+alter database datafile '/opt/oracle/oradata/orcl/one.dbf' resize 1024m
+
+	
+  3. 查看EMP表的大小
+analyze table emp compute statistics;
+select num_rows * avg_row_len from user_tables where table_name = 'EMP';
+
+	
+  4. 杀掉oracle进程。
+select sid,username,serial# from v$session ;
+alter system kill session 'sid,serial#';
+
+
+
+
+2013-02-22

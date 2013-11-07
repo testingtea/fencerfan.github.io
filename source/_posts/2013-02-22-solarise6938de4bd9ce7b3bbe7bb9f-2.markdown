@@ -1,0 +1,117 @@
+---
+author: liangzhongxing
+comments: true
+date: 2013-02-22 09:58:10+00:00
+layout: post
+slug: solaris%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f-2
+title: Solaris操作系统(梁仲兴)
+wordpress_id: 90
+categories:
+- 英文翻译
+---
+
+Solaris原先是Sun Microsystems公司研制的Unix操作系统，它替代了1993年较早的Sun操作系统。自从Sun在2010年1月被Oracle收购后，Solaris被称作Oracle Solaris。Solaris以可扩展性著称，尤其是SPARC系统，以及以创新的特点著称，例如动态跟踪、动态文件系统、时间滚动条。Solaris支持来自于Sun和其他厂家的基于SPARC和x86的工作站和服务器，正努力支持更多平台。Solaris已经遵循单一UNIX规范注册。
+
+Solaris历来作为专有软件被开发，在2005年6月Sun公司在CDDL许可下发布了大部分代码库，并成立了OpenSolaris的开放源代码项目。通过OpenSolaris，Sun希望围绕该软件建立一个软件开发者和用户社区。2010年1月Oracle收购Sun Microsystems公司后，决定终止OpenSolaris的分布和这种发展模式。在Oracle内部备忘录向员工宣布这个决定被“泄露”的短短的十天前，Garrett D'Amore宣布了illumos项目，这个项目创造了Solaris内核的一个分支，创建了一个蓬勃发展的Oracle Solaris替代物。
+
+2010年8月，Oracle停止向Solaris内核的源代码公开提供更新，有效地将Solaris 11变为一个闭源的专有操作系统。然而，行业合作伙伴仍然可以通过Oracle技术网（OTN）接触开发中的Solaris源代码。Solaris 11部分开放的源代码可以从Oracle下载。
+
+历史
+
+1987年，AT＆T公司和Sun公司宣布，他们正合作一个项目，将合并当时市场上最流行的Unix变种：BSD，System V和Xenix。这形成了Unix System V Release 4（SVR4）。
+
+1991年9月4日，Sun宣布，它将用一个基于SVR4的系统取代现有的BSD-derived、Unix和SunOS 4系统。内部以SunOS 5命名，但于此同时引入了一个新的营销名称：Solaris 2。当SunOS 4.1.x micro版本被Sun追溯命名为Solaris 1时，Solaris的名称几乎专门用来指SVR4衍生的 SunOS 5.0和之后的版本。
+给这个新的“overbrand”的充分理由是，它不仅包括SunOS，也包括OpenWindows用户图形界面和开放网络计算（ONC）功能。SunOS次要版本也包含在Solaris版本号中，例如，Solaris2.4注册成立的SunOS5.4。在Solaris 2.6系统后，Sun从数字中舍去了“2”，所以Solaris 7包含SunOS 5.7，最新版本SunOS5.11.1形成Solaris 11.1的核心。
+
+支持的架构
+
+Solaris在平台中使用普通的代码库，它支持：SPARC 和 i86pc（包括x86和x86-64）。Solaris在适合于对称多处理、支持大量的CPU方面有良好的声誉。它在历来一直与Sun的SPARC硬件（包括Solaris7之后的支持64位的SPARC应用程序）紧密地结合在一起，它们是作为一个组合包来销售。这往往会带来更可靠的系统，但在对于商用PC硬件会造成成本上涨。然而，在Solaris2.1之后它也支持x86系统，在Solaris 10之后也支持x86-64位的应用程序，允许Sun利用基于x86-64架构的64位CPU来获得商品利润。Sun公司已经大力推广Solaris的应用，利用了它自己的“x64”工作站、基于AMD Opteron和Intel Xeon处理器的服务器，以及像戴尔、惠普、IBM公司生产的x86系统。截至2009年，以下供应商的x86服务器系统支持Solaris：
+
+戴尔——将在它的机架和刀片服务器上测试、验证、优化Solaris和OpenSolaris，并在戴尔的整体软件菜单中为他们提供一些选择。
+
+IBM——也为Solaris和Solaris Subscriptions分配基于x86的IBM System x服务器和BladeCenter服务器
+
+Intel
+
+Hewlett-Packard——在ProLiant服务器和刀片系统方面，为Solaris分配和提供软件技术支持
+
+Fujitsu Siemens
+
+截至2010年7月，Dell和HP在各自的x86平台上认证和转售Oracle Solaris、Oracle Enterprise Linux和Oracle VM，IBM在它的x64套件停止直接的支持。
+
+2.1 其他平台
+
+Solaris 2.5.1包括对PowerPC平台（PowerPC的参考平台）的支持，但接口在Solaris 2.6发行版之前被取消。2006年1月，Blastwave一个开发者社区开始努力开发一个被他们命名为Polaris的PowerPC端口。2006年10月，一个基于Blastwave efforts和Sun Labs' Project Pulsar的、 从Solaris 2.5.1相关部分被重新整合到OpenSolaris的OpenSolaris社区发布它的第一次正式的源代码版本。
+
+英特尔安腾架构的一个端口在1997年被发布，但从来未在市场上销售。
+
+2007年11月28日，IBM、Sun和Sine Nomine Associates公司展示了跑在一个z/VM下的叫做Sirius（用来比喻Polaris项目，也因为主要的开发者都是澳大利亚国籍：HMS Sirius of 1786是澳大利亚的第一舰队的一艘船）的IBM System z大型机的OpenSolaris的预览。2008年10月17日Sirius的原型发布了，并于同年11月19日，IBM授权Sirius在System z IFL处理器上的使用权。
+
+Solaris也支持Linux平台ABI，支持在x86系统上运行本地的Linux二进制文件。此功能被称为“Linux应用程序的Solaris容器”或SCLA，在Solaris 10 8/07介绍到的基于标记区域的功能。
+
+安装和使用选项
+
+Solaris可以从各种预先包装的软件组安装，范围从一个简约的“精简网络支持”到一个完整的“完整的Plus OEM”。Solaris的安装没有必要让个人用户区为使用该系统。像Apache、MySQL等额外的软件也可以从来自于sunfreeware、OpenCSW和Blastwave封装的形式安装。
+
+3.1 安装使用
+
+Solaris可以在桌面环境或服务器上从物理媒体或网络安装来使用。
+
+Solaris可以从没有视频显示器和鼠标的平台的文本控制台上进行交互式安装。这可能是选择的服务器，在机架上，在远程的数据中心，从终端服务器或，甚至拨号调制解调器。这可以在机架上，从远程数据中心，从终端服务器，甚至从拨号调制解调器上为服务器做选择。
+
+Solaris可以从图形化控制台上交互式安装。这可能从一个本地区域中一个能被正常使用的控制台上为个人工作站、笔记本做出选择。
+
+Solaris可以通过网络自动安装。系统管理员可以通过脚本和配置文件自定义安装，包括第三方软件的自动配置和安装，而无需购买额外的软件管理工具。
+
+在安装Solaris时，其他操作系统可以驻留在同一系统中。应用程序可以被单独安装在本地系统上，或通过网络从远程系统可以安装。应用程序可以被单独安装在本地系统上，或通过网络从远程系统安装。
+
+3.2 不安装使用
+
+Solaris可以没有在桌面环境或服务器上安装就能够使用。
+
+Solaris可以从一个通过无盘环境提供系统映像的远程服务器启动，或从一个仅用于内部磁盘交互空间的环境启动。在此配置中，操作系统仍然运行在本地系统上。应用程序可能会或可能不会驻留在本地，当他们正在运行的。当程序正在运行时，它们可能会或不会驻留在本地。这可能会被需要快速安装和更换系统的企业或教育机构选择。
+
+Solaris也可以用于瘦客户端。应用程序、操作系统、窗口管理器和图形渲染，运行在一个或多个远程服务器上。管理员可以为中央Solaris系统添加一个用户帐户，瘦客户端可以从一个窗口滚动出来，放在桌面上，用户可以立即开始工作。如果有硬件故障，瘦客户端可以互换，用户可以从确切的故障点继续做他们的工作，不论工作是否被保存。
+
+桌面环境
+
+早期的Solaris发行版使用OpenWindows作为标准的桌面环境。从Solaris 2.0到2.2，OpenWindows支持NeWS和X应用程序，并为来自于Sun的旧桌面环境的SunView应用程序提供向后兼容性。NeWS允许在使用PostScript的面向对象方式中建立应用程序，一种发布于1982年的普通打印语言。X窗口系统起源于1984年的麻省理工学院的Athena项目，允许显示从机器上断开连接的正在运行的应用程序，通过网络连接分离。Sun公司原来的捆绑的SunView应用程序套件被移植到X。
+
+Sun公司后来放弃了对传统的SunView应用程序和附带在Solaris 2.3中的OpenWindows3.3的NeWS的支持，以及切换到带有Display PostScript支持的X11R5。图形的外观和感觉仍然基于OPEN LOOK。3.6.2 OpenWindows是Solaris 8下的最后一个版本。在Solaris 9 中，带有其他OPEN LOOK特定的应用程序的OPEN LOOK窗口管理器被丢弃，但支持库仍被捆绑，为长期的二进制向后兼容性提供现有的应用程序。OPEN LOOK虚拟窗口管理器（olvwm）仍然可以从最近发布的Solaris 10的sunfreeware和工程上下载用于Solaris。
+
+Sun和其他Unix厂商建立了一个产业联盟去标准化Unix桌面。 作为COSE，公共开放软件环境倡议的一员，Sun公司帮助共同开发的通用桌面环境。CDE是一个建立标准的Unix桌面环境的倡议。每家供应商都提供了不同的组件：惠普贡献了窗口管理器，IBM提供的文件管理器，Sun提供的电子邮件和日历设施以及拖放支持（Tooltalk）。这个新的桌面环境，基于Motif的外观和感觉，旧的OPEN LOOK桌面环境被认为是传统的。CDE统一了多个开放式系统供应商的Unix桌面。CDE作为非捆绑附件提供给Solaris 2.4和2.5，并包含在Solaris 2.6到10中。CDE应用程序不再包含在OpenSolaris和Solaris 11中，但许多二进制库仍然支持向后兼容性。
+
+在2001年，Sun公司发布了一个开源桌面环境GNOME 1.4的，基于GTK+工具包的，用于Solaris 8的预览版本。Solaris9 8/03 将GNOME 2.0作为一个介绍替代物介绍给CDE。Solaris 10包括Sun公司的Java桌面系统（JDS），它基于GNOME以及带有很多应用程序，包括StarSuite，Sun的办公组件。Sun将JDS描述为Solaris 1的“主要组成部分”。
+
+开源的桌面环境KDE和Xfce，以及许多其他的窗口管理器，也在最新版本的Solaris编译和运行。
+
+Sun正在一个新的被称为Project Looking Glass的桌面环境投资，自2003年以来。该项目自2006年底以来一直处于非活动状态。
+
+许可
+
+Solaris的源代码（只有少数例外）已经通过OpenSolaris项目在通用开发和发布许可（CDDL）发布了。 CDDL是一个OSI批准的许可证。它被自由软件基金会认定为免费的，但与GPL不兼容。
+
+OpenSolaris是在2005年6月14日从当时的Solaris开发代码库播种的；二进制和源代码版本的下载和许可都是免费的。现在即将发布的功能，如支持Xen的源被添加到OpenSolaris项目作为理所当然的事，Sun公司表示，现在版本的Solaris从此将适当地来自于OpenSolaris。
+
+历史版本
+
+目前，Solaris的显着特征包括DTrace、Doors、服务管理工具、Solaris容器、Solaris复用I / O、Solaris卷管理器、ZFS和Solaris高可靠扩展。
+
+Solaris版本的更新定期发布，如Solaris10 10/09。
+
+按升序排列，以下版本的Solaris已被发布：
+
+Solaris 版本时间轴
+
+开发版本
+
+自从20世纪80年代末努力研究于最终发布的Solaris2.0以来，基础Solaris代码库一直在不断研发当中。每一个版本像Solaris10都是基于这个发展代码库的一个快照，取它最近的一个版本的快照，然后发行作为一个衍生项目。那项目的更新被建成以及一年交付几次，直到下一次正式版本发布出来。
+
+自从Solaris 10版本代号作为Nevada在2005年发布以及衍生于现在的OpenSolaris代码库以来， Solaris版本一直在发展中。
+
+2003年，一个新增的Solaris开发已经启动。在Solaris的程序名称为Software Express（或Solaris Express）下，一个基于目前开发基础的二进制版本每月的基础上已经可以下载，在它发展为下一个官方Solaris版本过程中让任何人都可以尝试新的​​功能，测试系统的质量和稳定性。该计划的一个改变通过可用的支持推出了一个季度的发行版，改名为Solaris Express开发版（SXDE）。
+
+2007年，Sun公司宣布Indiana项目有以下几个目标，包括提供一个开放源码的二进制分发版的OpenSolaris项目，以取代SXDE。这种分发版的第一个版本是OpenSolaris 2008.05。
+
+Solaris Express社区版（SXCE）是专门为OpenSolaris开发人员设计。它每两周更新一次，直到用户迁移到OpenSolaris发行版，它在2010年1月被中断发行了。虽然下载许可时，当看到它用的镜像文件的使用仅限于个人、教育和评估目的，许可协议的形式在当用户实际安装这些镜像列出了其他用途时显示出来，包括商业和生产环境。
+在几个星期后SXCE版本通过构建130终止，以及OpenSolaris发行版通过构建134而终止。OpenSolaris的基于构建134的下一个版本于2010年3月到期，但它从来没有完全发行，虽然它的包可以从包储存库中获得。相反，Oracle将二进制分发版Solaris 11 Express改名，在2010年11月改变了许可条款和发布为构建151作为2010.11。

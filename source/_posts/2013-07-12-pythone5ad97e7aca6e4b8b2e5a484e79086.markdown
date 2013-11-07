@@ -1,0 +1,69 @@
+---
+author: lusl
+comments: true
+date: 2013-07-12 03:02:20+00:00
+layout: post
+slug: python%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%84%e7%90%86
+title: Python字符串处理
+wordpress_id: 330
+---
+
+### 一、截取字符串中的内容
+
+
+1、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的：{AC76BA86-7AD7-2052-7B44-AB0000000001} 包括大括号
+
+
+
+>>> import re
+>>> text = 'MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001}'
+>>> re.findall(r'{[^}]*}', text)
+['{AC76BA86-7AD7-2052-7B44-AB0000000001}']
+
+[^}] 是指不是 } 的字符， {[^}]*} 是指由 { 开始、 } 结束的至少0个不是 } 的字符
+
+或者
+
+re.findall(r'{.*?}', text)
+
+注意：{.*} 和{.*?}的区别，前者是贪婪模式，后者是非贪婪模式
+
+
+
+2、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的： AC76BA86-7AD7-2052-7B44-AB0000000001 不包括大括号
+
+
+
+>>> import re
+>>> text = 'MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} '
+>>> re.findall(r'(?<={).*?(?=})', text)
+['AC76BA86-7AD7-2052-7B44-AB0000000001']
+>>> re.findall(r'(?<={)[^}]*(?=})', text)
+['AC76BA86-7AD7-2052-7B44-AB0000000001']
+(?<={) 匹配左边是 { 的位置
+(?=}) 匹配右边是 } 的位置
+
+
+
+
+### 二、匹配字符串，并且截取匹配的内容
+
+
+1、匹配“dbackup-agent_2.2.8763.15.exe”，并且截取“7896”
+
+
+
+>>> import re
+>>> text = "dbackup-agent_2.2.8763.15.exe"
+>>> handle = re.compile(r'dbackup-agent_2.2.([0-9]{4}).15.exe')
+>>> m = handle.match(text)
+>>> m.group(0)
+'dbackup-agent_2.2.8763.15.exe'
+>>> m.group(1)
+'8763'
+
+其中：group(0)表示匹配到的整个字符串，group(1)表示正则表达式中第1个括号匹配的字符，group(2)表示正则表达式中第2个括号匹配的字符,一次类推；
+
+正则表达式：([0-9]{4}) ，是指匹配4个0到9的数字
+
+

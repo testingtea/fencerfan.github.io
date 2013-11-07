@@ -1,0 +1,70 @@
+---
+author: liangzhongxing
+comments: true
+date: 2013-11-06 01:40:54+00:00
+layout: post
+slug: '%e8%a7%a3%e5%86%b3linux%e5%b8%b8%e8%a7%81%e7%9a%84%e4%b9%b1%e7%a0%81%e9%97%ae%e9%a2%98'
+title: 解决Linux常见的乱码问题
+wordpress_id: 553
+categories:
+- 操作系统
+tags:
+- 编码
+- linux
+- 文本
+- 乱码
+---
+
+大家使用Linux，主要还是用中文界面，经常碰到中文乱码的情况。下面是常见的乱码解决办法：
+
+**1、ssh或者telnet远程登录乱码**
+查看环境变量LANG，改成中文编码utf8，试过一下en_US.utf8和zh_CN.utf8都可以，并且设置SSH或者Telnet客户端工具编码，要保持一致。
+例如，常见的工具SecureCRT中设置：会话选项--外观--字符编码--utf8
+
+**2、图形化窗口中的终端乱码**
+修改环境变量LANG即可，用命令LANG=zh_CN.utf8,en_US.utf8也可以，只不过有些字显示的效果不太一样，有的大，有的字体不一样。
+另外终端其实也是一个软件，它的编码也要和环境变量LANG的编码要一致。用Ubuntu 12.04举例，在终端的“终端”菜单有一个“设定字符编码”，可设定所需的编码，如UTF-8
+
+**3、VIM下的乱码**
+这主要和两个因素有关：
+一就是文件原始的编码，原始编码的设置是在VIM的配置文件里设置的。
+二与终端有关，比如我们在终端显示一个文件，cat /tmp/helloworld.txt，所以终端的编码要和文本原始编码要一致，设置同2。
+
+**4、tty登录乱码**
+这个需要安装中文接口软件的支持，如zhcon，要安装相应的软件，具体结论还有待实践。
+
+**5、将man的内容重定向出现乱码**
+用man，我们能够查看到好多有用的信息，但是有时候想把man中的内容保存在文本中，方便以后查看。
+比如把iptables的信息保存在iptables.txt中：man iptables > iptables.txt
+但是这样操作的结果有时候却差强人意，有好多乱码，解决的办法是：man iptables | col -b > iptables.txt
+col的作用是将输入的内容进行转换过滤后输出，-b就是不显示回退键。
+
+**6、从windows拷过来的文本文件在Linux下打开出现乱码**
+之所以出现乱码是因为windows下中文的编码一般为gbk，而Linux下中文编码一般为 utf8，所以在 windows下正常打开的文件，到Linux下很可能出现乱码。
+解决办法：使用命令iconv对文本内容编码进行转换
+iconv -f gbk -tutf8 原文本.txt > 新文本.txt
+这个方法灰常好用！
+
+**7、挂载U盘后，U盘中文目录名或文件名为乱码**
+正常挂载：mount /dev/sdb1 /mnt/usb ，然后使用ls /mnt/usb发现U盘上中文目录和文件名都是乱码。
+解决办法：在挂载时加上字符集参数 mount -o iocharset=utf8 /dev/sdb1 /mnt/usb
+
+**8、从Windows的IE/360等浏览器导出html书签到Linux的Firefox浏览器中文书签名称变成乱码**
+从Windows的IE/360等浏览器导出html书签，拷贝到Ubuntu 12.04下，导入后发现中文书签名称全变成乱码。用了很多转换方法都不行，包括把Windows的IE/360等浏览器的字符编码设为跟Linux的Firefox的一致再导出导入，还是有乱码。
+最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
+其他版本的Linux及浏览器有待验证。
+
+**9、终端查询日期年月日星期等字符有乱码**
+问题：
+# date
+2013�� 11�� 06�� ������ 10:04:38 CST
+解决办法：
+# echo $LANG
+en_US.UTF-8
+# LANG=“en_US.UTF-8”
+# echo $LANG
+“en_US.UTF-8”
+# date
+Wed Nov  6 13:41:36 CST 2013
+
+还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续...

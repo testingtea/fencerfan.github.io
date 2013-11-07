@@ -1,0 +1,55 @@
+---
+author: liangzhongxing
+comments: true
+date: 2013-06-30 15:01:25+00:00
+layout: post
+slug: linux-ntp%e6%97%b6%e9%97%b4%e5%90%8c%e6%ad%a5%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%90%ad%e5%bb%ba%e4%b8%8e%e4%bd%bf%e7%94%a8-2
+title: Linux ntp时间同步服务器搭建与使用
+wordpress_id: 318
+---
+
+有时为了测试需要，要多台服务器时间一致（同步），ntp服务器可以帮你一个大忙。本文以Ubuntu 12.10为例说明，Ubuntu 12.10作为ntp服务器，其他linux作为ntp客户端。
+
+一、服务端
+
+1、在线安装ntp
+apt-get install ntp
+
+2、安装后默认启动服务，如果没有启动，手动启动。 
+/etc/init.d/ntp start
+
+3、vi /etc/ntp.conf，修改ntp.conf文件，其中192.168.88.0为ntp同步的网段，ntp服务器、客户端都在该网段以内：
+
+restrict default nomodify notrap noquery
+restrict 127.0.0.1
+restrict 192.168.88.0 mask 255.255.255.0 nomodify
+server 0.pool.ntp.org
+server 1.pool.ntp.org
+server 2.pool.ntp.org
+server  127.127.1.0     # local clock
+fudge   127.127.1.0 stratum 10
+
+driftfile /var/lib/ntp/drift
+broadcastdelay  0.008
+keys            /etc/ntp/keys
+
+4、重启ntp服务
+/etc/init.d/ntp restart
+
+二、客户端
+
+1、先设置ntp服务器时间，如2013年6月25日16:53:00
+date -s "2013-6-25 16:53:00"
+hwclock -w
+
+2、用ntpdate命令使客户端与ntp服务器时间同步，如果不存在这个命令，则先安装apt-get install ntp或yum install ntp。假设服务端的IP为192.168.88.167，使客户端与ntp服务器时间同步的命令如下：
+
+ntpdate 192.168.88.167
+
+3、修改crontab设置定时同步。vi /etc/crontab
+
+30 01 * * * /usr/sbin/ntpdate 192.168.88.167
+
+系统便会在每天早上1点30分自动将系统时间同步到ntp服务器的时间。
+
+这里crontab的时间是指客户端的时间，同步后与ntp服务器的时间一致。

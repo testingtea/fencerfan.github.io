@@ -1,0 +1,97 @@
+---
+author: wangsx
+comments: true
+date: 2013-07-18 08:46:07+00:00
+layout: post
+slug: '%e5%9c%a8ubuntu12-10%e4%b8%8a%e5%ae%89%e8%a3%85kvm'
+title: 在ubuntu12.10上安装KVM
+wordpress_id: 343
+---
+
+
+	
+  1. 查看CPU的兼容性
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+	
+  2.  安装KVM相关的Packages
+sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+
+	
+    * _libvirt-bin_ provides libvirtd which you need to administer qemu and kvm instances using libvirt
+
+	
+    * _qemu-kvm_ (_kvm_ in Karmic and earlier) is the backend
+
+	
+    * _ubuntu-vm-builder_ powerful command line tool for building virtual machines
+
+	
+    * _bridge-utils_ provides a bridge from your network to the virtual machines
+
+
+
+
+	
+  3. 检查KVM是否成功安装
+sudo kvm-ok
+
+	
+  4. 添加用户到libvirtd和kvm组
+sudo adduser scutech libvirtd
+sudo adduser scutech kvm
+
+	
+  5. 校验
+virsh -c qemu:///system list
+
+	
+  6. 安装KVM图形管理Console
+sudo apt-get install virt-manager virt-viewer
+在进行这一步操作时报错： Failed to fetch *************libgvnc-1.0-0.0.5.1-1ubuntu2_amd04.deb Hash Sum mismatch
+换了几个软件源，还是有这个错，后来上ubuntu的官网上自己下载了，下载装完之后再执行上面的命令即可安装成功
+[libgvnc-1.0-0_0.5.1-1ubuntu2_amd64.deb下载 ](http://packages.ubuntu.com/raring/amd64/libgvnc-1.0-0/download)
+
+	
+  7. 配置KVM虚拟网络桥接模式
+a、sudo apt-get install libcap2-bin
+b、配置qemu-kvm继承CAP——NET——ADMIN capability
+for 64-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu-system-x86_64
+for 32-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu
+c、修改/etc/security/capability.conf，添加cap_net_admin USER-NAME-HERE
+d、安装bridge-utils $sudo apt-get install bridge-utils
+e、修改/etc/network/interfaces文件，添加br0信息
+auto br0
+iface br0 inet dhcp
+bridge_ports eth0
+bridge_stp off
+bridge_fd 0
+bridge_maxwait 0
+f、重启电脑
+
+	
+  8. 创建和安装Spice Server &Clientfor KVM
+a、安装和配置Spice Server和Client Packageds
+$ sudo apt-get install libspice-client-glib-2.0-1 libspice-client-gtk-2.0-1 libspice-server1 python-spice-client-gtk qemu-kvm-spice spice-client spice-client-gtk python-spice-client-gtk build-essential libspice-server1 libspice-protocol-dev
+b、以下是可能会用到的Optional Packages：
+$ sudo apt-get install libavcodec-dev libasound-dev libpng12-dev libfreetype6-dev libxrandr-dev libsdl-dev libnss3-dev libxfixes-dev intltool libssl-dev libgtk2.0-dev python-gtk-vnc python-gtk2 python-gtk2-dev libssl-dev libpulse-dev libpixman-1-dev libjpeg-turbo8-dev libsasl2-dev libusb-1.0-0 libusb-1.0-0-dev libgudev-1.0-dev gobject-introspection python-dev slirp libpixman-1-0（可能有一些包的版本不对）
+
+	
+  9. 到此安装完毕。在Dash Home那里输入Virtual Machine Manager即可看到KVM了
+
+	
+  10. 以上是参照网友的方法安装的，其中一些道理也不大明白，还需进一步学习 [网友的方法](http://blog.sina.com.cn/s/blog_5932bf4601016xfj.html)
+
+
+KVM的使用：
+
+	
+  1. vbox的vdi文件转为kvm默认qcow2格式文件
+VBoxManage clonehd -format raw asianux4-disk1.vdi asianux4.img(有进度条)
+qemu-img convert -f raw asianux4.img -O qcow2 asianux4.qcow2 (没进度条)
+
+	
+  2. 启动qcow2文件
+kvm  asianux4.qcow2
+
+

@@ -1,0 +1,115 @@
+---
+author: wangsx
+comments: true
+date: 2013-03-06 10:52:26+00:00
+layout: post
+slug: redhat5%e4%b8%8a%e5%ae%89%e8%a3%85oralce11g
+title: RedHat5上安装Oralce11g
+wordpress_id: 165
+categories:
+- 数据库
+---
+
+           注意：1～8步需要用root用户。9～12用oracle用户
+
+
+
+
+                     建议在英文环境下安装，这样就不会有乱码问题。
+本人操作的环境—— redhat5_i386
+
+
+
+
+
+	
+  1. 首先确认RedHat5已安装如下包
+make-3.81-1.1
+binutils-2.17.50.0.6-2.el5
+gcc-4.1.1-52.el5
+libaio-0.3.106-3.2
+libaio-devel-0.3.106
+libstdc++-4.1.1-52.el5
+elfutils-libelf-devel-0.125-3.el5
+sysstat-7.0.0
+compat-libstdc++-33-3.23
+libgcc-4.1.1-52.el5
+libstdc++-devel-4.1.1-52.el5
+unixODBC-2.2.11
+unixODBC-devel-2.2.11
+
+	
+  2. 在RedHat上能用yum安装软件。如不能，可参考如下方法：
+a、首先查看yum服务相关的包rpm -qa|grep yum。然后强制删除这些包
+rpm -qa|grep yum|xargs rpm -e --nodeps.
+b、下载CentOS yum 服务相关的包
+wget http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/yum-3.2.22-40.el5.centos.noarch.rpm[
+](http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/yum-3.2.22-40.el5.centos.noarch.rpm)    wget http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/yum-fastestmirror-1.1.16-21.el5.centos.noarch.rpm
+wget http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/yum-metadata-parser-1.1.2-4.el5.i386.rpm
+版本号会随着时间而改变，可到网站上看具体的版本号再下载。
+c、下载完后安装rpm -ivh yum-*
+d、如提示python-iniparse未安装，则先安装python-iniparse
+wget http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/python-iniparse-0.2.3-6.el5.noarch.rpm
+rpm -ivh python-iniparse-0.2.3-6.el5.noarch.rpm
+e、再次安装yum*。安装完毕后进入系统的yum目录cd /etc/yum.repos.d/。删除目录下或重命名目录下的文件。然后wget http://docs.linuxtone.org/soft/lemp/CentOS-Base.repo
+f、yum makecache即可。
+
+	
+  3. 查看RedHat上有没有如下用户组
+grep oinstall /etc/group
+grep dba /etc/group
+grep nobody /etc/group
+
+	
+  4. 没有的话则添加，顺便创建oracle用户
+groupadd oinstall
+groupadd dba
+groupadd nobody
+useradd -m -g oinstall -G dba -p passwd -d /home/oracle -s /bin/bash oracle
+usermod -g nobody nobody
+
+	
+  5. 为oracle用户添加密码
+passwd oracle
+
+	
+  6. 创建oracle安装目录
+mkdir -p /home/oracle/app
+chown -R oracle:oinstall /home/oracle/app
+chmod -R 775 /home/oracle/app
+
+	
+  7. 添加一下行到/etc/security/limits.conf文件中
+* soft nproc 2407
+* hard nproc 16384
+* soft nofile 1024
+* hard nofile 65536
+
+	
+  8. 修改oracle的环境变量
+export ORACLE_HOME=/home/oracle/app/ora11
+export ORACLE_OWNER=oracle
+export ORACLE_SID=orcl
+export ORACLE_TERM=xterm
+export PATH=$ORACLE_HOME/bin:$ORACLE_HOME/Apache/Apache/bin:$PATH
+
+	
+  9. 安装oracle
+下载linux_11gR1_database_1013.zip这个安装包，解压得到database文件夹
+运行./runInstaller
+打开oracle安装图形界面
+未完待续.......
+
+	
+  10. 启动监听器
+$ORACLE_HOME/bin/lsnrctl start
+
+	
+  11. 创建数据库实例
+在终端输入dbca，即可启动Database Configuration Assistant图形界面，随后即可创建oracle实例。
+未完待续.......
+
+	
+  12. 完成
+
+

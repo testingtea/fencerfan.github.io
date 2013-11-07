@@ -1,0 +1,489 @@
+---
+author: liuyd
+comments: true
+date: 2013-03-11 03:16:18+00:00
+layout: post
+slug: hp-unix%e5%8c%85%e7%ae%80%e6%98%93%e5%ae%89%e8%a3%85%e5%92%8cwindow2012%e4%b8%8a%e5%bc%80%e5%a7%8b%e8%8f%9c%e5%8d%95%e6%9f%a5%e6%89%be
+title: hp-unix包简易安装和window2012上开始菜单查找
+wordpress_id: 178
+categories:
+- 学习报告
+---
+
+一,windows2012上找不到开始菜单，无法进行关机或者重启操作
+
+
+
+
+解决方法：
+
+
+
+
+使用快捷键:Alt+F4
+
+
+
+
+点击任务栏右下角时间旁边空白处，弹出三个隐藏功能：搜索／开始／设置菜单，点击设置按钮，进入后点击电源开关，选择重启或者关机操作
+
+
+
+
+在cmd命令行中输入shutdown /r重启，shutdown /s关机 /f强制关机 /d定时关机 16:00
+
+
+
+
+
+
+
+二,hp-unix包的简易操作
+
+
+
+
+文件dbackup-agent_2.2.7966.14.depot.gz安装步骤如下
+
+
+
+
+查看该文件类型：
+
+
+
+
+1,# file dbackup-agent_2.2.7928.14.depot.gz
+
+
+
+
+dbackup-agent_2.2.7928.14.depot.gz:     gzip compressed
+
+
+
+
+2,解压缩gz文件
+
+
+
+
+# gunzip dbackup-agent_2.2.7928.14.depot.gz
+
+
+
+
+# ll
+
+
+
+
+total 254784
+
+
+
+
+-rwxr--r--   1 root       sys        65218560 Mar  7 00:36 dbackup-agent_2.2.7928.14.depot
+
+
+
+
+3,加载命令行export PATH=$PATH:/usr/sbin
+
+
+
+
+在该目录下有swinstall,swremove,swlist
+
+
+
+
+4,使用swinstall命令安装depot文件
+
+
+
+
+# pwd
+
+
+
+
+/tmp/package
+
+
+
+
+# swinstall -s /tmp/package/dbackup-agent_2.2.7928.14.depot dbackup-agent//安装过程中选择包时需要加上绝对路径，并且后面需要将安装包的名称写在后面
+
+
+
+
+WARNING: The logfile, "/var/adm/sw/swinstall.log" is in use by process
+
+
+
+
+         "26084".  The log information will be intermixed unless a
+
+
+
+
+         different logfile is given.  To select a new logfile, specify
+
+
+
+
+         the "-x logfile=<name>" option on the command line.
+
+
+
+
+
+
+
+=======  03/08/13 01:03:39 EAT  BEGIN swinstall SESSION
+
+
+
+
+         (non-interactive) (jobid=hp-ux-94-0071)
+
+
+
+
+
+
+
+       * Session started for user "root@hp-ux-94".
+
+
+
+
+
+
+
+       * Beginning Selection
+
+
+
+
+       * Target connection succeeded for "hp-ux-94:/".
+
+
+
+
+       * Source:
+
+
+
+
+         /tmp/package/dbackup-agent_2.2.7928.14.depot
+
+
+
+
+       * Targets:                hp-ux-94:/
+
+
+
+
+       * Software selections:
+
+
+
+
+             dbackup-agent.dbackup-agent-RUN,r=2.2.7928.14
+
+
+
+
+       * Selection succeeded.
+
+
+
+
+
+
+
+
+
+
+       * Beginning Analysis and Execution
+
+
+
+
+       * Session selections have been saved in the file
+
+
+
+
+         "/.sw/sessions/swinstall.last".
+
+
+
+
+       * The analysis phase succeeded for "hp-ux-94:/".
+
+
+
+
+       * The execution phase succeeded for "hp-ux-94:/".
+
+
+
+
+       * Analysis and Execution succeeded.
+
+
+
+
+
+
+
+
+
+
+NOTE:    More information may be found in the agent logfile using the
+
+
+
+
+         command "swjob -a log hp-ux-94-0071 @ hp-ux-94:/".
+
+
+
+
+
+
+
+=======  03/08/13 01:03:56 EAT  END swinstall SESSION (non-interactive)
+
+
+
+
+         (jobid=hp-ux-94-0071)
+
+
+
+
+
+
+
+5，查看dbackup-agent版本号：
+
+
+
+
+# swlist dbackup-agent
+
+
+
+
+# Initializing...
+
+
+
+
+# Contacting target "hp-ux-94"...
+
+
+
+
+#
+
+
+
+
+# Target:  hp-ux-94:/
+
+
+
+
+#
+
+
+
+
+
+
+
+# dbackup-agent                         2.2.7928.14    Dbackup Agent
+
+
+
+
+  dbackup-agent.dbackup-agent-RUN                      dbackup-agent  
+
+
+
+
+#
+
+
+
+
+6，卸载dbackup-agent包：
+
+
+
+
+# swremove dbackup-agent
+
+
+
+
+
+
+
+=======  03/08/13 01:15:34 EAT  BEGIN swremove SESSION
+
+
+
+
+         (non-interactive) (jobid=hp-ux-94-0072)
+
+
+
+
+
+
+
+       * Session started for user "root@hp-ux-94".
+
+
+
+
+
+
+
+       * Beginning Selection
+
+
+
+
+       * Target connection succeeded for "hp-ux-94:/".
+
+
+
+
+       * Software selections:
+
+
+
+
+             dbackup-agent.dbackup-agent-RUN,l=/,r=2.2.7928.14
+
+
+
+
+       * Selection succeeded.
+
+
+
+
+
+
+
+
+
+
+       * Beginning Analysis
+
+
+
+
+       * Session selections have been saved in the file
+
+
+
+
+         "/.sw/sessions/swremove.last".
+
+
+
+
+       * The analysis phase succeeded for "hp-ux-94:/".
+
+
+
+
+       * Analysis succeeded.
+
+
+
+
+
+
+
+
+
+
+       * Beginning Execution
+
+
+
+
+       * The execution phase succeeded for "hp-ux-94:/".
+
+
+
+
+       * Execution succeeded.
+
+
+
+
+
+
+
+
+
+
+NOTE:    More information may be found in the agent logfile using the
+
+
+
+
+         command "swjob -a log hp-ux-94-0072 @ hp-ux-94:/".
+
+
+
+
+
+
+
+=======  03/08/13 01:15:36 EAT  END swremove SESSION (non-interactive)
+
+
+
+
+         (jobid=hp-ux-94-0072)
+
+
+
+
+
+
+
+# swlist dbackup-agent
+
+
+
+
+# Initializing...
+
+
+
+
+# Contacting target "hp-ux-94"...
+
+
+
+
+ERROR:   Software "dbackup-agent" was not found on host "hp-ux-94:/".
+
+
+
+
+#

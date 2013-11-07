@@ -1,0 +1,23 @@
+---
+author: lusl
+comments: true
+date: 2013-06-09 06:22:16+00:00
+layout: post
+slug: '%e4%b8%bb%e6%9c%ba%e8%b5%84%e6%ba%90%e7%9b%91%e6%8e%a7-new-relic'
+title: 主机资源监控--New Relic
+wordpress_id: 309
+categories:
+- 性能测试
+---
+
+缺点是，监控的主机要连接到Internet；
+
+官方地址：https://rpm.newrelic.com
+
+使用方法：
+
+1、注册一个帐号，并且登录；
+
+2、在左则导航栏选择“Servers”，按照教程在所要监控的主机上安装newrelic工具；
+
+3、安装成功后，过几分钟刷新页面就可以看在基本的资源使用信息了。

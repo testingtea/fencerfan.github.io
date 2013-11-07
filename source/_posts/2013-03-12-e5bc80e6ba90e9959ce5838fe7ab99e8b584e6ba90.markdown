@@ -1,0 +1,124 @@
+---
+author: fencer
+comments: true
+date: 2013-03-12 01:57:07+00:00
+layout: post
+slug: '%e5%bc%80%e6%ba%90%e9%95%9c%e5%83%8f%e7%ab%99%e8%b5%84%e6%ba%90'
+title: 开源镜像站资源
+wordpress_id: 188
+categories:
+- 部门管理
+---
+
+### 国内高校的开源镜像站
+
+
+
+
+
+	
+  1. 中国科学技术大学([debian.ustc.edu.cn](http://debian.ustc.edu.cn/))
+
+	
+  2. 上海交通大学([ftp.stju.edu.cn](http://ftp.stju.edu.cn/))
+
+	
+  3. 大连理工大学([mirror.dlut.edu.cn](http://mirror.dlut.edu.cn/))
+
+	
+  4. 北京交通大学([mirror.bjtu.edu.cn](http://mirror.bjtu.edu.cn/))
+
+	
+  5. 北京理工大学([mirror.bit.edu.cn](http://mirror.bit.edu.cn/))
+
+	
+  6. 东北大学([mirror.neu.edu.cn](http://mirror.neu.edu.cn/))
+
+	
+  7. 厦门大学([mirrors.xmu.edu.cn](http://mirrors.xmu.edu.cn/))
+
+	
+  8. 兰州大学([mirror.lzu.edu.cn](http://mirror.lzu.edu.cn/))
+
+	
+  9. 西安电子科技大学([linux.xidian.edu.cn](http://linux.xidian.edu.cn/))
+
+	
+  10. 哈尔滨工业大学([run.hit.edu.cn](http://run.hit.edu.cn/))
+
+	
+  11. 天津大学([mirror.tju.edu.cn](http://mirror.tju.edu.cn/))
+
+	
+  12. 东软信息学院([mirrors.neusoft.edu.cn](http://mirrors.neusoft.edu.cn/))
+
+	
+  13. 电子科技大学([mirrors.stuhome.net](http://mirrors.stuhome.net/))
+
+
+
+
+### 国内其他机构的开源镜像站
+
+
+
+
+
+	
+  1. 中国互联网信息中心([mirrors.cnnic.cn](http://mirrors.cnnic.cn/))  只提供了Apache镜像
+
+	
+  2. 网易开源镜像站([mirrors.163.com](http://mirrors.163.com/))
+
+	
+  3. 搜狐([mirrors.sohu.com](http://mirrors.sohu.com/))
+
+	
+  4. 淘宝([ruby.taobao.org](http://ruby.taobao.org/))
+
+	
+  5. 猫扑([labs.mop.com/apache-mirror](http://labs.mop.com/apache-mirror)) 只提供了Apache镜像
+
+
+
+
+### 日本各大学的镜像站
+
+
+
+
+
+	
+  1. 北陆先端科学技术大学院大学JAIST([http://ftp.jaist.ac.jp/pub/](http://ftp.jaist.ac.jp/pub/))
+
+
+
+
+### 美国各大学的镜像站
+
+
+
+
+
+	
+  1. 卡内基梅隆大学CMU([http://www.club.cc.cmu.edu/pub](http://www.club.cc.cmu.edu/pub))
+
+	
+  2. 麻省理工学院MIT([http://mirrors.mit.edu/](http://mirrors.mit.edu/))
+
+	
+  3. 哥伦比亚大学([http://mirror.cc.columbia.edu/](http://mirror.cc.columbia.edu/))
+
+	
+  4. 俄勒冈州立大学([http://ftp.osuosl.org/pub](http://ftp.osuosl.org/pub))
+
+	
+  5. 伊利诺伊大学厄巴纳－香槟分校([http://cosmos.cites.illinois.edu/](http://cosmos.cites.illinois.edu/))
+
+	
+  6. 杜克大学([http://archive.linux.duke.edu/](http://archive.linux.duke.edu/))
+
+	
+  7. 约翰·霍普金斯大学 [http://mirrors.acm.jhu.edu/](http://mirrors.acm.jhu.edu/)
+
+

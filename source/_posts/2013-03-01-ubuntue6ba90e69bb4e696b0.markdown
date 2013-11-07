@@ -1,0 +1,19 @@
+---
+author: zhengzhiteng
+comments: true
+date: 2013-03-01 08:40:32+00:00
+layout: post
+slug: ubuntu%e6%ba%90%e6%9b%b4%e6%96%b0
+title: ubuntu源更新
+wordpress_id: 159
+categories:
+- 操作系统
+---
+
+在我们的日常测试工作中，经常需要在纯净的ubuntu测试环境下安装迪备、安备、奥备等，这个时候就需要下载并安装依赖包，主要依赖于apt-get。而源呢，简单的说，就是下载和更新我们所需依赖包的来源。配置文件在/etc/apt/sorces.list。
+
+因为系统默认的源来自官方公开的源，所以实际中我们在进行apt-get install -f时会较慢，所以这个时候，我们就需要更新一下源。
+
+源的配置文件已知道，那么我们需要的就是较高速便捷的源，而后进行更新，便能够加快实际测试工作中的安装。在
+
+http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8 中，我们可以根据个人需要下载或者复制源配置文件内容，而后进行更新。具体请参考该官网源汇总资料。

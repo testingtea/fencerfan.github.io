@@ -1,0 +1,45 @@
+---
+author: wangsx
+comments: true
+date: 2013-11-04 02:11:14+00:00
+layout: post
+slug: mysql-4-2-1-for-rhel3
+title: MySQL-4.1.22 for RHEL3_x86
+wordpress_id: 537
+categories:
+- 数据库
+---
+
+**MySQL安装包：**
+
+mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+[http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz](http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz)
+
+**安装步骤：**
+
+1、# chmod 755 mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+2、# tar xfz mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz　　//将解压后生成的目录,复制到/usr/local/下并改名为mysql
+3、# groupadd mysql    　　　　// 建立mysql组
+# useradd mysql -g mysql  　 // 建立mysql用户并且加入到mysql组中
+4、# cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf         //在 support-files目录下有4个模版文件，我们选择其中一个座位Mysql的配置文件，覆盖/etc/my.cnf(系统默认的配置，其中设置了性能参数和Mysql的一些路径参数)
+5、# cd /usr/local/mysql
+# ./scripts/mysql_install_db --user=mysql         //初试化表并且规定用mysql用户来访问。初始化表以后就开始给mysql和root用户设定访问权限
+6、# chown -R root .  　　　　　//设定root能访问/usr/local/mysql
+7、# chown -R mysql data  　　　//设定mysql用户能访问/usr/local/mysql/data ,里面存的是mysql的数据库文件.这个目录是在/etc/my.cnf中有配置，在mysql_install_db时产生。
+8、# chown -R mysql data/. 　　//设定mysql用户能访问/usr/local/mysql/data/mysql下的所有文件
+9、# chgrp -R mysql .  　　　　//设定mysql组能够访问/usr/local/mysql
+10、# /usr/local/mysql/bin/mysqld_safe --user=mysql &  　　//运行mysql,如果没有问题的话,应该会出现类似这样的提示:[1]42264
+# Starting mysqld daemon with databases from /usr/local/mysql/var 如果出现 mysql ended这样的语句，表示Mysql 没有正常启动，你可以到log中查找问题，Log文件的通常在/etc/my.cnf中配置。大多数问题是权限设置不正确引起的。
+11、# /usr/local/mysql/bin/mysqladmin -u root password yourpassword //默认安装密码为空，为了安全你必须马上修改.
+
+12、#cp support-files/mysql.server /etc/rc.d/init.d/mysqld  　　//copy编译目录的一个脚本
+#chmod 700 /etc/init.d/mysqld 　　　　//设置使mysql每次启动都能自动运行
+#chkconfig --add mysqld
+#chkconfig --level 345 mysqld on
+
+13、#service mysqld start 　　//启动mysqld服务
+#netstat -atln 　　　　    //查看3306端口是否打开。要注意在防火墙中开放该端口
+
+安装完之后，需要输入/usr/local/mysql/bin/mysql -uroot -p才能登录mysql，设了环境变量export mysql=/usr/local/mysql/bin还是无法通过输入mysql -uroot -p登录mysql，仍在想方法解决。
+解决方法：vi ~/.bash_profile
+在后面加上export PATH=$PATH:/usr/local/mysql/bin

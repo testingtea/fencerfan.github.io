@@ -1,0 +1,31 @@
+---
+author: wangsx
+comments: true
+date: 2013-11-04 06:46:58+00:00
+layout: post
+slug: mysql-5-2-3-for-rhel5_x86
+title: MySQL-5.2.3 for RHEL5_x86
+wordpress_id: 546
+categories:
+- 数据库
+---
+
+Prepare the installation package
+Server:[http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-server-5.2.3-0.glibc23.i386.rpm](http://mirrors.sohu.com/mysql/MySQL-5.2/)
+Client: [http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-client-5.2.3-0.glibc23.i386.rpm](http://mirrors.sohu.com/mysql/MySQL-5.2/)
+Perl(DBI) :[http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&submit=Search+...&system=&arch/perl-DBI-1.617-1.el5.rfx.i386.rpm
+](http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&submit=Search+...&system=&arch)libstdc++.so.5:[http://rpm.pbone.net/index.php3?stat=26&dist=0&size=231705&name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm](http://rpm.pbone.net/index.php3?stat=26&dist=0&size=231705&name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm)
+
+Installation  steps
+1、Switch to the root user
+$>su - root
+2、Install Perl(DBI)
+#>rpm -ivh perl-DBI-1.617-1.el5.rfx.i386.rpm
+3、Install libstdc++.so.5
+#>rpm -ivh compat-libstdc++-33-3.2.3-47.3.i386.rpm
+4、Install MySQL-server & MySQL-client
+#>rpm -ivh MySQL-server-5.2.3-0.glibc23.i386.rpm
+#>rpm -ivh MySQL-client-5.2.3-0.glibc23.i386.rpm
+5、 Set the password for the MySQL root user
+#>mysqladmin -uroot password 'new-password'
+6、End

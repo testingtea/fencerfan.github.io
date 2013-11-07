@@ -1,0 +1,718 @@
+---
+author: liuyd
+comments: true
+date: 2013-02-22 10:47:05+00:00
+layout: post
+slug: aix%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%ef%bc%88%e5%88%98%e4%ba%9a%e4%b8%9c%ef%bc%89
+title: IBM_AIX操作系统（刘亚东）
+wordpress_id: 121
+categories:
+- 英文翻译
+---
+
+AIX（高级交互执行，发音）是一系列由IBM开发和销售的几个计算机平台的专有的Unix操作系统。最初发布的IBM 6150 RISC工作站，AIX支持或支持各种各样的硬件平台，包括IBM RS/6000系列，后来IBM POWER和PowerPC为基础的系统，IBM的System i的System/370大型机，PS / 2个人电脑，苹果网络服务器。AIX是基于4.3BSD兼容扩展的UNIX系统V。这是目前由The Open Group的UNIX 03标准认证的4个商业化的操作系统之一。（其他人是Mac OS X的Solaris和HP-UX）。
+
+
+
+AIX操作系统家族于1986年首次亮相，成为了标准的RS/6000系列于1990年推出的操作系统，IBM还积极开发。它是目前支持IBM的Power系统上的IBM i和Linux的一起。AIX操作系统是第一个利用日志文件系统，和IBM不断提高的软件的功能，如处理器，磁盘和网络虚拟化，动态硬件资源分配（包括小数处理器单元），从它的主机设计和可靠性工程移植
+
+
+
+
+**内容**
+
+
+1 历史
+
+2 支持的硬件平台
+
+2.1 IBM 6150 RT
+
+2.2 IBM PS / 2系列
+
+2.3 IBM大型机
+
+2.4 POWER / PowerPC为基础的系统
+
+2.4.1 POWER7 AIX特点
+
+2.4.2 苹果网络服务器
+
+2.5 IA-64系统
+
+3 版本
+
+3.1 POWER / PowerPC的版本
+
+3.2 IBM PS / 2版本
+
+3.3 IBM 6150 RT版本
+
+4用户界面
+
+4.1 图形
+
+4.2 系统管理控制台
+
+5 参见
+
+
+1历史
+
+
+
+
+AIX版本1，在1986年推出的IBM 6150 RT工作站，是基于UNIX系统V第1版和2。在开发AIX，IBM和互动系统公司（IBM签约）还包括4.2和4.3 BSD UNIX的源代码。
+
+
+
+
+在其他的变种，后来IBM AIX版本3（也称为AIX/6000），System V的第3版，IBM POWER基于RS/6000平台的基础上产生的。自1990年以来，AIX曾作为主操作系统的RS/6000系列（后更名为IBM的eServer p系列，IBM的System p，现在的IBM Power Systems）。AIX版本4，于1994年推出，RS/6000 SMP服务器第一个引进的对称多处理，通过20世纪90年代继续发展，最终在1999年与AIX 4.3.3。4.1版，在略作修改的形式，也是苹果网络服务器系统的销售，以配合苹果电脑的Macintosh上线的标准操作系统。
+
+
+
+
+在20世纪90年代后期，在项目蒙特雷，IBM和Santa Cruz Operation公司计划整合成一个单一的32位/64位的多平台UNIX AIX和UnixWare的，特别强调英特尔IA-64（安腾）架构的CPU上运行。IA-64系统是一个beta测试版本的AIX 5L公布，但根据公布的文件在SCO诉IBM的诉讼，不到40个许可证卖的成品蒙特利UNIX的在2002年之前，该项目被终止。在2003年，SCO集团声称（其他违法行为之间），IBM挪用纳入AIX，SCO UNIX系统V第4版许可的源代码，随后撤回了IBM的许可，用以开发和分发AIX。IBM认为，他们的许可证是不可撤销的，继续销售和支持产品，直到被宣判的诉讼。
+
+
+
+
+AIX是一个组成部分，2003年SCO诉IBM的诉讼，其中IBM，SCO集团提起诉讼，指控IBM对Linux的代码库贡献了SCO的知识产权。SCO集团，谁认为他们是合法的版权拥有人，涵盖了Unix的操作系统，试图撤销IBM的出售或分发AIX操作系统的许可证。在2010年3月，一个陪审团裁定，发现的Novell，而不是SCO集团，旗下拥有的权利为Unix。
+
+
+
+
+AIX 6在2007年5月宣布，从2007年6月至2007年11月9日的一般可用性（GA）的AIX 6.1跑了公测。在AIX 6.1的主要新功能包括：基于角色的访问控制，工作负载分区（这使应用程序迁移），增强的安全性（添加NFS v3和v4的AES加密类型）和实时分区迁移功能的POWER6硬件。
+
+
+
+
+2010年4月，IBM发布公告即将到来的7.1版本。计划支持继续POWER4代或更高版本的硬件。一些新的功能，包括更好的可扩展性，增强了集群和管理能力也被提及。作为WPAR能够运行老版本的AIX会继续使用5.2的硬件不支持的机会。IBM拟7.1提供一个开放的Beta测试计划。
+
+
+
+
+2支持的硬件平台
+
+
+
+
+2.1 IBM 6150 RT
+
+
+
+
+原来的AIX（有时也被称为AIX / RT）开发的IBM 6150 RT工作站由IBM的结合与互动系统公司 ，谁曾移植的UNIX系统III的IBM PC IBM PC / IX。 安装介质包括8个1.2M的软盘 。 RT为基础的的ROMP 微处理器 ，第一个商用RISC芯片。 这是基于一个设计，率先在IBM研究中心（ IBM 801 ）。
+
+
+
+
+RT设计新颖的方面之一是使用一个微内核 ，虚拟资源管理器（VRM）。 所有控制由一个微内核的键盘，鼠标，显示器，硬盘驱动器和网络。 人们可以从一个操作系统下使用的Alt-Tab组合键“热键”。 每个OS反过来会得到藏的键盘，鼠标和显示器。 除了AIX V2， PICK OS还利用微内核。
+
+
+
+
+AIX V2内核的编写PL / I编程语言，这证明了在迁移到AIX V3的麻烦[ 引用 ] AIX V2包含完整的TCP / IP网络，以及SNA和两个网络文件系统NFS授权的Sun微系统 ， 分布式服务 （DS）。 DS有正在建造的SNA上的区别，从而完全兼容DS在IBM中端AS/400和大型机系统。 对于图形用户界面，AIX V2是从MIT的X10R3，后来在的X10R4和X11版本的X Window系统 ，连同雅典娜widget集 。 为的Fortran和C编译器。 其中一个比较流行的桌面应用程序是在PageMaker的 桌面出版软件。
+
+
+
+
+2.2 IBM PS / 2系列
+
+
+
+
+AIX PS / 2上运行虚拟PC
+
+
+
+
+根据合同，IBM AIX PS / 2（也称为AIX/386） 轨迹Computing公司开发的。 AIX PS / 2，首次发布于1989年， 英特尔386和兼容的处理器上运行的IBM PS / 2 个人电脑
+
+
+2.3 IBM大型机
+
+在1988年，IBM宣布AIX/370，还开发了轨迹计算。 AIX/370是IBM的第三次尝试提供类似Unix的功能，他们的大型机线，具体的System/370 （以前的版本是一个TSS/370基于Unix系统的联合开发与AT＆T c.1980和VM / IX一个VM/370系统共同开发的互动系统公司 c.1984）。 AIX/370发布于1990年与功能等价的System V Release 2和4.3BSD以及IBM的增强。 通过引入的ESA/390架构，AIX/370 AIX / ESA于1991年，是基于OSF / 1 ，被替换的System/390平台上也跑了。 这种发展的努力，部分允许IBM与阿姆达尔 UTS竞争。[ 需要的引证 ]与AIX/370，AIX / ESA本身作为主机操作系统，并作为下一个客人VM运行。 AIX / ESA，虽然在技术上是先进的，几乎没有商业上的成功，部分原因是因为UNIX功能被添加到现有的主机操作系统作为一个选项， MVS ，在1999年成为MVS / ESA OpenEdition的 。
+
+
+
+2.4 POWER / PowerPC为基础的系统
+
+此次发布的AIX版本3（有时称为AIX/6000）正好与1990年公布的第一个的POWER1基于IBM RS/6000型号。 RS/6000是独一无二的，它不是只在整数运算性能优于所有其他机器，但也打了10倍的浮点性能的竞争。[ 需要的引证 ]的竞争，从供应商的Sun的Unix工作站 ， HP和SGI ，以及在较小的程度，来自鹰图及其他。 这些机器都大致相若，零售价格范围在1万美元到10万美元，并提供相似数量的内存，磁盘和网络，大致相当于图形子系统。 浮点单元的新颖之处是，它被捆绑到整数流水线，并进行了单次乘加指令周期（更准确地说是一个3循环的深流水线，3个周期）。 的共同智慧的时代，只有整数运算性能重要的，奇怪很少有人的事实，许多客户正在运行的浮点密集型数字的科学计算工作负载。
+
+发布的AIX版本3还利用了在POWER架构的发展。
+
+AIX V3的几种方式在软件方面的创新。 这是第一个操作系统的思想引入一个日志文件系统 ， JFS ，允许快速启动时间，避免了磁盘上的文件系统（看到的fsck ）在每次重新启动，以确保一致性。 另一项技术革新，从而避免了静态链接库的应用程序需要的共享库 。 由此产生的更小的二进制文件使用较少的RAM的硬件上运行，并使用更少的磁盘空间来安装。 除了提高性能，这是一个福音，开发人员可以在几十千字节兆字节的静态链接到C库的可执行文件，而不是一个可执行的二进制文件。 AIX V3还取消了微内核的AIX V2，是一个有争议的举动，导致在v3不包含PL / I代码和更“纯”比V2。
+
+其他著名的子系统包括：
+
+IRIS GL ，3D渲染库， OpenGL的的祖先。 IRIS GL是由IBM授权的SGI于1987年，仍然是一个小公司已售出的只有千台机器。 SGI还提供了低端显卡的RS/6000，能够吸引20000 高洛德阴影的三角形每秒。 高端显卡的设计是由IBM，后续的基于大型机的IBM 5080 ，能够使每秒990,000载体。
+
+PHIGS ，另一个3D渲染API，在汽车CAD / CAM圈的，在CATIA的核心。
+
+全面实施，连同母题的建议的窗口小部件收集和窗口管理器的X Window系统版本11 。
+
+网络文件系统NFS从太阳 AFS， Andrew文件系统 ，以及DFS， 分布式文件系统 。
+
+NCS， 网络计算系统 ，授权的阿波罗电脑 （后来被HP ）。
+
+DPS屏幕上的显示系统。 这是作为一个“B计划”的情况下显着X11 +母题的组合，在市场上失败。 然而，这是高度专用的，仅支持由Sun， NeXT公司 ，以及IBM。 这巩固了其在市场上的开放式系统的挑战X11 + Motif和其3D能力的缺乏面对失败。
+
+截至2011年，AIX上运行的System i ， System p系列 ， IBM 电源的System p5，System i5的的eServer P5，eServer pSeries服务器和eServer i5服务器产品线，以及IBM 的BladeCenter刀片服务器基于Power Architecture技术。
+
+
+
+2.4.1 POWER7 AIX特点
+
+增强型RISC（POWER）第7版的性能优化使AIX操作系统的一个独特的性能优势。 POWER7提供了新的功能，使用多个内核和多个CPU线程，创建一个池的虚拟CPU。 典型的IBM POWER7处理器的8个核心，每个核心四线程，总容量为32个并发线程，每个处理器电路或32个虚拟CPU，同时还可以使用相同的电力消耗，POWER6处理器的电路，它只能支持8个虚拟CPU。 ，AIX可以利用POWER7的顺序，而不是按顺序执行指令的能力，利用POWER7的积极的的订单指令集驱动高效利用可用的执行路径。
+
+AIX 7包含一个新的内置称为群集感知型AIX集群功能。 AIX是能够组织多个LPAR通过多路径的通信信道到邻近的CPU，从而实现非常高速的处理器之间的通信。 这使得多TB的内存地址范围和页表的访问，以支持全球PB级的共享的内存空间，使AIX POWER7集群的软件开发人员可以编写一个集群，如果它是一个单一的系统，不使用消息传递（即信号控制间进程通信）。 AIX系统管理员可以使用此新功能的AIX节点的集群池。 默认情况下，，AIX V7.1针内核内存和支持，允许应用程序到脚的内核堆栈。 钢钉内核的内存和内核堆栈的实时性要求的应用，可以提供性能改进，确保不分页的内核内存和内核堆栈的应用程序。
+
+AIX POWER7系统包括Active Memory扩展功能，从而增加了系统的灵活性，系统管理员可以配置逻辑分区（LPAR）使用更少的物理内存。 例如，一个LPAR运行AIX OS应用程序配置80 GB的物理内存，但硬件却仅消耗60 GB的物理内存。 Active Memory扩展使用的内存压缩技术，可以透明地压缩在内存中的数据，从而使更多的数据放入内存，从而扩大POWER7系统的内存容量。 利用Active Memory扩展可以提高系统的利用率，增加系统的吞吐量。 AIX 7会自动管理内存的大小自动使用4K，64K或结合这些页面大小的页面。 这种自我调节功能最佳的系统性能没有管理的努力..
+
+
+
+2.4.2苹果网络服务器
+
+苹果网络服务器系统是由苹果电脑公司设计的基于PowerPC的系统有众多高端功能，苹果的硬件不标准，包括热插拔硬盘，冗余电源和外部监控功能。 这些系统都或多或少的基础上的Power Macintosh硬件时可用，但被设计为使用本机操作系统中的一个特殊版本的特定的ANS AIX（版本4.1.4或4.1.5）。
+
+AIX是唯一兼容的网络服务器，并没有移植到标准的Power Macintosh硬件。 为了不被混淆的是A / UX ，苹果公司的68K基于Macintosh的早期版本的Unix 。
+
+
+
+2.4.3 IA-64系统
+
+项目蒙特利的一部分，IBM发布了一个beta测试版本的AIX 5L的IA-64（ 安腾 ）架构，在2001年，但从来没有成为正式的产品由于缺乏兴趣。
+
+
+
+3 版本
+
+3.1 POWER / PowerPC的版本
+
+AIX V7.1，9月10日，2010 
+
+支持256个内核/ 1024个线程在一个单一的虚拟机
+
+能够运行AIX V 5.2 V 5.3内的工作负载分区
+
+一个XML配置文件为基础的系统配置管理实用程序
+
+支持出口的光纤通道适配器的WPAR
+
+VIOS磁盘支持在WPAR
+
+群集感知型AIX
+
+AIX事件基础设施
+
+基于角色的访问控制（RBAC）和域支持多租户环境
+
+AIX V6.1，2007年11月9日
+
+工作负载分区 （WPAR中） 操作系统级的虚拟化
+
+动态应用程序迁移
+
+实时分区迁移
+
+安全
+
+基于角色的访问控制RBAC
+
+AIX安全专家 -系统和网络的安全性强化工具
+
+JFS2文件系统加密
+
+受信任的AIX
+
+可信执行
+
+综合电子服务代理（TM）自动错误报告
+
+同时内核维护
+
+内核开发POWER6存储键
+
+ProbeVue的动态跟踪
+
+为AIX Systems Director控制台
+
+集成文件系统快照
+
+需要POWER4或更新版本的CPU
+
+AIX 5L 5.3 8月13日，2004年，2012年4月支持30结束
+
+NFS版本4
+
+高级会计
+
+虚拟SCSI
+
+虚拟以太网
+
+开发的同时多线程 （SMT）
+
+微分区启用
+
+POWER5开发
+
+JFS2配额
+
+来缩小JFS2文件系统的能力
+
+内核调度器已得到增强，动态地增加或减少使用的虚拟处理器。
+
+AIX 5L 5.2 10月18日，2002年， 2009年4月30日的支持
+
+与PowerPC 970芯片，能够运行在IBM 的BladeCenter JS20 。
+
+POWER5硬件需要的最低水平
+
+MPIO 光纤通道磁盘
+
+iSCSI Initiator软件的
+
+参与动态LPAR
+
+并行I / O （CIO）功能，维护级别01 JFS2发布于2003年5月
+
+AIX 5L 5.1，2001年5月4日（支持已停产的2006年4月1日） 
+
+能够运行在IA-64架构的处理器，虽然这从未超出测试
+
+POWER4硬件和微通道架构上的最后一个版本的工作需要的最低水平
+
+64位 内核 ，默认情况下，安装但尚未激活
+
+JFS2
+
+能够运行在逻辑分区上的POWER4
+
+L代表Linux的亲和力
+
+可信计算基 （TCB）
+
+支持镜像条带化
+
+AIX 4.3.3，1999年9月17日
+
+在线备份功能
+
+工作负载管理器 （WLM）
+
+介绍TOPAS实用的
+
+AIX 4.3.2，1998年10月23日
+
+AIX 4.3.1，1998年4月24日
+
+AIX 4.3，1997年10月31日
+
+能够运行在64位架构的CPU
+
+IPv6的
+
+基于Web的系统管理器
+
+AIX 4.2.1，1997年4月25日
+
+NFS版本3
+
+AIX 4.2，1996年5月17日
+
+AIX 4.1.5 1996年11月8日
+
+AIX 4.1.4，1995年10月20日
+
+AIX 4.1.3，1995年7月7日
+
+CDE 1.0成为默认的GUI环境，取代Motif窗口管理器 。
+
+AIX 4.1.1 1994年10月28日
+
+AIX 4.1 1994年8月12日
+
+1994年AIX 4.0，
+
+运行在RS/6000系统的PowerPC处理器和PCI总线。
+
+1992年AIX 3.2
+
+AIX 3.1，1990年2月
+
+日志文件系统（ JFS ）文件系统的类型
+
+1989年AIX 3.0
+
+OSF / 1 LVM（ 逻辑卷管理器 ）纳入，并在1995年，HP-UX的Linux LVM实施的是类似的HP-UX LVM实现。 
+
+“SMIT被推出。
+
+3.2 IBM PS / 2版本
+
+AIX PS / 2 V1.1，1989年
+
+最后一个版本为1.3，1992年。
+
+
+
+3.3 IBM发布6150 RT
+
+AIX V2.0
+
+最后一个版本是2.2.1。
+
+AIX 1.0版，1986年
+
+
+
+4用户界面
+
+默认的shell是Bourne shell的到AIX版本3，但在第4版XPG4和POSIX标准，改变Korn shell程序 （ksh88） 。
+
+4.1 图形
+
+公用桌面环境 （CDE）是AIX的默认的图形用户界面 。 开放源代码KDE等离子工作区和GNOME桌面的Linux的亲和力和免费的Linux应用程序（ATLA）的AIX工具箱的一部分，也可提供。
+
+4.2系统管理控制台
+
+SMIT是AIX系统管理界面工具。 它允许用户导航的菜单层次结构的命令，而不是使用命令行。 调用命令smit通常实现。 有经验的系统管理员使用的F6功能键，生成SMIT的命令行调用来完成吨SMIT还生成一个日志smit.script文件中执行的命令。 smit.script文件自动记录命令的命令行标志和参数。 smit.script文件可以作为一个可执行的shell脚本，重新运行系统配置任务。 SMIT创建smit.log文件，其中包含附加的详细信息，可用于由程序员扩展SMIT系统。
+
+smit和smitty指相同的程序，但smitty调用基于文本的版本，而， smit将调用一个基于X Window系统的接口，如果可能的话，但是，如果smit确定X Window系统的功能是不存在的，它会显示文本为基础的版本，而不是失败。 通常测定的X Window系统的功能检查DISPLAY变量的存在。
+
+
+
+5参见
+
+AOS ，IBM的教育市场的4.3BSD端口
+
+Unix系统下的列表
+
+nmon的
+
+操作系统的时间表
+
+
+
+	
+  * AIX V7.1，9月10日，2010
+
+	
+    * 支持256个内核/ 1024个线程在一个单一的虚拟机
+
+	
+    * 能够运行AIX V 5.2 V 5.3内的工作负载分区
+
+	
+    * 一个XML配置文件为基础的系统配置管理实用程序
+
+	
+    * 支持出口的光纤通道适配器的WPAR
+
+	
+    * VIOS磁盘支持在WPAR
+
+	
+    * 群集感知型AIX
+
+	
+    * AIX事件基础设施
+
+	
+    * 基于角色的访问控制（RBAC）和域支持多租户环境
+
+
+
+
+	
+  * AIX V6.1，2007年11月9日
+
+	
+    * 工作负载分区（WPAR中）操作系统级的虚拟化
+
+	
+    * [动态应用程序迁移](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DLive_Application_Mobility%26action%3Dedit%26redlink%3D1&usg=ALkJrhiMn5d3QDomIxeQ-TinsigGVj7AFw)
+
+	
+    * [实时分区迁移](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Live_Partition_Mobility&usg=ALkJrhgIwOQzPZ7XMG_vj95wwidgvwNT6g)
+
+	
+    * 安全
+
+	
+      * 基于角色的访问控制[RBAC](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/RBAC&usg=ALkJrhiLTwHBIwryeBPSAnbDm8-LXHwnew)
+
+	
+      * AIX安全专家-系统和网络的安全性强化工具
+
+	
+      * [JFS2](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/JFS2&usg=ALkJrhhGVIA3uKxeLJmObYpYsh-vXojyFw)文件系统加密
+
+	
+      * [受信任的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DTrusted_AIX%26action%3Dedit%26redlink%3D1&usg=ALkJrhjn3zyYXSGr6PalG0QXi6wrga3zAg)[AIX](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DTrusted_AIX%26action%3Dedit%26redlink%3D1&usg=ALkJrhjn3zyYXSGr6PalG0QXi6wrga3zAg)
+
+	
+      * [可信执行](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DTrusted_Execution%26action%3Dedit%26redlink%3D1&usg=ALkJrhg15xXF1N_6xxbtYRobPJdEM4Z8OQ)
+
+
+
+
+	
+    * 综合电子服务代理（TM）自动错误报告
+
+	
+    * 同时内核维护
+
+	
+    * 内核开发[POWER6](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/POWER6&usg=ALkJrhh56P5ANnVuHwC57VnRJVw-_vdJjQ)存储键
+
+	
+    * [ProbeVue ](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/ProbeVue&usg=ALkJrhjj4kpT3njdd8q5Fu94mddei9xIRw)[的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/ProbeVue&usg=ALkJrhjj4kpT3njdd8q5Fu94mddei9xIRw)动态跟踪
+
+	
+    * 为AIX Systems Director控制台
+
+	
+    * 集成[文件系统快照](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Snapshot_(computer_storage)&usg=ALkJrhhMnU_SjqZtumM1Csf_IAVZ8sEHwg)
+
+	
+    * 需要[POWER4](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/POWER4&usg=ALkJrhhGQE33UmU9JgYbXdQ5hGbe8YNSFg)或更新版本的CPU
+
+
+
+
+	
+  * AIX 5L 5.3 8月13日，2004年，2012年4月支持30结束
+
+	
+    * [NFS](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Network_File_System_(protocol)&usg=ALkJrhgHpasq5fCyMjVXg5zCQhd6oZXKaA)版本4
+
+	
+    * 高级会计
+
+	
+    * 虚拟[SCSI](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/SCSI&usg=ALkJrhivkOjIKuwAVZoipAaHlpgLvlHsgA)
+
+	
+    * 虚拟以太网
+
+	
+    * 开发的[同时多线程](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Simultaneous_multithreading&usg=ALkJrhi7x9nuixHZ1VvKHhfkAyx9K5ajOw)（SMT）
+
+	
+    * [微分区](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Micro-Partitioning&usg=ALkJrhiCkaayHD_2g0Sdb-JXdtYYijODiQ)启用
+
+	
+    * POWER5开发
+
+	
+    * [JFS2](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IBM_Journaled_File_System_2_(JFS2)&usg=ALkJrhjNq5702NZ4pi_MmOlQVDmSr_R40g)配额
+
+	
+    * 来缩小[JFS2](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/JFS2&usg=ALkJrhhGVIA3uKxeLJmObYpYsh-vXojyFw)文件系统的能力
+
+	
+    * [内核调度器](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DKernel_scheduler%26action%3Dedit%26redlink%3D1&usg=ALkJrhjtU8WYgS7eN5r255glJM6glS5pvw)已得到增强，动态地增加或减少使用的虚拟处理器。
+
+
+
+
+	
+  * AIX 5L 5.2 10月18日，2002年2009年4月30日的支持
+
+	
+    * 与[PowerPC 970](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/PowerPC_970&usg=ALkJrhg6WWJPoD8QbFO-AEakwo-ng1ET2w)[芯片，](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/PowerPC_970&usg=ALkJrhg6WWJPoD8QbFO-AEakwo-ng1ET2w)能够运行在IBM[的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/BladeCenter&usg=ALkJrhgXshJTM4ITu7jAy60P78G5dZzw9A)[BladeCenter](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/BladeCenter&usg=ALkJrhgXshJTM4ITu7jAy60P78G5dZzw9A) JS20 。
+
+	
+    * POWER5硬件需要的最低水平
+
+	
+    * [MPIO](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Multipath_I/O&usg=ALkJrhiIddObjlh6_2W718m1RzRYbglrDA)[光纤通道](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Fibre_Channel&usg=ALkJrhi86pbnRGxf19LZCtguTIzeK1s-Fw)磁盘
+
+	
+    * [iSCSI](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/ISCSI&usg=ALkJrhgLa3aVVTbL6J2qR6Rozyu4op_T0g)Initiator软件的
+
+	
+    * 参与[动态](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Dynamic_Logical_Partitioning&usg=ALkJrhjdDHNg1oGHk5dhkGwGhXQAZD8UDw)[LPAR](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Dynamic_Logical_Partitioning&usg=ALkJrhjdDHNg1oGHk5dhkGwGhXQAZD8UDw)
+
+	
+    * [并行](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DConcurrent_I/O%26action%3Dedit%26redlink%3D1&usg=ALkJrhj4abKPs60mujpEa82J2n_l4E0TkA)[I / O](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DConcurrent_I/O%26action%3Dedit%26redlink%3D1&usg=ALkJrhj4abKPs60mujpEa82J2n_l4E0TkA)（CIO）功能，维护级别01[JFS2](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/JFS2&usg=ALkJrhhGVIA3uKxeLJmObYpYsh-vXojyFw)发布于2003年5月
+
+
+
+
+	
+  * AIX 5L 5.1，2001年5月4日（支持已停产的2006年4月1日）
+
+	
+    * 能够运行在[IA-64](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IA-64&usg=ALkJrhgCJphfs2BlL7lHG5dJOSzMduZVTg)架构的处理器，虽然这从未超出测试
+
+	
+    * POWER4硬件和[微通道架构](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Micro_Channel_architecture&usg=ALkJrhhkiv-Wridi1F_Th18bT8p2cfJh5g)上的最后一个版本的工作需要的最低水平
+
+	
+    * [64](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/64-bit&usg=ALkJrhg5bfx-bFdKk7CBjCJuWwqhO6kCvw)[位](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/64-bit&usg=ALkJrhg5bfx-bFdKk7CBjCJuWwqhO6kCvw)[内核](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Kernel_(computer_science)&usg=ALkJrhjirn0p7nTITtVbRTCcsbbCHUuS_w)，默认情况下，安装但尚未激活
+
+	
+    * JFS2
+
+	
+    * 能够运行在[逻辑分区](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/LPAR&usg=ALkJrhjiDr1K67V0J1DoOxLNJw3puW3U8g)上的[POWER4](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/POWER4&usg=ALkJrhhGQE33UmU9JgYbXdQ5hGbe8YNSFg)
+
+	
+    * L代表[Linux](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Linux&usg=ALkJrhhKnOZVIuzXwaBtpRXq4k6rPtiteQ)[的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Linux&usg=ALkJrhhKnOZVIuzXwaBtpRXq4k6rPtiteQ)亲和力
+
+	
+    * [可信计算基](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Trusted_Computing_Base&usg=ALkJrhh5EUTjNetZfM9caT-yECz-DH8wmg)（TCB）
+
+	
+    * 支持镜像条带化
+
+
+
+
+	
+  * AIX 4.3.3，1999年9月17日
+
+	
+    * 在线[备份](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Backup&usg=ALkJrhh2MSboB5XrgySbjCiA5hHfnLVWJw)功能
+
+	
+    * [工作负载管理器](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Workload_Manager&usg=ALkJrhilNmIzKtSH0A_ZEz2Y-bGU3R3N7A)（WLM）
+
+	
+    * 介绍[TOPAS](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Topas&usg=ALkJrhjyw5PBDceNWVRoXfhGiy2EGycLzw)实用的
+
+
+
+
+	
+  * AIX 4.3.2，1998年10月23日
+
+	
+  * AIX 4.3.1，1998年4月24日
+
+	
+  * AIX 4.3，1997年10月31日
+
+	
+    * 能够运行在64位[架构](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/CPU_design&usg=ALkJrhjSUoieIUO0aXu8_ZM-djcpt5c8jg)的CPU
+
+	
+    * [IPv6](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IPv6&usg=ALkJrhjIh8A7CJvVD-KSciOxwYLF4qmTzQ)[的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IPv6&usg=ALkJrhjIh8A7CJvVD-KSciOxwYLF4qmTzQ)
+
+	
+    * [基于](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Web-based_System_Manager&usg=ALkJrhiWn4koLHS7hLkP7cifTiGfCYbv4g)[Web](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Web-based_System_Manager&usg=ALkJrhiWn4koLHS7hLkP7cifTiGfCYbv4g)[的系统管理器](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Web-based_System_Manager&usg=ALkJrhiWn4koLHS7hLkP7cifTiGfCYbv4g)
+
+
+
+
+	
+  * AIX 4.2.1，1997年4月25日
+
+	
+    * [NFS](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Network_File_System_(protocol)&usg=ALkJrhgHpasq5fCyMjVXg5zCQhd6oZXKaA)版本3
+
+
+
+
+	
+  * AIX 4.2，1996年5月17日
+
+	
+  * AIX 4.1.5 1996年11月8日
+
+	
+  * AIX 4.1.4，1995年10月20日
+
+	
+  * AIX 4.1.3，1995年7月7日
+
+	
+    * [CDE](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Common_Desktop_Environment&usg=ALkJrhibsamVm8TAje9rZzJSC_IY4OxXGg)1.0成为默认的GUI环境，取代[Motif](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Motif_Window_Manager&usg=ALkJrhgOg42EVYYYTS7eN9Sc6pEMbX58Fg)[窗口管理器](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Motif_Window_Manager&usg=ALkJrhgOg42EVYYYTS7eN9Sc6pEMbX58Fg)。
+
+
+
+
+	
+  * AIX 4.1.1 1994年10月28日
+
+	
+  * AIX 4.1 1994年8月12日
+
+	
+  * 1994年AIX 4.0，
+
+	
+    * 运行在RS/6000系统[的](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/PowerPC&usg=ALkJrhgFtEHu6zhtIlA2_OooIUJnYOx9bA)[PowerPC](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/PowerPC&usg=ALkJrhgFtEHu6zhtIlA2_OooIUJnYOx9bA)处理器和[PCI](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/Peripheral_Component_Interconnect&usg=ALkJrhh2pCO2AGTgiXoU8hFpKOQtVHxFiQ)总线。
+
+
+
+
+	
+  * 1992年AIX 3.2
+
+	
+  * AIX 3.1，1990年2月
+
+	
+    * 日志文件系统（[JFS](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IBM_Journaled_File_System_2_(JFS2)&usg=ALkJrhjNq5702NZ4pi_MmOlQVDmSr_R40g)）文件系统的类型
+
+
+
+
+	
+  * 1989年AIX 3.0
+
+	
+    * OSF / 1 LVM（[逻辑卷管理器](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/w/index.php%3Ftitle%3DLogical_Volume_Manager_(AIX)%26action%3Dedit%26redlink%3D1&usg=ALkJrhjYneIluqsFVTFsFGdtTiQ003w1Zw)）纳入，并在1995年，HP-UX的Linux LVM实施的是类似的HP-UX LVM实现。
+
+
+
+
+	
+  * [“](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IBM_AIX_SMIT&usg=ALkJrhgOGrjXqDJC_e6C_8pBBZqP1LPbIQ)[SMIT](http://translate.googleusercontent.com/translate_c?depth=1&ei=D_z3UI3cAeSwiQe18IGAAw&hl=zh-CN&prev=/search%3Fq%3DAIX%2B(Advanced%2BInteractive%2BeXecutive,%2Bpronounced)%2Bis%2Ba%2Bseries%2Bof%2Bproprietary%2BUnix%2Boperating%2Bsystems%2Bdeveloped%2Band%2Bsold%2Bby%2BIBM%2Bfor%2Bseveral%2Bof%2Bits%2Bcomputer%2Bplatforms.%2BOriginally%2Breleased%2Bfor%2Bthe%2BIBM%2B6150%2BRISC%2Bworkstation,%2BAIX%2Bnow%2Bsupports%2Bor%2Bhas%2Bsupported%2Ba%2Bwide%2Bvariety%2Bof%2Bhardware%2Bplatforms,%2Bincluding%2Bthe%2BIBM%2BRS/6000%2Bseries%2Band%2Blater%2BIBM%2BPOWER%2Band%2BPowerPC-based%2Bsystems,%2BIBM%2BSystem%2Bi,%2BSystem/370%2Bmainframes,%2BPS/2%2Bpersonal%2Bcomputers,%2Band%2Bthe%2BApple%2BNetwork%2BServer.%2BAIX%2Bis%2Bbased%2Bon%2BUNIX%2BSystem%2BV%2Bwith%2B4.3BSD-compatible%2Bextensions.%2BIt%2Bis%2Bone%2Bof%2Bfour%2Bcommercial%2Boperating%2Bsystems%2Bthat%2Bare%2Bpresently%2Bcertified%2Bto%2BThe%2BOpen%2BGroup%2BUNIX%2B03%2Bstandard.%2B(The%2Bothers%2Bare%2BMac%2BOS%2BX,%2BSolaris%2Band%2BHP-UX.)%26hl%3Dzh-CN%26newwindow%3D1%26safe%3Dstrict%26sa%3DX%26tbo%3Dd&rurl=translate.google.com.hk&sl=en&u=http://en.wikipedia.org/wiki/IBM_AIX_SMIT&usg=ALkJrhgOGrjXqDJC_e6C_8pBBZqP1LPbIQ)被推出。
+
+
+
+
+
+### IBM PS / 2版本
+
+
+
+
+
+	
+  * AIX PS / 2 V1.1，1989年
+
+	
+    * 最后一个版本为1.3，1992年。
+
+
+
+
+
+
+
+### IBM发布6150 RT
+
+
+
+
+
+	
+  * AIX V2.0
+
+	
+    * 最后一个版本是2.2.1。
+
+
+
+
+	
+  * AIX 1.0版，1986年
+
+

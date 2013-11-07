@@ -1,0 +1,79 @@
+---
+author: shengrenwang
+comments: true
+date: 2013-03-29 08:57:10+00:00
+layout: post
+slug: mysql%e6%96%87%e6%9c%ac%e6%96%87%e4%bb%b6%e7%9a%84%e5%af%bc%e5%85%a5%e5%af%bc%e5%87%ba%e6%95%b0%e6%8d%ae%e7%9a%84%e6%96%b9%e6%b3%95%e5%8f%8a%e5%ae%89%e8%a3%85oracle%e6%97%b6%e5%87%ba%e7%8e%b0%e9%97%ae
+title: mysql文本文件的导入导出数据的方法及安装oracle时出现问题的解决办法
+wordpress_id: 219
+categories:
+- 学习报告
+---
+
+一.mysql文本文件的导入导出数据的方法
+
+1.建立一个表，准备数据
+
+create table student(name varchar(20), number(4));
+
+接着写一个用于导入的文本文件：/home/scutech/mysql.txt.
+
+A 01
+
+b 02
+
+c 03
+
+每一项之间用tab键进行分隔，如果字段为null，则用\N比表示。
+
+2，导入数据
+
+输入命令，进行导入。
+
+Load data local infile “/home/scutech/mysql.txt” into table student(name,number);
+
+（local表示本地。）
+
+3，导出数据
+
+现在将表student导出为文本文件：
+
+select name,number into outfile “/home/scutech/mysql.txt” lines terminated by “\r\n” from student;
+
+二，查看数据库的大小
+
+1、进入 information_schema 数据库（存放了其他的数据库的信息）
+
+use information_schema;
+
+2、查询所有数据的大小：
+
+select concat(round(sum(data_length/1024/1024),2),’MB’) as data from tables;
+
+3、查看指定数据库的大小：
+
+比如查看数据库home的大小
+
+select concat(round(sum(data_length1024/1024),2),’MB’) as data from tables where table_schema=’home’;
+
+4、查看指定数据库的某个表的大小
+
+比如查看数据库home中 members 表的大小
+
+select concat(round(sum(data_length/1024/1024),2),’MB’) as data from tables where table_schema=’home’ and table_name=’members’;
+
+三，安装Oracle时，经常会报以下错误：无法使用命令 /usr/X11R6/bin/xdpyinfo 自动检查显示器颜色。请检查是否设置了DISPLAY 变量。可以使用下述命令解决这个问题：
+
+1.在root下执行#xdpyinfo记录下name of display：后的字符串，如127.0.0.1：1.0
+
+2. #xhost +
+
+显示：access control disabled,clients can connect from any host
+
+3.切换到Oracle用户： #su - oracle
+
+4.在Oracle用户下执行命令：export DISPLAY=:1.0
+
+5.在Oracle下执行xdpyinfo命令，如果能正常显示，说明设置成功
+
+
