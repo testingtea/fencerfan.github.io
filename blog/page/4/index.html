@@ -1,0 +1,2209 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="一、开头
+程序必须以下面的行开始（必须方在文件的第一行）： !/bin/sh 符号#!用来告诉系统它后面的参数是用来执行该文件的程序。在这个例子中我们使用/bin/sh来执行程序。 当编写脚本完成时，如果要执行该脚本，还必须使其可执行。要使编写脚本可执行：
+编译 chmod +x filename &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/page/4">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/">linux下.sh文件语法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T16:56:49+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>一、开头</strong>
+程序必须以下面的行开始（必须方在文件的第一行）：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>符号#!用来告诉系统它后面的参数是用来执行该文件的程序。在这个例子中我们使用/bin/sh来执行程序。</p>
+
+<p>当编写脚本完成时，如果要执行该脚本，还必须使其可执行。要使编写脚本可执行：
+编译 chmod +x filename 这样才能用./filename 来运行</p>
+
+<p><strong>二、注释</strong>
+在进行shell编程时，以#开头的句子表示注释，直到这一行的结束。我们真诚地建议您在程序中使用注释。
+如果您使用了注释，那么即使相当长的时间内没有使用该脚本，您也能在很短的时间内明白该脚本的作用及工作原理。</p>
+
+<p><strong>三、变量</strong>
+在其他编程语言中您必须使用变量。在shell编程中，所有的变量都由字符串组成，并且您不需要对变量进行声明。要赋值给一个变量，您可以这样写：</p>
+
+<h1>!/bin/sh</h1>
+
+<h1>对变量赋值：</h1>
+
+<p>a=”hello world”</p>
+
+<h1>现在打印变量a的内容：</h1>
+
+<p>echo “A is:”
+echo $a
+有时候变量名很容易与其他文字混淆，比如：
+num=2
+echo “this is the $numnd”
+这并不会打印出”this is the 2nd”，而仅仅打印”this is the “，因为shell会去搜索变量numnd的值，但是这个变量时没有值的。可以使用花括号来告诉shell我们要打印的是num变量：
+num=2
+echo “this is the ${num}nd”
+这将打印： this is the 2nd</p>
+
+<p><strong>四、环境变量</strong>
+由export关键字处理过的变量叫做环境变量。我们不对环境变量进行讨论，因为通常情况下仅仅在登录脚本中使用环境变量。</p>
+
+<p><strong>五、Shell命令和流程控制</strong>
+在shell脚本中可以使用三类命令：</p>
+
+<p><strong>1、Unix 命令:</strong>
+虽然在shell脚本中可以使用任意的unix命令，但是还是由一些相对更常用的命令。这些命令通常是用来进行文件和文字操作的。
+常用命令语法及功能
+echo “some text”: 将文字内容打印在屏幕上
+ls: 文件列表
+wc –l filewc -w filewc -c file: 计算文件行数计算文件中的单词数计算文件中的字符数
+cp sourcefile destfile: 文件拷贝
+mv oldname newname : 重命名文件或移动文件
+rm file: 删除文件
+grep ‘pattern’ file: 在文件内搜索字符串比如：grep ’searchstring’ file.txt
+cut -b colnum file: 指定欲显示的文件内容范围，并将它们输出到标准输出设备比如：输出每行第5个到第9个字符cut -b5-9 file.txt千万不要和cat命令混淆，
+这是两个完全不同的命令
+cat file.txt: 输出文件内容到标准输出设备（屏幕）上
+file somefile: 得到文件类型
+read var: 提示用户输入，并将输入赋值给变量
+sort file.txt: 对file.txt文件中的行进行排序
+uniq: 删除文本文件中出现的行列比如： sort file.txt | uniq
+expr: 进行数学运算Example: add 2 and 3expr 2 “+” 3
+find: 搜索文件比如：根据文件名搜索find . -name filename -print
+tee: 将数据输出到标准输出设备(屏幕) 和文件比如：somecommand | tee outfile
+basename file: 返回不包含路径的文件名比如： basename /bin/tux将返回 tux
+dirname file: 返回文件所在路径比如：dirname /bin/tux将返回 /bin
+head file: 打印文本文件开头几行
+tail file : 打印文本文件末尾几行
+sed: Sed是一个基本的查找替换程序。可以从标准输入（比如命令管道）读入文本，并将
+结果输出到标准输出（屏幕）。该命令采用正则表达式（见参考）进行搜索。不要和shell中的通配符相混淆。比如：将linuxfocus替换为 LinuxFocus ：cat text.file | sed ’s/linuxfocus/LinuxFocus/’ >newtext.fileawk: awk 用来从文本文件中提取字段。缺省地，字段分割符是空格，可以使用-F指定其他分割符。
+catfile.txt | awk -F, ‘{print $1 “,” $3}’这里我们使用，作为字段分割符，同时打印第一个和第三个字段。如果该文件内容如下： Adam Bor, 34, IndiaKerryMiller, 22, USA命令输出结果为：Adam Bor, IndiaKerry Miller, USA</p>
+
+<p><strong>2、概念: 管道, 重定向和 backtick</strong>
+这些不是系统命令，但是他们真的很重要。
+管道 (|) 将一个命令的输出作为另外一个命令的输入。
+grep “hello” file.txt | wc -l
+在file.txt中搜索包含有”hello”的行并计算其行数。
+在这里grep命令的输出作为wc命令的输入。当然您可以使用多个命令。
+重定向：将命令的结果输出到文件，而不是标准输出（屏幕）。</p>
+
+<blockquote><p>写入文件并覆盖旧文件</p>
+
+<blockquote><p>加到文件的尾部，保留旧文件内容。
+反短斜线
+使用反短斜线可以将一个命令的输出作为另外一个命令的一个命令行参数。
+命令：
+find . -mtime -1 -type f -print
+用来查找过去24小时（-mtime –2则表示过去48小时）内修改过的文件。如果您想将所有查找到的文件打一个包，则可以使用以下linux 脚本：</p>
+
+<h1>!/bin/sh</h1>
+
+<h1>The ticks are backticks (`) not normal quotes (‘):</h1>
+
+<p>tar -zcvf lastmod.tar.gz <code>find . -mtime -1 -type f -print</code></p></blockquote></blockquote>
+
+<p><strong>3、流程控制</strong>
+“if” 表达式 如果条件为真则执行then后面的部分：
+if ….; then
+….
+elif ….; then
+….
+else
+….
+fi
+大多数情况下，可以使用测试命令来对条件进行测试。比如可以比较字符串、判断文件是否存在及是否可读等等…
+通常用” [ ] “来表示条件测试。注意这里的空格很重要。要确保方括号的空格。
+[ -f &ldquo;somefile&rdquo; ] ：判断是否是一个文件
+[ -x &ldquo;/bin/ls&rdquo; ] ：判断/bin/ls是否存在并有可执行权限
+[ -n &ldquo;$var&rdquo; ] ：判断$var变量是否有值
+[ &ldquo;$a&rdquo; = &ldquo;$b&rdquo; ] ：判断$a和$b是否相等
+执行man test可以查看所有测试表达式可以比较和判断的类型。
+直接执行以下脚本：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>if [ &ldquo;$SHELL&rdquo; = &ldquo;/bin/bash&rdquo; ]; then
+echo “your login shell is the bash (bourne again shell)”
+else
+echo “your login shell is not bash but $SHELL”
+fi
+变量$SHELL包含了登录shell的名称，我们和/bin/bash进行了比较。
+快捷操作符
+熟悉C语言的朋友可能会很喜欢下面的表达式：
+[ -f &ldquo;/etc/shadow&rdquo; ] &amp;&amp; echo “This computer uses shadow passwors”
+这里 &amp;&amp; 就是一个快捷操作符，如果左边的表达式为真则执行右边的语句。
+您也可以认为是逻辑运算中的与操作。上例中表示如果/etc/shadow文件存在则打印” This computer uses shadow passwors”。同样或操作(||)在shell编程中也是可用的。这里有个例子：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>mailfolder=/var/spool/mail/james
+[ -r &ldquo;$mailfolder&rdquo; ]‘ ‘{ echo “Can not read $mailfolder” ; exit 1; }
+echo “$mailfolder has mail from:”
+grep “<sup>From</sup> ” $mailfolder
+该脚本首先判断mailfolder是否可读。如果可读则打印该文件中的”From” 一行。如果不可读则或操作生效，打印错误信息后脚本退出。这里有个问题，那就是我们必须有两个命令：
+◆打印错误信息
+◆退出程序
+我们使用花括号以匿名函数的形式将两个命令放到一起作为一个命令使用。一般函数将在下文提及。
+不用与和或操作符，我们也可以用if表达式作任何事情，但是使用与或操作符会更便利很多。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/">Oracle用户管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T16:35:01+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一、用户的概念
+　　用户，即user,通俗的讲就是访问oracle数据库的“人”。在oracle中，可以对用户的各种安全参数进行控制，以维护数据库的安全性，这些概念包括模式(schema)、权限、角色、存储设置、空间限额、存取资源限制、数据库审计等。每个用户都有一个口令，使用正确的用户/口令才能登录到数据库进行数据存取。</p>
+
+<p>二、用户默认表空间
+　　表空间是信息存储的最大逻辑单位、当用户连接到数据库进行资料存储时，若未指出数据的目标存储表空间时，则数据存储在用户的默认表空间中。比如：create table mytable(id varchar2(20),name varchar2(100));这条语句创建了一个表mytable,并将其存储在当前用户的默认表空间中，若要指定表空间，则：create table mytable(id varchar2(20),name varchar2(100)) tablespace tbs1;。用户的默认表空间可以在创建用户时指定，也可以使用aler user命令进行指定，具体语法见后面的介绍。</p>
+
+<p>三、用户临时表空间
+　　临时表空间主要用于order by语句的排序以及其它一些中间操作。在oracle9i之前，可以指定用户使用不同的临时表空间，从9i开始，临时表空间是通用的，所的用户都使用TEMP作为临时表空间。</p>
+
+<p>四、用户资源文件
+　　用户资源文件用来对用户的资源存取进行限制，包括：cpu使用时间限制、内存逻辑读个数限制、每个用户同时可以连接的会话数据限制、一个会话的空间和时间限制、一个会话的持续时间限制、每次会话的专用ＳＧＡ空间限制。</p>
+
+<p>五、用户表空间限额
+　　表空间存储限制是用户在某一个表空间中可以使用的存储空间总数。在创建或修改用户时，可以由参数quota指出。若用户在向表空间存储数据时，超出了此限额，则会产生错误。错误信息如：&#8217;ORA-01536:space quota exceeded for tablespace tablespacename..&lsquo;。可以通过查询字典dba_ts_quotas查看表空间限额信息。</p>
+
+<p>六、创建用户资源文件
+　　创建用户资源文件的语法如下：
+CREATE PROFILE filename LIMIT
+SESSION_PER_USER integer
+CPU_PER_SESSION integer
+USER_PER_CALL integer
+CONNECT_TIME integer
+&hellip;&hellip;
+基中：
+SESSION_PER_USER: 用户可以同时连接的会话数量限额；
+CPU_PER_SESSION:用户在一次数据库会期间可占用的CPU时间总量限额，单位为百分之一秒；
+USER_PER_CALL:用户一次ＳＱＬ调用可用的ＣＰＵ时间总量限额，单位为百分之一秒；
+LOGICAL_READS_PER_SESSION：在一次数据库会话期间能够读取的数据库块的个数限额；
+LOGICAL_READS_PER_CALL:一次ＳＱＬ调用可以读取的数据库块数限额；
+IDLE_TIME：用户连接到数据库后的可空闲时间限额，单位为分钟，若空闲时间超过此值，则连接被断开；
+CONNECT_TIME:一次连接的时间总量限额，单位为分钟，连接时间超过此值时，连接被断开；
+PRIVATE_SGA：用户么有的ＳＧＡ区的大小，单位为数据库块，默认值为UNLIMITED；
+COMPOSITE_LIMIT：这是一项由上述限制参数构成的组合资源项。举例来说，假设资源设置如下：
+　　IDLE_TIME 20</p>
+
+<pre><code>CONNECT_TIME 120
+CPU_PER_CALL 750
+COMPOSITE_LIMT 800
+</code></pre>
+
+<p>那么，当会话空间超过20分钟，或者连接时间超过120分钟，又或者执行一个ＳＱＬ耗费超过7.5秒，再或者这几个资源限制加起来的总数超过800，则系统自动终止会话。
+FAILED_LOGIN_ATTEMPTS:用户登录时，允许用户名/密码校验失败致使用登录失败的次数限额，超过该次数，帐户被锁定；
+PASSWORD_LIFE_TIME：口令有效时间，单位为天数，超过这一时间，拒绝登录，须重新设置口令，默认值为UNLIMITED；
+PASSWORD_REUSE_TIME:一个失效口令经过多少天后才可重新利用，默认为UNLIMITED；
+PASSWORD_REUSE_MAX：一个口令可重复使用的次数；
+PASSWORD_LOCK_TIME:当登录失败达到FAILED_LOGIN_ATTEMPS时，帐户被锁定，该参数用于设定被锁定的天数；
+下面举例如下：
+1)创建一个用户资源文件
+create profile tax_users limit
+session_per_user 3
+cpu_per_session UNLIMITED
+connect_time 30
+logical_reads_per_session DEFAULT
+logical_reads_per_call 1000
+private_sga 15K
+composite_limit 500000
+password_life_time 90
+2)查询用户资源文件信息
+sql>select *from dba_profile where profile = &lsquo;tax_users&rsquo;
+3)指定用户资源文件给用户
+sql>alter user us1 profile tax_users</p>
+
+<p>七、创建、修改、删除用户
+1.创建用户
+　　创建用户的详细语法请查询oracle的官方参数文档，这里介绍典型的语法。语法如下：
+CREATE USER username
+IDENTIFIED BY password
+DEFAULT TABLESPACE tablespace
+TEMPORARY TABLESPACE tablespace
+PROFILE profile
+QUOTA integer|UNLIMITED ON tablespace
+各选项含义如下：
+IDENTIFIED BY password：用户口令；
+DEFAULT TABLESPACE tablespace:默认表空间；
+TEMPORARY TABLESPACE tablespace：临时表空间；
+PROFILE profile|DEFAULT：用户资源文件；
+QUOTA integer[K|M]|UNLIMITED ON tablespace：用户在表空间上的空间使用限额，可以指定多个表空间的限额。
+举例：
+CREATE USER us1 IDENTITIED BY abc123
+DEFAULT TABLESPACE user01
+TEMPORARY TABLESPACE temp
+PROFILE DEFAULT
+QUOTA 1000M ON user01;</p>
+
+<p>2.修改用户
+　　修改用户的语法是与创建用户的语法类似的，主要是CREATE USER　变成　ALTER USER，具体请参考oracle文档。</p>
+
+<p>3.删除用户
+  删除用户，是将用户及用户所创建的schema对象从数据库删除。如下：
+SQL>DROP USER us1;
+若用户us1含有schema对象，则无上述语句将执行失败，须加入关键字CASCADE才能删除，意思是连并其对象一起删除，如下：
+SQL>DROP USER us1 CASCADE;</p>
+
+<p>八、用户管理命令
+ORACLE中数据字典视图分为3大类,     用前缀区别，分别为：USER，ALL 和 DBA，许多数据字典视图包含相似的信息。</p>
+
+<p>USER_*:有关用户所拥有的对象信息，即用户自己创建的对象信息</p>
+
+<p>ALL_*：有关用户可以访问的对象的信息，即用户自己创建的对象的信息加上其他用户创建的对象但该用户有权访问的信息</p>
+
+<p>DBA_*：有关整个数据库中对象的信息</p>
+
+<p>（这里的*可以为TABLES， INDEXES， OBJECTS， USERS等。</p>
+
+<p>1.查看所有用户：
+select * from dba_user;
+select * from all_users;
+select * from user_users;
+2.查看用户系统权限：
+select * from dba_sys_privs;
+select * from all_sys_privs;
+select * from user_sys_privs;
+3.查看用户对象权限：
+select * from dba_tab_privs;
+select * from all_tab_privs;
+select * from user_tab_privs;
+4.查看所有角色：
+select * from dba_roles;
+5.查看用户所拥有的角色：
+select * from dba_role_privs;
+select * from user_role_privs;</p>
+
+<p>6.查看当前用户的缺省表空间
+select username,default_tablespace from user_users;</p>
+
+<p>7.查看某个角色的具体权限，如grant connect,resource,create session,create view to TEST;查看RESOURCE具有那些权限，用SELECT * FROM DBA_SYS_PRIVS WHERE GRANTEE=&lsquo;RESOURCE&rsquo;;</p>
+
+<p>例：
+限制user1用户只允许100个并发连接
+SQL> alter system set resource_limit=true;</p>
+
+<p>System altered</p>
+
+<p>SQL> create profile profile_user1 limit sessions_per_user 100;</p>
+
+<p>Profile created</p>
+
+<p>SQL> ALTER USER user1 profile profile_user1;</p>
+
+<p>User altered</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/29/mysqle69687e69cace69687e4bbb6e79a84e5afbce585a5e5afbce587bae695b0e68daee79a84e696b9e6b395e58f8ae5ae89e8a385oraclee697b6e587bae78eb0e997ae/">Mysql文本文件的导入导出数据的方法及安装oracle时出现问题的解决办法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T16:57:10+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/29/mysqle69687e69cace69687e4bbb6e79a84e5afbce585a5e5afbce587bae695b0e68daee79a84e696b9e6b395e58f8ae5ae89e8a385oraclee697b6e587bae78eb0e997ae/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/29/mysqle69687e69cace69687e4bbb6e79a84e5afbce585a5e5afbce587bae695b0e68daee79a84e696b9e6b395e58f8ae5ae89e8a385oraclee697b6e587bae78eb0e997ae/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一.mysql文本文件的导入导出数据的方法</p>
+
+<p>1.建立一个表，准备数据</p>
+
+<p>create table student(name varchar(20), number(4));</p>
+
+<p>接着写一个用于导入的文本文件：/home/scutech/mysql.txt.</p>
+
+<p>A 01</p>
+
+<p>b 02</p>
+
+<p>c 03</p>
+
+<p>每一项之间用tab键进行分隔，如果字段为null，则用\N比表示。</p>
+
+<p>2，导入数据</p>
+
+<p>输入命令，进行导入。</p>
+
+<p>Load data local infile “/home/scutech/mysql.txt” into table student(name,number);</p>
+
+<p>（local表示本地。）</p>
+
+<p>3，导出数据</p>
+
+<p>现在将表student导出为文本文件：</p>
+
+<p>select name,number into outfile “/home/scutech/mysql.txt” lines terminated by “\r\n” from student;</p>
+
+<p>二，查看数据库的大小</p>
+
+<p>1、进入 information_schema 数据库（存放了其他的数据库的信息）</p>
+
+<p>use information_schema;</p>
+
+<p>2、查询所有数据的大小：</p>
+
+<p>select concat(round(sum(data_length/1024/1024),2),’MB’) as data from tables;</p>
+
+<p>3、查看指定数据库的大小：</p>
+
+<p>比如查看数据库home的大小</p>
+
+<p>select concat(round(sum(data_length1024/1024),2),’MB’) as data from tables where table_schema=’home’;</p>
+
+<p>4、查看指定数据库的某个表的大小</p>
+
+<p>比如查看数据库home中 members 表的大小</p>
+
+<p>select concat(round(sum(data_length/1024/1024),2),’MB’) as data from tables where table_schema=’home’ and table_name=’members’;</p>
+
+<p>三，安装Oracle时，经常会报以下错误：无法使用命令 /usr/X11R6/bin/xdpyinfo 自动检查显示器颜色。请检查是否设置了DISPLAY 变量。可以使用下述命令解决这个问题：</p>
+
+<p>1.在root下执行#xdpyinfo记录下name of display：后的字符串，如127.0.0.1：1.0</p>
+
+<ol>
+<li><h1>xhost +</h1></li>
+</ol>
+
+
+<p>显示：access control disabled,clients can connect from any host</p>
+
+<p>3.切换到Oracle用户： #su &ndash; oracle</p>
+
+<p>4.在Oracle用户下执行命令：export DISPLAY=:1.0</p>
+
+<p>5.在Oracle下执行xdpyinfo命令，如果能正常显示，说明设置成功</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters/">（原创）启动Oracle时提示：ORA-01078:failure in Processing System Parameters</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T16:07:12+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一、使用环境
+操作系统：OEL 6.3 x64
+数据库：Oracle 11.2.0.1.0
+数据库主目录：/u01/app/oracle/product/10.2.0/</p>
+
+<p>二、问题描述
+用sys用户登录sqlplus后，用startup命令启动Oracle时提示：
+ORA-01078:failure in processing system parameters
+LRM-00109: could not open parameter file &lsquo;/u01/app/oracle/product/11.2.0/db_1/dbs/initorcl.ora&rsquo;</p>
+
+<p>三、错误原因
+在oracle9i、10g、11g最近几个版本中，数据库默认使用spfile启动数据库，如果spfile不存在，则就会出现上述错误。</p>
+
+<p>四、解决方法
+方法一：</p>
+
+<p>用find /u01 -name pfile命令查找pfile文件的位置，/u01/app/oracle/admin/orcl/pfile/
+将$ORACLE_BASE/admin/orcl/pfile目录下的init.ora.2212013132036形式的文件copy 到$ORACLE_HOME/dbs目录下命名为initorcl.ora即可。</p>
+
+<p>（注：initorcl.ora中的orcl为你的实例名 ORACLE_SID，这里我的SID为：center）</p>
+
+<p>方法二：
+将$ORACLE_HOME/dbs目录下spflieorcl.ora改名为spfilecenter.ora即可。（注：spfilecenter.ora中的center为环境变量中设置的SID，我的是center）</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/">VBoxManage命令详解</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T16:04:49+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>VBoxManage [-v|-version] 显示virtualbox的版本号
+VBoxManage -nologo 隐藏logo
+VBoxManage -convertSettings 允许自动转换设置文件
+VBoxManage -convertSettingsBackup 允许自动转换设置文件，并在转换前作备份
+VBoxManage -convertSettingsIgnore 允许自动转换设置文件，但是不保存结果</p>
+
+<p>VBoxManage list vms|runningvms 显示列表虚拟机|正在运行的虚拟机
+|ostypes|hostdvds virtualbox支持的系统类型|宿主机的光盘驱动器
+|hostfloppies 宿主机的软盘驱动器
+|hostifs|hostinfo 宿主机的网络接口|宿主机的信息
+|hdds|dvds 已注册的虚拟硬盘|已注册的虚拟光盘
+|floppies|usbhost 已注册的虚拟软盘|宿主机的USB设备
+|usbfilters USB筛选器
+|systemproperties 虚拟机的基本信息</p>
+
+<p>VBoxManage showvminfo |显示指定虚拟机的信息
+[-details] 显示详细信息
+[-statistics] 显示统计信息
+[-machinereadable] 以清晰的格式显示虚拟机信息</p>
+
+<p>VBoxManage registervm将指定文件所在的虚拟机添加到列表</p>
+
+<p>VBoxManage unregistervm |从虚拟机列表清除指定的虚拟机
+[-delete] 从虚拟机列表删除指定的虚拟机</p>
+
+<p>VBoxManage createvm -name 创建指定名称的虚拟机
+[-register] 将创建的虚拟机添加到列表
+[-basefolder 指定虚拟机的基础目录
+[-settingsfile ] 指定虚拟机配置文件的基础目录
+[-uuid] 创建指定uuid的虚拟机</p>
+
+<p>VBoxManage modifyvm 编辑指定的虚拟机的配置
+[-name ] 修改虚拟机的名称
+[-ostype ]修改虚拟机的操作系统类型
+[-memory ] 修改虚拟机的内存大小
+[-vram ] 修改虚拟机的显存大小
+[-acpi on|off] 启动或禁止acpi电源管理接口
+[-ioapic on|off] 启动或禁止I/O APIC电源管理接口
+[-pae on|off] 启动或禁止CPU的PAE支持，PAE是
+Physical Address Extension : 物理地址扩展
+[-hwvirtex on|off|default]启动或禁止CPU的硬件虚拟化支持
+[-nestedpaging on|off] 开启或关闭CPU的嵌套页面列表支持
+[-monitorcount ] 设置显示器数目，VRDP多用户模式时 [-bioslogofadein on|off] 开启或关闭bioslogo渐显效果
+[-bioslogofadeout on|off] 开启或关闭bioslogo渐隐效果
+[-bioslogodisplaytime ]设置bioslogo显示时间（以毫秒为单位)
+[-bioslogoimagepath ]设置bioslogo图像路径，用于自定义bioslogo
+[-biosbootmenu disabled| 设置是否显示bios启动菜单 关闭
+menuonly| 只菜单
+messageandmenu] 信息和菜单
+[-biossystemtimeoffset ] 设置bios系统时间补偿（以毫秒为单位）
+[-biospxedebug on|off] 打开或关闭biospxe调试
+[-boot none|floppy|dvd|disk|net>] 设置启动顺序
+[-hd none||] 为虚拟机添加三个IDE设备之一（第2个主盘被vm保留作为光驱，不能占用）在三个IDE中，你可以指定（硬盘）的vdi文件名或者它的UUID
+[-idecontroller PIIX3|PIIX4] 设置IDE控制器的类型
+[-sata on|off] 开启或关闭SATA硬盘控制器
+[-sataportcount ] 设置虚拟机最多支持的SATA控制器数目
+[-sataport none| 没有硬盘连接到SATA控制器
+| 指定uuid的硬盘连接到SATA控制器
+] 指定文件名的硬盘连接到SATA控制器
+[-sataideemulation ] 指定一个SATA设备工作在IDE兼容模式，IDE设备编号是1-4，SATA设备编号是1-30
+[-dvd none| 不连接DVD光驱
+| 指定UUID的DVD光驱连接
+| 将指定的光盘映像文件挂接到DVD光驱
+host:] 将宿主机的DVD光驱挂接到虚拟机的DVD光驱
+[-dvdpassthrough on|off]打开|关闭虚拟机里光盘的刻录功能
+[-floppy disabled| 不连接软驱
+empty| 连接软驱但不插入软盘
+| 指定UUID的软驱连接
+| 将指定的软盘映像文件挂接到软驱驱
+host:] 将宿主机的软驱驱挂接到虚拟机的软驱
+[-nic none| 虚拟机不添加网卡
+null| 虚拟机有网卡但不连接
+nat| 网络连接使用NAT模式
+hostif| 网络连接使用桥接模式
+intnet] 网络连接使用内部网络模式
+[-nictype Am79C970A| 虚拟机连接AMD PCNet PCI II网卡
+Am79C973| 虚拟机连接AMD PCNet FAST III网卡（默认）
+82540EM| 虚拟机连接Intel PRO/1000 MT Desktop网卡
+82543GC] 虚拟机连接Intel PRO/1000 T Server网卡
+[-cableconnected on|off]插入或拔出网线
+[-nictrace on|off] 开启或关闭网络追踪
+[-nictracefile ] 将网络流量追踪数据保存到文件
+[-nicspeed ] 设置网络连接的速度
+[-hostifdev none| 不连接到主机网络接口
+] 桥接模式下连接到指定的主机接口
+[-intnet ] 内网模式下为虚拟机指定内部网络名称
+[-natnet | 配置NAT网络接口的地址
+default] 默认NAT网络接口的地址是10.0.x.0/24
+[-macaddress auto| 自动生成虚拟网卡的MAC地址
+] 指定虚拟网卡的MAC地址
+[-uart off| 不启用虚拟串口
+_ ]启用虚拟串口，并设置虚拟串口的I/O参数和IRQ参数
+[-uartmode disconnected| 启用虚拟串口，但不连接到宿主机的串口
+server | 在宿主机创建PIPE通道，并将虚拟机串口连接到这个通道
+client | 不创建PIPE通道，而是将虚拟机串口连接到已存在的通道
+] 将虚拟机串口连接到宿主机的串口
+[-gueststatisticsinterval ] 配置虚拟机静态时间间隔
+[-audio none| 虚拟机不连接声卡
+null| 将虚拟机的声卡连接到空的声音设备
+dsound] 将虚拟机的声卡连接到宿主机的声卡
+[-audiocontroller ac97| 将虚拟机声卡虚拟为ICH AC97声卡
+sb16] 将虚拟机声卡虚拟为soundblaster 16声卡
+[-clipboard disabled| 不共享剪贴板
+hosttoguest| 将宿主机的剪贴板共享给虚拟机
+guesttohost| 将虚拟机的剪贴板共享给宿主机
+bidirectional] 宿主机和虚拟机共使用一个剪贴板
+[-vrdp on|off] 开启|关闭virtualbox内置的VRDP服务器
+[-vrdpport default| 使用默认的vrdp端口3389_</p>
+
+<p>] 指定vrdp端口
+[-vrdpaddress ] 指定VRDP主机地址
+[-vrdpauthtype null| 不用授权，任何客户机都可以连接到VRDP服务器
+external| 只有宿主机的用户才可以连接到VRDP服务器
+guest] 只有虚拟机的用户才可以连接到VRDP服务器
+[-vrdpmulticon on|off] 打开|关闭VRDP多用户连接模式
+[-vrdpreusecon on|off] 打开|关闭VRDP断线重连
+[-usb on|off] 打开|关闭虚拟USB控制器
+[-usbehci on|off] 打开|关闭虚拟USB2.0控制器
+[-snapshotfolder default| 将系统快照保存到默认文件夹] 将系统快照保存到指定文件夹</p>
+
+<p>VBoxManage startvm |开启指定UUID|名称的虚拟机
+[-type gui|vrdp] 设置虚拟机标准显示设备GUI界面|VRDP</p>
+
+<p>VBoxManage controlvm |改变正在运行的虚拟机的状态
+pause| 暂停，这时虚拟机窗口显示灰色
+resume| 恢复暂停的虚拟机
+reset| 复位
+poweroff| 强行关闭
+acpipowerbutton| 关机
+acpisleepbutton| 使虚拟机处于睡眠状态
+savestate| 保存状态然后关闭，相当于休眠
+keyboardputscancode [ &hellip;] 键盘扫描码设置
+setlinkstate on|off 连接|断开网络连接
+usbattach |</p>
+
+<p>连接到指定UUDI|地址的USB设备
+usbdetach |断开指定UUDI|地址的USB设备
+dvdattach none| 不连接虚拟DVD光驱
+| 连接到指定UUID的DVD光驱
+| 连接到指定名称的DVD映像文件
+host: 连接到宿主机的DVD光驱
+floppyattach none| 不连接虚拟软驱
+| 连接到指定UUID的虚拟软驱
+| 连接到指定名称的软盘映像文件
+host: 连接到宿主机的软驱setvideomodehint 设置虚拟机的屏幕分辨率 水平像素
+垂直像素
+颜色深度
+[display] 刷新频率
+setcredentials 指定VRDP自动连接参数 用户名</p>
+
+<p>密码
+域
+[-allowlocallogon] 允许|禁止本地登陆</p>
+
+<p>VBoxManage discardstate|丢弃指定UUID|名称的虚拟机的保存状态</p>
+
+<p>VBoxManage adoptstate|将虚拟机从指定的保存状态中恢复</p>
+
+<p>VBoxManage snapshot |为指定的虚拟机拍快照
+take 为快照取名
+[-desc ]| 给快照添加描述
+discard | | 丢弃指定的快照
+discardcurrent -state| 恢复到最近的快照
+-all | 恢复到倒数第二个快照
+edit || 编辑指定的快照
+-current 编辑当前快照
+[-newname ] 修改快照名称
+[-newdesc ] 修改快照描述
+showvminfo| 显示快照的虚拟机信息</p>
+
+<p>VBoxManage registerimage disk|dvd|floppy 注册硬盘、光盘、软盘映像文件
+[-type normal| 注册为普通类型（可创建快照，可读写）
+immutable| 注册为只读类型（相当于加了硬盘卡）
+writethrough] 注册为可写类型（这种类型不能创建快照）
+(disk only) (注册类型选项只适用于硬盘）</p>
+
+<p>VBoxManage unregisterimage disk| 从虚拟介质管理器删除指定的硬盘
+dvd| 从虚拟介质管理器删除指定的DVD光盘
+floppy 从虚拟介质管理器删除指定的软盘
+| 删除时指定UUID
+删除时指定映像文件</p>
+
+<p>VBoxManage showvdiinfo|显示指定UUID|名称虚拟硬盘的信息</p>
+
+<p>VBoxManage createvdi -filename 创建指定名称的虚拟硬盘
+-size 指定虚拟硬盘的大小（以兆为单位）
+[-static] 创建固定大小的虚拟硬盘
+[-comment ] 添加一段解释性文字
+[-register] 注册新创建的虚拟硬盘
+[-type normal| 注册类型 普通（可以创建快照）
+writethrough] 注册类型 可写（不能创建快照）
+(default: normal) 默认是普通类型
+VBoxManage modifyvdi| compact 压缩指定的虚拟硬盘</p>
+
+<p>VBoxManage clonevdi|克隆指定的VDI虚拟硬盘</p>
+
+<p>VBoxManage convertdd [-static] 将raw硬盘转换成vdi虚拟硬盘
+VBoxManage convertdd [-static] stdin 将标准输入参数指定的设备转换成vdi虚拟硬盘，比如：dd if=/dev/sda1 | VBoxManage convertdd stdin /media/disk/C.vdi</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/22/e585b1e4baabe7a381e79b98e4b8ade5889be5bbbae69687e4bbb6e5b9b6e68c82e8bdbd/">共享磁盘中创建文件并挂载</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-22T18:26:03+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/22/e585b1e4baabe7a381e79b98e4b8ade5889be5bbbae69687e4bbb6e5b9b6e68c82e8bdbd/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/22/e585b1e4baabe7a381e79b98e4b8ade5889be5bbbae69687e4bbb6e5b9b6e68c82e8bdbd/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>创建共享磁盘：
+在VirtualBox中创建共享磁盘
+1，选择一台虚拟机点击左上角的设置，在弹出对话框中选择存储，选择控制器右边的添加虚拟硬盘
+2，创建新的虚拟硬盘，选择文件类型为VDI，下一步，固定大小中输入磁盘大小和位置，点击创建，创建完成后确定
+3，在虚拟机管理菜单中选择虚拟介质管理，选择刚创建的虚拟硬盘，点击修改，将介质类型选择为可共享，确定
+4，在另外一台机器上选择设置，选择存储，在控制器中添加虚拟硬盘，使用现有的虚拟盘，在刚才创建盘的位置中找到VDI文件，打开确定
+5，使用fdisk -l 命令可以分别在虚拟机中查看到
+[root@node1 ~]# fdisk -l</p>
+
+<p>Disk /dev/sda: 26.8 GB, 26843545600 bytes
+255 heads, 63 sectors/track, 3263 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Device Boot Start End Blocks Id System
+/dev/sda1 * 1 13 104391 83 Linux
+/dev/sda2 14 3263 26105625 8e Linux LVM</p>
+
+<p>Disk /dev/sdb: 42.9 GB, 42949672960 bytes
+255 heads, 63 sectors/track, 5221 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Disk /dev/sdb doesn&rsquo;t contain a valid partition table
+[root@node2 ~]# fdisk -l</p>
+
+<p>Disk /dev/sda: 26.8 GB, 26843545600 bytes
+255 heads, 63 sectors/track, 3263 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Device Boot Start End Blocks Id System
+/dev/sda1 * 1 13 104391 83 Linux
+/dev/sda2 14 3263 26105625 8e Linux LVM</p>
+
+<p>Disk /dev/sdb: 42.9 GB, 42949672960 bytes
+255 heads, 63 sectors/track, 5221 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Disk /dev/sdb doesn&rsquo;t contain a valid partition table
+其中的/dev/sdb就是刚创建的共享磁盘</p>
+
+<p>创建VG及卷组</p>
+
+<p>将共享磁盘格式化为 Linux LVM
+[root@node1 ~]# fdisk /dev/sdb
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel. Changes will remain in memory only,
+until you decide to write them. After that, of course, the previous
+content won&rsquo;t be recoverable.
+The number of cylinders for this disk is set to 5221.
+There is nothing wrong with that, but this is larger than 1024,
+and could in certain setups cause problems with:
+1) software that runs at boot time (e.g., old versions of LILO)
+2) booting and partitioning software from other OSs
+(e.g., DOS FDISK, OS/2 FDISK)
+Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)</p>
+
+<p>Command (m for help): m
+Command action
+a toggle a bootable flag
+b edit bsd disklabel
+c toggle the dos compatibility flag
+d delete a partition
+l list known partition types
+m print this menu
+n add a new partition
+o create a new empty DOS partition table
+p print the partition table
+q quit without saving changes
+s create a new empty Sun disklabel
+t change a partition&rsquo;s system id
+u change display/entry units
+v verify the partition table
+w write table to disk and exit
+x extra functionality (experts only)</p>
+
+<p>Command (m for help): n //创建一个分区
+Command action
+e extended
+p primary partition (1-4)
+p //创建主分区
+Partition number (1-4): 1 //创建一个主分区
+First cylinder (1-5221, default 1): 1 //第一个分区起始柱面
+Last cylinder or +size or +sizeM or +sizeK (1-5221, default 5221): //第一个分区结束柱面
+Using default value 5221</p>
+
+<p>Command (m for help): t //改变分区ID
+Selected partition 1
+Hex code (type L to list codes): 8e
+Changed system type of partition 1 to 8e (Linux LVM)</p>
+
+<p>Command (m for help): w
+The partition table has been altered!</p>
+
+<p>Calling ioctl() to re-read partition table.
+Syncing disks.</p>
+
+<p>[root@node2 ~]# fdisk -l</p>
+
+<p>Disk /dev/sda: 26.8 GB, 26843545600 bytes
+255 heads, 63 sectors/track, 3263 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Device Boot Start End Blocks Id System
+/dev/sda1 * 1 13 104391 83 Linux
+/dev/sda2 14 3263 26105625 8e Linux LVM</p>
+
+<p>Disk /dev/sdb: 42.9 GB, 42949672960 bytes
+255 heads, 63 sectors/track, 5221 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes</p>
+
+<p>Device Boot Start End Blocks Id System
+/dev/sdb1 1 5221 41937651 8e Linux LVM</p>
+
+<p>创建PV
+[root@node1 ~]# pvcreate -f /dev/sdb1
+Physical volume &ldquo;/dev/sdb1&rdquo; successfully created</p>
+
+<p>创建VG
+[root@node1 ~]# vgcreate -s 64 vgdb /dev/sdb1
+Volume group &ldquo;vgdb&rdquo; successfully created</p>
+
+<p>[root@node1 ~]# vgdisplay -v /dev/vgdb
+Using volume group(s) on command line
+Finding volume group &ldquo;vgdb&rdquo;
+&mdash;&ndash; Volume group &mdash;&ndash;
+VG Name vgdb
+System ID
+Format lvm2
+Metadata Areas 1
+Metadata Sequence No 1
+VG Access read/write
+VG Status resizable
+MAX LV 0
+Cur LV 0
+Open LV 0
+Max PV 0
+Cur PV 1
+Act PV 1
+VG Size 39.94 GB
+PE Size 64.00 MB
+Total PE 639
+Alloc PE / Size 0 / 0
+Free PE / Size 639 / 39.94 GB
+VG UUID BMhijK-5CdR-LPu1-gzvd-dWvs-fk7M-kkmaGO</p>
+
+<p>&mdash;&ndash; Physical volumes &mdash;&ndash;
+PV Name /dev/sdb1
+PV UUID CXB30F-CWav-xnn0-Kqc9-SuaA-K0j4-FKPa0Q
+PV Status allocatable
+Total PE / Free PE 639 / 639</p>
+
+<p>创建LV
+[root@node1 ~]# lvcreate -L 15G -n /dev/vgdb/lvoracle /dev/vgdb
+Logical volume &ldquo;lvoracle&rdquo; created
+[root@node1 ~]# lvcreate -L 10G -n /dev/vgdb/lvoradata /dev/vgdb
+Logical volume &ldquo;lvoradata&rdquo; created
+[root@node1 ~]# lvcreate -L 14G -n /dev/vgdb/lvdbackup /dev/vgdb
+Logical volume &ldquo;lvdbackup&rdquo; created</p>
+
+<p>[root@node1 ~]# vgdisplay -v /dev/vgdb
+Using volume group(s) on command line
+Finding volume group &ldquo;vgdb&rdquo;
+&mdash;&ndash; Volume group &mdash;&ndash;
+VG Name vgdb
+System ID
+Format lvm2
+Metadata Areas 1
+Metadata Sequence No 4
+VG Access read/write
+VG Status resizable
+MAX LV 0
+Cur LV 3
+Open LV 0
+Max PV 0
+Cur PV 1
+Act PV 1
+VG Size 39.94 GB
+PE Size 64.00 MB
+Total PE 639
+Alloc PE / Size 624 / 39.00 GB
+Free PE / Size 15 / 960.00 MB
+VG UUID BMhijK-5CdR-LPu1-gzvd-dWvs-fk7M-kkmaGO</p>
+
+<p>&mdash;&ndash; Logical volume &mdash;&ndash;
+LV Name /dev/vgdb/lvoracle
+VG Name vgdb
+LV UUID mZda2e-lIN5-VJrm-OtHX-9usn-Cy3i-susfdS
+LV Write Access read/write
+LV Status available</p>
+
+<h1>open 0</h1>
+
+<p>LV Size 15.00 GB
+Current LE 240
+Segments 1
+Allocation inherit
+Read ahead sectors auto
+&ndash; currently set to 256
+Block device 253:2</p>
+
+<p>&mdash;&ndash; Logical volume &mdash;&ndash;
+LV Name /dev/vgdb/lvoradata
+VG Name vgdb
+LV UUID 6QN5DW-If8X-6IDH-wy2g-aD8k-RB9X-z1mfvI
+LV Write Access read/write
+LV Status available</p>
+
+<h1>open 0</h1>
+
+<p>LV Size 10.00 GB
+Current LE 160
+Segments 1
+Allocation inherit
+Read ahead sectors auto
+&ndash; currently set to 256
+Block device 253:3</p>
+
+<p>&mdash;&ndash; Logical volume &mdash;&ndash;
+LV Name /dev/vgdb/lvdbackup
+VG Name vgdb
+LV UUID RZDGGo-wqT3-SHQk-aU9w-XpyD-VIME-3Z3LM2
+LV Write Access read/write
+LV Status available</p>
+
+<h1>open 0</h1>
+
+<p>LV Size 14.00 GB
+Current LE 224
+Segments 1
+Allocation inherit
+Read ahead sectors auto
+&ndash; currently set to 256
+Block device 253:4</p>
+
+<p>&mdash;&ndash; Physical volumes &mdash;&ndash;
+PV Name /dev/sdb1
+PV UUID CXB30F-CWav-xnn0-Kqc9-SuaA-K0j4-FKPa0Q
+PV Status allocatable
+Total PE / Free PE 639 / 15</p>
+
+<p>创建文件系统
+[root@node1 ~]# mkfs -t ext2 /dev/vgdb/lvoracle
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+1966080 inodes, 3932160 blocks
+196608 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=4026531840
+120 block groups
+32768 blocks per group, 32768 fragments per group
+16384 inodes per group
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208</p>
+
+<p>Writing inode tables: done
+Writing superblocks and filesystem accounting information: done</p>
+
+<p>This filesystem will be automatically checked every 31 mounts or
+180 days, whichever comes first. Use tune2fs -c or -i to override.
+[root@node1 ~]# mkfs -t ext2 /dev/vgdb/lvoradata
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+1310720 inodes, 2621440 blocks
+131072 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=2684354560
+80 block groups
+32768 blocks per group, 32768 fragments per group
+16384 inodes per group
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632</p>
+
+<p>Writing inode tables: done
+Writing superblocks and filesystem accounting information: done</p>
+
+<p>This filesystem will be automatically checked every 29 mounts or
+180 days, whichever comes first. Use tune2fs -c or -i to override.
+[root@node1 ~]# mkfs -t ext2 /dev/vgdb/lvdbackup
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+1835008 inodes, 3670016 blocks
+183500 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=3758096384
+112 block groups
+32768 blocks per group, 32768 fragments per group
+16384 inodes per group
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208</p>
+
+<p>Writing inode tables: done
+Writing superblocks and filesystem accounting information: done</p>
+
+<p>This filesystem will be automatically checked every 31 mounts or
+180 days, whichever comes first. Use tune2fs -c or -i to override.</p>
+
+<p>创建mount目录
+[root@node1 ~]# mount /dev/mapper/vgdb-lvoracle /oracle
+[root@node1 ~]# mount /dev/mapper/vgdb-lvoradata /oradata
+[root@node1 ~]# df -h
+Filesystem Size Used Avail Use% Mounted on
+/dev/mapper/VolGroup00-LogVol00
+21G 5.3G 15G 28% /
+/dev/sda1 99M 13M 82M 14% /boot
+tmpfs 1006M 0 1006M 0% /dev/shm
+/dev/mapper/vgdb-lvoracle
+15G 38M 14G 1% /oracle
+/dev/mapper/vgdb-lvoradata
+9.9G 23M 9.4G 1% /oradata</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/linuxe4b88be5889be5bbbaoraclee695b0e68daee5ba93orcl1e5ae9ee4be8b/">Linux下创建oracle数据库orcl1实例</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T23:28:43+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/17/linuxe4b88be5889be5bbbaoraclee695b0e68daee5ba93orcl1e5ae9ee4be8b/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/17/linuxe4b88be5889be5bbbaoraclee695b0e68daee5ba93orcl1e5ae9ee4be8b/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>1，设置环境变量</strong></p>
+
+<p>装oracle的时候，设置了一些环境变量，下面这些环境变量是跟这次安装有关的</p>
+
+<p>ORACLE_HOME=/home/oracle/app/ora10
+ORACLE_OWNER=oracle
+DB_HOME=/home/oracle/app/ora10/oradata
+ORACLE_SID=orcl //这个是安装orcl数据库的sid。</p>
+
+<p><strong>2，创建pfile文件</strong></p>
+
+<p>oracle安装完成后，系统有一个数据库orcl，我们可以利用它来创建pfile文件</p>
+
+<p>cd $ORACLE_HOME/dbs
+strings spfileorcl.ora >initorcl1.ora</p>
+
+<p>然后在手动将initorcl1.ora里面orcl,全部改成orcl1，这样pfile文件就做好了。</p>
+
+<p><strong>3，生成密码文件</strong></p>
+
+<p>sudo cp $ORACLE_HOME/bin/orapwd /usr/local/bin/
+orapwd file=orapworcl password=dingjia //目录是$ORACLE_HOME/dbs,前面已经有了</p>
+
+<p><strong>4，创建oracle数据库目录</strong></p>
+
+<p>mkdir $ORACLE_HOME/admin/orcl1
+cd $ORACLE_HOME/admin/orcl1
+mkdir adump bdump cdump dpdump pfile udump
+mkdir $DB_HOME/orcl1</p>
+
+<p><strong>5，修改tnsnames.ora和listener.ora</strong></p>
+
+<p>//这个在tnsnames.ora中加上
+ORCL1 =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = Kylin-10g)(PORT = 1521))
+(CONNECT_DATA =
+(SERVER = DEDICATED)
+(SERVICE_NAME = orcl1)
+)
+)</p>
+
+<p>//这个在listener.ora中加上
+(SID_DESC =
+(SID_NAME = orcl1)
+(GLOBAL_DBNAME=orcl1)
+(ORACLE_HOME = /home/oracle/app/ora10)
+(PROGRAM = extproc)
+)</p>
+
+<p>其实就是将各自文件中orcl的部分，拷贝一下，把orcl改成orcl1。修改这个为了sqlplus连接实例用的。</p>
+
+<p><strong>6，修改实例入口</strong></p>
+
+<p>export ORACLE_SID=orcl1</p>
+
+<p>前面提到了环境变量ORACLE_SID=orcl，在这里要换掉，不然用sqlplus会进入到orcl数据库的。</p>
+
+<p><strong>7，创建数据库</strong></p>
+
+<p>//1,sqlplus登录
+sqlplus / as sysdba</p>
+
+<p>//2,启动不加载实例
+SQL> startup nomount</p>
+
+<p>//3,从create开始到最后的冒号，直接copy进去执行就行了。
+SQL> create database orcl1
+LOGFILE
+GROUP 1 (&lsquo;$DB_HOME/orcl1/redo01.log&rsquo;,&lsquo;$DB_HOME/orcl1/redo01_1.log&rsquo;) size 100m reuse,
+GROUP 2 (&lsquo;$DB_HOME/orcl1/redo02.log&rsquo;,&lsquo;$DB_HOME/orcl1/redo02_1.log&rsquo;) size 100m reuse,
+GROUP 3 (&lsquo;$DB_HOME/orcl1/redo03.log&rsquo;,&lsquo;$DB_HOME/orcl1/redo03_1.log&rsquo;) size 100m reuse
+MAXLOGFILES 50
+MAXLOGMEMBERS 5
+MAXLOGHISTORY 200
+MAXDATAFILES 500
+MAXINSTANCES 5
+ARCHIVELOG
+CHARACTER SET UTF8
+NATIONAL CHARACTER SET UTF8
+DATAFILE &lsquo;$DB_HOME/orcl1/system01.dbf&rsquo; SIZE 1000M EXTENT MANAGEMENT LOCAL
+SYSAUX DATAFILE &lsquo;$DB_HOME/orcl1/sysaux01.dbf&rsquo; SIZE 1000M
+UNDO TABLESPACE UNDOTBS1 DATAFILE &lsquo;$DB_HOME/orcl1/undo.dbf&rsquo; SIZE 500M
+DEFAULT TEMPORARY TABLESPACE TEMP TEMPFILE &lsquo;$DB_HOME/orcl1/temp.dbf&rsquo; SIZE 500M;</p>
+
+<p><strong>8，创建ORACLE的数据字典</strong></p>
+
+<p>SQL> @$ORACLE_HOME/rdbms/admin/catalog.sql;
+SQL> @$ORACLE_HOME/rdbms/admin/catproc.sql;</p>
+
+<p><strong>9，简单设置一下权限</strong></p>
+
+<p>SQL> alter user system identified by orcl1;
+SQL> grant sysdba to system;
+SQL> shutdown immediate;
+SQL> startup;</p>
+
+<p><strong>10，查看一下表空间，以及管理方式</strong></p>
+
+<p>SQL> select tablespace_name,extent_management from dba_tablespaces;</p>
+
+<p>TABLESPACE_NAME EXTENT_MAN</p>
+
+<hr />
+
+<p>SYSTEM LOCAL
+UNDOTBS1 LOCAL
+SYSAUX LOCAL
+TEMP LOCAL</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/">neokylin5.6x86上安装oracle10.2.0.1.0操作记录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-15T17:57:04+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>[root@localhost ~]# groupadd osinstall
+[root@localhost ~]# useradd -s /bin/bash -g osinstall -d /home/oracle -m oracle
+在oracle安装指导中查询所需要的包oracle<a href="http://docs.oracle.com/cd/B28359_01/install.111/b32285/toc.htm">http://docs.oracle.com/cd/B28359_01/install.111/b32285/toc.htm</a>
+The following or later version of packages for Asianux 3, Oracle Linux 5, and Red Hat Enterprise Linux 5 should be installed:
+binutils-2.17.50.0.6
+[root@localhost ~]# rpm -qa|grep binutils
+binutils-2.17.50.0.6-14.el5
+compat-libstdc++-33-3.2.3
+compat-libstdc++-33-3.2.3 (32 bit) OK
+[root@localhost ~]# rpm -qa|grep libstdc++
+compat-libstdc++-33-3.2.3-61
+[root@localhost ~]# rpm -qa|grep libstdc++
+compat-libstdc++-33-3.2.3-61
+elfutils-libelf-0.125
+[root@localhost ~]# rpm -qa|grep elfutils-libelf
+elfutils-libelf-0.137-3.el5
+elfutils-libelf-devel-0.125
+[root@localhost ~]# rpm -qa|grep elfutils-libelf-devel
+[root@localhost ~]#
+gcc-4.1.1
+[root@localhost ~]# rpm -qa|grep gcc
+gcc-4.1.2-50.el5.ns5.6.02
+gcc-c++-4.1.1
+[root@localhost ~]# rpm -qa|grep gcc
+gcc-c++-4.1.2-50.el5.ns5.6.02
+glibc-2.5-12
+glibc-2.5-12 (32 bit)
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-2.5-58.ns5.6.01
+glibc-common-2.5
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-common-2.5-58.ns5.6.01
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-common-2.5-58.ns5.6.01
+glibc-devel-2.5
+glibc-devel-2.5-12 (32 bit)
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-devel-2.5-58.ns5.6.01
+libaio-0.3.106
+libaio-0.3.106 (32 bit)
+[root@localhost ~]# rpm -qa |grep libaio
+libaio-0.3.106-5
+libaio-devel-0.3.106
+[root@localhost ~]# rpm -qa |grep libaio-devel
+[root@localhost ~]#
+libgcc-4.1.1
+libgcc-4.1.1 (32 bit)
+[root@localhost ~]# rpm -qa |grep libgcc
+libgcc-4.1.2-50.el5.ns5.6.02
+libstdc++-4.1.1
+libstdc++-4.1.1 (32 bit)
+[root@localhost ~]# rpm -qa |grep libstdc++
+libstdc++-4.1.2-50.el5.ns5.6.02
+libstdc++-devel 4.1.1
+[root@localhost ~]# rpm -qa |grep libstdc++-devel
+libstdc++-devel-4.1.2-50.el5.ns5.6.02
+make-3.81
+[root@localhost ~]# rpm -qa |grep make
+make-3.81-3.el5
+numactl-devel-0.9.8.x86_64
+[root@localhost ~]# rpm -qa |grep numactl-devel
+sysstat-7.0.0</p>
+
+<p>检查过程中发现libaio-devel-0.3.106和elfutils-libelf-devel在操作系统中没有匹配到，需要下载
+[root@localhost ~]# wget <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm</a>
+&mdash;2013-03-11 07:38:39&mdash; <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm</a>
+正在解析主机 centos.ustc.edu.cn&hellip; 202.141.160.110, 2001:da8:d800:95::110
+Connecting to centos.ustc.edu.cn|202.141.160.110|:80&hellip; 已连接。
+已发出 HTTP 请求，正在等待回应&hellip; 200 OK
+长度：11784 (12K) [application/x-redhat-package-manager]
+Saving to: `libaio-devel-0.3.106-5.i386.rpm&#8217;</p>
+
+<p>100%[=======================================>] 11,784 72.6K/s in 0.2s</p>
+
+<p>2013-03-11 07:38:39 (72.6 KB/s) &ndash; `libaio-devel-0.3.106-5.i386.rpm&#8217; saved [11784/11784]</p>
+
+<p>[root@localhost ~]# wget <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm</a>
+&mdash;2013-03-11 07:47:34&mdash; <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm</a>
+正在解析主机 centos.ustc.edu.cn&hellip; 202.141.160.110, 2001:da8:d800:95::110
+Connecting to centos.ustc.edu.cn|202.141.160.110|:80&hellip; 已连接。
+已发出 HTTP 请求，正在等待回应&hellip; 200 OK
+长度：25023 (24K) [application/x-redhat-package-manager]
+Saving to: `elfutils-libelf-devel-0.137-3.el5.i386.rpm&#8217;</p>
+
+<p>100%[=======================================>] 25,023 76.9K/s in 0.3s</p>
+
+<p>2013-03-11 07:47:35 (76.9 KB/s) &ndash; `elfutils-libelf-devel-0.137-3.el5.i386.rpm&#8217; saved [25023/25023]</p>
+
+<p>[root@localhost opt]# mkdir -p /opt/oracle
+[root@localhost opt]# chown -R oracle:osinstall /opt/oracle
+su &ndash; oracle
+vi .bash_profile</p>
+
+<h1>.bash_profile</h1>
+
+<h1>Get the aliases and functions</h1>
+
+<p>if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi</p>
+
+<h1>User specific environment and startup programs</h1>
+
+<p>PATH=$PATH:$HOME/bin</p>
+
+<p>export PATH</p>
+
+<p>unset USERNAME</p>
+
+<h1>added by oranavi</h1>
+
+<p>export ORACLE_BASE=/opt/oracle
+export ORACLE_HOME=/opt/oracle/product/10.2.0/db_1
+export ORACLE_SID=orcl10g
+export NLS_LANG=American_America.US7ASCII
+export ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+export PATH=$PATH:$ORACLE_HOME/bin
+export ORACLE_DOC=$ORACLE_HOME/doc
+CLASSPATH=$ORACLE_HOME/jre:$ORACLE_HOME/JRE
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jlib
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/rdbms/jlib
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jdbc/lib/classes12.jar
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jdbc/lib/nls_charset12.jar
+export CLASSPATH
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:$ORACLE_HOME/ctx/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/jdbc/lib
+export LD_LIBRARY_PATH
+ulimit -n 65536 > /dev/null 2>&amp;1
+ulimit -u 16384 > /dev/null 2>&amp;1</p>
+
+<p>以oracle用户加载环境变量source .bash_profile
+进入安装包文件夹后执行$./runInstaller –ignoreSysprereqs（忽略版本号校验，也可以手工修改版本号）</p>
+
+<p>安装过程中校验结果：
+正在检查操作系统需求&hellip;
+要求的结果: redhat-3,redhat-4,SuSE-9,asianux-1,asianux-2 之一
+实际结果: redhat-Red Hat Enterprise Linux Server release 5.6 (Tikanga)
+检查完成。此次检查的总体结果为: 失败 &lt;&lt;&lt;&lt;
+问题: Oracle Database 10g 未在当前操作系统中经过认证。</p>
+
+<h1>建议案: 请确保在正确的平台上安装软件。</h1>
+
+<p>正在检查操作系统程序包需求&hellip;
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。</p>
+
+<h1>建议案: 请在继续安装之前, 安装所需的程序包。</h1>
+
+<p>检查内核参数
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。</p>
+
+<h1>建议案: 请按照操作系统特定的说明更新内核参数。</h1>
+
+<p>检查建议的 glibc 版本
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。
+建议案: 您实际上可能已经安装了比这些程序包更新的程序包, 如果是这样, 您可以成功地
+继续安装。如果不是这样, 建议您不要继续。要了解如何获得缺失的程序包, 请参阅自述文</p>
+
+<h1>件。</h1>
+
+<p>正在检查物理内存需求&hellip;
+要求的结果: 922MB
+实际结果: 1008MB</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查可用交换空间需求&hellip;
+要求的结果: 1512MB
+实际结果: 501MB
+检查完成。此次检查的总体结果为: 失败 &lt;&lt;&lt;&lt;
+问题: 系统没有所需的交换空间。</p>
+
+<h1>建议案: 请释放更多的交换空间来执行安装。</h1>
+
+<p>正在检查网络配置需求&hellip;
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+建议案: Oracle 支持在具有 DHCP 分配的公共 IP 地址的系统上进行安装。但应使用静态
+IP 地址来配置系统的主网络接口, 以便 Oracle 软件正常工作。有关在配置有 DHCP 的系</p>
+
+<h1>统上安装软件的详细信息, 请参阅 Installation Guide。</h1>
+
+<p>正在验证 ORACLE_BASE 的位置 (如果已设置)&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查 Oracle 主目录路径中的空格&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查是否进行了正确的系统清除&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查 Oracle 主目录的不兼容性&hellip;
+实际结果: NEW_HOME</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>这里出现了swap空间不足的情况，估计影响不是太大，我虚拟机设置的物理内存为1G，swap设置为512M，期间停止过dbackup-agent服务，安装过程中只有校验结果出现过这里的提示，以后安装过程都正常，没有出现过告警或者错误的信息。</p>
+
+<p>[root@localhost db_1]# ./root.sh
+Running Oracle10 root.sh script&hellip;</p>
+
+<p>The following environment variables are set as:
+ORACLE_OWNER= oracle
+ORACLE_HOME= /opt/oracle/product/10.2.0/db_1</p>
+
+<p>Enter the full pathname of the local bin directory: [/usr/local/bin]:
+Copying dbhome to /usr/local/bin &hellip;
+Copying oraenv to /usr/local/bin &hellip;
+Copying coraenv to /usr/local/bin &hellip;
+Creating /etc/oratab file&hellip;
+Entries will be added to the /etc/oratab file as needed by
+Database Configuration Assistant when a database is created
+Finished running generic part of root.sh script.
+Now product-specific root actions will be performed.</p>
+
+<p>一路下一步后以root用户执行/opt/oracle/oraInventory/orainstRoot.sh和/opt/oracle/product/10.2.0/db_1/root.sh</p>
+
+<p>[root@localhost oraInventory]# ./orainstRoot.sh
+更改权限/opt/oracle/oraInventory 到 770.
+更改组名/opt/oracle/oraInventory 到 osinstall.
+脚本的执行已完成
+启动数据库
+[oracle@localhost ~]$ sqplus &ldquo;/as sysdba&rdquo;
+-bash: sqplus: command not found
+[oracle@localhost ~]$ /opt/oracle/product/10.2.0/db_1/bin/lsnrctl start</p>
+
+<p>LSNRCTL for Linux: Version 10.2.0.1.0 &ndash; Production on 11-MAR-2013 08:32:05</p>
+
+<p>Copyright &copy; 1991, 2005, Oracle. All rights reserved.</p>
+
+<p>TNS-01106: Listener using listener name LISTENER has already been started
+[oracle@localhost ~]$ sqlplus &ldquo;/as sysdba&rdquo;</p>
+
+<p>SQL*Plus: Release 10.2.0.1.0 &ndash; Production on Mon Mar 11 08:32:13 2013</p>
+
+<p>Copyright &copy; 1982, 2005, Oracle. All rights reserved.</p>
+
+<p>Connected to an idle instance.</p>
+
+<p>SQL> startup
+ORA-01078: failure in processing system parameters
+LRM-00109: could not open parameter file &lsquo;/opt/oracle/product/10.2.0/db_1/dbs/initorcl10g.ora&rsquo;
+报错信息显示不能打开参数文件
+重新到$ORACLE_BASE的参数文件中拷贝一份到$ORACLE_HOME中
+cp $ORACLE_BASE/pfile/init.ora.21120138212 $ORACLE_HOME/dbs/initorcl10g.ora
+SQL> startup
+ORACLE instance started.
+Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+ORA-01102: cannot mount database in EXCLUSIVE mode
+Oracle被异常关闭时，有资源没有被释放，一般有以下几种可能，
+1、 Oracle的共享内存段或信号量没有被释放；
+2、 Oracle的后台进程（如SMON、PMON、DBWn等）没有被关闭；
+3、 用于锁内存的文件lk<sid>和sgadef<sid>.dbf文件没有被删除。
+删除$ORACLE_HOME/dbs/lkORCL1ALL
+SQL> startup
+ORACLE instance started.
+Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+ORA-00205: error in identifying control file, check alert log for more info</p>
+
+<p>查看告警日志：
+tail -f $ORACLE_HOME/admin/bdump/alert*.log
+Mon Mar 11 09:13:22 2013
+Starting ORACLE instance (normal)
+LICENSE_MAX_SESSION = 0
+LICENSE_SESSIONS_WARNING = 0
+Picked latch-free SCN scheme 2
+Using LOG_ARCHIVE_DEST_10 parameter default value as USE_DB_RECOVERY_FILE_DEST
+Autotune of undo retention is turned on.
+IMODE=BR
+ILAT =18
+LICENSE_MAX_USERS = 0
+SYS auditing is disabled
+ksdpec: called for event 13740 prior to event group initialization
+Starting up ORACLE RDBMS Version: 10.2.0.1.0.
+System parameters with non-default values:
+processes = 150
+sga_target = 285212672
+control_files = /opt/oracle/oradata/orcl1all/control01.ctl, /opt/oracle/oradata/orcl1all/control02.ctl, /opt/oracle/oradata/orcl1all/control03.ctl
+db_block_size = 8192
+compatible = 10.2.0.1.0
+db_file_multiblock_read_count= 16
+db_recovery_file_dest = /opt/oracle/flash_recovery_area
+db_recovery_file_dest_size= 2147483648
+undo_management = AUTO
+undo_tablespace = UNDOTBS1
+remote_login_passwordfile= EXCLUSIVE
+db_domain =
+dispatchers = (PROTOCOL=TCP) (SERVICE=orcl110gXDB)
+job_queue_processes = 10
+background_dump_dest = /opt/oracle/admin/orcl1all/bdump
+user_dump_dest = /opt/oracle/admin/orcl1all/udump
+core_dump_dest = /opt/oracle/admin/orcl1all/cdump
+audit_file_dest = /opt/oracle/admin/orcl1all/adump
+db_name = orcl1all
+open_cursors = 300
+pga_aggregate_target = 94371840
+PMON started with pid=2, OS id=23738
+PSP0 started with pid=3, OS id=23740
+MMAN started with pid=4, OS id=23742
+DBW0 started with pid=5, OS id=23744
+LGWR started with pid=6, OS id=23746
+CKPT started with pid=7, OS id=23748
+SMON started with pid=8, OS id=23750
+RECO started with pid=9, OS id=23752
+CJQ0 started with pid=10, OS id=23754
+MMON started with pid=11, OS id=23756
+MMNL started with pid=12, OS id=23758
+Mon Mar 11 09:13:23 2013
+starting up 1 dispatcher(s) for network address &lsquo;(ADDRESS=(PARTIAL=YES)(PROTOCOL=TCP))&rsquo;&hellip;
+starting up 1 shared server(s) &hellip;
+Mon Mar 11 09:13:23 2013
+ALTER DATABASE MOUNT
+Mon Mar 11 09:13:23 2013
+ORA-00202: control file: &lsquo;/opt/oracle/oradata/orcl1all/control01.ctl&rsquo;
+ORA-27086: unable to lock file &ndash; already in use
+Linux Error: 11: Resource temporarily unavailable
+Additional information: 8
+Additional information: 16008
+Mon Mar 11 09:13:26 2013
+ORA-205 signalled during: ALTER DATABASE MOUNT&hellip;
+告警日志显示control01.ctl控制文件被锁定
+查看正在使用control10.ctl文件的PID
+[root@localhost ~]# fuser /opt/oracle/oradata/orcl1all/control01.ctl
+/opt/oracle/oradata/orcl1all/control01.ctl: 16004 16006 16008 16016 19487
+[root@localhost ~]# kill -9 16004 16006 16008 16016 19487
+杀掉锁进程后重启启动数据库
+[oracle@localhost orcl1all]$ sqlplus &ldquo;/as sysdba&rdquo;</p>
+
+<p>SQL*Plus: Release 10.2.0.1.0 &ndash; Production on Mon Mar 11 09:51:28 2013</p>
+
+<p>Copyright &copy; 1982, 2005, Oracle. All rights reserved.</p>
+
+<p>Connected to an idle instance.</p>
+
+<p>SQL> startup
+ORACLE instance started.</p>
+
+<p>Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+Database mounted.
+Database opened.
+SQL> exit</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/14/e5ae89e8a385sql2000e587bae78eb0command-line-option-syntax-errortype-command-for-helpe8a7a3e586b3e58a9ee6b395/">安装SQL2000出现command Line Option Syntax Error!type Command /? For Help解决办法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-14T18:57:59+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/14/e5ae89e8a385sql2000e587bae78eb0command-line-option-syntax-errortype-command-for-helpe8a7a3e586b3e58a9ee6b395/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/14/e5ae89e8a385sql2000e587bae78eb0command-line-option-syntax-errortype-command-for-helpe8a7a3e586b3e58a9ee6b395/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>原文来自于：<a href="http://hi.baidu.com/ncicnkzonpkmqvr/item/599526fe284cec18e2e3bd1b">http://hi.baidu.com/ncicnkzonpkmqvr/item/599526fe284cec18e2e3bd1b</a></p>
+
+<p>command line option syntax error!type command /? for help</p>
+
+<p>当安装程序安装到：
+安装程序正在安装ms数据访问组件
+时，屏幕出现错误提示：
+command line option syntax error,type command/? for help</p>
+
+<p>然后点确定继续，结果到：
+安装程序正在安装HTML帮助
+时，屏幕又出现标题为html help 1.32 update错误警对话框提示：
+command line option syntax error,type command/? for help</p>
+
+<p>然后我再点确定继续，安装程序开始复制文件，复制完文件后又出现错误提示：
+无法找到动态连接库sqlunirl.dll（sqlunirl.dll是MDAC的一个组件），于指定路径
+点确定后安装程序停止运行，让查看安装日志</p>
+
+<p>解决方法:
+引起这问题的原因是,SQLServer的安装文件,放在中文目录下.</p>
+
+<p>将SQLServer的安装文件,拷到英文目录,安装就OK</p>
+
+<p>比如将:</p>
+
+<p>D:\软件\Sqlserver</p>
+
+<p>中的&#8221;软件&#8221;去掉.</p>
+
+<p>注:</p>
+
+<p>MDAC （Microsoft Data Access Components）是微软数据库访问组件，Netpise和许多利用数据库的软件都需要操作系统安装MDAC。很多用户的操作系统中已经存在了MDAC，有些是操作系统内置的、有些是其它应用程序安装的。</p>
+
+<p>补充方法(未测试)</p>
+
+<p>1.重装MDAC
+2.修改注册表:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\setup
+删除ExceptionComponents
+重启,安装.
+很多时候不需要 第一步 操作。</p>
+
+<p>二</p>
+
+<p>电脑安装SQL出现错误： command line option syntax error!type command /? for help</p>
+
+<p>都说是安装目录是中文引起的，可是我检查了好几遍我的安装目录的确是英文的</p>
+
+<p>一、情况说明</p>
+
+<p>SQL Server 2000以前的版本，例如7.0一般不存在多个版本，只有标准版跟桌面版，用户如果不清楚该装什么版本的话，可按安装上的</p>
+
+<p>安装先决条件指示安装，一般在WIN2000 服务器版上装标准版，其他的系统装桌面版的就可以；而SQL Server 2000安装问题就比较大，时常</p>
+
+<p>见到的问题如下：</p>
+
+<p>1、配置服务器时中断.</p>
+
+<p>2、注册 ActiveX 时中断.</p>
+
+<p>3、显示到100%的时候中断.</p>
+
+<p>4、提示：command line option syntax error, type command /? for help，继续安装,最后在配置服务器的时候出现：无法找到动态链接</p>
+
+<p>SQLUNIRL.DLL于指定的路径……</p>
+
+<p>5、以前进行的程序创建了挂起的文件操作，运行安装程序前，必须重新启动</p>
+
+<p>二、情况1，2，3的解决办法：</p>
+
+<p>提醒：为避免误操作，先备份注册表和数据库进不了SQL Server 2000，可以备份C:Program Files\Microsoft SQL Server\Mssql\Data</p>
+
+<p>(默认路径)文件夹的文件.</p>
+
+<p>1)、先把SQL Server卸载(卸载不掉也没有关系，继续下面的操作)；</p>
+
+<p>2)、把Microsoft SQL Server文件夹整个删掉；</p>
+
+<p>3)、运行注册表,删除如下项：</p>
+
+<p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server</p>
+
+<p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MssqlServer</p>
+
+<p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MssqlSERVER</p>
+
+<p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SQLSERVERAGENT</p>
+
+<p>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MssqlSERVERADHELPER</p>
+
+<p>HKEY_CURRENT_USER\Software\Microsoft\Microsoft SQL Server</p>
+
+<p>4)、需要的话就重新启动系统；</p>
+
+<p>5)、重新安装。</p>
+
+<p>另外也可尝试单步运行安装 SQL Server 2000的方法：</p>
+
+<p>1)、放入 SQL Server 2000 光盘.</p>
+
+<p>2)、在&#8221;开始&#8221;&mdash;&ldquo;运行&#8221;键入 &#8220;F:\x86\setup.exe k=dbg&rdquo; (F是光盘)</p>
+
+<p>注意：</p>
+
+<p>1)、不同的操作系统支持的SQL Server 2000版本(参见：SQL Server 2000 各版本的区别简介及版本情况查询一文)。</p>
+
+<p>Windows 2000 Server可以安装SQL Server 2000的任何版本.</p>
+
+<p>Windows 2000 Professional只能安装SQL Server 2000的个人版、开发版、评估版、MCDE</p>
+
+<p>2)、SQL Server 2000各版本以及对软硬件的要求(参见：SQL Server 2000 的硬件和软件安装要求一文)。</p>
+
+<p>三、情况4的解决办法</p>
+
+<p>因为安装文件的路径(完整路径)里有中文.</p>
+
+<p>比如 c:\SQLSERVER中文企业版\</p>
+
+<p>改成 c:\SQLSERVER\</p>
+
+<p>四、情况5的解决办法</p>
+
+<p>1)、重启机器，再进行安装，如果发现还有该错误，请按下面步骤；</p>
+
+<p>2)、在开始&mdash;运行中输入regedIT；</p>
+
+<p>3)、到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager位置找到</p>
+
+<p>PendingFileRenameOperations项目，并删除它。这样就可以清除安装暂挂项目。</p>
+
+<p>4)、选择文件&mdash;倒出,保存；</p>
+
+<p>5)、在右边窗口右击PendingFileRenameOperations，选择删除，然后确认；</p>
+
+<p>6)、重启安装，问题解决</p>
+
+<p>五、如果问题依旧，试试先修复操作系统：</p>
+
+<p>命令提示符下执行: sfc /scannow 。</p>
+
+<p>最后的方法：换 Windows 2000 安装盘和 SQL Server 2000 安装盘，有时候问题的原因很奇怪，有人曾更换了一个电源就解决了问题。</p>
+
+<p>1)、先卸载您的 SQL Server 2000,必要的时候删除 Program Files\Microsoft SQL Server 文件夹；</p>
+
+<p>2)、打开注册表；</p>
+
+<p>在&#8221;开始&#8221;&mdash;&ldquo;运行&#8221;键入&#8221;regedIT&rdquo;</p>
+
+<p>3)、按下列顺序点击打开；</p>
+
+<ul>
+<li><p>HKEY_LOCAL_MACHINE</p></li>
+<li><p>SOFTWART</p></li>
+<li><p>Microsoft</p></li>
+<li><p>Windows</p></li>
+<li><p>CurrentVersion</p></li>
+<li><p>Setup</p></li>
+<li><p>ExceptionComponents</p></li>
+</ul>
+
+
+<p>4)、将 ExceptionComponents 下面的文件夹全部删除；</p>
+
+<p>如 {60BFF50D-FB2C-4498-A577-C9548C390BB9}</p>
+
+<p>{60BFF50D-FB2C-4498-A577-C9548C390BB9}</p>
+
+<p>{60BFF50D-FB2C-4498-A577-C9548C390BB9}</p>
+
+<p>{60BFF50D-FB2C-4498-A577-C9548C390BB9}</p>
+
+<p>5)、重新启动；</p>
+
+<p>6)、重新安装 SQL Server 2000 。</p>
+
+<p>六、其他说明</p>
+
+<p>1)、Windows目录中的SQLstp.log文件，该文件列出了安装程序所执行的操作的详细信息，并包含安装期间遇到的所有错误。</p>
+
+<p>通过检查该文件，可以详细了解安装在什么地方失败、为什么失败。</p>
+
+<p>2)、SQL安装的时的错误信息保存在一个叫Errorlog的日志文件中，默认情况下该文件位于Program Files\Microsoft SQL Server\Mssql\Log</p>
+
+<p>目录中。该错误日志包含安装程序试图启动SQL-Server时SQL-Server所遇到的错误，这些信息可以帮助您深入检查错误原因。</p>
+
+<p>3)、需要检查的另一个组件是Microsoft数据访问组件(MDAC)安装程序，它作为SQL-Server2000安装程序的一部分启动。</p>
+
+<p>SQL-Server2000安装程序会安装MDAC2.6。MDAC安装程序会创建名为DASEtup.log的单独的日志文件；您可以查看此日志文件并确保MDAC</p>
+
+<p>安装程序没有出现问题。
+SQL或msde安装问题－Command line option syntax error. Typ
+SQL 2000安装问题－－Command line option syntax error</p>
+
+<p>当安装程序安装到：</p>
+
+<p>安装程序正在安装ms数据访问组件</p>
+
+<p>时，屏幕出现错误提示：</p>
+
+<hr />
+
+<p>SQL Redist</p>
+
+<hr />
+
+<p>Command line option syntax error. Type Command /? for Help.</p>
+
+<hr />
+
+<p>确定</p>
+
+<hr />
+
+<p>然后点确定继续，安装程序开始复制文件，复制完文件后又出现错误提示：</p>
+
+<p>无法找到动态连接库sqlunirl.dll于指定路径“…\sqlunirl.dll”（超级长的路径！）</p>
+
+<p>点确定后安装程序停止运行，查看安装日志。</p>
+
+<p>解决方法:</p>
+
+<p>引起这问题的原因是,SQLServer的安装文件被放在了中文目录下.</p>
+
+<p>将SQLServer的安装文件,拷到英文目录,安装就OK</p>
+
+<p>比如将:</p>
+
+<p>“D:\Sqlserver安装盘”中的&#8221;安装盘&#8221;去掉。就行了！</p>
+
+<p>什么？还是不行？！别急，嘿嘿。</p>
+
+<p>看看您的用户名是不是中文的，改成英文的吧。这个用户名指的就是您登录windows的时候使用的用户名，系统默认的是administrator。</p>
+
+<p>您不舍的修改这个用户名？那就重新创建一个英文的用户吧，用这个用户登录然后安装就行了。</p>
+
+<p>再多嘴说一说原因吧：</p>
+
+<p>软件在安装的时候会先解压，生成一些临时文件，系统调用这些文件进行安装。有时候这些文件放在当前的目录下，有时候放在“C:\Documents and Settings\用户名\Local Settings\Temp”文件夹中，这时候如果您的“用户名”是中文的话，就可能失败了。看来还是支持中文不够好啊！无奈！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90/">开源镜像站资源</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-12T09:57:07+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>国内高校的开源镜像站</h3>
+
+<ol>
+<li><p> 中国科学技术大学(<a href="http://debian.ustc.edu.cn/">debian.ustc.edu.cn</a>)</p></li>
+<li><p> 上海交通大学(<a href="http://ftp.stju.edu.cn/">ftp.stju.edu.cn</a>)</p></li>
+<li><p> 大连理工大学(<a href="http://mirror.dlut.edu.cn/">mirror.dlut.edu.cn</a>)</p></li>
+<li><p> 北京交通大学(<a href="http://mirror.bjtu.edu.cn/">mirror.bjtu.edu.cn</a>)</p></li>
+<li><p> 北京理工大学(<a href="http://mirror.bit.edu.cn/">mirror.bit.edu.cn</a>)</p></li>
+<li><p> 东北大学(<a href="http://mirror.neu.edu.cn/">mirror.neu.edu.cn</a>)</p></li>
+<li><p> 厦门大学(<a href="http://mirrors.xmu.edu.cn/">mirrors.xmu.edu.cn</a>)</p></li>
+<li><p> 兰州大学(<a href="http://mirror.lzu.edu.cn/">mirror.lzu.edu.cn</a>)</p></li>
+<li><p> 西安电子科技大学(<a href="http://linux.xidian.edu.cn/">linux.xidian.edu.cn</a>)</p></li>
+<li><p>. 哈尔滨工业大学(<a href="http://run.hit.edu.cn/">run.hit.edu.cn</a>)</p></li>
+<li><p>. 天津大学(<a href="http://mirror.tju.edu.cn/">mirror.tju.edu.cn</a>)</p></li>
+<li><p>. 东软信息学院(<a href="http://mirrors.neusoft.edu.cn/">mirrors.neusoft.edu.cn</a>)</p></li>
+<li><p>. 电子科技大学(<a href="http://mirrors.stuhome.net/">mirrors.stuhome.net</a>)</p></li>
+</ol>
+
+
+<h3>国内其他机构的开源镜像站</h3>
+
+<ol>
+<li><p> 中国互联网信息中心(<a href="http://mirrors.cnnic.cn/">mirrors.cnnic.cn</a>)  只提供了Apache镜像</p></li>
+<li><p> 网易开源镜像站(<a href="http://mirrors.163.com/">mirrors.163.com</a>)</p></li>
+<li><p> 搜狐(<a href="http://mirrors.sohu.com/">mirrors.sohu.com</a>)</p></li>
+<li><p> 淘宝(<a href="http://ruby.taobao.org/">ruby.taobao.org</a>)</p></li>
+<li><p> 猫扑(<a href="http://labs.mop.com/apache-mirror">labs.mop.com/apache-mirror</a>) 只提供了Apache镜像</p></li>
+</ol>
+
+
+<h3>日本各大学的镜像站</h3>
+
+<ol>
+<li> 北陆先端科学技术大学院大学JAIST(<a href="http://ftp.jaist.ac.jp/pub/">http://ftp.jaist.ac.jp/pub/</a>)</li>
+</ol>
+
+
+<h3>美国各大学的镜像站</h3>
+
+<ol>
+<li><p> 卡内基梅隆大学CMU(<a href="http://www.club.cc.cmu.edu/pub">http://www.club.cc.cmu.edu/pub</a>)</p></li>
+<li><p> 麻省理工学院MIT(<a href="http://mirrors.mit.edu/">http://mirrors.mit.edu/</a>)</p></li>
+<li><p> 哥伦比亚大学(<a href="http://mirror.cc.columbia.edu/">http://mirror.cc.columbia.edu/</a>)</p></li>
+<li><p> 俄勒冈州立大学(<a href="http://ftp.osuosl.org/pub">http://ftp.osuosl.org/pub</a>)</p></li>
+<li><p> 伊利诺伊大学厄巴纳－香槟分校(<a href="http://cosmos.cites.illinois.edu/">http://cosmos.cites.illinois.edu/</a>)</p></li>
+<li><p> 杜克大学(<a href="http://archive.linux.duke.edu/">http://archive.linux.duke.edu/</a>)</p></li>
+<li><p> 约翰·霍普金斯大学 <a href="http://mirrors.acm.jhu.edu/">http://mirrors.acm.jhu.edu/</a></p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

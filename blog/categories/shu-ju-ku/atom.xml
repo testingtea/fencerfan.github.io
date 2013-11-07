@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 数据库 | Scutech QA Blog]]></title>
+  <link href="http://fencerfan.github.io/blog/categories/shu-ju-ku/atom.xml" rel="self"/>
+  <link href="http://fencerfan.github.io/"/>
+  <updated>2013-11-07T20:07:05+08:00</updated>
+  <id>http://fencerfan.github.io/</id>
+  <author>
+    <name><![CDATA[Scutech QA]]></name>
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL-5.2.3 for RHEL5_x86]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/"/>
+    <updated>2013-11-04T14:46:58+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86</id>
+    <content type="html"><![CDATA[<p>Prepare the installation package
+Server:<a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-server-5.2.3-0.glibc23.i386.rpm</a>
+Client: <a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-client-5.2.3-0.glibc23.i386.rpm</a>
+Perl(DBI) :<a href="http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+...&amp;system=&amp;arch">http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+&hellip;&amp;system=&amp;arch/perl-DBI-1.617-1.el5.rfx.i386.rpm
+</a>libstdc++.so.5:<a href="http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm">http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm</a></p>
+
+<p>Installation  steps
+1、Switch to the root user
+$>su &ndash; root
+2、Install Perl(DBI)</p>
+
+<h1>>rpm -ivh perl-DBI-1.617-1.el5.rfx.i386.rpm</h1>
+
+<p>3、Install libstdc++.so.5</p>
+
+<h1>>rpm -ivh compat-libstdc++-33-3.2.3-47.3.i386.rpm</h1>
+
+<p>4、Install MySQL-server &amp; MySQL-client</p>
+
+<h1>>rpm -ivh MySQL-server-5.2.3-0.glibc23.i386.rpm</h1>
+
+<h1>>rpm -ivh MySQL-client-5.2.3-0.glibc23.i386.rpm</h1>
+
+<p>5、 Set the password for the MySQL root user</p>
+
+<h1>>mysqladmin -uroot password &lsquo;new-password&rsquo;</h1>
+
+<p>6、End</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL-4.1.22 for RHEL3_x86]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/04/mysql-4-2-1-for-rhel3/"/>
+    <updated>2013-11-04T10:11:14+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/04/mysql-4-2-1-for-rhel3</id>
+    <content type="html"><![CDATA[<p><strong>MySQL安装包：</strong></p>
+
+<p>mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+<a href="http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz">http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz</a></p>
+
+<p><strong>安装步骤：</strong></p>
+
+<p>1、# chmod 755 mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+2、# tar xfz mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz　　//将解压后生成的目录,复制到/usr/local/下并改名为mysql
+3、# groupadd mysql    　　　　// 建立mysql组</p>
+
+<h1>useradd mysql -g mysql  　 // 建立mysql用户并且加入到mysql组中</h1>
+
+<p>4、# cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf         //在 support-files目录下有4个模版文件，我们选择其中一个座位Mysql的配置文件，覆盖/etc/my.cnf(系统默认的配置，其中设置了性能参数和Mysql的一些路径参数)
+5、# cd /usr/local/mysql</p>
+
+<h1>./scripts/mysql_install_db &mdash;user=mysql         //初试化表并且规定用mysql用户来访问。初始化表以后就开始给mysql和root用户设定访问权限</h1>
+
+<p>6、# chown -R root .  　　　　　//设定root能访问/usr/local/mysql
+7、# chown -R mysql data  　　　//设定mysql用户能访问/usr/local/mysql/data ,里面存的是mysql的数据库文件.这个目录是在/etc/my.cnf中有配置，在mysql_install_db时产生。
+8、# chown -R mysql data/. 　　//设定mysql用户能访问/usr/local/mysql/data/mysql下的所有文件
+9、# chgrp -R mysql .  　　　　//设定mysql组能够访问/usr/local/mysql
+10、# /usr/local/mysql/bin/mysqld_safe &mdash;user=mysql &amp;  　　//运行mysql,如果没有问题的话,应该会出现类似这样的提示:[1]42264</p>
+
+<h1>Starting mysqld daemon with databases from /usr/local/mysql/var 如果出现 mysql ended这样的语句，表示Mysql 没有正常启动，你可以到log中查找问题，Log文件的通常在/etc/my.cnf中配置。大多数问题是权限设置不正确引起的。</h1>
+
+<p>11、# /usr/local/mysql/bin/mysqladmin -u root password yourpassword //默认安装密码为空，为了安全你必须马上修改.</p>
+
+<p>12、#cp support-files/mysql.server /etc/rc.d/init.d/mysqld  　　//copy编译目录的一个脚本</p>
+
+<h1>chmod 700 /etc/init.d/mysqld 　　　　//设置使mysql每次启动都能自动运行</h1>
+
+<h1>chkconfig &mdash;add mysqld</h1>
+
+<h1>chkconfig &mdash;level 345 mysqld on</h1>
+
+<p>13、#service mysqld start 　　//启动mysqld服务</p>
+
+<h1>netstat -atln 　　　　    //查看3306端口是否打开。要注意在防火墙中开放该端口</h1>
+
+<p>安装完之后，需要输入/usr/local/mysql/bin/mysql -uroot -p才能登录mysql，设了环境变量export mysql=/usr/local/mysql/bin还是无法通过输入mysql -uroot -p登录mysql，仍在想方法解决。
+解决方法：vi ~/.bash_profile
+在后面加上export PATH=$PATH:/usr/local/mysql/bin</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle热备份的原理]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/"/>
+    <updated>2013-09-25T17:26:17+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086</id>
+    <content type="html"><![CDATA[<p>文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。</p>
+
+<p><a href="http://www.linuxidc.com/Linux/2012-01/52398.htm">http://www.linuxidc.com/Linux/2012-01/52398.htm</a></p>
+
+<p>1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态，oracle数据块可能在不断的被修改，被读写，使用操作系统命令复制数据文件时，是根据操作系统块大小进行copy的，也就是说复制一个操作系统块的时候，首先锁定这个块，复制完成以后，解锁这个块，这样这个块在复制前和复制后是一致的。但是对于一个Oracle数据库来说，一个块要分成几次进行复制，有可能在复制一个操作系统数据块的时候，另外一个操作系统数据块被改变了，导致oracle数据块在复制到备份介质以后，前一半是没有改动过的，后一半是改动过的，数据块的状态就出现了不一致的情况，这时候备份也就是无效的，这叫做分离数据块现象。</p>
+
+<p>2、为了修复分离数据块现象，我们在备份某个表空间或者数据文件的的时候，首先发出begin backup命令，通知数据库我要开始开始备份了，在没有发出end backup命令之前，只要是进程修改了被备份的表空间所包含的数据块，oracle就会把该数据块中所包含的所有的数据行的数据生成重做记录，记录到日志文件中。</p>
+
+<p>通过发出begin backup以后，第一次修改数据块中的数据行之前，在联机重做日志文件中记录数据块的修改前的数据，这样在需要恢复数据的时候，发现某个数据块是分离的，就会利用日志文件里的重做记录的数据对整个数据块进行恢复</p>
+
+<p>3、备份表空间中的所有的被修改过的数据块的所有数据行都被保存在了联机重做日志文件中，而不是只记录被修改的数据行的记录，因此在热备份过程中，会发现生成的联机重做日志文件的量比较大，这取决于业务的繁忙程度，例如DML量比较大，那么产生的日志会非常的多</p>
+
+<p>4、发出begin backup命令以后，oracle会对被备份的表空间所对应的数据文件触发文件级别的检查点进程，将内存中属于该表空间的所有脏数据块写入数据文件，检查点结束以后，数据文件头部（第一个和第一个数据块）的检查点SCN和日志序列号都不在变化，直至发出end backup，数据文件头部的SCN和日志序列号才被更新</p>
+
+<p>5、在热备份的过程中，数据文件头部的SCN和日志序列号被冻结，但是数据文件本身还是最新的，和正常一样的更新和使用，DML更新了某个表，这些更新都会被写入到数据文件中去。冻结数据文件头部的SCN号和日志序列号，是为了将来使用热备份进行恢复的时候，能够知道应该从哪里开始应用重做记录，也就是备份的数据文件头部所记录的SCN和日志序列号，定位到日志文件中，从日志文件中找到开始的SCN，向后应用所有的日志文件</p>
+
+<p>6、发出end backup命令以后，所有的数据文件的头部SCN号和日志序列号更新到最新，因为数据文件本身就是最新的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dataguard主库恢复后备库的重建步骤]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4/"/>
+    <updated>2013-05-15T18:18:15+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4</id>
+    <content type="html"><![CDATA[<ol>
+<li><p> 主库操作操作(open+archived_log)
+$ rman target=/
+RMAN>BACKUP DATABASE PLUS ARCHIVELOG;
+$ sqlplus sys/dingjia as sysdba
+SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+将orcl_stby.ctl拷贝到备库的/tmp目录下
+将主库rman备份之后的文件拷贝到备库的恢复日志目录下，如：/u01/app/oracle/flash_recovery_area/ORA10G/backupset</p></li>
+<li><p> 备库机器操作
+$ sqlplus sys/dingjia as sysdba
+SQL>shutdown immediate;
+删除备库的控制文件control*
+$ rman
+RMAN>connect target
+RMAN>restore controlfile from &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+RMAN>startup force mount;
+RMAN>restore database;</p></li>
+<li><p> 最后重启主备库，按顺序启动dataguard即可！</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oracle10g DG 的搭建]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/"/>
+    <updated>2013-04-07T11:14:02+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba</id>
+    <content type="html"><![CDATA[<p>此次搭建过程主要参考：<a href="http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php">http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php</a></p>
+
+<p><a href="http://www.5ienet.com/note/html/dg/index.shtml">http://www.5ienet.com/note/html/dg/index.shtml</a></p>
+
+<p>前提：</p>
+
+<ul>
+<li><p>两台已经装有oracle的linux机器。本次使用的是centos3_x86</p></li>
+<li><p>主库上装有oracle服务及添加了一个名ora10g的实例</p></li>
+<li><p>从库仅安装了oracle服务</p></li>
+<li><p>为了方便，主从库oracle的安装路径完全一致。主库上的ORACLE_HOME=/u01/app/oracle</p></li>
+</ul>
+
+
+<p>详细步骤：</p>
+
+<p>主库服务设置</p>
+
+<ol>
+<li> 归档日志
+****检查主库的实例是否为归档状态
+SQL>SELECT log_mode FROM v$database;
+LOG_MODE</li>
+</ol>
+
+
+<hr />
+
+<p>NOARCHIVELOG
+SQL>
+****如果是非归档状态，将其更换为归档状态
+SQL>SHUTDOWN IMMEDIATE;SQL>STARTUP MOUNT;</p>
+
+<p>SQL>ALTER DATABASE ARCHIVELOG;</p>
+
+<p>SQL>ALTER DATABASE OPEN;</p>
+
+<p>****启动数据库的force logging</p>
+
+<p>SQL>ALTER DATABSE FORCE LOGGING;</p>
+
+<ol>
+<li> 初始化参数
+<strong><strong>检查db_name和db_unique_name这两个参数，这次将这两个参数都设置为ora10g
+SQL>show parameter db_name;
+NAME                  TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;        &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_name            string                  ora10gSQL>show parameter db_unique_name;
+NAME                                TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;                      &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_unique_name            string                  ora10g
+</strong></strong>主从库的db_name一致，可是db_unique_name不能相同，因为主从库的db-unique_name会在dg_config当作log_archive_config参数。这个例子里，将从库的db_unique_name设置为“ora10g_stby”。</li>
+</ol>
+
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_CONFIG=&lsquo;DG_CONFIG=(ORA10G,ORA10G_STBY)&rsquo;;
+****设置合适的远程归档日志路径。这个例子里，把flash_recover_area当作本地路径，或者你自己也可以指定一个特定的路径。指定SERVICE和DB_UNIQUE_NAME为了给从库路径做参考</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_2=‘SERVICE=ora10g_stby NOAFFIRM ASYNC VALID=(ONLINE_LOGFILES,PRIMARY_ROLE)           DB_UNIQUE_NAME=ORA10G_STBY';</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_STATE_2=ENABLE;</p>
+
+<p>****LOG_ARCHIVE_FORMAT和LOG_ARCHIVE_MAX_PROCESSES参数要合理设置，REMOTE_LOGIN_PASSWORDFILE 要设置为EXCLUSIVE。</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_FORMAT=‘%t<em>%s</em>%r.arc' SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_MAX_PROCESSES=30;</p>
+
+<p>SQL>ALTER SYSTEM SET REMOTE_LOGIN_PASSWORDFILE=EXCLUSIVE SCOPE=SPFILE;
+<strong><strong>除了之前的设置，还要确保主库和备库能互换角色。为了使互换角色能正常使用，需要设置如下参数。调整*_CONVERT参数用于解释主备库文件名和路径不同的地方。</strong></strong>
+SQL>ALTER SYSTEM SET FAL_SERVER=ORA10G_STBY;</p>
+
+<p>SQL>ALTER SYSTEM SET DB_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;</p>
+
+<p>****记住，一些参数是不会立即生效的，所以需要重启数据库以确保他们能起作用。</p>
+
+<ol>
+<li><p> 服务设置
+<strong><strong>主备库都需要“$ORACLE_HOME/network/admin/tnsnames.ora”文件。你可以用Network Configuration Utility(netca)或者手动创建。
+</strong></strong>主库的tnsnames.ora</p>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)
+ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+<strong><strong>备库的tnsname.ora</strong></strong>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+<p>ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)</p></li>
+<li><p> 备份主库
+****如果你使用duplicate模式去创建从库，则这一步是不必要的。基于备份的duplicate，或者手动恢复，都要备份主库。$ rman target = /
+RMAN> BACKUP DATABASE PLUS ARCHIVELOG;</p></li>
+<li><p> 生成从库的控制文件和pfile文件
+****在主库同步如下命令生成备库的控制文件SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/ora10g_stby.ctl&rsquo;;</p></li>
+</ol>
+
+
+<p><strong><strong>由spfile文件生成备库的参数文件。
+SQL>CREATE PFILE=&lsquo;/tmp/iniora10g_stby.ora&rsquo; FROM SPFILE;
+</strong></strong>修改与备库有关的参数，因为备库是复制过来的，所以只需修改如下参数：</p>
+
+<p><em>.db_unique_name=&lsquo;ORA10G_STBY&rsquo;
+</em>.fal_server=&lsquo;ORA10G&rsquo;
+*.log_archive_dest_2=&lsquo;SERVICE=ora10g ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ORA10G&rsquo;</p>
+
+<p>(以上是原文翻译，不过在我实践的过程中，我的备库是值安装了oracle服务，并没有oracle实例。所以$ORACLE_HOME/admin下的某些路径会不存在，那么则需看清楚生成的iniora10g_stby.ora中存在哪些路径。如果文件中有，而备库机器实际上没有该路径的话，则需手动添加。如有不符合的路径，也许手动更改该路径或修改ora文件)</p>
+
+<p>从库服务设置</p>
+
+<ol>
+<li> 拷贝文件
+****在从库添加必要的路径$ mkdir -p /u01/app/oracle/oradata/ORA10G
+$ mkdir -p /u01/app/oracle/flash_recovery_area/ORA10G
+$ mkdir -p /u01/app/oracle/admin/ORA10G/adump</li>
+</ol>
+
+
+<p>****将文件从主库拷贝到从库</p>
+
+<p>$ # Standby controlfile to all locations.
+$ scp oracle@192.168.88.185:/tmp/ora10g_stby.ctl /u01/app/oracle/oradata/ORA10G/control01.ctl
+$ cp /u01/app/oracle/oradata/ORA10G/control01.ctl /u01/app/oracle/flash_recovery_area/ORA10G/control02.ctl$ # Archivelogs and backups
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/archivelog /u01/app/oracle/flash_recovery_area/ORA10G
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/backupset /u01/app/oracle/flash_recovery_area/ORA10G</p>
+
+<p>$ # Parameter file.
+$ scp oracle@192.168.88.185:/tmp/initORA10G_stby.ora /tmp/initORA10G_stby.ora</p>
+
+<p>$ # Remote login password file.
+$ scp oracle@192.168.88.185:$ORACLE_HOME/dbs/orapwORA10G $ORACLE_HOME/dbs</p>
+
+<ol>
+<li><p> 启动listener(监听程序)
+<strong><strong>主备库的listener如下：
+</strong></strong>主库：</p>
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+(SID_NAME = ora10g)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC0))
+)
+)
+****备库：
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Or</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+
+<h1>(GLOBAL_DBNAME = ORA10G_STBY)</h1>
+
+<p>(ORACLE_HOME = /u01/app/oracle)
+(SID_NAME = ora10g)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+)
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+)
+)
+ADR_BASE_LISTENER = /u01/app/oracle
+ENABLE_GLOBAL_DYNAMIC_ENDPOINT_LISTENER = ON
+启动监听
+$lsnrctl start</p></li>
+<li><p> 恢复从库
+****在备库通过修改了的pfile文件生成spfile$export ORACLE_SID=ora10g
+$sqlplus / as sysdba
+SQL>CREATE SPFILE FROM PFILE=&lsquo;/tmp/initora10g_stby.ora&rsquo;;</p></li>
+</ol>
+
+
+<p>****恢复备份的文件</p>
+
+<p>$ export ORACLE_SID=ora10g
+$ rman target=/
+RMAN>STARTUP MOUNT;
+RMAN>RESTORE DATABASE;</p>
+
+<ol>
+<li> 添加redo日志
+****添加备库的online redo logs。SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</li>
+</ol>
+
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>****除了online redo logs之外，你还要生成在主备库两边都生成standby redo logs为了使它们能够进行角色转换。备库的redo logs至少和online redo log一样大
+SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>设置DG的同步</p>
+
+<ol>
+<li><p> 在备库启动同步设置
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;</p></li>
+<li><p> 如果你需要取消同步，用如下命令
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p></li>
+<li><p> 如果你希望的话，可以自己设置同步时间。
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DELAY 30 DISCONNECT FROM SESSION;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE NODELAY DISCONNECT FROM SESSION;</p></li>
+</ol>
+
+
+<p>测试日志的传输</p>
+
+<ol>
+<li><p> 在主库，检查最后的归档日志(archived redo log)和强制切换日志
+SQL>ALTER SESSION SET nls_date_format=&lsquo;DD-MON-YYYY HH24:MI:SS&rsquo;;
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;
+SQL>ALTER SYSTEM SWITCH LOGFILE;</p></li>
+<li><p> 在备库检查归档日志是否已经改变
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;</p></li>
+</ol>
+
+
+<p>。。。。。。。DG搭建已告一段落，可以进行正常的同步了。后面的还未实践过，暂且编写这么多，此次属于第一次搭建DG，有不足之处希望各位多多指出。</p>
+
+<p>主备库的启动关闭顺序</p>
+
+<p>启动顺序：先standby，后primary</p>
+
+<p>关闭顺序：先primary，后standby</p>
+
+<p>启动实例：</p>
+
+<p>SQL>startup nomount;</p>
+
+<p>SQL>alter database mount stadby database;</p>
+
+<p>SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p>
+
+<p>SQL>alter database recover managed standby database disconnect from session</p>
+
+<p>在备库启动监听</p>
+
+<p>$lsnrctl start</p>
+
+<p>在主库启动实例</p>
+
+<p>SQL>startup</p>
+
+<p>在主库启动监听</p>
+
+<p>$lsnrctl start</p>
+]]></content>
+  </entry>
+  
+</feed>

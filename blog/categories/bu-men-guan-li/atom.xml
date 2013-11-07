@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 部门管理 | Scutech QA Blog]]></title>
   <link href="http://fencerfan.github.io/blog/categories/bu-men-guan-li/atom.xml" rel="self"/>
   <link href="http://fencerfan.github.io/"/>
-  <updated>2013-11-07T19:30:58+08:00</updated>
+  <updated>2013-11-07T20:07:05+08:00</updated>
   <id>http://fencerfan.github.io/</id>
   <author>
     <name><![CDATA[Scutech QA]]></name>
@@ -23,6 +23,80 @@
 <p>为了让我们的博客的价值有更多的体现和减少占用公司内部的资源，我们决定放弃使用WordPress将测试部的博客迁移到GitHub（Octpress+GitHub），望各位同事多为这个“新家”添砖加瓦。</p>
 
 <p>顺祝各位同事身体健康，工作顺意！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开源镜像站资源]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90/"/>
+    <updated>2013-03-12T09:57:07+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90</id>
+    <content type="html"><![CDATA[<h3>国内高校的开源镜像站</h3>
+
+<ol>
+<li><p> 中国科学技术大学(<a href="http://debian.ustc.edu.cn/">debian.ustc.edu.cn</a>)</p></li>
+<li><p> 上海交通大学(<a href="http://ftp.stju.edu.cn/">ftp.stju.edu.cn</a>)</p></li>
+<li><p> 大连理工大学(<a href="http://mirror.dlut.edu.cn/">mirror.dlut.edu.cn</a>)</p></li>
+<li><p> 北京交通大学(<a href="http://mirror.bjtu.edu.cn/">mirror.bjtu.edu.cn</a>)</p></li>
+<li><p> 北京理工大学(<a href="http://mirror.bit.edu.cn/">mirror.bit.edu.cn</a>)</p></li>
+<li><p> 东北大学(<a href="http://mirror.neu.edu.cn/">mirror.neu.edu.cn</a>)</p></li>
+<li><p> 厦门大学(<a href="http://mirrors.xmu.edu.cn/">mirrors.xmu.edu.cn</a>)</p></li>
+<li><p> 兰州大学(<a href="http://mirror.lzu.edu.cn/">mirror.lzu.edu.cn</a>)</p></li>
+<li><p> 西安电子科技大学(<a href="http://linux.xidian.edu.cn/">linux.xidian.edu.cn</a>)</p></li>
+<li><p>. 哈尔滨工业大学(<a href="http://run.hit.edu.cn/">run.hit.edu.cn</a>)</p></li>
+<li><p>. 天津大学(<a href="http://mirror.tju.edu.cn/">mirror.tju.edu.cn</a>)</p></li>
+<li><p>. 东软信息学院(<a href="http://mirrors.neusoft.edu.cn/">mirrors.neusoft.edu.cn</a>)</p></li>
+<li><p>. 电子科技大学(<a href="http://mirrors.stuhome.net/">mirrors.stuhome.net</a>)</p></li>
+</ol>
+
+
+<h3>国内其他机构的开源镜像站</h3>
+
+<ol>
+<li><p> 中国互联网信息中心(<a href="http://mirrors.cnnic.cn/">mirrors.cnnic.cn</a>)  只提供了Apache镜像</p></li>
+<li><p> 网易开源镜像站(<a href="http://mirrors.163.com/">mirrors.163.com</a>)</p></li>
+<li><p> 搜狐(<a href="http://mirrors.sohu.com/">mirrors.sohu.com</a>)</p></li>
+<li><p> 淘宝(<a href="http://ruby.taobao.org/">ruby.taobao.org</a>)</p></li>
+<li><p> 猫扑(<a href="http://labs.mop.com/apache-mirror">labs.mop.com/apache-mirror</a>) 只提供了Apache镜像</p></li>
+</ol>
+
+
+<h3>日本各大学的镜像站</h3>
+
+<ol>
+<li> 北陆先端科学技术大学院大学JAIST(<a href="http://ftp.jaist.ac.jp/pub/">http://ftp.jaist.ac.jp/pub/</a>)</li>
+</ol>
+
+
+<h3>美国各大学的镜像站</h3>
+
+<ol>
+<li><p> 卡内基梅隆大学CMU(<a href="http://www.club.cc.cmu.edu/pub">http://www.club.cc.cmu.edu/pub</a>)</p></li>
+<li><p> 麻省理工学院MIT(<a href="http://mirrors.mit.edu/">http://mirrors.mit.edu/</a>)</p></li>
+<li><p> 哥伦比亚大学(<a href="http://mirror.cc.columbia.edu/">http://mirror.cc.columbia.edu/</a>)</p></li>
+<li><p> 俄勒冈州立大学(<a href="http://ftp.osuosl.org/pub">http://ftp.osuosl.org/pub</a>)</p></li>
+<li><p> 伊利诺伊大学厄巴纳－香槟分校(<a href="http://cosmos.cites.illinois.edu/">http://cosmos.cites.illinois.edu/</a>)</p></li>
+<li><p> 杜克大学(<a href="http://archive.linux.duke.edu/">http://archive.linux.duke.edu/</a>)</p></li>
+<li><p> 约翰·霍普金斯大学 <a href="http://mirrors.acm.jhu.edu/">http://mirrors.acm.jhu.edu/</a></p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[测试部内部博客开通]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95/"/>
+    <updated>2013-01-31T18:40:29+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95</id>
+    <content type="html"><![CDATA[<p><img src="http://getyourbizsavvy.com/wp-content/uploads/2011/10/2560666767_82edc1b3fb.jpg" alt="" /></p>
+
+<p><strong>        在新的一年里希望各位测试部的兄弟姐妹们，能在这个内部博客上书写自己的生活或工作上的所得，让写作成为一种习惯，更成为一种推动进步的动力。</strong></p>
+
+<p><strong>        最后以乔布斯的“Stay Hungry，Stay Foolish.”与各位共勉。</strong></p>
+
+<p><strong>                                                                                                                     樊立明</strong></p>
+
+<p><strong>                                                                                                                     2013.01.31</strong></p>
 ]]></content>
   </entry>
   

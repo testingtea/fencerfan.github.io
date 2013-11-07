@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 测试方法 | Scutech QA Blog]]></title>
+  <link href="http://fencerfan.github.io/blog/categories/ce-shi-fang-fa/atom.xml" rel="self"/>
+  <link href="http://fencerfan.github.io/"/>
+  <updated>2013-11-07T20:07:05+08:00</updated>
+  <id>http://fencerfan.github.io/</id>
+  <author>
+    <name><![CDATA[Scutech QA]]></name>
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[数据的备份，看似很简单其实不简单]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/"/>
+    <updated>2013-11-05T14:25:17+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95</id>
+    <content type="html"><![CDATA[<p>转自<a href="http://www.linuxdiyf.com/bbs/thread-308474-1-1.html">http://www.linuxdiyf.com/bbs/thread-308474-1-1.html</a></p>
+
+<p>“备份”是人们进入电脑时代必然遇到的问题，除了个人数据，还有生产生活中其他方面只要涉及到数据安全的皆需备份。
+备份除了要求有数据以外，还要确保数据安全性，所以不是一般的复制粘贴或cp能搞定的。
+windows下可以用goodsync或其他一些备份工具。
+linux中使用rsync可以使备份目录和源目录完全一致：
+rsync -auv &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样即可实现备份到目录PATH下的目的，还能即时看到备份过程，如有错误会在终端返回。
+如需传输时进行压缩处理使用参数 -Z ;如需传输时确保数据完全一致可以用参数 -c 。如：
+rsync -auv -c &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样可以在备份时采取HASH校验使备份的数据和原始数据完全一致防止有被恶意篡改（如感染病毒）或磁盘损坏造成数据不一致，只是如果有大量数据校验肯定会拖慢备份速度。</p>
+
+<p>扩展阅读：
+1. 如上所述，采取rsync加-c参数可校验数据完整性，但是会拖慢备份速度。其实也可以先备份再采取其他的方法来进行数据校验，如md5sum shaxsun(x=1,256,512等);rsync只是忠实的同步数据，数据不完整一般是上面提到的病毒感染或磁盘损坏（包括文件系统损坏）和一些其它硬件问题如内存损坏造成的，与rsync无关。下面会说到如何校验数据。
+首先：cd到备份源目录中，递归建立一个有备份目录所有数据的hash文档;校验时这个文件要一并复制到备份目的目录的同级目录中以做校验用。
+find -type f -print0 | xargs -0 md5sum >|/path/md5 //md5这个文件名可以任意指定
+校验： md5sum -c md5 //如无意外，在一大片“确定”后即返回终端，如有不符的则返回错误提示。
+md5sum -c md5 >/path/hash //把校验结果输出到一个名为hash的文件中，可以通过查询该文件得知具体出错的文件是那几个，避免因快速刷屏看不到究竟是哪几个文件没有同步完整。
+cat /path/hash | grep 失败 //查询到出错的具体文件，如无错误则直接返回终端</p>
+
+<ol>
+<li><p>由于备份通常使用USB或esata等接口来进行数据传输，难免因为机器故障导致数据不完整，常见的就是写缓存和设备占用无法移除而采取了暴力移除的方法。这样直接导致数据未写完，轻则当前数据不完整，重则破坏文件系统造成更大的损失。
+windows中可以用微软工具包里面有个 sync.exe 的工具来完成回写;若仍无法移除的则要保存其他工作后注销系统再拔除设备。
+linux中：当然也会出现写缓存和不能安全移除设备的问题，不过解决很简单，sync（回写）、然后 umount 卸载挂载目录即可直接拔除了。</p></li>
+<li><p>要经常检查文件系统
+windows：使用chkdsk或图形的方法，（以XP为例）打开磁盘管理-右击某希望检查的分区-属性-工具-开始检查-勾选（自动修复文件系统错误和扫描并试图恢复坏扇区）-然后开始查错
+linux：umount 卸载挂载点（必须的，目的是让fsck独占设备避免检测时其他程序还在读写从而造成数据错误）后根据备份磁盘的文件系统类型进行fsck 例：
+一般mbr的磁盘可以用 sudo fdisk -l 来查询到设备号，gpt磁盘可以用 parted /dev/sdx (x=b、c、d&hellip;)然后按p来查询，或其他工具。
+sudo fsck -t ext4 /dev/sdb1 //检查一个设备识别为/dev/sdb1的，ext4文件系统的磁盘。
+sudo ntfsfix /dev/sdb1 //检查一个ntfs分区的设备</p></li>
+</ol>
+
+
+<p>结语:从插入设备开始备份到校验数据整个过程完成才能称做一次完整的备份过程。本人就因为内存损坏致使同步数据总是有问题，幸好明白数据要校验这个道理才能保证数据安全性，否则备份到头来成了做无用功。校验的时候没问题最好，若有问题则要考虑上面提到的因素。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[linux三款好用网络监控软件（bwm-ng 、iftop、iptraf）]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/06/09/linuxe4b889e6acbee5a5bde794a8e7bd91e7bb9ce79b91e68ea7e8bdafe4bbb6efbc88bwm-ng-e38081iftope38081iptrafefbc89/"/>
+    <updated>2013-06-09T13:52:31+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/06/09/linuxe4b889e6acbee5a5bde794a8e7bd91e7bb9ce79b91e68ea7e8bdafe4bbb6efbc88bwm-ng-e38081iftope38081iptrafefbc89</id>
+    <content type="html"><![CDATA[<h2>一、Bwm</h2>
+
+<p>Linux流量监控软件bwm （支持64位系统）</p>
+
+<p>Bandwidth Monitor NG (简称为 Bwm-NG)是一个简单的网络和磁盘带宽监视程序，可在Linux、BSD、Solaris等平台上运行。它支持各种各样的检测元件，用于收集各种统计数据，包括/proc/net/dev、netstat、getifaddr、sysctl、kstat、 /proc/diskstats /proc/partitions、 IOKit、 devstat 、 libstatgrab等。接口或设备可以黑白方式列示，这样用户就可以只查看感兴趣的数据。Bwm-NG支持多种输出选项，如图形、纯文本、CVS及 HTML等。</p>
+
+<p>查看流量命令：bwm-ng -d （按u键可切换流量单位）</p>
+
+<p>软件下载地址</p>
+
+<p>32位</p>
+
+<p>wget <a href="http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/bwm-ng-0.5-2.el5.rf.i386.rpm">http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/bwm-ng-0.5-2.el5.rf.i386.rpm</a></p>
+
+<p>centos 5</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/5/x86_64/bwm-ng-0.5-9.el5.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/5/x86_64/bwm-ng-0.5-9.el5.x86_64.rpm</a></p>
+
+<p>centos6</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/bwm-ng-0.6-6.el6.1.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/6/x86_64/bwm-ng-0.6-6.el6.1.x86_64.rpm</a></p>
+
+<p>wget <a href="http://jaist.dl.sourceforge.net/project/bwmng/bwmng/0.6/bwm-ng-0.6.tar.gz">http://jaist.dl.sourceforge.net/project/bwmng/bwmng/0.6/bwm-ng-0.6.tar.gz</a></p>
+
+<p>报错</p>
+
+<p>error: Failed dependencies:</p>
+
+<p>libstatgrab.so.6()(64bit) is needed by bwm-ng-0.5-9.el5.x86_64</p>
+
+<p>centos 6x 补丁包！</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/libstatgrab-0.17-1.el6.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/6/x86_64/libstatgrab-0.17-1.el6.x86_64.rpm</a></p>
+
+<p>centos 5x 补丁包！</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/5/x86_64/libstatgrab-0.13-4.el5.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/5/x86_64/libstatgrab-0.13-4.el5.x86_64.rpm</a></p>
+
+<p>安装步骤如下：</p>
+
+<p>1.解压</p>
+
+<p>tar -xvf bwm-ng-0.6.tar.gz</p>
+
+<p>2.进入安装目录</p>
+
+<p>cd bwm-ng-0.6</p>
+
+<p>3.编译安装</p>
+
+<p>./configure</p>
+
+<p>make</p>
+
+<p>make install</p>
+
+<p>4.执行命令</p>
+
+<p>bwm-ng</p>
+
+<p>设你使用的是‘curses’输出方式，那么将会用到 ‘a’, ‘t’和‘u’这三个命令键：</p>
+
+<p>‘a’-在全部传感器接口和选定接口间转换 (bwm-ng.conf)</p>
+
+<p>‘t’-在 rate, max (峰值), sum (程序启动后的总吞吐量),以及30秒平均值之间切换。</p>
+
+<p>‘u’-显示bytes/bits/packets/errors</p>
+
+<h2>二、iftop</h2>
+
+<p>iftop是类似于top的实时流量监控工具。</p>
+
+<p>iftop可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等，详细的将会在后面的使用参数中说明。</p>
+
+<p>CentOS系统：</p>
+
+<p>yum install flex byacc  libpcap ncurses ncurses-devel</p>
+
+<p>wget <a href="ftp://fr2.rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/iftop-0.17-1.el5.rf.i386.rpm">ftp://fr2.rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/iftop-0.17-1.el5.rf.i386.rpm</a></p>
+
+<p>rpm -ivh iftop-0.17-1.el5.rf.i386.rpm</p>
+
+<p>centos6x</p>
+
+<p>wget <a href="ftp://ftp.muug.mb.ca/mirror/fedora/epel/6/x86_64/iftop-1.0-0.1.pre2.el6.x86_64.rpm">ftp://ftp.muug.mb.ca/mirror/fedora/epel/6/x86_64/iftop-1.0-0.1.pre2.el6.x86_64.rpm</a></p>
+
+<p>centos5x</p>
+
+<p>wget <a href="http://pkgs.repoforge.org/iftop/_buildlogs/iftop-0.17-1.el5.rf.x86_64.ok.log.gz">http://pkgs.repoforge.org/iftop/_buildlogs/iftop-0.17-1.el5.rf.x86_64.ok.log.gz</a></p>
+
+<p>wget <a href="http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/iftop-0.17-1.el5.rf.x86_64.rpm">http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/iftop-0.17-1.el5.rf.x86_64.rpm</a></p>
+
+<p>直接运行： iftop</p>
+
+<p>iftop相关参数</p>
+
+<p>常用的参数</p>
+
+<p>-i设定监测的网卡，如：# iftop -i eth1</p>
+
+<p>-B 以bytes为单位显示流量(默认是bits)，如：# iftop -B</p>
+
+<p>-n使host信息默认直接都显示IP，如：# iftop -n</p>
+
+<p>-N使端口信息默认直接都显示端口号，如: # iftop -N</p>
+
+<p>-F显示特定网段的进出流量，如# iftop -F 10.10.1.0/24或# iftop -F 10.10.1.0/255.255.255.0</p>
+
+<p>-h（display this message），帮助，显示参数信息</p>
+
+<p>-p使用这个参数后，中间的列表显示的本地主机信息，出现了本机以外的IP信息;</p>
+
+<p>-b使流量图形条默认就显示;</p>
+
+<p>-f这个暂时还不太会用，过滤计算包用的;</p>
+
+<p>-P使host信息及端口信息默认就都显示;</p>
+
+<p>-m设置界面最上边的刻度的最大值，刻度分五个大段显示，例：# iftop -m 100M</p>
+
+<p>进入iftop画面后的一些操作命令(注意大小写)</p>
+
+<p>按h切换是否显示帮助;</p>
+
+<p>按n切换显示本机的IP或主机名;</p>
+
+<p>按s切换是否显示本机的host信息;</p>
+
+<p>按d切换是否显示远端目标主机的host信息;</p>
+
+<p>按t切换显示格式为2行/1行/只显示发送流量/只显示接收流量;</p>
+
+<p>按N切换显示端口号或端口服务名称;</p>
+
+<p>按S切换是否显示本机的端口信息;</p>
+
+<p>按D切换是否显示远端目标主机的端口信息;</p>
+
+<p>按p切换是否显示端口信息;</p>
+
+<p>按P切换暂停/继续显示;</p>
+
+<p>按b切换是否显示平均流量图形条;</p>
+
+<p>按B切换计算2秒或10秒或40秒内的平均流量;</p>
+
+<p>按T切换是否显示每个连接的总流量;</p>
+
+<p>按l打开屏幕过滤功能，输入要过滤的字符，比如ip,按回车后，屏幕就只显示这个IP相关的流量信息;</p>
+
+<p>按L切换显示画面上边的刻度;刻度不同，流量图形条会有变化;</p>
+
+<p>按j或按k可以向上或向下滚动屏幕显示的连接记录;</p>
+
+<p>按1或2或3可以根据右侧显示的三列流量数据进行排序;</p>
+
+<p>按&lt;根据左边的本机名或IP排序;</p>
+
+<p>按>根据远端目标主机的主机名或IP排序;</p>
+
+<p>按o切换是否固定只显示当前的连接;</p>
+
+<p>按f可以编辑过滤代码，这是翻译过来的说法，我还没用过这个！</p>
+
+<p>按!可以使用shell命令，这个没用过！没搞明白啥命令在这好用呢！</p>
+
+<p>按q退出监控。</p>
+
+<h2>三、IPTRAF</h2>
+
+<p>IPTraf的是一个IP网络的网络监控工具。它截取网络上的数据包，并给出了当前的IP流量在它的各条信息。IPTraf的返回的信息包括：</p>
+
+<p>总计，IP，TCP，UDP，ICMP和非IP字节数</p>
+
+<p>TCP源地址和目的地址和端口</p>
+
+<p>TCP包和字节计数</p>
+
+<p>TCP标志状态</p>
+
+<p>UDP源和目的地信息</p>
+
+<p>ICMP类型信息</p>
+
+<p>OSPF的源和目的地信息</p>
+
+<p>TCP和UDP服务统计</p>
+
+<p>接口数据包计数</p>
+
+<p>接口IP校验和错误计数</p>
+
+<p>界面活性指标</p>
+
+<p>局域网站统计</p>
+
+<p>IPTraf的可以用来监控一个IP网络上的负载，最常用的类型的网络服务，程序的TCP连接，以及其他。</p>
+
+<p>IPTraf的是一个纯软件的分析仪。它利用内置的原始数据包捕获的Linux内核，允许它被用于广泛的以太网卡，支持FDDI适配器，支持ISDN适配器，令牌环网，异步SLIP / PPP接口和其他网络设备的接口。不需要特殊的硬件要求。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用putty自带的pscp.exe实现windows和linux间的文件传输]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93/"/>
+    <updated>2013-05-14T15:29:42+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93</id>
+    <content type="html"><![CDATA[<p>在我们的日常性能测试中，难免会遇到需要进行基准测试。</p>
+
+<p>这时候，通常我们会采用搭建ftp进行文件上传和下载来获取当前两台计算机之间的网络传输基准数据。</p>
+
+<p>接下来要介绍的是使用putty自带的pscp.exe来实现windows和linux间的文件传输，该方法可在无法搭建ftp时，快速简便进行基准测试，由于是经过加密后传输的，所以不能作为正常传输速度基准测试的数据，只能作为加密传输速度基准测试的数据。用法基本与scp命令相同。</p>
+
+<p>首先下载putty，官方下载地址为：</p>
+
+<p><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a></p>
+
+<p>1.下载putty.zip并解压</p>
+
+<p>2.cmd命令行进入putty目录</p>
+
+<p>3.将文件上传至linux系统，pscp 本地文件 用户名@IP：上传目录</p>
+
+<p>如：pscp c:\agent.log  root@192.168.88.172:/root</p>
+
+<p>4.将文件下载至windows系统，pscp 用户名@IP：下载文件路径  存放文件路径</p>
+
+<p>如：pscp root@192.168.88.172:/root/agent.log  c:\download</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[测试部内部博客开通]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95/"/>
+    <updated>2013-01-31T18:40:29+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95</id>
+    <content type="html"><![CDATA[<p><img src="http://getyourbizsavvy.com/wp-content/uploads/2011/10/2560666767_82edc1b3fb.jpg" alt="" /></p>
+
+<p><strong>        在新的一年里希望各位测试部的兄弟姐妹们，能在这个内部博客上书写自己的生活或工作上的所得，让写作成为一种习惯，更成为一种推动进步的动力。</strong></p>
+
+<p><strong>        最后以乔布斯的“Stay Hungry，Stay Foolish.”与各位共勉。</strong></p>
+
+<p><strong>                                                                                                                     樊立明</strong></p>
+
+<p><strong>                                                                                                                     2013.01.31</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

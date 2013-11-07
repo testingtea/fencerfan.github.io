@@ -123,7 +123,581 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-06T09:40:54+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>大家使用Linux，主要还是用中文界面，经常碰到中文乱码的情况。下面是常见的乱码解决办法：</p>
+
+<p><strong>1、ssh或者telnet远程登录乱码</strong>
+查看环境变量LANG，改成中文编码utf8，试过一下en_US.utf8和zh_CN.utf8都可以，并且设置SSH或者Telnet客户端工具编码，要保持一致。
+例如，常见的工具SecureCRT中设置：会话选项&mdash;外观&mdash;字符编码&mdash;utf8</p>
+
+<p><strong>2、图形化窗口中的终端乱码</strong>
+修改环境变量LANG即可，用命令LANG=zh_CN.utf8,en_US.utf8也可以，只不过有些字显示的效果不太一样，有的大，有的字体不一样。
+另外终端其实也是一个软件，它的编码也要和环境变量LANG的编码要一致。用Ubuntu 12.04举例，在终端的“终端”菜单有一个“设定字符编码”，可设定所需的编码，如UTF-8</p>
+
+<p><strong>3、VIM下的乱码</strong>
+这主要和两个因素有关：
+一就是文件原始的编码，原始编码的设置是在VIM的配置文件里设置的。
+二与终端有关，比如我们在终端显示一个文件，cat /tmp/helloworld.txt，所以终端的编码要和文本原始编码要一致，设置同2。</p>
+
+<p><strong>4、tty登录乱码</strong>
+这个需要安装中文接口软件的支持，如zhcon，要安装相应的软件，具体结论还有待实践。</p>
+
+<p><strong>5、将man的内容重定向出现乱码</strong>
+用man，我们能够查看到好多有用的信息，但是有时候想把man中的内容保存在文本中，方便以后查看。
+比如把iptables的信息保存在iptables.txt中：man iptables > iptables.txt
+但是这样操作的结果有时候却差强人意，有好多乱码，解决的办法是：man iptables | col -b > iptables.txt
+col的作用是将输入的内容进行转换过滤后输出，-b就是不显示回退键。</p>
+
+<p><strong>6、从windows拷过来的文本文件在Linux下打开出现乱码</strong>
+之所以出现乱码是因为windows下中文的编码一般为gbk，而Linux下中文编码一般为 utf8，所以在 windows下正常打开的文件，到Linux下很可能出现乱码。
+解决办法：使用命令iconv对文本内容编码进行转换
+iconv -f gbk -tutf8 原文本.txt > 新文本.txt
+这个方法灰常好用！</p>
+
+<p><strong>7、挂载U盘后，U盘中文目录名或文件名为乱码</strong>
+正常挂载：mount /dev/sdb1 /mnt/usb ，然后使用ls /mnt/usb发现U盘上中文目录和文件名都是乱码。
+解决办法：在挂载时加上字符集参数 mount -o iocharset=utf8 /dev/sdb1 /mnt/usb</p>
+
+<p><strong>8、从Windows的IE/360等浏览器导出html书签到Linux的Firefox浏览器中文书签名称变成乱码</strong>
+从Windows的IE/360等浏览器导出html书签，拷贝到Ubuntu 12.04下，导入后发现中文书签名称全变成乱码。用了很多转换方法都不行，包括把Windows的IE/360等浏览器的字符编码设为跟Linux的Firefox的一致再导出导入，还是有乱码。
+最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
+其他版本的Linux及浏览器有待验证。</p>
+
+<p><strong>9、终端查询日期年月日星期等字符有乱码</strong>
+问题：</p>
+
+<h1>date</h1>
+
+<p>2013�� 11�� 06�� ������ 10:04:38 CST
+解决办法：</p>
+
+<h1>echo $LANG</h1>
+
+<p>en_US.UTF-8</p>
+
+<h1>LANG=“en_US.UTF-8”</h1>
+
+<h1>echo $LANG</h1>
+
+<p>“en_US.UTF-8”</p>
+
+<h1>date</h1>
+
+<p>Wed Nov  6 13:41:36 CST 2013</p>
+
+<p>还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续&hellip;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T14:25:17+08:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>转自<a href="http://www.linuxdiyf.com/bbs/thread-308474-1-1.html">http://www.linuxdiyf.com/bbs/thread-308474-1-1.html</a></p>
+
+<p>“备份”是人们进入电脑时代必然遇到的问题，除了个人数据，还有生产生活中其他方面只要涉及到数据安全的皆需备份。
+备份除了要求有数据以外，还要确保数据安全性，所以不是一般的复制粘贴或cp能搞定的。
+windows下可以用goodsync或其他一些备份工具。
+linux中使用rsync可以使备份目录和源目录完全一致：
+rsync -auv &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样即可实现备份到目录PATH下的目的，还能即时看到备份过程，如有错误会在终端返回。
+如需传输时进行压缩处理使用参数 -Z ;如需传输时确保数据完全一致可以用参数 -c 。如：
+rsync -auv -c &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样可以在备份时采取HASH校验使备份的数据和原始数据完全一致防止有被恶意篡改（如感染病毒）或磁盘损坏造成数据不一致，只是如果有大量数据校验肯定会拖慢备份速度。</p>
+
+<p>扩展阅读：
+1. 如上所述，采取rsync加-c参数可校验数据完整性，但是会拖慢备份速度。其实也可以先备份再采取其他的方法来进行数据校验，如md5sum shaxsun(x=1,256,512等);rsync只是忠实的同步数据，数据不完整一般是上面提到的病毒感染或磁盘损坏（包括文件系统损坏）和一些其它硬件问题如内存损坏造成的，与rsync无关。下面会说到如何校验数据。
+首先：cd到备份源目录中，递归建立一个有备份目录所有数据的hash文档;校验时这个文件要一并复制到备份目的目录的同级目录中以做校验用。
+find -type f -print0 | xargs -0 md5sum >|/path/md5 //md5这个文件名可以任意指定
+校验： md5sum -c md5 //如无意外，在一大片“确定”后即返回终端，如有不符的则返回错误提示。
+md5sum -c md5 >/path/hash //把校验结果输出到一个名为hash的文件中，可以通过查询该文件得知具体出错的文件是那几个，避免因快速刷屏看不到究竟是哪几个文件没有同步完整。
+cat /path/hash | grep 失败 //查询到出错的具体文件，如无错误则直接返回终端</p>
+
+<ol>
+<li><p>由于备份通常使用USB或esata等接口来进行数据传输，难免因为机器故障导致数据不完整，常见的就是写缓存和设备占用无法移除而采取了暴力移除的方法。这样直接导致数据未写完，轻则当前数据不完整，重则破坏文件系统造成更大的损失。
+windows中可以用微软工具包里面有个 sync.exe 的工具来完成回写;若仍无法移除的则要保存其他工作后注销系统再拔除设备。
+linux中：当然也会出现写缓存和不能安全移除设备的问题，不过解决很简单，sync（回写）、然后 umount 卸载挂载目录即可直接拔除了。</p></li>
+<li><p>要经常检查文件系统
+windows：使用chkdsk或图形的方法，（以XP为例）打开磁盘管理-右击某希望检查的分区-属性-工具-开始检查-勾选（自动修复文件系统错误和扫描并试图恢复坏扇区）-然后开始查错
+linux：umount 卸载挂载点（必须的，目的是让fsck独占设备避免检测时其他程序还在读写从而造成数据错误）后根据备份磁盘的文件系统类型进行fsck 例：
+一般mbr的磁盘可以用 sudo fdisk -l 来查询到设备号，gpt磁盘可以用 parted /dev/sdx (x=b、c、d&hellip;)然后按p来查询，或其他工具。
+sudo fsck -t ext4 /dev/sdb1 //检查一个设备识别为/dev/sdb1的，ext4文件系统的磁盘。
+sudo ntfsfix /dev/sdb1 //检查一个ntfs分区的设备</p></li>
+</ol>
+
+
+<p>结语:从插入设备开始备份到校验数据整个过程完成才能称做一次完整的备份过程。本人就因为内存损坏致使同步数据总是有问题，幸好明白数据要校验这个道理才能保证数据安全性，否则备份到头来成了做无用功。校验的时候没问题最好，若有问题则要考虑上面提到的因素。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T14:46:58+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Prepare the installation package
+Server:<a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-server-5.2.3-0.glibc23.i386.rpm</a>
+Client: <a href="http://mirrors.sohu.com/mysql/MySQL-5.2/">http://mirrors.sohu.com/mysql/MySQL-5.2/MySQL-client-5.2.3-0.glibc23.i386.rpm</a>
+Perl(DBI) :<a href="http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+...&amp;system=&amp;arch">http://www.rpmfind.net/linux/rpm2html/search.php?query=Perl-DBI&amp;submit=Search+&hellip;&amp;system=&amp;arch/perl-DBI-1.617-1.el5.rfx.i386.rpm
+</a>libstdc++.so.5:<a href="http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm">http://rpm.pbone.net/index.php3?stat=26&amp;dist=0&amp;size=231705&amp;name=compat-libstdc%2B%2B-33-3.2.3-47.3.i386.rpm</a></p>
+
+<p>Installation  steps
+1、Switch to the root user
+$>su &ndash; root
+2、Install Perl(DBI)</p>
+
+<h1>>rpm -ivh perl-DBI-1.617-1.el5.rfx.i386.rpm</h1>
+
+<p>3、Install libstdc++.so.5</p>
+
+<h1>>rpm -ivh compat-libstdc++-33-3.2.3-47.3.i386.rpm</h1>
+
+<p>4、Install MySQL-server &amp; MySQL-client</p>
+
+<h1>>rpm -ivh MySQL-server-5.2.3-0.glibc23.i386.rpm</h1>
+
+<h1>>rpm -ivh MySQL-client-5.2.3-0.glibc23.i386.rpm</h1>
+
+<p>5、 Set the password for the MySQL root user</p>
+
+<h1>>mysqladmin -uroot password &lsquo;new-password&rsquo;</h1>
+
+<p>6、End</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T10:11:14+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/04/mysql-4-2-1-for-rhel3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>MySQL安装包：</strong></p>
+
+<p>mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+<a href="http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz">http://mirrors.sohu.com/mysql/MySQL-4.1/mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz</a></p>
+
+<p><strong>安装步骤：</strong></p>
+
+<p>1、# chmod 755 mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz
+2、# tar xfz mysql-standard-4.1.22-pc-linux-gnu-i686-glibc23.tar.gz　　//将解压后生成的目录,复制到/usr/local/下并改名为mysql
+3、# groupadd mysql    　　　　// 建立mysql组</p>
+
+<h1>useradd mysql -g mysql  　 // 建立mysql用户并且加入到mysql组中</h1>
+
+<p>4、# cp /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf         //在 support-files目录下有4个模版文件，我们选择其中一个座位Mysql的配置文件，覆盖/etc/my.cnf(系统默认的配置，其中设置了性能参数和Mysql的一些路径参数)
+5、# cd /usr/local/mysql</p>
+
+<h1>./scripts/mysql_install_db &mdash;user=mysql         //初试化表并且规定用mysql用户来访问。初始化表以后就开始给mysql和root用户设定访问权限</h1>
+
+<p>6、# chown -R root .  　　　　　//设定root能访问/usr/local/mysql
+7、# chown -R mysql data  　　　//设定mysql用户能访问/usr/local/mysql/data ,里面存的是mysql的数据库文件.这个目录是在/etc/my.cnf中有配置，在mysql_install_db时产生。
+8、# chown -R mysql data/. 　　//设定mysql用户能访问/usr/local/mysql/data/mysql下的所有文件
+9、# chgrp -R mysql .  　　　　//设定mysql组能够访问/usr/local/mysql
+10、# /usr/local/mysql/bin/mysqld_safe &mdash;user=mysql &amp;  　　//运行mysql,如果没有问题的话,应该会出现类似这样的提示:[1]42264</p>
+
+<h1>Starting mysqld daemon with databases from /usr/local/mysql/var 如果出现 mysql ended这样的语句，表示Mysql 没有正常启动，你可以到log中查找问题，Log文件的通常在/etc/my.cnf中配置。大多数问题是权限设置不正确引起的。</h1>
+
+<p>11、# /usr/local/mysql/bin/mysqladmin -u root password yourpassword //默认安装密码为空，为了安全你必须马上修改.</p>
+
+<p>12、#cp support-files/mysql.server /etc/rc.d/init.d/mysqld  　　//copy编译目录的一个脚本</p>
+
+<h1>chmod 700 /etc/init.d/mysqld 　　　　//设置使mysql每次启动都能自动运行</h1>
+
+<h1>chkconfig &mdash;add mysqld</h1>
+
+<h1>chkconfig &mdash;level 345 mysqld on</h1>
+
+<p>13、#service mysqld start 　　//启动mysqld服务</p>
+
+<h1>netstat -atln 　　　　    //查看3306端口是否打开。要注意在防火墙中开放该端口</h1>
+
+<p>安装完之后，需要输入/usr/local/mysql/bin/mysql -uroot -p才能登录mysql，设了环境变量export mysql=/usr/local/mysql/bin还是无法通过输入mysql -uroot -p登录mysql，仍在想方法解决。
+解决方法：vi ~/.bash_profile
+在后面加上export PATH=$PATH:/usr/local/mysql/bin</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T09:29:49+08:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看了《你的灯亮了吗？》这本书受益匪浅，从中学到的不是技术知识，但学到的比技术知识更重要，学到的是种种思维方式。这部作品通过几个很有意思的小故事引发人们对“问题定义和解决”的思考。其中印象最深的是汽车过隧道的那个小故事，为了防止隧道意外断电导致交通事故，所以在进入隧道口前打一标语，“请打开你的灯”，但是有时候有新问题，就是出隧道忘记关灯，当人们返程时，车灯不亮，引发出一新问题，于是又要解决这个问题，聪明人想到，“你的灯亮了吗？”这个标语，不但可以警醒开车的人要开灯，还可以提醒人关灯。这让我想到在我们平时的测试工作中，测试人员要如何站在开发者角度和用户角度思考问题，开发人员开发出来的产品，有可能是根据用户需求来的，但是，有可能在开发过程中，开发的都是按照正常程序来开发的，或许没有考虑到一些意外情况，这些情况并没有处理。又或者是开发的程序在不同系统上不兼容，这只是列出来的一小部分可能性，并且都是真是存在的。而测试人员拿到test，不要单纯地根据开发人员写的测试来测试，不要一开始就接受他的思路，那样会限制到测试的广泛面或者说全面性，根据产品功能，首先应该站在用户角度考虑自己的测试步骤或者是测试功能，然后再结合开发人员写的test，综合处理下，或者找同组测试人员讨论下测试需要注意到的，或者是否有漏掉的关键，写成测试用例后，再进行测试，测试过程中要记录测试过程和测试结果，有利于开发人员的信息采集，有条件不要直接告诉开发人员，先自己主动探索问题出现的可能性，看是否是自己误操作还是有什么漏洞在测试用例中没写全的，可以提升自己本身测试技能，还可以增加对产品的内在熟悉程度。当我们遇到问题时，我们首先要分析出问题的本质，从各个相关角度去分析这个问题，然后去想办法解决这个问题，直到各方面满意，没有做不到，只有想不到。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T18:28:08+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>    通过电梯的例子，说明首先要清楚地认识到什么是真正是问题，而比利的故事，比利在对那个投标事件不断的了解内情时，每次都以为自己已经找到这件事情的答案，但是每次都会有新的了解和答案，比利对这件事的总结就是你永远也不能肯定你有了一个正确的定义，但是永远不要放弃寻求它的努力</p>
+
+<p>   同时从丹解决打印机精确度问题的故事中，得出“每种解决方法都会带来新的问题”，永远都不能消灭问题，问题，解决方法以及新的问题编织成了一条无穷无尽的锁链，如果在对问题的理解中，想不出至少3种可能出错的地方，那么你并没有真正地理解这个问题，其中作者通过橱窗里面的标牌上写的语句的例子来说明把问题表述清楚的必要性，因为如果你没有把问题表述到位时，可能会由于其他人理解歧义的原因导致严重的损失，从教室里的雪茄烟雾的例子里作者表达了当别人能够很好解决自己的问题的时候，千万不要代替他们去解决，例如例子中的老师明白到教室里吸烟问题就留给相关的人去处理，比如吸烟者和不吸烟者他们自己去处理问题。因为和问题有厉害关系的群体不仅对问题有着更多的了解和感受，而且当他们找到自己的解决方法之后，就会很投入地去执行这个方法。接着通过停车场的例子说明如果想让一个人去解决某个问题时，最好就是让他也感受到这个问题</p>
+
+<p>   而珍妮特和灰脸先生的故事里一开始珍妮特认为是由于灰脸先生的原因导致自己签证不成功，但是后来珍妮特意识到问题的根源在于自己，后来珍妮特通过聊天了解灰脸先生从而可以成功签证。从这个例子中作者表述了遇到问题时先别急着下定论，先弄清楚问题是从哪儿来的，可能问题的根源就在自己的身上。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/24/e3808ae4bda0e79a84e7ad89e4baaee79d80e59097efbc9fe3808be8afbbe5908ee6849f/">《你的灯亮着吗？》读后感</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-24T09:26:40+08:00" pubdate data-updated="true">Oct 24<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/24/e3808ae4bda0e79a84e7ad89e4baaee79d80e59097efbc9fe3808be8afbbe5908ee6849f/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/10/24/e3808ae4bda0e79a84e7ad89e4baaee79d80e59097efbc9fe3808be8afbbe5908ee6849f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>       这是一本有二十个小故事串联起来的书。这本书不厚，总共才121页，但是却是本值得回味的书。</p>
+
+<p>      书本是围绕着“问题”而展开的，每一章抛出一个问题，然后用不同的身份和站在不同的角度去观摩问题，列出问题出现的原因，分析之后，选取一个最优的方案去解决问题。但是不得不说，刚开始觉得这事一本难读的书。拿第一章来说，开篇就举了个电梯慢且拥挤的问题。作者分析了事件发生的原因，参与者(房东和房客)以及非参与者(其他人)解决问题的思路。还没看完就已开始发懵了，引发的问题的原因及解决方案原来有这么多种组合，我也绝对想不到房东还可以把大楼烧了，以获取火灾保险费！还有一个觉得这本书难读的原因是，第一章的最后，没有给出电梯慢且拥挤的解决方法！现阶段对于我来讲，遇到问题总是想着马上解决问题，而少有停下脚步来思考，害怕浪费太多时间在于思考上，最终都没能得出一个好的解决问题的方法，有时甚至祈祷有人遇到和自己同样的问题，复制他的步骤则可解决问题。久而久之，小问题是可以解决了，但是缺少发散性的思考，无法很好的举一反三，最终得到的劳动结果却似事倍功半！</p>
+
+<p>        万事开头难还真是千真万确，坚持看完前面三章之后，发现章节与章节之间并不完全独立，而是以递进的手法讲述该如何去发现和解决问题，很大篇幅都是在描写发现和分析问题。看完整本书后发现，找到问题固然重要，但是发现真正的问题才是重中之重！要做到这点，需要深思熟虑，全方位考虑，甚至连小概率事件都需囊括在解决方案中。</p>
+
+<p>       读完这本书后，进行了一次头脑风暴，对自己冲击很大，书上描述的毕竟跟以前的处事方法大相径庭，自我否定是一个艰难的过程，但是对于测试来说，停下来思考未必是一件坏事。很多问题有因必有果，bug是果，因则是程序编写的不得当！测试方法上有条结论是一个bug的周围必定会存在或多或少相同或类似的bug，仔细分析bug出现的前因后果，不仅能找到bug的根源，在这过程当中，还可了解代码编写风格，这对于测试来说，无疑是件好事。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/23/e3808ae4bda0e79a84e781afe4baaee79d80e59097efbc9fe3808be8afbbe4b9a6e7ac94e8aeb0/">《你的灯亮着吗？》读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-23T23:32:42+08:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/23/e3808ae4bda0e79a84e781afe4baaee79d80e59097efbc9fe3808be8afbbe4b9a6e7ac94e8aeb0/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/10/23/e3808ae4bda0e79a84e781afe4baaee79d80e59097efbc9fe3808be8afbbe4b9a6e7ac94e8aeb0/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这是我第一次看《你的灯亮着吗？》这本书，有种耳目一新的感觉，因为它用各种生动、幽默的方式去教人们思考问题，解决问题。
+刚开始看有些费劲，可能是中英文语义差异的问题，有空下来会再仔细体会温伯格大师的思想精髓，有机会再看看英文版。
+全文表面上在不断地讲故事，分析事例，从中可以学到很多道理：
+<em>从多角度去思考和解决问题；</em>
+<em>尝试站在任何人的立场对待问题；</em>
+<em>不要把问题复杂化；</em>
+<em>去掉约定俗成的思考习惯；</em>
+<em>不要把科学问题单纯看成技术性的，应该融入人文；</em>
+<em>不敢去叫板大众都认为已解决的问题，那你思考问题也没啥意义了；</em>
+<em>……</em></p>
+
+<p>读书喜欢摘录一些比较精辟的语句，细细品味。</p>
+
+<p>不识庐山真面目，只缘身在此山中。如果我们无法跳出作为个人的境地，还停留在不断地接受问题、不断地“发现问题”、不断地“解决问题”的怪圈中，我们永远无法知道自己“需要什么”和“正在干些什么”。 这让我不由自主地联想到工作中一些问题，计算机技术人员（如开发、测试）也容易陷入一些误区，只是机械式地去发现问题、接受问题、解决问题，有没想过问题为什么会产生呢？这样不断地循环到底起到什么作用呢？打个比方，如盲人摸象，只看到一个部位，没有了全局的视野，最后还是不知道这只是什么动物。回到现实，如果一个软件项目每个人都只看到冰山一角，一接触到软件就是到处去搜刮它存在的问题，或者一接到问题就是迷头迷脑地修改，改完又测试，测试完又提交问题……这样好像让人进入轮回一样，一片天昏地暗。这样的模式下最常见的问题就是解决了这里的问题，那里又出问题，有如地鼠游戏的地鼠那么让人讨厌。</p>
+
+<p>如果说不够清晰，好吧，再说个具体一点的：一个测试人员测试软件，发现一个服务器空间统计不正确，马上向开发人员提，开发马上修改。但糟了，改完这个发现另一个页面删除这个服务器后的空间统计又出问题，好吧，再改~改完以为可以松口气了，别得意呢，界面上把删除的服务器再添加一个完全一样的回来，发现统计和显示又是另一回事喔，原来两次添加的服务器的元数据主键ID不一样！怎么改都有点顾此失彼的感觉。这是大家就应该想想，到底问题出在谁身上，出在哪里？为什么会有问题发生呢？如果我们离开庐山，在远远的山头遥望，庐山美景不就尽收眼底啦？所以开发测试人员这时如果稍停减速，一起在全局角度看问题说不定有答案哩。是软件架构问题？是元数据设计问题？是测试缺乏全面性？是测试没按照开发吩咐去做？抑或是公司丢失了一些信息？</p>
+
+<p><strong>待续&hellip;</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/10/e9a1b9e79baee9858de5a597e8b584e98791e794b3e8afb7e6b581e7a88be58f8ae79bb8e585b3e6b3a8e6848fe4ba8be9a1b9/">项目配套资金申请流程及相关注意事项</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-10T17:44:31+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/10/10/e9a1b9e79baee9858de5a597e8b584e98791e794b3e8afb7e6b581e7a88be58f8ae79bb8e585b3e6b3a8e6848fe4ba8be9a1b9/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/10/10/e9a1b9e79baee9858de5a597e8b584e98791e794b3e8afb7e6b581e7a88be58f8ae79bb8e585b3e6b3a8e6848fe4ba8be9a1b9/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>项目配套资金申报流程</p>
+
+<ol>
+<li><p> 登录科技项目申报系统客户端填写科技计划项目配套资助审批表。</p></li>
+<li><p> 预准备相关申报附件。</p></li>
+<li><p> 打印全套资料（无需装订），并送交审批部门进行初步审核。</p></li>
+<li><p> 根据审核意见进行相应修改。</p></li>
+<li><p> 打印装订成册后，递交上级主管部门（火炬服务中心—前栋7楼706室伍小姐），同时在系统上提交申请。</p></li>
+</ol>
+
+
+<p>项目配套资金所需附件</p>
+
+<ol>
+<li><p> 与上级有关部门签订的任务书或合同书</p></li>
+<li><p> 上级有关部门的立项通知书或项目经费下达通知书及拨款凭证</p></li>
+<li><p> 近期国税、地税银行缴款电子回单或有关申报凭证</p></li>
+<li><p> 上年度财务审计报告及近期财务报表</p></li>
+<li><p> 原申报项目的全套资料</p></li>
+<li><p> 企业营业执照副本</p></li>
+<li><p> 企业自筹资金到款凭证</p></li>
+</ol>
+
+
+<h3>注意事项</h3>
+
+<ul>
+<li><p>配套资金申请额比例：市级=项目拨付资金×50%   省级=项目拨付资金×70%</p></li>
+<li><p>打印后文件必须清晰可读。</p></li>
+<li><p>项目合同书、立项文件、拨款到账回单必须为原件的扫描/复印件，装订后每一页均需加盖单位公章。</p></li>
+<li><p>经费预算表内，申请配套资金用途应主要集中在设备费、材料费、测试费三项；申请经费不应用于办公用品等非项目研发相关的开销，专利申请、外部科研合作费（已包含在项目资金内）不应再次出现；人员费比例不应超过申请经费总额的30%。</p></li>
+<li><p>所有需其他部门（如：财务、行政等）提供的资料需提前告知以预留准备时间，一次性给出所需资料清单以免耽误他人工作进度。</p></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -137,6 +711,22 @@
     
       <li class="post">
         <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
       </li>
     
   </ul>

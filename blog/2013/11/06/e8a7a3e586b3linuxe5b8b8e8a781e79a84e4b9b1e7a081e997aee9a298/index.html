@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>解决Linux常见的乱码问题 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="大家使用Linux，主要还是用中文界面，经常碰到中文乱码的情况。下面是常见的乱码解决办法： 1、ssh或者telnet远程登录乱码
+查看环境变量LANG，改成中文编码utf8，试过一下en_US.utf8和zh_CN.utf8都可以，并且设置SSH或者Telnet客户端工具编码，要保持一致。
+例如 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">解决Linux常见的乱码问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-06T09:40:54+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>大家使用Linux，主要还是用中文界面，经常碰到中文乱码的情况。下面是常见的乱码解决办法：</p>
+
+<p><strong>1、ssh或者telnet远程登录乱码</strong>
+查看环境变量LANG，改成中文编码utf8，试过一下en_US.utf8和zh_CN.utf8都可以，并且设置SSH或者Telnet客户端工具编码，要保持一致。
+例如，常见的工具SecureCRT中设置：会话选项&mdash;外观&mdash;字符编码&mdash;utf8</p>
+
+<p><strong>2、图形化窗口中的终端乱码</strong>
+修改环境变量LANG即可，用命令LANG=zh_CN.utf8,en_US.utf8也可以，只不过有些字显示的效果不太一样，有的大，有的字体不一样。
+另外终端其实也是一个软件，它的编码也要和环境变量LANG的编码要一致。用Ubuntu 12.04举例，在终端的“终端”菜单有一个“设定字符编码”，可设定所需的编码，如UTF-8</p>
+
+<p><strong>3、VIM下的乱码</strong>
+这主要和两个因素有关：
+一就是文件原始的编码，原始编码的设置是在VIM的配置文件里设置的。
+二与终端有关，比如我们在终端显示一个文件，cat /tmp/helloworld.txt，所以终端的编码要和文本原始编码要一致，设置同2。</p>
+
+<p><strong>4、tty登录乱码</strong>
+这个需要安装中文接口软件的支持，如zhcon，要安装相应的软件，具体结论还有待实践。</p>
+
+<p><strong>5、将man的内容重定向出现乱码</strong>
+用man，我们能够查看到好多有用的信息，但是有时候想把man中的内容保存在文本中，方便以后查看。
+比如把iptables的信息保存在iptables.txt中：man iptables > iptables.txt
+但是这样操作的结果有时候却差强人意，有好多乱码，解决的办法是：man iptables | col -b > iptables.txt
+col的作用是将输入的内容进行转换过滤后输出，-b就是不显示回退键。</p>
+
+<p><strong>6、从windows拷过来的文本文件在Linux下打开出现乱码</strong>
+之所以出现乱码是因为windows下中文的编码一般为gbk，而Linux下中文编码一般为 utf8，所以在 windows下正常打开的文件，到Linux下很可能出现乱码。
+解决办法：使用命令iconv对文本内容编码进行转换
+iconv -f gbk -tutf8 原文本.txt > 新文本.txt
+这个方法灰常好用！</p>
+
+<p><strong>7、挂载U盘后，U盘中文目录名或文件名为乱码</strong>
+正常挂载：mount /dev/sdb1 /mnt/usb ，然后使用ls /mnt/usb发现U盘上中文目录和文件名都是乱码。
+解决办法：在挂载时加上字符集参数 mount -o iocharset=utf8 /dev/sdb1 /mnt/usb</p>
+
+<p><strong>8、从Windows的IE/360等浏览器导出html书签到Linux的Firefox浏览器中文书签名称变成乱码</strong>
+从Windows的IE/360等浏览器导出html书签，拷贝到Ubuntu 12.04下，导入后发现中文书签名称全变成乱码。用了很多转换方法都不行，包括把Windows的IE/360等浏览器的字符编码设为跟Linux的Firefox的一致再导出导入，还是有乱码。
+最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
+其他版本的Linux及浏览器有待验证。</p>
+
+<p><strong>9、终端查询日期年月日星期等字符有乱码</strong>
+问题：</p>
+
+<h1>date</h1>
+
+<p>2013�� 11�� 06�� ������ 10:04:38 CST
+解决办法：</p>
+
+<h1>echo $LANG</h1>
+
+<p>en_US.UTF-8</p>
+
+<h1>LANG=“en_US.UTF-8”</h1>
+
+<h1>echo $LANG</h1>
+
+<p>“en_US.UTF-8”</p>
+
+<h1>date</h1>
+
+<p>Wed Nov  6 13:41:36 CST 2013</p>
+
+<p>还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续&hellip;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">liangzhongxing</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-06T09:40:54+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cao-zuo-xi-tong/'>操作系统</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/" title="Previous Post: 数据的备份，看似很简单其实不简单">&laquo; 数据的备份，看似很简单其实不简单</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/" title="Next Post: 鼎甲测试部博客正式迁移到GitHub">鼎甲测试部博客正式迁移到GitHub &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

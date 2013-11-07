@@ -1,0 +1,443 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>hp-unix包简易安装和window2012上开始菜单查找 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="一,windows2012上找不到开始菜单，无法进行关机或者重启操作 解决方法： 使用快捷键:Alt+F4 点击任务栏右下角时间旁边空白处，弹出三个隐藏功能：搜索／开始／设置菜单，点击设置按钮，进入后点击电源开关，选择重启或者关机操作 在cmd命令行中输入shutdown /r重启， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/03/11/hp-unixe58c85e7ae80e69893e5ae89e8a385e5928cwindow2012e4b88ae5bc80e5a78be88f9ce58d95e69fa5e689be">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Hp-unix包简易安装和window2012上开始菜单查找</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T11:16:18+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>一,windows2012上找不到开始菜单，无法进行关机或者重启操作</p>
+
+<p>解决方法：</p>
+
+<p>使用快捷键:Alt+F4</p>
+
+<p>点击任务栏右下角时间旁边空白处，弹出三个隐藏功能：搜索／开始／设置菜单，点击设置按钮，进入后点击电源开关，选择重启或者关机操作</p>
+
+<p>在cmd命令行中输入shutdown /r重启，shutdown /s关机 /f强制关机 /d定时关机 16:00</p>
+
+<p>二,hp-unix包的简易操作</p>
+
+<p>文件dbackup-agent_2.2.7966.14.depot.gz安装步骤如下</p>
+
+<p>查看该文件类型：</p>
+
+<p>1,# file dbackup-agent_2.2.7928.14.depot.gz</p>
+
+<p>dbackup-agent_2.2.7928.14.depot.gz:     gzip compressed</p>
+
+<p>2,解压缩gz文件</p>
+
+<h1>gunzip dbackup-agent_2.2.7928.14.depot.gz</h1>
+
+<h1>ll</h1>
+
+<p>total 254784</p>
+
+<p>-rwxr&mdash;r&mdash;   1 root       sys        65218560 Mar  7 00:36 dbackup-agent_2.2.7928.14.depot</p>
+
+<p>3,加载命令行export PATH=$PATH:/usr/sbin</p>
+
+<p>在该目录下有swinstall,swremove,swlist</p>
+
+<p>4,使用swinstall命令安装depot文件</p>
+
+<h1>pwd</h1>
+
+<p>/tmp/package</p>
+
+<h1>swinstall -s /tmp/package/dbackup-agent_2.2.7928.14.depot dbackup-agent//安装过程中选择包时需要加上绝对路径，并且后面需要将安装包的名称写在后面</h1>
+
+<p>WARNING: The logfile, &ldquo;/var/adm/sw/swinstall.log&rdquo; is in use by process</p>
+
+<p>         &#8221;26084&#8221;.  The log information will be intermixed unless a</p>
+
+<p>         different logfile is given.  To select a new logfile, specify</p>
+
+<p>         the &ldquo;-x logfile=<name>&rdquo; option on the command line.</p>
+
+<p>=======  03/08/13 01:03:39 EAT  BEGIN swinstall SESSION</p>
+
+<p>         (non-interactive) (jobid=hp-ux-94-0071)</p>
+
+<p>       * Session started for user &ldquo;root@hp-ux-94&rdquo;.</p>
+
+<p>       * Beginning Selection</p>
+
+<p>       * Target connection succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * Source:</p>
+
+<p>         /tmp/package/dbackup-agent_2.2.7928.14.depot</p>
+
+<p>       * Targets:                hp-ux-94:/</p>
+
+<p>       * Software selections:</p>
+
+<p>             dbackup-agent.dbackup-agent-RUN,r=2.2.7928.14</p>
+
+<p>       * Selection succeeded.</p>
+
+<p>       * Beginning Analysis and Execution</p>
+
+<p>       * Session selections have been saved in the file</p>
+
+<p>         &#8221;/.sw/sessions/swinstall.last&#8221;.</p>
+
+<p>       * The analysis phase succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * The execution phase succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * Analysis and Execution succeeded.</p>
+
+<p>NOTE:    More information may be found in the agent logfile using the</p>
+
+<p>         command &ldquo;swjob -a log hp-ux-94-0071 @ hp-ux-94:/&rdquo;.</p>
+
+<p>=======  03/08/13 01:03:56 EAT  END swinstall SESSION (non-interactive)</p>
+
+<p>         (jobid=hp-ux-94-0071)</p>
+
+<p>5，查看dbackup-agent版本号：</p>
+
+<h1>swlist dbackup-agent</h1>
+
+<h1>Initializing&hellip;</h1>
+
+<h1>Contacting target &ldquo;hp-ux-94&rdquo;&hellip;</h1>
+
+<p>#</p>
+
+<h1>Target:  hp-ux-94:/</h1>
+
+<p>#</p>
+
+<h1>dbackup-agent                         2.2.7928.14    Dbackup Agent</h1>
+
+<p>  dbackup-agent.dbackup-agent-RUN                      dbackup-agent  </p>
+
+<p>#</p>
+
+<p>6，卸载dbackup-agent包：</p>
+
+<h1>swremove dbackup-agent</h1>
+
+<p>=======  03/08/13 01:15:34 EAT  BEGIN swremove SESSION</p>
+
+<p>         (non-interactive) (jobid=hp-ux-94-0072)</p>
+
+<p>       * Session started for user &ldquo;root@hp-ux-94&rdquo;.</p>
+
+<p>       * Beginning Selection</p>
+
+<p>       * Target connection succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * Software selections:</p>
+
+<p>             dbackup-agent.dbackup-agent-RUN,l=/,r=2.2.7928.14</p>
+
+<p>       * Selection succeeded.</p>
+
+<p>       * Beginning Analysis</p>
+
+<p>       * Session selections have been saved in the file</p>
+
+<p>         &#8221;/.sw/sessions/swremove.last&#8221;.</p>
+
+<p>       * The analysis phase succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * Analysis succeeded.</p>
+
+<p>       * Beginning Execution</p>
+
+<p>       * The execution phase succeeded for &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>       * Execution succeeded.</p>
+
+<p>NOTE:    More information may be found in the agent logfile using the</p>
+
+<p>         command &ldquo;swjob -a log hp-ux-94-0072 @ hp-ux-94:/&rdquo;.</p>
+
+<p>=======  03/08/13 01:15:36 EAT  END swremove SESSION (non-interactive)</p>
+
+<p>         (jobid=hp-ux-94-0072)</p>
+
+<h1>swlist dbackup-agent</h1>
+
+<h1>Initializing&hellip;</h1>
+
+<h1>Contacting target &ldquo;hp-ux-94&rdquo;&hellip;</h1>
+
+<p>ERROR:   Software &ldquo;dbackup-agent&rdquo; was not found on host &ldquo;hp-ux-94:/&rdquo;.</p>
+
+<p>#</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">liuyd</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-11T11:16:18+08:00" pubdate data-updated="true">Mar 11<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/xue-xi-bao-gao/'>学习报告</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/03/11/hp-unixe58c85e7ae80e69893e5ae89e8a385e5928cwindow2012e4b88ae5bc80e5a78be88f9ce58d95e69fa5e689be/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/03/11/hp-unixe58c85e7ae80e69893e5ae89e8a385e5928cwindow2012e4b88ae5bc80e5a78be88f9ce58d95e69fa5e689be/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/08/oraclee695b0e68daee5ba93e5ada6e4b9a0e5b08fe7bb93/" title="Previous Post: oracle数据库学习小结">&laquo; oracle数据库学习小结</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/12/e5bc80e6ba90e9959ce5838fe7ab99e8b584e6ba90/" title="Next Post: 开源镜像站资源">开源镜像站资源 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/03/11/hp-unixe58c85e7ae80e69893e5ae89e8a385e5928cwindow2012e4b88ae5bc80e5a78be88f9ce58d95e69fa5e689be/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/03/11/hp-unixe58c85e7ae80e69893e5ae89e8a385e5928cwindow2012e4b88ae5bc80e5a78be88f9ce58d95e69fa5e689be/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

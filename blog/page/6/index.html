@@ -1,0 +1,1399 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="AIX(高级接口执行)是属于Unix类型的操作系统，而由IBM出售在它的一些计算机平台上。一开始发行给IBM 6150RISC 工作站使用，AIX现在支持或者曾经支持许多类型的硬件平台，包括IBM RS/6000系列和后来的IBM POWER还有基于PowerPC的系统，IBM System i， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/page/6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/ibm-aix/">IBM_AIX操作系统(李小桃)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T17:48:32+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/22/ibm-aix/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/22/ibm-aix/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>AIX(高级接口执行)是属于Unix类型的操作系统，而由IBM出售在它的一些计算机平台上。一开始发行给IBM 6150RISC 工作站使用，AIX现在支持或者曾经支持许多类型的硬件平台，包括IBM RS/6000系列和后来的IBM POWER还有基于PowerPC的系统，IBM System i，System/370 主机，PS/2个人计算机，还有Apple Network Server。AIX是基于UNIX V系统4.3BSD的兼容扩展。它是由Open Group’s UNIX 03标准认证的4个商业化操作系统之一（另外三个是Mac OS X，Solaris 和HP-UX）</p>
+
+<p>AIX操作系统家族于1986年首次亮相，于1990年推出的RS/6000系统使它成为了标准操作系统，如今IBM仍在积极开发这个操作系统。它现在支持在IBM Power系统，IBM i和Linux上。AIX是第一个利用日志文件资源的操作系统，IBM不断地提高软件的功能，如处理器，磁盘和网络虚拟化，动态硬件资源分配（包括小数处理器单元），和从它的主机设计移植可靠性的工程。</p>
+
+<p>内容</p>
+
+<ol>
+<li><p> 历史</p></li>
+<li><p> 支持的硬件平台</p>
+
+<ol>
+<li><p>IBM 6150RT</p></li>
+<li><p>IBM PS/2系列</p></li>
+<li><p>IBM 主机</p></li>
+<li><p>基于POWER/PowerPC的系统</p></li>
+<li><p> POWER7 AIX特征</p></li>
+<li><p> Apple Network服务</p></li>
+<li><p>IA-64系统</p></li>
+</ol>
+</li>
+<li><p> 版本</p>
+
+<ol>
+<li><p>POWER/PowerPC 发行</p></li>
+<li><p>IBM PS/2 发行</p></li>
+<li><p>IBM 6150 RT发行</p></li>
+</ol>
+</li>
+<li><p> 用户接口</p>
+
+<ol>
+<li><p>图形</p></li>
+<li><p>系统管理控制台</p></li>
+</ol>
+</li>
+<li><p> 其他</p></li>
+<li><p> 参考</p></li>
+<li><p> 外部链接</p></li>
+</ol>
+
+
+<p>历史</p>
+
+<p>AIX的第一个版本，是为IBM6150RT工作站在1986年引入的，它是基于UNIX 系统V Release 1和2 。在开发AIX的过程中，IBM和INTERACTIVE Systems Corporation（同IBM签约）将4.2BSD与4.3BSD的一些源代码加入了AIX中。</p>
+
+<p>在其他变体当中，IBM最近发行的AIX版本3（也叫AIX/6000），是基于System V Release 3，为他们的IBM POWER-based RS/6000平台。自从1900年，AIX成为RS/6000系列工作站和服务器的操作系统（后来更名为IBM e服务p系列，后来又叫IBM系统P，现在称为IBM POWER System）。AIX版本4，在1994年推出，随着第一个RS/6000 SMP服务器一起推出，增加了对称多处理的性能，一直发展到九十年代，最后以1999年的AIX4.3.3告终。AIX4.1，有小小的修改，也是苹果网络服务器系统的标准操作系统，苹果网络服务器系统是苹果公司对Macintosh线的补充。</p>
+
+<p>在九十年代末，在Monterey项目下，IBM和Santa Cruz公司计划集成AIX和Unixware到单机的32位或64位的多平台的UNIX中，还特别强调运行在英特尔ia &ndash; 64(安腾)架构的cpu。一个运行在IA-64系统的AIX 5L的beta测试版本发行。</p>
+
+<p>但是根据SCOV诉讼案中的发行文件，少于40的Monterey Unix序列号被卖出在2002这个项目被终止之前.在2003年，SCO组宣称（在其他侵害中）IBM已经挪用源代码许可从UNIX系统V版本4合并到AIX ，SCO随后撤回了IBM的开发和分发AIX许可证，IBM主张他们的许可证是无法取消的，而继续售卖和支持他们的产品直到诉讼被宣判。</p>
+
+<p>在2003的SCOVIBM诉讼中，AIX是其中的一个部分，在该诉讼中，SCO组织起诉IBM，宣称IBM要贡献SCO组织的知识产权给linux代码库。SCO组织说他们是为了unix操作系统的版权拥有者争取权利，目的是撤回IBM售卖或分发AIX操作系统的的许可证，2010年3月，陪审团裁定是NOVELL而不是SCO组织拥有unix的版权。</p>
+
+<p>在2007年5月，AIX6公开发布，作为一个开发的beta版本运行，从2007年6月一直到2007年9月9日AIX6.1的GA版本发布。AIX6.1的主要新功能包括全基于角色的访问控制，工作负载分区（是的应用具有可移动性），安全性增强（为NFSv3和v4增加AES密码）和动态分区迁移在POWER6硬件。</p>
+
+<p>在2010年4月，IBM发布了一个声明，是关于即将来临的7.1版本。宣称继续支持POWER4和它的后代硬件。有几个新的特征，包括更好的可扩展性，增加了集群性和管理能力。能够运行旧AIX版本的WPAR 保持机会继续使用硬件不支持的5.2。IBM打算让7.1成为可用的公开beta程序。</p>
+
+<p>支持的硬件平台</p>
+
+<p>IBM 6150 RT</p>
+
+<p>为了和曾移植UNIX系统III IBM到IBM PC的互动系统公司结合，一开始IBM为IBM 6150RT开发了AIX（有时也被称为AIX/RT）。安装介质包括8个1.2M的软盘。RT是以ROMP微处理器为基础的，这是第一个商用RISC芯片。这是基于一个率先在IBM研究中心提出的设计。RT设计新颖的方面之一是试用一个微内核，叫做虚拟资源管理器（VRM）。键盘，鼠标，显示器，硬盘驱动和网络都是有微内核控制的。人们可以在一个操作系统下使用的Alt-Tab组合键，这就是“热键”。反过来每个OS都会拥有键盘，鼠标和显示器的试用权。除了AIX V2，PICK OS还利用微内核。</p>
+
+<p>AIX V2大部分的内核都是使用PL/I语言来编写的，这证明了在迁移到AIX V3的麻烦。AIX V2包含完整的TCP / IP网络，以及SNA和两个由Sun Microsystems授权的NFS网络文件系统和分布式服务（DS）。 DS和正在建造的SNA上存在有区别，从而完全兼容DS在IBM中端AS/400和大型机系统。对于图形用户界面，AIX V2是从MIT的X10R3，后来在的X10R4和X11版本的X Window系统，连同雅典娜widget集。 Fortran和C编译器。其中一个比较流行的桌面应用程序是在PageMaker桌面排版软件。</p>
+
+<p>IBM PS/2 系列</p>
+
+<p>根据和IBM的合同，AIX PS/2(也称为AIX/386)是有Locus计算机公司开发的，AIX PS / 2，首次发布于1989年，运行在拥有Intel 386和兼容的处理器的IBM PS / 2个人电脑上。</p>
+
+<p>IBM 主机</p>
+
+<p>在1988年，IBM宣布AIX/370，还开发了轨迹计算。 AIX/370是IBM的第三次尝试为他们的大型机线提供类似Unix的功能，由于是System/370（更早的版本是在1980年和AT＆T共同开发的基于一个TSS/370的Unix系统，在1984年和互动系统公司共同开发的基于VM/370的 VM/ IX系统）。 AIX/370发布于1990年与功能等价的System V Release 2和4.3BSD都是IBM增强。通过引入的ESA/390架构，AIX/370被替换AIX / ESA于1991年，是基于OSF /1，也跑了System/390平台。这种发展的努力，部分允许IBM与阿姆达尔UTS竞争。[需要的引证]与AIX/370，AIX/ ESA本身作为主机操作系统，并作为嘉宾在VM运行。 AIX/ ESA，虽然在技术上是先进的，几乎没有商业上的成功，部分原因是因为UNIX的功能被添加到现有的主机操作系统作为一个选项，MVS，在1999年成为MVS / ESA OpenEdition的。</p>
+
+<p>基于POWER/PowerPC的系统</p>
+
+<p>此次发布的AIX版本3（有时称为AIX/6000）正好与1990年公布的第一个的POWER1基于IBM RS/6000型号。RS/6000是独一无二的，它不是只在整数运算性能优于所有其他机器，也因为10倍的浮点性能打败其他的竞争。竞争的Unix工作站的厂商SUN，HP和SGI，以及在较小的程度，那些从Intergraph和其他。这些机器都大致相若，零售价格范围在1万美元到10万美元，并提供相似数量的内存，磁盘和网络，大致相当于图形子系统。浮点单元的新颖之处是，它被捆绑到整数流水线，并进行了单周期乘加指令每（更准确地说是一个3循环的深流水线，3个周期）。的共同智慧的时代，只有整数运算性能重要的，奇怪很少有人的事实，许多客户正在运行的浮点密集型数字的科学计算工作负载。</p>
+
+<p>AIX第三版的发布也是利用了在POWER结构来开发</p>
+
+<p>AIX V3的几种方式在软件方面的创新。这是第一个操作系统的思想引入一个日志文件系统，JFS，它允许快速启动时间，避免了磁盘上的文件系统（看到的fsck）在每次重新启动，以确保一致性。另一项技术革新，从而避免了静态链接库的应用程序需要的共享库。由此产生的更小的二进制文件使用较少的RAM的硬件上运行，并使用更少的磁盘空间来安装。除了提高性能，这是一个福音，开发人员可以在几十千字节兆字节的静态链接到C库的可执行文件，而不是一个可执行的二进制文件。 AIX V3还取消了微内核的AIX V2，是一个有争议的举动，导致在v3不包含PL/ I代码和比V2更纯粹。</p>
+
+<p>POWER AIX Features</p>
+
+<p>第7版的增强型RISC（POWER）性能优化使AIX操作系统的一个独特的性能优势。 POWER7提供了新的功能，使用多个内核和多个CPU线程，创建一个池的虚拟CPU。典型的IBM POWER7处理器的8个核心，每个核心四线程，总容量为32个并发线程，每个处理器电路或32个虚拟CPU，同时还可以使用相同的电力消耗，POWER6处理器的电路，它只能支持8个虚拟CPU。，AIX可以利用POWER7的顺序，而不是按顺序执行指令的能力，利用POWER7的积极的的订单指令集驱动高效利用可用的执行路径。</p>
+
+<p>AIX 7包含一个新的内置称为群集感知型AIX集群功能。 AIX是能够组织多个LPAR通过多路径的通信信道到邻近的CPU，从而实现非常高速的处理器之间的通信。这使得多TB的内存地址范围和页表的访问，以支持全球PB级的共享的内存空间，使AIX POWER7集群的软件开发人员可以编写一个集群，如果它是一个单一的系统，不使用消息传递（即信号控制间进程通信）。 AIX系统管理员可以使用此新功能的AIX节点的集群池。默认情况下，，AIX V7.1针内核内存和支持，允许应用程序到脚的内核堆栈。钢钉内核的内存和内核堆栈的实时性要求的应用，可以提供性能改进，确保不分页的内核内存和内核堆栈的应用程序。</p>
+
+<p>AIX POWER7系统包括Active Memory扩展功能，从而增加了系统的灵活性，系统管理员可以配置逻辑分区（LPAR）使用更少的物理内存。例如，一个LPAR运行AIX OS应用程序配置80 GB的物理内存，但硬件却仅消耗60 GB的物理内存。Active Memory扩展使用的内存压缩技术，可以透明地压缩在内存中的数据，从而使更多的数据放入内存，从而扩大POWER7系统的内存容量。利用Active Memory扩展可以提高系统的利用率，增加系统的吞吐量。AIX7会自动管理内存的大小自动使用4K，64K或结合这些页面大小的页面。这种自我调节功能最佳的系统性能没有管理的功能.</p>
+
+<p>Apple 网络服务</p>
+
+<p>苹果公司的网络服务器系统是由苹果电脑公司设计的基于PowerPC的系统有众多高端功能，苹果的硬件不标准，包括热插拔硬盘，冗余电源和外部监控功能。这些系统都或多或少的基础上的Power Macintosh硬件时可用，但被设计为使用本机操作系统中的一个特殊版本的特定的ANS AIX（版本4.1.4或4.1.5）。
+AIX是唯一兼容的网络服务器，并没有移植到标准的Power Macintosh硬件。为了不被混淆的是A / UX，苹果公司的68K-基于Macintosh的早期版本的Unix。</p>
+
+<p>IA-64系统</p>
+
+<p>作为蒙特利项目的一部分，IBM在2001年发布的beta测试版本的AIX 5L的IA-64（安腾）架构，但由于缺乏有趣的特点从来没有成为正式的产品</p>
+
+<p>用户接口</p>
+
+<p>直到AIX版本3默认的shell一直是Bourne shell，但为了XPG4和POSIX相容性在第4版中被改为了Korn Shell（ksh88）</p>
+
+<p>系统管理控制台</p>
+
+<p>SMIT是AIX系统管理界面工具。它允许用户导航的菜单层次结构的命令，而不是使用命令行。通常调用的命令smit实现。有经验的系统管理员使用的F6功能键，生成SMIT的命令行调用来完成吨SMIT还生成一个日志smit.script文件中的命令进行。smit.script文件自动记录命令和命令行标志和参数。smit.script文件可以作为一个可执行的shell脚本，重新运行系统配置任务。SMIT创建smit.log文件，其中包含附加的详细信息，可用于由程序员扩展SMIT系统。</p>
+
+<p>Smit和smitty有一些相像的程序，虽然smitty调用的基于文本的版本，如果smit测试目前没有兼容的X windows系统，smit将会调用一个基于接口的X windows系统，它将会取代现在的基于文本版本。在各种类型的显示器上检查是测试Xwindows 系统的典型测试。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/">Solaris操作系统(李金钗)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T17:03:53+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Solaris是一个由SUN公司原创的类Unix操作系统，它从1993年开始就取代了先前的SunOS.不过从Oracle公司在2010年2月将Sun公司收购后，我们现在都称它为Oracle Solaris。
+Solaris最引人注目的是它的可伸缩性和发明了很多别的系统没有的创新的功能，如DTrace,ZFS和Time Slider，特别是在SPARC系统。Solaris支持基于SPARC和x86平台和Sun与其他销售商贩卖的服务器，另外他们也正在努力移植到其他平台。Solaris兼容单Unix规格。
+Solaris一直都收费直到2005年6月Sun小型机使用CDDL执照发布了大部分代码和创建了OpenSolaris开源项目。有了OpenSolaris，Sun围绕这个系统建立了开发者与使用者社区。在2010年2月Oracle收购Sun小型机后，Oracle决定不再继续OpenSolaris的发布和那时的开发模式。就在Oracle公司打算公布这一消息的前十天，消息泄漏了，Garrett D&#8217;Amore公布了illumos项目，这个项目创建了Solaris内核的一个分支，这个分支发布了之后，一直流行甚至取代了Oracle Solaris。
+在2010年8月，Oracle不再公开提供Solaris内核源码更新，很快地又将Solaris11变为私有操作系统，代码不再公开。然而，在Oracle Technology Network，企业合作伙伴仍可以访问到开发Solaris源码。Oracle公司提供Solaris11开源部分的下载。
+目录
+1 历史
+2 支持的架构
+2.1 其他平台
+3 安装与使用选项
+3.1 安装后的使用
+3.2 不安装的使用
+4 桌面环境
+5 使用许可
+6 历史版本
+7 发布产品
+8 更多
+9 参考
+10 外部链接</p>
+
+<p>Solaris
+公司／开发商：Oracle公司
+使用开发语言：C
+所属OS家族：Unix
+目前工作状态：当前流行可用
+源码类型：开闭源混合
+第一次发布：1992年6月
+最新稳定版本：11.1（发布于3个月前的2012年10月26日）
+适用的目标市场：工作站，服务器
+使用语言：英语
+使用的编程语言：C
+支持的平台：SPARC,IA-32,X86-64,PowerPC(只能用Solaris 2.5.1)
+内核类型：Monolithic
+默认用户接口程序：OpenSolaris桌面或者CDE或者GNOME
+许可证：多样
+管方网址：
+历史
+1987年，AT&amp;T公司和Sun公司联合声明了他们将一起合作一个将那时市场上最受欢迎的多种Unix系统合并的项目。这个项目就是Unix系统V版本4(SVR4).
+1991年9月4日，Sun对外发表一个基于SVR4的系统会取代起源于伯克利的Unix-SunOS 4。这个系统在内部称为SunOS 5，一个新的推向市场的名字同时推出：Solaris 2。虽然SunOS 4.1.x小版本的发布名称是沿用Sun公司的Solaris 1，但是后来只有用Solaris名字去指定基于SVR4的SunOS 5.0及后来版本。
+这个新的品牌的主要调整是它不只包含SunOS,也包含了用户窗口图形界面和网络计算功能。在Solaris的版本号中包含了SunOS小版本号，比如，Solaris 2.5合并了SunOS 5.4,在Solaris 2.6之后，Sun的版本数字命名去掉了“2.”前面的号，所以说Solaris 7即SunOS 5.7，最新版本SunOS 5.11.1组成了Solaris 11.1的核心。</p>
+
+<p>支持架构
+Solaris使用一套公用的基本代码用于它所支持的所有平台：SPARC和i86pc(包括x86与x86_64)
+Solaris在支持很多CPU与CPU的对称的多处理的良好适用方面有较多的好评。它一直都集成了Sun的SPARC硬件（包括Solaris 7以来支持64位的SPARC）和市场上的组合包。这是很多可靠操作系统的基础，但这些系统得在非常昂贵的PC硬件商品上运行。从Solaris2.1开始就已经支持x86系统且在Solaris10之后也开始支持64位的x86，这让Sun公司可以充分利用买到的基于x86_64架构的64位CPU。Sun公司的Solaris在它自己的基于AMD Opteron和英特尔的Xeon处理器x64位工作站和服务器与Sun公司自己生产的x86系统（比如戴尔，Hewlett-Packard和IBM)上的使用占有很大的市场分额。从2009年开始，以下计算机品牌在他们的x86服务器系统上都开始支持Solaris了：
+Dell&mdash;测试，验证和最优化Solaris和OpenSolaris，以所有的Dell 软件中的其中一个选择来销售
+IBM-它也发布了Solaris和Solaris子分支，支持基于x86的IBM系统x服务器与BladeCenter服务器
+Intel
+Hewlett-Packard-销售和提供Solaris在ProLiant服务器上的软件技术支持</p>
+
+<p>其他平台
+Solaris2.5.1包含支持了PowerPC平台，但是在Solaris 2.6版本之后就不再移植了。在2006年二月，Blastwave社区开发商开始移植PowerPC的工作，它们将这工作称为Polaris。在2006年10月，一个基于Blastwave工作和Sun Labs&#8217;Project Pulsar的openSolaris社区项目，这个项目将Solaris2.5.1的相关部分集成到OpenSolaris，并且第一次发布了它的官方源码。
+移植成功到英特尔奔腾架构在1997年正式公布但移植成功系统从来没有进入市场。Solaris也支持linux平台的应用程序接口。这让Solaris可以在x86系统运行Linux二进制。这功能被称为Linux应用Solaris容器。</p>
+
+<p>安装与使用说明
+Solaris可以通过很多预安装软件组来安装。个人使用系统没必要安装Solaris。额外的软件，像Apache,MySQl等等也可以在sun免费软件等地方获取安装包来安装。
+安装说明
+Solaris可以从物理介质或者网络中获取安装在desktop或者服务器。
+Solaris可以在平台的字符后台上交互式安装，没有视图显示与鼠标。
+在局域网中，个人工作站或者手提，只要控制台可用，Solaris也可以在用图形界面来安装。
+Solaris可以通过网络自动安装。系统管理员可以通过脚本与配置文件自定义安装，包括安装配置第三方软件，不用购买额外的软件管理。
+当安装完成，操作系统会放在安装出现时一样的操作系统。应用程序会独立安装在本地系统或者通过网络从远程机器上mount进来。</p>
+
+<p>不安装系统的使用
+Solaris不在机器上安装操作系统也可以使用
+Soaris在无硬盘环境或者只用作交换分区的的内部中通过一个远程服务器提供一个OS镜像来启动。在这种配置下，操作系统仍会运行。不过运行时应用程序可能就不是放在本地。那些需要快速安装的生意或者教育机构可以使用这种方法。</p>
+
+<p>授权条款
+Solaris通过OpenSolaris项目在CDDL上发布了源码。CDDL是一个OSI允许的授权。
+OpenSolaris在2005年六月14日开始实施，二进制与源版本都可以免费下载，且都已赋权。那些新功能的源码也加入到OpenSolaris项目中。Sun公司也声明了以后Solaris的发布也可以从OpenSolaris中获取得到。
+版本历史
+Solaris现在有更多很好的功能比如DTrace等等
+Solaris版本的更新也相继发布，按照从过来到现在时间排序，Solaris发布了以下版本：
+Solaris 版本 SunOS 核心版本 發佈日期 最後支援日[6]
+SPARC x86
+1.x 4.1.x 1991年-1994年 &ndash; 2003年9月
+2.0 5.0 1992年6月 &ndash; 1999年9月
+2.1 5.1 1992年1月 1993年5月 1999年4月
+2.2 5.2 1993年5月 &ndash; 1999年5月
+2.3 5.3 1993年11月 &ndash; 2002年6月
+2.4 5.4 1994年11月 2003年9月
+2.5 5.5 1995年11月 2003年12月
+2.5.1 5.5.1 1996年5月 2005年9月
+2.6 5.6 1997年7月 2006年7月
+7 5.7 1998年11月 2008年8月
+8 5.8 2000年2月 2012年3月
+9 5.9 2002年5月28日 2003年1月10日 2014年10月
+10 5.10 2005年1月31日 &ndash;
+11 Express 2010.11 5.11 2010年11月15日 &ndash;
+11 5.11 2011年11月9日 &ndash;</p>
+
+<p>更多
+Blastwave-用于Sparc与x86/AMD64位Solaris8的软件安装包
+操作系统的比较
+OpenCSW-Blastwave的软件分支
+操作系统
+Sun管理中心</p>
+
+<p>参照文献</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/solaris-e6938de4bd9ce7b3bbe7bb9f/">Solaris 操作系统(马美玲)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T16:37:14+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/22/solaris-e6938de4bd9ce7b3bbe7bb9f/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/22/solaris-e6938de4bd9ce7b3bbe7bb9f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>来自维基百科，自由百科全书</p>
+
+<p>Solaris是最初由IT及互联网技术服务公司开发的一种Unix操作系统。在1993年，它取代了Sun最初的操作系统SunOS。自从2010年1月Sun由甲骨文公司收购后，现在大家所知道的Oracle Solaris已经归属于美国甲骨文软件公司。</p>
+
+<p>Solaris以其可扩展性闻名，特别是在sun公司的工作站系统中；同时它产的一些创新的特征也是非常有用的，例如DTrace动态跟踪、ZFS动态文件系统以及Time Slider。Solaris支持基于SPARC与x86的工作环境和来自Sun与其他供应商的服务，并正在努力提供更多的附加平台。Solaris被注册作为Unix单一的被承认的规范说明。</p>
+
+<p>Solaris原本是作为专利性的软件发展的，然而在2005年6月Sun Microsystems发布了其大部分基于CDDL许可的代码，且建立了OpenSolaris开源项目。基于OpenSolaris，Sun希望可以建立一个围绕软件的开发者与用户讨论社区团体。在2010年1月收购Sun后，甲骨文公司决定停止支持OpenSolaris项目的发展。在甲骨文公司内部宣布这个决定前的十天，消息已经泄露出去了；Garrett D’ Amore宣布illumos项目，产生了许多Solaris内核与声明甲骨文Solaris之前的一些常用的功能。</p>
+
+<p>在2010年8月，甲骨文公司停止提供Solaris内核的公用升级资源，有效地推动Solaris11变成一个闭源的专利性操作系统。然后通过OTN，工业伙伴仍可以得到升级的Solaris源代码，而用户则可以到甲骨文公司网站下载Solaris 11的开源部分源代码。</p>
+
+<p><strong>目录</strong></p>
+
+<p><strong>1 </strong><strong>历史………………………………………………………………………………………………</strong><strong>3</strong></p>
+
+<p><strong>2 </strong><strong>支持机构…………………………………………………………………………………………</strong><strong>3</strong></p>
+
+<p><strong>2.1 </strong><strong>其他平台……………………………………………………………………………………</strong><strong><strong>…</strong></strong><strong>3</strong></p>
+
+<p><strong>3 </strong><strong>安装与使用选择…………………………………………………………………………………</strong><strong>3</strong></p>
+
+<p><strong>3.1 </strong><strong>安装的使用…………………………………………………………………………………</strong><strong><strong>…</strong></strong><strong>4</strong></p>
+
+<p><strong>3.2 </strong><strong>无需安装的使用……………………………………………………………………………</strong><strong><strong>…</strong></strong><strong>5</strong></p>
+
+<p><strong>4 </strong><strong>桌面环境…………………………………………………………………………………………</strong><strong>5</strong></p>
+
+<p><strong>5 </strong><strong>许可证………………………………………………………………………………………</strong><strong><strong>…</strong></strong><strong><strong>…</strong></strong><strong>6</strong></p>
+
+<p><strong>6 </strong><strong>版本历史…………………………………………………………………………………………</strong><strong>7</strong></p>
+
+<p><strong>7 </strong><strong>开发版本…………………………………………………………………………………………</strong><strong>10</strong></p>
+
+<p><strong>8 </strong><strong>另见………………………………………………………………………………………………</strong><strong>11</strong></p>
+
+<p><strong>9 </strong><strong>其他链接…………………………………………………………………………………………</strong><strong>11</strong></p>
+
+<p><strong>历史</strong></p>
+
+<p>在1987年，AT&amp;T和Sun宣布他们将合作做一个项目，关于合并当时在市场上最出名的Unix系统：BSD，System V以及Xenix。这个后来便成为了Unix System V Release4（SVR4）。</p>
+
+<p>在1991年9月4日，Sun宣布基于SVR4的系统会替代现存的BSD衍生的Unix系统SunOS 4。其被内部认定为SunOS 5，但是同时出现了一个新的市场名称Solaris 2 。当SunOS4.1.x由Sun命名为Solaris 1之后，Solaris的名称几乎都参考使用SVR4衍生的SunOS 5.0和之后版本。</p>
+
+<p>为这个的辩护就是其不仅包含了SunOS，还包含了openwindows图形用户界面与ONC功能。这个小版本的SunOS包括在Solaris的发布版本号中；例如，Solaris 2.4合并到SunOS 5.4中。在Solaris 2.6之后，Sun丢弃了版本号中的“2.”，所以Solaris 7合并到SunOS 5.7中，而最近发布的SunOS 5.11.1则构成了Solaris 11.1的核心。</p>
+
+<p><strong>支持机构</strong></p>
+
+<p>Solaris用的是一个基于其支持的平台SPARC与i86pc（包含x86和x86_64）的通用代码.</p>
+
+<p>Solaris在适用于匀称多重处理方面有很好的信誉，支持多核CPU。它历来是紧密集成于Sun的SPARC硬件(包括支持64位应用程序从Solaris SPARC 7)，以一个组合包发布。这个曾经导出更多可信赖的的系统，而没有花费大量的资源在PC的硬件上。然而，自从Solaris 2.1发布之后它也支持x86系统；同时，Solaris 10之后它都包含了64位x86应用的支持，允许Sun利用可用的基于64位cpu 的x86 &ndash; 64体系结构的产品。Sun曾经非常热销Solaris的使用，关于其“x64”工作站与基于AMD Opteron和英特尔至强处理器的服务器以及由戴尔、惠普和IBM制造的x86系统。截至2009年，支持Solaris作为x86服务系统的有以下供应商：</p>
+
+<ul>
+<li><p>戴尔 ——将“测试、认证和优化Solaris和OpenSolaris其强大的服务器并将其提供作为在整个戴尔软件菜单几种选择之一”</p></li>
+<li><p>IBM ——也对基于x86 IBM System x服务器与BladeCenter服务器的Solaris与Solaris认购作出了贡献</p></li>
+<li><p>因特尔</p></li>
+<li><p>休利特-帕卡德 ——贡献与提供在Proliant与blade系统的Solaris软件技术支持</p></li>
+<li><p>富士通 西门子</p></li>
+</ul>
+
+
+<p>截至2010年，戴尔与惠普保证和重新发售在其各自的x86平台上的Oracle Solaris、Oracle Enterprise Linux、Oralce VM。同时，IBM停止直接支持x64的Solaris。</p>
+
+<p>☆<strong>其他平台</strong></p>
+
+<p>Solaris 2.5.1包括对PowerPC平台的支持，但是其端口在Solaris 2.6发布前已经被取消。在2006年1月，一个Blastwave的开发团体开始为名为北极星的PowerPC端口工作。在2006年的10月，一个基于Blastwave成果与Sun的关于Solaris 2.5.1相关部分重整到OpenSolaris中的Pulsar实验室项目的OpenSolaris项目团体宣布其首次发布官方代码源。</p>
+
+<p>一个通向因特尔安腾处理器架构的Solaris端口在1997年已发布，但从未投入市场中。</p>
+
+<p>在2007年11月28日，IBM，Sun与Sine Nomine Associates示范了z系统OpenSolaris在IBM的基于z/VM的z系统主机上运行的预览，命名为天狼星（类似于北极星项目，同时也是归因于主要开发者的澳大利亚国籍：1786年的HMS Sirius是一艘开往澳大利亚第一舰队的船。）在2008年10月17日，一个标准的天狼星发布版本已经在提供；同年11月19日，IBM把天狼星在z系统的使用授权给IFL处理器。</p>
+
+<p>Solaris也支持ABI的Linux平台，允许在x86系统上运行本土的双星Linux。这个特征命名为Solaris关于Linux的应用程序或者是SCLA，是基于由Solaris 10 8/07引进的品牌区域功能。</p>
+
+<p><strong>安装与使用选择</strong></p>
+
+<p>Solaris可以由不同预包装集团的软件安装，包括有从减少网络支持到全网络支持OEM。Solaris的安装并不一定需要个别使用系统。其他的软件如Apache，MySQL等也可以由sunfreeware、OpenCSW与Blastwave安装。</p>
+
+<p>☆<strong>安装的使用</strong></p>
+
+<p>Solaris可以安装作为物理使用资源或者是在桌面上的网络使用或者是服务器功用。Solaris可以交互式地在无需图形与鼠标操作的命令行控制台安装。这个可能是在一个远程的数据中心选择服务器，从一个终端服务器甚至是拨号解调调制器中。</p>
+
+<p>Solaris也可以交互式地利用图形界面安装。这个可能是选择个人工作环境或者是手提电脑的，在一个平常运行的控制台的本地环境中。</p>
+
+<p>Solaris可以在网络上自动安装。系统管理员可以根据说明与配置文件定制安装，包括配置和自动安装第三方软件，而无需购买其他的软件管理功用。</p>
+
+<p>当Solaris已经安装成功后，操作系统会属于同一个安装时配置的系统。应用程序可能会单独地在本地系统安装，或者可能会挂载到网络上远程的一个系统。</p>
+
+<p>☆<strong>无需安装的使用</strong></p>
+
+<p>Solari可以在无需分开安装在操作系统的情况下作为桌面或者服务使用。</p>
+
+<p>Solaris可以由一个在无磁盘环境下提供操作系统映像的远程服务中引导出，或者是一个其内部磁盘只用于分区的环境中引导出。在这个配置下，操作系统仍能在本地运行系统。应用程序可能或者不属于本地运行的。这个可能需要选择企业或者是教育机构，其快速设置是必需的（工作站可能会在运行中崩溃，那么新的MAC地址注册到一个中央服务器，插入到其中，便立即可用。），或者是其快速更换也是必需的（如果一个桌面发生硬件故障，一个新的工作站将从一个密室空间插入到其中，用户可用恢复他们的工作到上一次的保存点）。</p>
+
+<p>Solaris也可以作为单客户端使用。应用程序、操作系统、窗户管理以及图形界面可以运行在一个或多个远程服务器上。管理员可以增加用户账户到一个中心Solaris系统中，同时一个单客户端可以在一个密室空间中运转与放置在桌面，而且一个用户可以马上开始工作。如果发生硬件故障，单客户端可以转换，再且不管工作是否有保存，用户都可以恢复他们的工作到准确的任务失败点。</p>
+
+<p><strong>桌面环境</strong></p>
+
+<p>Solaris早期发布使用的图形界面是以OpenWindows作为标准桌面环境。对于Solaris 2.0至Solari 2.2，OpenWindows既支持NeWS与X应用，也为来源于Sun的旧版桌面环境的SunView的应用提供向后兼容性。NeWS允许应用程序建立一个以面向对象方式使用附言（一种在1982年发布的常用印刷语言）。X窗口系统起源于1984年MIT的雅典娜项目，允许一个应用程序的显示是一个断开的机器正在运行应用程序，并被断开了网络连接。Sun的原始绑定的SunVies应用组合被移植到X系统中。</p>
+
+<p>Sun后来放弃了对遗留的SunView应用与NeWS与OpenWindows 3.3的支持，其中NeWS承载着Solaris 2.3；转而支持X11R5的显示附言。图形界面与感觉保持了基于OPEN LOOK的本来面目。OpenWindows 3.6.2是在Solaris 8之后最后发布的版本。OPEN LOOK窗口管理器（OLWN）与其他OPEN LOOK具体应用都放弃了Solaris 9；但支持库仍绑定，提供现有应用的长期二进制向后兼容性。OPEN LOOK虚拟窗口管理器（OLVWM）仍然可以为Solaris下载来自sunfreeware的应用，也为最近的Solaris 10发布工作。</p>
+
+<p>Sun与其他的Unix供应商创造了一个企业联盟来标准化Unix的桌面系统。作为COSE的一名成员，一个公共开源软件环境，Sun主动帮助完善公共桌面环境。CDE主动去创建一个标准的Unix桌面环境。每一个供应商作出了不同的贡献：Hewlett-Packard贡献了窗口管理器；IBM提高了文件管理系统，而Sun提供了邮件与日历功能以及拖放支持（tooltalk）。这个新的桌面环境是基于主题的外观和感觉的，而旧的OPEN LOOK桌面环境被认为有保留下来。CDE通过多家open system供应商统一了Unix桌面环境的标准。CDE有Solaris 2.4与2.5的附加绑定功能，包括在Solaris2.6至2.10。CDE应用程序不再包含在OpenSolaris和Solaris 11中，但许多库还保存着二进制的向后兼容性。</p>
+
+<p>2001年，Sun发表了对Solaris8的基于GTK+工具包的开源桌面环境GNOME的预览版本Solaris 9 8/03介绍GNOME 2.0作为CDE的一个替代版本。Solaris 10包含Sun的Java桌面系统（JDS），它是基于GNOME的并带有一组庞大的应用程序，包括StarOffice（Sun的办公套件）。Sun描述JDS作为Solaris 10的主要部件。</p>
+
+<p>开源桌面环境KDE与Xfce，以及众多其他的窗口管理器，也还编译和运行在Solaris的最新版本上。</p>
+
+<p>20003年，Sun投资了一个名为Looking Glass的新的桌面环境项目。这个项目自2006年年底以来一直无所作为。</p>
+
+<p><strong>许可证</strong></p>
+
+<p>Solaris的源代码（除了少数例外）已经发布在通过OpenSolaris项目发布在共同发展和分配许可证（CDDL）上。CDDL是一份OSI认可的许可证。它被自由软件基金会认为是免费的但GPL并不符合它。</p>
+
+<p>2005年6月14日，OpenSolaris起源于早期开发代码基；包括二进制和源版本都是免费下载与许可证免费的。而对于即将出现的特征资源，比如Xen现在理所当然地支持添加OpenSolaris项目，Sun曾表示现在的Solaris的版本将适合今后来自OpenSolaris的版本。</p>
+
+<p><strong>版本历史</strong></p>
+
+<p>Solaris的显著特征目前包括DTrace、Doors、服务管理功能、Solaris Containers、Solaris多路I/O、Solaris卷管理器、ZFS以及Solaris可信扩展。定期更新Solaris的版本发布，如Solaris 10 10/09.</p>
+
+<p>按升序排列，Solaris发布的版本有如下：</p>
+
+<p>其中红色代表版本不再支持，绿色代表发布并支持，蓝色代表将来的版本。</p>
+
+<p><strong>Solaris</strong><strong>版本</strong></p>
+
+<p><strong>SunOS</strong><strong>版本</strong></p>
+
+<p><strong>发布日期</strong></p>
+
+<p><strong>结束的支持</strong></p>
+
+<p><strong>主要的新特性</strong></p>
+
+<p><strong>SPARC</strong></p>
+
+<p><strong>x86</strong><strong>的</strong></p>
+
+<p>1.x中</p>
+
+<p>4.1.x版</p>
+
+<p>1991年至1994年</p>
+
+<p>&ndash;</p>
+
+<p>2003年9月</p>
+
+<p>SunOS 4上的Solaris 1更名为营销目的。更多信息，请参阅SunOS文章。</p>
+
+<p>2.0</p>
+
+<p>5</p>
+
+<p>1992年6月</p>
+
+<p>&ndash;</p>
+
+<p>1999年1月</p>
+
+<p>初步版本（主要是提供给开发人员只），只有sun4c体系结构的支持。首先出场的NIS+。</p>
+
+<p>2.1</p>
+
+<p>5.1</p>
+
+<p>1992年12月</p>
+
+<p>1993年5月</p>
+
+<p>1999年4月</p>
+
+<p>支持的sun4和sun4m体系结构;第一Solaris x86的版本。首先Solaris 2的发布，支持SMP。</p>
+
+<p>2.2</p>
+
+<p>5.2</p>
+
+<p>1993年5月</p>
+
+<p>&ndash;</p>
+
+<p>1999年5月</p>
+
+<p>发布SPARC只。首先sun4d体系结构的支持。第一个支持多线程库（UI线程API在的Libthread）。</p>
+
+<p>2.3</p>
+
+<p>5.3</p>
+
+<p>1993年11月</p>
+
+<p>&ndash;</p>
+
+<p>2002年6月</p>
+
+<p>SPARC只发行。OpenWindows 3.3开关新闻显示PostScript和下降三源支持。支持增加了对autofs和CacheFS文件系统。</p>
+
+<p>2.4</p>
+
+<p>5.4</p>
+
+<p>1994年11月</p>
+
+<p>2003年9月</p>
+
+<p>第一个统一的SPARC/x86释放。OSF/Motif的运行时支持。</p>
+
+<p>2.5</p>
+
+<p>5.5</p>
+
+<p>1995年11月</p>
+
+<p>2003年12月</p>
+
+<p>首先，以支持UltraSPARC和包括CDE，NFSv3的 NFS / TCP。掉落的sun4（VME总线）的支持。POSIX.1c-1995pthreads的增加。门，但没有证件。</p>
+
+<p>2.5.1</p>
+
+<p>5.5.1</p>
+
+<p>1996年5月</p>
+
+<p>2005年9月</p>
+
+<p>只有推出支持PowerPC平台;超企业的支持;用户ID和组ID（将uid_t，gid_t的）扩展到32位，也包括处理器集和早期资源管理技术。</p>
+
+<p>2.6</p>
+
+<p>5.6</p>
+
+<p>1997年7月</p>
+
+<p>2006年7月</p>
+
+<p>包括的Kerberos 5，PAM的TrueType字体的WebNFS，大文件的支持，增强了procfs的。SPARCserver的600MP一系列支持下降。</p>
+
+<p>7</p>
+
+<p>5.7</p>
+
+<p>1998年11月</p>
+
+<p>2008年8月</p>
+
+<p>第64位UltraSPARC释放。增加了原生支持的文件系统元数据记录（UFS日志记录）。在x86平台上掉落MCA的支持。太阳下降的前缀“2”。在Solaris版本号，留下的“Solaris 7”。最近一次更新是Solaris 7的11/99。</p>
+
+<p>8</p>
+
+<p>5.8</p>
+
+<p>2000年2月</p>
+
+<p>2012年3月</p>
+
+<p>包括多路径I/O的Solstice DiskSuitice，IPMP，第一款支持的IPv6和IPsec（手动密钥只有），MDB模块调试。介绍了基于角色的访问控制（RBAC）删除sun4c的支持。最后更新是Solaris 8 2/04。</p>
+
+<p>9</p>
+
+<p>5.9</p>
+
+<p>2002年5月28日</p>
+
+<p>2003年1月10日</p>
+
+<p>2014年10月</p>
+
+<p>iPlanet目录服务器，资源管理器，扩展的文件属性，IKE IPSec密钥，和Linux的兼容性; OpenWindows的下降，删除sun4d支持。目前，大多数的更新是Solaris 9 9/05 HW（“U9”）。</p>
+
+<p>10</p>
+
+<p>5.10</p>
+
+<p>2005年1月31日</p>
+
+<p>2018年1月</p>
+
+<p>包括x86-64的（AMD64/Intel 64）的支持，使用DTrace（动态跟踪），Solaris容器、服务管理工具（SMF），取代初始化脚本，NFSv4的。最小权限的安全模型。支持sun4m和UltraSPARC I处理器的去除。支持EISA为基础的个人电脑中删除。添加Java桌面系统（基于GNOME）作为默认的桌面。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>Solaris 10的1/06（内部称为“U1”）添加GRUB引导装载程序的x86系统，支持的iSCSI启动器和fcinfo命令行工具。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 6/06（“U2”）增加了ZFS文件系统。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 11/06（“U3”）增加了Solaris高可靠扩展和逻辑域。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 8/07（“U4”）补充说：桑巴Active Directory支持， IP实例（OpenSolaris的网络虚拟化和资源控制项目的一部分），支持的Iscsi目标的Linux应用程序的Solaris容器（根据品牌区），的资源上限设置守护进程（rcapd）的增强版本。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 5/08（“U5”）增加了CPU上限的Solaris Containers，性能改进<a href="http://en.wikipedia.org/wiki/SpeedStep">的</a><a href="http://en.wikipedia.org/wiki/SpeedStep">SpeedStep</a>支持英特尔处理器<a href="http://en.wikipedia.org/wiki/PowerNow!">的</a><a href="http://en.wikipedia.org/wiki/PowerNow!">PowerNow</a><a href="http://en.wikipedia.org/wiki/PowerNow!">！</a>对AMD处理器的支持。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>从ZFS的Solaris 10 10/08（U6）添加启动，可以使用ZFS作为根文件系统。Solaris 10 10/08中还包括虚拟化增强功能，包括能够为Solaris容器自动更新它的环境中，当从一个系统移动到另一个，逻辑域支持可动态重新配置的磁盘和网络I / O，和半虚拟化支持时使用的Solaris 10[]](<a href="http://en.wikipedia.org/wiki/Solaris_">http://en.wikipedia.org/wiki/Solaris_</a>(operating_system)#cite_note-53)作为一个客户操作系统在基于Xen的环境中，如Sun xVM服务器。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 5/09（“U7”）更好的性能和电源管理支持英特尔<a href="http://en.wikipedia.org/wiki/Nehalem_(microarchitecture">的</a>)<a href="http://en.wikipedia.org/wiki/Nehalem_(microarchitecture">Nehalem</a>)处理器，集装箱克隆使用ZFS克隆的文件系统，ZFS的<a href="http://en.wikipedia.org/wiki/Solid-state_drive">固态驱动器</a>的性能增强。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 10/09（“U8”）添加用户和组级的ZFS配额，ZFS缓存设备和nss_ldap shadowAccount支持的的，修补性能的改进。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 9/10（“U9”）增加物理区域迁移，ZFS三重奇偶校验RAID-Z和Oracle Solaris自动注册。</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>的Solaris 10 8/11（“U10”）增加了ZFS的速度提升和新功能，Oracle数据库优化，更快的SPARC系统上重新启动。</p>
+
+<p>11快2010.11</p>
+
+<p>5.11</p>
+
+<p>十一月15，2010</p>
+
+<p>&ndash;</p>
+
+<p>添加新的包装系统（IPS -映像包管理系统）和相关的工具，Solaris 10容器，网络虚拟化和QoS，虚拟控制台，ZFS加密和重复数据删除，重新启动快，更新<a href="http://en.wikipedia.org/wiki/GNOME">GNOME</a>。删除<a href="http://en.wikipedia.org/wiki/Xsun">Xsun</a><a href="http://en.wikipedia.org/wiki/Xsun">的</a> CDE。</p>
+
+<p>11</p>
+
+<p>5.11</p>
+
+<p>11月9日</p>
+
+<p>2024年11月</p>
+
+<p>在软件包装，网络虚拟化，服务器虚拟化，存储，安全性和硬件支持的新功能和增强功能（相比于Solaris 10）：</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>包装：映像包管理系统，网络和本地软件包系统信息库中自动安装，自动配置，包括区域发行版构造函数来创建<a href="http://en.wikipedia.org/wiki/ISO_9660">ISO 9660</a>文件系统映像;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>网络：网络虚拟化（的VNIC，的vSwitch的，vRouters，）和<a href="http://en.wikipedia.org/wiki/Quality_of_Service">服务质量</a>，专用IP默认情况下，为区域，使用dladm实用程序来管理数据链路，ipadm实用程序来管理<a href="http://en.wikipedia.org/wiki/Internet_Protocol">IP</a>配置（包括<a href="http://en.wikipedia.org/wiki/IP_network_multipathing">IPMP</a>），<a href="http://en.wikipedia.org/wiki/ProFTPD">ProFTPD</a><a href="http://en.wikipedia.org/wiki/ProFTPD">的</a>和增强的;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>区域：不可变的（只读）区，NFS服务器的区域中，委托管理，P2V飞行前检查，的zonestat工具，加上libzonestat动态链接库;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>根的作用，netcat的和增强的安全性;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>存储：ZFS影子迁移，ZFS备份/恢复NDMP，递归ZFS发送;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>硬件支持：SPARC T4，关键线程，SDP启用和优化，包括支持区，SR-IOV，英特尔AVX;</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>删除的UltraSPARC II，III，IV系列支持删除; <a href="http://en.wikipedia.org/wiki/IA-32">IA-32</a>体系结构的支持。</p>
+
+<p><strong>开发版本</strong></p>
+
+<p>自1980年代后期开始的关于后来发布的Solaris 2.0的工作后，Solaris底层的代码就一直在发展着。每个版本如Solaris 10是基于发展的代码库的快照，在拍摄时间附近发布版本，然后作为一个派生的项目。这个项目的更新建立并交付了一年几次，直到下一个官方版本的发布出来为止。</p>
+
+<p>自2005年发布的Solaris10的代号为内华达之后，由Sun开发的Solaris版本是由现在的OpenSolaris代码基衍生出来的。</p>
+
+<p>在2003年，另外的Solaris开发过程已经启动。在程序名为Solaris快速软件（或Solaris快递）之中，一个基于当前发展基础的二进制版本在每月底可以允许任何人下载来尝试新的功能与测试其操作系统的质量和稳定性，以使其进展到下一个官方的Solaris版本的发布。后来该计划改变为推出一个季度的发行模式，并改名为Solaris Express开发版（SXDE）。</p>
+
+<p>在2007年，Sun公司宣布该印第安纳州项目有以下几个目标，包括提供一个开放源码的二进制分发版的OpenSolaris项目，以取代SXDE。其第一个发布版本为OpenSolaris 2008.05.</p>
+
+<p>Solaris Express社区版（SXCE）是专门为OpenSolaris的开发人员发布的。它每两周更新一次，直到它在2010年1月被中断了，并建议用户迁移到OpenSolaris发行版。虽然下载许可接受许可协议的形式显示出来，当用户安装这些图像下载文件时，它的使用仅限于个人、教育以及评估的目的。</p>
+
+<p>SXCE发布终止于build 130，而OpenSolaris发布终止于几个星期后的build 134。下一个基于build 134的OpenSolaris发布版本在2010年3月到期，即使安装包有存储库的包，但它从未完全发布。相反，甲骨文更名为Solaris 11 Express的二进制分发版本，修改了许可条款并作为2010.11在2010年11月发布为build 151a。</p>
+
+<p><strong>另见</strong></p>
+
+<ul>
+<li><p>Blastwave ——生产Sparc和x86/AMD64的Solaris 8以上的软件套件</p></li>
+<li><p>操作系统的比较</p></li>
+<li><p>Illumos</p></li>
+<li><p>OpenCSW ——软件分叉Blastwave中</p></li>
+<li><p>OpenSolaris</p></li>
+<li><p>操作系统时间表</p></li>
+<li><p>Sun Management Center</p></li>
+<li><p>Sun xVM</p></li>
+</ul>
+
+
+<p><strong>其他链接</strong></p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>Solaris官方主页</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>开放式目录项目的Solaris</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>在Solaris 10 JDS截图</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>Sun/Solaris上的新闻、引用和信息</p>
+
+<ul>
+<li></li>
+</ul>
+
+
+<p>Solaris博客</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/oraclee79a84e4b880e4ba9be5b8b8e8a784e6938de4bd9c/">Oracle的一些常规操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T11:13:11+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/22/oraclee79a84e4b880e4ba9be5b8b8e8a784e6938de4bd9c/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/22/oraclee79a84e4b880e4ba9be5b8b8e8a784e6938de4bd9c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+<li><p> 查看表空间大小
+select b.file_name 物理文件名,b.tablespace_name 表空间名,b.bytes/1024/1024 大小M,(b.bytes-sum(nvl(a.bytes,0)))/1024/1024 已使用M,substr((b.bytes-sum(nvl(a.bytes,0)))/(b.bytes)*100,1,5) 利用率 from dba_free_space a,dba_data_files b where a.file_id=b.file_id group by b.tablespace_name,b.file_name,b.bytes order by b.tablespace_name;</p></li>
+<li><p> 增加表空间大小，扩展到1024M
+alter database datafile &lsquo;/opt/oracle/oradata/orcl/one.dbf&rsquo; resize 1024m</p></li>
+<li><p> 查看EMP表的大小
+analyze table emp compute statistics;
+select num_rows * avg_row_len from user_tables where table_name = &lsquo;EMP&rsquo;;</p></li>
+<li><p> 杀掉oracle进程。
+select sid,username,serial# from v$session ;
+alter system kill session &lsquo;sid,serial#&rsquo;;</p></li>
+</ol>
+
+
+<p>2013-02-22</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/22/ibm_aixe78e8be6b0b4e4bb99/">IBM_AIX操作系统(王水仙)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T09:31:46+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/22/ibm_aixe78e8be6b0b4e4bb99/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/22/ibm_aixe78e8be6b0b4e4bb99/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>IBM AIX
+来自维基百科，免费的百科全书</p>
+
+<p>AIX（高级交互执行程序）是一套unix操作系统，是IBM开发出来用作电脑的服务器，也对 外销售此产品。最早的发行版本主要针对IBM 6150 RISC 工作站。AIX现在支持或已经支持种类繁多的硬件平台，包括IBM RS/6000 系列和后期的刀片服务器、基于PowerPC的系统、IBM i系统，370系统 大型主机，PS/2 个人电脑、苹果网络服务器。AIX是基于UNIX系统V并扩展兼容了4.3版加州大学伯克利分校软件。它是四大商业操作系统之一，不久前被核证为国际开源组织UNIX03的标准。(其他操作系统包括Mac OS X,Solaris and HP-UX）。</p>
+
+<p>AIX操作系统系列在1986年面世，到1990年发布时被当做RS/6000系列的标准操作系统，IBM仍然致力于AIX的研发。它目前支持IBM电力系统与IBM I和linux。AIX是第一个利用日志文件系统的操作系统。IBM通过类似处理器、磁盘和网络虚拟化动态硬件资源分配（包括部分处理器单元）这些功能继续强化软件，这都是些能可靠性的从主机进行移植的功能。</p>
+
+<p>历史
+AIX版本1基于UNIX系统V发布版1和2，是在1986年推出的IBM 6150 RT工作站。在开发AIX的过程中，IBM和互动系统公司（被IBM收购了）也从4.2和4.3的BSD UNIX中合并源代码。
+在其他变体中，后期发布了aix3，作为他们的基于RS/6000平台，是基于系统V发布版本3.1990年始，aix充当RS/6000系列的主要操作系统(后期曾命名为 IBM eServer pSeries，后来是IBM System p，现在是IBM Power Systems)。AIX4，引进于1994年，增加了对称多处理与引进了第一个RS/6000 多线程服务器和继续衍变整个90年代。最终在1999年发布aix4.3.3.4.1版，有了不同的形式，还是苹果网络服务器系统的标准操作系统，作为苹果电脑销售，补充macintosh线。
+在90年代后期，在monterey项目的推动下，IBM和Santa Cruz公司计划将AIX和UnixWare整合成一个独立的32位/64位的多平台UNIX，还特别腔调此平台在Intel IA-64cpu的体系结构上能运行。IA-64版本AIX 5L的测试版发布了，但是根据sco v发布的文档，截止2002年项目终止前，至少40个Monterey Unix最终版纳的授权被卖出。2003年，SCO组宣布 IBM从UNIX System v 发布版本4中合并到AIX中的源码盗版，侵权了。SCO随后回收了IBM开发和发展AIX的授权。IBM认为他们的授权是不可更改的，仍然销售和支持这个产品直至诉讼判决为止。</p>
+
+<p>基于POWER/PowerPC的系统</p>
+
+<p>在1990年，当发行第三个版本AIX（有时候被成为AIX/6000）的同时宣布生产出了第一款基于POWER的IBM RS/6000模型。RS/6000领先的地方不单单在整数的运算性能上比其他所有的机器要出色，而且在以10为系数的浮点数运算上击败了竞争对手。这竞争对手包括Unix工作站的厂商Sun，HP，SGI，还有影响较小的Intergraph公司和其他的公司。这些机器都是差不多的，但是售价却在10K到100K美元之间，提供相似的RAM，磁盘，网络和大致相同的属性界面系统。新的浮点数运算单元被捆绑到整数流水线，并可在一个周期里面完成一个乘加运算。在“普通智慧”的时代，只会关注整数性能的表现，但是奇怪的是，事实上很多运算都是要用到精密的浮点数的元算。</p>
+
+<p>AIX的第三个发行版本对于POWER的体系结构起到了促进的作用。</p>
+
+<p>AIX v3在软件方面有几个方面的创新。它是第一个引入日志记录文件系统（JFS）概念的系统，它避免每次启动的时候都要验证磁盘上的文件系统是否一直，从而缩短了启动时间。另外一个创新就是动态库，避免了应用程序当需要用到库的时候一定要静态链接。这样做可以是二进制文件变小，运行的时候使用更少的RAM，并且减少了安装所需的空间。除了提升了性能之外，他还对开发者带来福音：可执行的二进制文件可以用多个千字节代替兆字节去连接到一个C库。AIX v3同样放弃了AIX v2的内核，这是一个有争议的举动，应为它是v3不在包括PL/I的代码和显得比v2更加“纯净”。</p>
+
+<p>其他值得关注的子系统包括：
+IRIS GL ：一个3D渲染库，OpenGL的祖先。IRIS GL是1987年又IBM获得许可的，那时候还只是一件卖了一千台机器的小公司。SGI也为RS/6000提供了低端的显卡，该显卡每秒能画出20000个阴影三角形。IBM也设计了一个高端的显卡，用于后继的大型机 IBM 5080,能每秒画出990000个向量。
+PHIGS : 另外一个3D渲染的API,在CAD/CAM和CATIA的源码中比较流行。
+全面实现11版本的X窗口系统，同时把Motif推荐作为部件收集和窗口管理。
+网络文件系统：Sun的NFS，Andrew文件系统和分布式文件系统。
+NCS ：网络计算机系统，由Apollo Computer公司拥有许可（后来由HP获得）。
+DPS ： 屏幕显示系统。这是著名的为“B计划”，主要是预防X11+Motif的组合在市场上遇到失败。但是，这个高度的私有的，只有Sun，NeXT和IBM提供支持。在X11+Motif开放的系统缺少3D能力的前面，它在市场上注定是失败的。</p>
+
+<p>到2011年，AIX可以运行在IBM Power, System p, System i, System p5, System i5, eServer p5, eServer pSeries和eServer i5 服务器的产品线上。同时，IBM的BladeCenter刀片处理器也是基于Power的体系结构的。</p>
+
+<p>AIX的第七办增强型功能
+在第七版增强型的RISC的性能优化下，使得AIX操作系统拥有了独特的性能优势。POWER7提供了新的功能，支持使用多个内核和多个CPU线程，创建一个虚拟的CPU池。典型的IBM POWER7处理器拥有8核心，每个核心可支持4个线程，即最多可同时支持32个线程，或者在和POWER6使用相同的电路时，POWER6只可以虚拟出8个CPU，而POWER7则可以虚拟出32个CPU。AIX可以利用POWER7的能力去执行out-of-order命令去取代执行in-order命令。使用out-of-order的指令集，可以使可用的执行路径更高效可用。</p>
+
+<p>AIX 7包括一个内置的集群功能叫做Cluster Aware AIX。AIX可以邻近的CPU进行多路径的通信来组织多个LPAR，使得处理器之间的通讯变得更加快速。AIX POWER7 Cluster可以支持多TB级的内存地址和页面的访问，使得它可以支持全球PB级的内存空间的共享。软件开发者可以假设这里只是一个系统，没有使用信息的传递来开发一个集群。AIX的管理员可以使用这个新的功能去新建一个集群去管理AIX节点。默认情况下，AIX7.1 引脚内核和包括支持应用程序使用引脚内核的堆栈。引脚内核的内存和内核的堆栈是为了满足应用程序的实时性需求，它可以通过确保一个程序的内核内存和内核堆栈不分页来改进性能。</p>
+
+<p>AIX POWER7系统包括Active Memory扩展功能，系统管理员可以配置逻辑分区，使它消耗更少的物理内存，从而它可以增加系统的灵活性。例如，一个LPAR运行AIX系统，可能配置了80G的物理内存，但是硬件实际需要用到的仅是60G。Active Memory 是用内存压缩技术，透明地压缩内存中的数据，使更多的数据能够放入内存，从而扩大POWER7的内存容量。利用Active Memory Expansion技术可以提升系统的利用率和工作效率。AIX7会自动使用4K，64K或者根据页面的大小来自动管理内存页面。这种自我调节的功能可以在没有管理员的参与中也可以保持系统的最佳状态。</p>
+
+<p>苹果网络服务器
+苹果网络服务器是基于PowerPC的系统，它是由苹果公司设计的。虽然它在硬件在上没有标准，它拥有很多有众多的高端特性，包括包括热插拔硬盘，冗余电源，和外部监控能力。这些系统或多或少是基于Power Macintosh时可用，但在ANS被设计为使用特定的AIX（版本4.1.4或4.1.5）作为本机操作系统中的一个特殊版本的。</p>
+
+<p>IA-64 系统
+作为Monterey项目的一部分，IBM在2001年发行了一个专门给IA64结构用的测试版本的AIX5L，但是因为缺乏利益，这从来没有成为官方的产品。</p>
+
+<p>用户接口
+borune shell 是默认的时候AIX3的shell。考虑到XPG4和POSIX的顺从，在第四版本中换成了korn shell。</p>
+
+<p>图形用户界面
+公共桌面环境CDE是AIX默认的图形用户界面。作为linux应用亲和性和免费的AIX工具箱的一部分，采取了开源的KDE工作空间和GNOME桌面。</p>
+
+<p>系统管理器
+SMIT是AIX的系统管理接口工具。允许用户使用层级命令而不是命令线。它允许用户在层次结构的菜单，而不是使用命令行。调用通常是与命令SMIT实现。有经验的系统管理员使用F6功能键，生成命令行调用SMIT将完成，在smit.script命令执行日志文件。该smit.script文件自动记录命令的命令和参数的旗帜。该smit.script文件可以作为一个可执行的shell脚本来运行系统配置任务。SMIT还创建了log文件，其中包含额外的详细信息，可用于由程序员扩展SMIT系统。</p>
+
+<p>SMIT和SMITTY 涉及到同个项目，虽然SMITTY调用了基于文本的版本，如果可能的话，SMIT调用的是window系统接口。然而，当smit发现目前没有windows系统，它会用急于文本的版本替代。windows系统的检测是在检查显示变量是进行。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/21/2013-02-21-aixe7bfbbe8af91-e6b1aae8839ce4bbbb/">IBM_AIX操作系统(汪胜任)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-21T18:44:40+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/02/21/2013-02-21-aixe7bfbbe8af91-e6b1aae8839ce4bbbb/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/02/21/2013-02-21-aixe7bfbbe8af91-e6b1aae8839ce4bbbb/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>AIX（高级交互执行系统）是一系列由IBM开发和销售的几个计算机平台的专有的Unix操作系统。最初发布的IBM 6150 RISC工作站，AIX支持或支持各种各样的硬件平台，
+包括IBM RS/6000系列，后来IBM POWER和PowerPC为基础的系统，IBM的System i 的System/370大型机，PS/2个人电脑，苹果网络服务器。AIX是基于4.3BSD兼容扩展的
+UNIX系统V。这是目前由The Open Group的UNIX 03标准认证的4个商业化的操作系统之一。（其他人是Mac OS X 的Solaris和HP-UX）。</p>
+
+<p>AIX操作系统家族于1986年首次亮相，成为了标准的RS/6000系列于1990年推出的操作系统，IBM还积极开发。它是目前支持IBM的Power系统上的IBM i和Linux的一起。
+AIX操作系统是第一个利用日志文件系统，和IBM不断提高的软件的功能，如处理器，磁盘和网络虚拟化，动态硬件资源分配（包括小数处理器单元），从它的主机设计
+和可靠性工程移植。</p>
+
+<p>AIX版本1，在1986年推出的IBM 6150 RT 工作站，是基于UNIX系统V第1版和2。在开发AIX，IBM和互动系统公司（IBM签约）还包括4.2和4.3 BSD UNIX的源代码。</p>
+
+<p>在其他的变种，后来IBM AIX版本3（也称为AIX/6000），System V的第3版，IBM POWER基于RS/6000平台的基础上产生的。自1990年以来，AIX曾作为主操作系统的RS/6000系列（后更名为IBM的eServer p系列，IBM的System p，现在的IBM Power Systems）。AIX版本4，于1994年推出，RS/6000 SMP服务器第一个引进的对称多处理，通过20世纪90年代继续发展，最终在1999年与AIX 4.3.3。4.1版，在略作修改的形式，也是苹果网络服务器系统的销售，以配合苹果电脑的Macintosh上线的标准操作系统。</p>
+
+<p>在20世纪90年代后期，在项目蒙特雷，IBM和Santa Cruz Operation公司计划整合成一个单一的32位 / 64位的多平台UNIX AIX和UnixWare的，特别强调英特尔IA-64（安腾）架构的CPU 上运行。IA-64系统是一个beta测试版本的AIX 5L公布，但根据公布的文件在SCO诉IBM的诉讼，不到40个许可证卖的成品蒙特利UNIX的在2002年之前，该项目被终止。在2003年，SCO集团声称（其他违法行为之间），IBM挪用纳入AIX，SCO UNIX系统V第4版许可的源代码，随后撤回了IBM的许可，用以开发和分发AIX。IBM认为，他们的许可证是不可撤销的，继续销售和支持产品，直到被宣判的诉讼。</p>
+
+<p>AIX是一个组成部分，2003年SCO诉IBM的诉讼，其中IBM，SCO集团提起诉讼，指控IBM 对Linux的代码库贡献了SCO的知识产权。SCO集团，谁认为他们是合法的版权拥有人，涵盖了Unix的操作系统，试图撤销IBM的出售或分发AIX操作系统的许可证。在2010年3月，一个陪审团裁定，发现的Novell，而不是SCO集团，旗下拥有的权利为Unix。[ 5 ]</p>
+
+<p>2007年5月宣布AIX 6跑了从2007年6月至2007年11月9日的一般可用性（GA）的AIX 6.1的公开测试版。在AIX 6.1的主要新功能包括：基于角色的访问控制，工作负载分区（这使应用程序迁移），增强的安全性（添加NFS v3和v4的AES加密类型）和实时分区迁移功能的POWER6硬件。</p>
+
+<p>2010年4月，IBM发布公告即将到来的7.1版本。计划支持继续POWER4代或更高版本的硬件。一些新的功能，包括更好的可扩展性，增强了集群和管理能力也被提及。作为WPAR能够运行老版本的AIX会继续使用5.2的硬件不支持的机会。IBM拟7.1提供一个开放的Beta测试计划。[ 6 ]</p>
+
+<p>原来的AIX（有时也被称为AIX / RT）开发的IBM 6150 RT工作站由IBM的结合与互动系统公司，谁曾移植的UNIX系统III的IBM PC IBM PC / IX。安装介质包括8个1.2M的软盘。RT为基础的的ROMP 微处理器，第一个商用RISC芯片。这是基于一个设计，率先在IBM研究中心（IBM 801）。
+RT设计新颖的方面之一是使用一个微内核，虚拟资源管理器（VRM）。所有控制由一个微内核的键盘，鼠标，显示器，硬盘驱动器和网络。人们可以从一个操作系统下使用的Alt-Tab组合键“热键”。每个OS反过来会得到藏的键盘，鼠标和显示器。除了??AIX V2，PICK OS还利用微内核。
+AIX V2内核的编写PL / I编程语言，这证明了在迁移到AIX V3的麻烦。[ 需要的引证 ] AIX V2包含完整的TCP / IP网络，以及SNA和两个网络文件系统NFS授权的Sun微系统，分布式服务（DS）。DS有正在建造的SNA上的区别，从而完全兼容DS在IBM中端AS/400和大型机系统。对于图形用户界面，AIX V2是从MIT 的X10R3，后来在的X10R4和X11版本的X Window系统，连同雅典娜widget集。为的Fortran和C编译器。其中一个比较流行的桌面应用程序是在PageMaker的 桌面出版软件。</p>
+
+<p>[ 编辑 ] IBM PS / 2系列
+AIX PS / 2上运行虚拟PC
+根据合同，IBM AIX PS / 2（也称为AIX/386）轨迹Computing公司开发的。AIX PS / 2，首次发布于1989年，英特尔386和兼容的处理器上运行的IBM PS / 2 个人电脑。</p>
+
+<p>[ 编辑 ] IBM大型机
+在1988年，IBM宣布AIX/370，还开发了轨迹计算。AIX/370是IBM的第三次尝试提供类似Unix的功能，他们的大型机线，具体的System/370（以前的版本是基于一个TSS/370的 Unix系统共同开发与AT＆T c.1980，[ 7 ]和VM / IX一个VM/370系统共同开发的互动系统公司 c.1984）。AIX/370发布于1990年与功能等价的System V Release 2和4.3BSD以及IBM的增强。通过引入的ESA/390架构，AIX/370 AIX / ESA于1991年，是基于OSF / 1，被替换的System/390平台上也跑了。这种发展的努力，部分允许IBM与阿姆达尔 UTS竞争。[ 需要的引证 ]不同AIX/370，AIX / ESA本身作为主机操作系统，并作为下一个客人VM运行。AIX / ESA，虽然在技术上是先进的，几乎没有商业上的成功，部分原因是因为UNIX功能被添加到现有的主机操作系统作为一个选项，MVS，在1999年成为MVS / ESA OpenEdition的。[ 需要的引证 ]</p>
+
+<p>[ 编辑 ] POWER / PowerPC为基础的系统
+此次发布的AIX版本3（有时称为AIX/6000）正好与1990年公布的第一个的POWER1基于IBM RS/6000型号。RS/6000是独一无二的，它不是只在整数运算性能优于所有其他机器，但也击败了竞争的因素，10个浮点性能。[ 需要的引证 ]的竞争，从供应商的Sun的Unix工作站，HP和SGI，以及在较小的程度，来自鹰图及其他。这些机器都大致相若 ??，零售价格范围在1万美元到10万美元，并提供相似数量的内存，磁盘和网络，大致相当于图形子系统。浮点单元的新颖之处是，它被捆绑到整数流水线，并进行了单次乘加指令周期（更准确地说是一个3循环的深流水线，3个周期）。的共同智慧的时代，只有整数运算性能重要的，奇怪很少有人的事实，许多客户正在运行的浮点密集型数字的科学计算工作负载。
+发布的AIX版本3还利用了在POWER架构的发展。
+AIX V3的几种方式在软件方面的创新。这是第一个操作系统的思想引入一个日志文件系统，JFS，允许快速启动时间，避免了磁盘上的文件系统（看到的fsck）在每次重新启动，以确保一致性。另一项技术革新，从而避免了静态链接库的应用程序需要的共享库。由此产生的更小的二进制文件使用较少的RAM的硬件上运行，并使用更少的磁盘空间来安装。除了 ??提高性能，这是一个福音，开发人员可以在几十千字节兆字节的静态链接到C库的可执行文件，而不是一个可执行的二进制文件。AIX V3还取消了微内核的AIX V2，是一个有争议的举动，导致在v3不包含PL / I代码和更“纯”比V2。
+其他著名的子系统包括：
+IRIS GL，3D渲染库，OpenGL的的祖先。IRIS GL是由IBM授权的SGI于1987年，仍然是一个小公司已售出的只有千台机器。SGI还提供了低端显卡的RS/6000，能够吸引20000 高洛德阴影的三角形每秒。高端显卡的设计是由IBM，后续的基于大型机的IBM 5080，能够使每秒990,000载体。
+PHIGS，另一个3D渲染API，在汽车CAD / CAM圈的，在CATIA的核心。
+全面实施，连同母题的建议的窗口小部件收集和窗口管理器的X Window系统版本11 。
+网络文件系统NFS从太阳 AFS，Andrew文件系统，以及DFS，分布式文件系统。
+NCS，网络计算系统，授权的阿波罗电脑（后来被HP）。
+DPS屏幕上的显示系统。这是作为一个“B计划”的情况下显着X11 +母题的组合，在市场上失败。然而，这是高度专用的，仅支持由Sun，NeXT公司，以及IBM。这巩固了其在市场上的开放式系统的挑战X11 + Motif和其3D能力的缺乏面对失败。
+截至2011年，AIX上运行的System i，System p系列，IBM 电源的System p5，System i5的的eServer P5，eServer pSeries服务器和eServer i5服务器产品线，以及IBM 的BladeCenter刀片服务器基于Power Architecture技术。[ 8 ]</p>
+
+<p>[ 编辑 ]的POWER7 AIX特点
+增强型RISC（POWER）第7版的性能优化使AIX操作系统的一个独特的性能优势。POWER7提供了新的功能，使用多个内核和多个CPU线程，创建一个池的虚拟CPU。典型的IBM POWER7处理器的8个核心，每个核心四线程，总容量为32个并发线程，每个处理器电路或32个虚拟CPU，同时还可以使用相同的电力消耗，POWER6处理器的电路，它只能支持8个虚拟CPU。，AIX可以利用POWER7的顺序，而不是按顺序执行指令的能力，利用POWER7的积极的的订单指令集驱动高效利用可用的执行路径。
+AIX 7包含一个新的内置称为群集感知型AIX集群功能。AIX是能够组织多个LPAR通过多路径的通信信道到邻近的CPU，从而实现非常高速的处理器之间的通信。这使得多TB的内存地址范围和页表的访问，以支持全球PB级的共享的内存空间，使AIX POWER7集群的软件开发人员可以编写一个集群，如果它是一个单一的系统，不使用消息传递（即信号控制间进程通信）。AIX系统管理员可以使用此新功能的AIX节点的集群池。默认情况下，，AIX V7.1针内核内存和支持，允许应用程序到脚的内核堆栈。钢钉内核的内存和内核堆栈的实时性要求的应用，可以提供性能改进，确保不分页的内核内存和内核堆栈的应用程序。
+AIX POWER7系统包括Active Memory扩展功能，从而增加了系统的灵活性，系统管理员可以配置逻辑分区（LPAR）使用更少的物理内存。例如，一个LPAR运行AIX OS应用程序配置80 GB的物理内存，但硬件却仅消耗60 GB的物理内存。Active Memory扩展使用的内存压缩技术，可以透明地压缩在内存中的数据，从而使更多的数据放入内存，从而扩大POWER7系统的内存容量。利用Active Memory扩展可以提高系统的利用率，增加系统的吞吐量。AIX 7会自动管理内存的大小自动使用4K，64K或结合这些页面大小的页面。这种自我调节功能最佳的系统性能没有管理的努力..</p>
+
+<p>[ 编辑 ] 苹果网络服务器
+苹果网络服务器系统是由苹果电脑公司设计的基于PowerPC的系统有众多高端功能，苹果的硬件不标准，包括热插拔硬盘，冗余电源和外部监控功能。这些系统都或多或少的基础上的Power Macintosh硬件时可用，但被设计为使用本机操作系统中的一个特殊版本的特定的ANS AIX（版本4.1.4或4.1.5）。
+AIX是唯一兼容的网络服务器，并没有移植到标准的Power Macintosh硬件。为了不被混淆的是A / UX，苹果公司的68K基于Macintosh的早期版本的Unix 。</p>
+
+<p>[ 编辑 ] IA-64系统
+项目蒙特利的一部分，IBM发布了一个beta测试版本的AIX 5L的IA-64（安腾）架构，在2001年，但从来没有成为正式的产品由于缺乏兴趣。[ 4 ]</p>
+
+<p>[ 编辑 ] 版本</p>
+
+<p>AIX 5.3上的Power PC的默认登录旗帜
+[ 编辑 ] POWER / PowerPC的版本
+AIX V7.1，9月10日，2010 [ 9 ]
+支持256个内核/ 1024个线程在一个单一的虚拟机
+能够运行AIX V 5.2 V 5.3内的工作负载分区
+一个XML配置文件为基础的系统配置管理实用程序
+支持出口的光纤通道适配器的WPAR
+VIOS磁盘支持在WPAR
+群集感知型AIX
+AIX事件基础设施
+基于角色的访问控制（RBAC）和域支持多租户环境
+AIX V6.1，2007年11月9日[ 10 ]
+工作负载分区（WPAR中）操作系统级的虚拟化
+动态应用程序迁移
+实时分区迁移
+安全
+基于角色的访问控制RBAC
+AIX安全专家 -系统和网络的安全性强化工具
+JFS2文件系统加密
+受信任的AIX
+可信执行
+综合电子服务代理（TM）自动错误报告
+同时内核维护
+内核开发POWER6存储键
+ProbeVue ??的动态跟踪
+为AIX Systems Director控制台
+集成文件系统快照
+需要POWER4或更新版本的CPU
+AIX 5L 5.3 8月13日，2004年，[ 11 ] 2012年4月支持30结束
+NFS版本4
+高级会计
+虚拟SCSI
+虚拟以太网
+开发的同时多线程（SMT）
+微分区启用
+POWER5开发
+JFS2配额
+来缩小JFS2文件系统的能力
+内核调度器已得到增强，动态地增加或减少使用的虚拟处理器。
+AIX 5L 5.2 10月18日，2002年，[ 11 ] 2009年4月30日的支持[ 12 ]
+与PowerPC 970芯片，能够运行在IBM 的BladeCenter JS20 。
+POWER5硬件需要的最低水平
+MPIO 光纤通道磁盘
+iSCSI Initiator软件的
+参与动态LPAR
+并行I / O（CIO）功能，维护级别01 JFS2发布于2003年5月[ 13 ]
+AIX 5L 5.1，2001年5月4日（支持已停产的2006年4月1日）[ 14 ]
+能够运行在IA-64架构的处理器，虽然这从未超出测试[ 15 ]
+POWER4硬件和微通道架构上的最后一个版本的工作需要的最低水平
+64位 内核，默认情况下，安装但尚未激活
+JFS2
+能够运行在逻辑分区上的POWER4
+L代表Linux的亲和力
+可信计算基（TCB）
+支持镜像条带化
+AIX 4.3.3，1999年9月17日
+在线备份功能
+工作负载管理器（WLM）
+介绍TOPAS实用的
+AIX 4.3.2，1998年10月23日
+AIX 4.3.1，1998年4月24日
+AIX 4.3，1997年10月31日
+能够运行在64位架构的CPU
+IPv6的
+基于Web的系统管理器
+AIX 4.2.1，1997年4月25日
+NFS版本3
+AIX 4.2，1996年5月17日
+AIX 4.1.5 1996年11月8日
+AIX 4.1.4，1995年10月20日
+AIX 4.1.3，1995年7月7日
+CDE 1.0成为默认的GUI环境，取代Motif窗口管理器。
+AIX 4.1.1 1994年10月28日
+AIX 4.1 1994年8月12日
+1994年AIX 4.0，
+运行在RS/6000系统的PowerPC处理器和PCI总线。
+1992年AIX 3.2
+AIX 3.1，1990年2月
+日志文件系统（JFS）文件系统的类型
+1989年AIX 3.0
+LVM（逻辑卷管理器）纳入OSF / 1，并在1995年，HP-UX，[ 16 ]与Linux LVM实施的是类似的HP-UX LVM实现。[ 17 ]
+“SMIT被推出。
+[ 编辑 ] IBM PS / 2版本
+AIX PS / 2 V1.1，1989年
+最后一个版本为1.3，1992年。
+[ 编辑 ] IBM 6150 RT版本
+AIX V2.0
+最后一个版本是2.2.1。
+AIX 1.0版，1986年</p>
+
+<p>[ 编辑 ] 用户界面</p>
+
+<p>默认的shell是Bourne shell的到AIX版本3，但在第4版XPG4和POSIX标准，改变Korn shell程序（ksh88） 。[ 18 ]
+[ 编辑 ] 图形
+公用桌面环境（CDE）是AIX的默认的图形用户界面。开放源代码KDE等离子工作区和GNOME桌面的Linux的亲和力和免费的Linux应用程序（ATLA）的AIX工具箱的一部分，也可提供。
+[ 编辑 ] 系统管理控制台
+SMIT是AIX系统管理界面工具。它允许用户导航的菜单层次结构的命令，而不是使用命令行。调用命令SMIT通常实现。有经验的系统管理员使用的F6功能键，生成SMIT的命令行调用来完成吨SMIT还生成一个日志smit.script文件中执行的命令。smit.script文件自动记录命令的命令行标志和参数。smit.script文件可以作为一个可执行的shell脚本，重新运行系统配置任务。SMIT创建smit.log文件，其中包含附加的详细信息，可用于由程序员扩展SMIT系统。
+SMIT和SMITTY是指相同的程序，但SMITTY调用基于文本的版本，而，SMIT将调用一个基于X Window系统的接口，如果可能的话，但是，如果SMIT确定X Window系统的功能是不存在的，它会显示文本为基础的版本，而不是失败。通常测定的X Window系统的功能检查DISPLAY变量的存在。</p>
+
+<p>[ 编辑 ] 另见</p>
+
+<p>AOS，IBM的教育市场的4.3BSD端口
+Unix系统下的列表
+nmon的
+操作系统的时间表
+[ 编辑 ]</p>
+
+<p>Unix的发音“约德表
+“开放注册认证的产品”品牌。公开组。2011-02-09 。检索2011-02-09。
+“UNIX年满40岁”。IBM公司。2011-02-09 。检索2011-02-09。
+琼斯，帕梅拉（2005年8月25日）。“2002年IBM内部电子邮件项目蒙特雷- ”没有人希望它“。Groklaw。检索2007-05-20。
+“Novell公司再次获胜-评审规则版权没有去上海合作组织”。2010-03-30 。检索2010-03-30。
+“IBM AIX 7预览”。IBM公司。2010-04-16 。检索2010-04-16。
+费尔顿等。（1984年10月）。“一个Unix系统实施的System/370”。AT＆T贝尔实验室技术杂志 63（8）。
+“AIX 7.1版” 。检索2011-05-03。
+“IBM AP的公开信”。IBM.com 。检索2010-12-27。
+“IBM AIX 6.1版操作系统：概述”。IBM.com 。检索2010-12-27。
+一个 B? “系统的p产品生命周期的日期”。IBM软件支持。检索2010-12-27。
+“的System p产品生命周期的日期”。IBM软件支持。检索2010-12-27。
+提高数据库性能AIX并发I / O -白皮书
+IBM软件支持生命周期（XML）</p>
+
+<p>UNIGROUP会议通知
+惠普提高了性能，可靠性和易于使用的旗舰PA-RISC操作系统
+<a href="http://www.usenix.org/events/usenix01/freenix01/full_papers/teigland/teigland_html/index.html">http://www.usenix.org/events/usenix01/freenix01/full_papers/teigland/teigland_html/index.html</a>
+凯西炮;斯科特·特伦特卡罗琳·琼斯（1999年）。简单的AIX 4.3。Prentice Hall出版社。页。21，ISBN  978-0-13-021344-0。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/31/e6b58be8af95/">测试部内部博客开通</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-31T18:40:29+08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/01/31/e6b58be8af95/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://getyourbizsavvy.com/wp-content/uploads/2011/10/2560666767_82edc1b3fb.jpg" alt="" /></p>
+
+<p><strong>        在新的一年里希望各位测试部的兄弟姐妹们，能在这个内部博客上书写自己的生活或工作上的所得，让写作成为一种习惯，更成为一种推动进步的动力。</strong></p>
+
+<p><strong>        最后以乔布斯的“Stay Hungry，Stay Foolish.”与各位共勉。</strong></p>
+
+<p><strong>                                                                                                                     樊立明</strong></p>
+
+<p><strong>                                                                                                                     2013.01.31</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-5-2-3-for-rhel5_x86/">MySQL-5.2.3 for RHEL5_x86</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/mysql-4-2-1-for-rhel3/">MySQL-4.1.22 for RHEL3_x86</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
