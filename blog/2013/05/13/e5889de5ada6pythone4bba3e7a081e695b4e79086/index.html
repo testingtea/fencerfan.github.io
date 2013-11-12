@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>初学python代码整理 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="目录：
+1、 登录迪备并循环增加存储服务器记录(python+splinter+iframe)
+2、向oracle定时插入数据
+3、 为多个用户顺序创建备份作业
+4、批量注册用户
+5、迪备oracle(备份资源类型备份方法设备*作业信息)组合备份 1、登录迪备并循环增加存储服务器记录(python &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">初学python代码整理</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-13T12:31:27+08:00" pubdate data-updated="true">May 13<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>目录：
+1、 登录迪备并循环增加存储服务器记录(python+splinter+iframe)
+2、向oracle定时插入数据
+3、 为多个用户顺序创建备份作业
+4、批量注册用户
+5、迪备oracle(备份资源类型<em>备份方法</em>设备*作业信息)组合备份</p>
+
+<p>1、登录迪备并循环增加存储服务器记录(python+splinter+iframe)</p>
+
+<pre><code>import time
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.183/dbackup')
+time.sleep(3)
+if browser.find_by_id('lhgfrm_lhgdgId'):
+    with browser.get_iframe('lhgfrm_lhgdgId') as frame:
+        frame.find_by_id('trialRadio').click()
+        frame.find_by_id('continue').click()
+browser.fill('username','admin')
+browser.fill('password','admin')
+browser.find_by_name('Submit').click()
+time.sleep(8)
+na = browser.find_by_id('Navigate5')
+na.click()
+na.find_by_tag('a')[2].click()
+time.sleep(3)
+browser.fill('strFTPName','python')
+browser.find_by_id('hostInput').find_by_tag('input').fill('192.168.88.183')
+browser.fill('textfield','python')
+browser.find_by_id('Submit').click()
+time.sleep(3)
+alter = browser.get_alert()##这两句的意思是处理弹出框
+alter.accept()
+time.sleep(3)
+browser.quit()
+</code></pre>
+
+<p>2、向oracle定时插入数据</p>
+
+<pre><code>import cx_Oracle
+import random
+import itertools
+import string
+import time
+conn = cx_Oracle.connect("irene","password","127.0.0.1:1521/scutech")
+cursor = conn.cursor()
+sql1 = "create table customer(id number(5),name varchar2(30),addr varchar2(50),tel number(20),comp varchar2(50),year number(2))"
+i=0
+str1 = 'abcdefghijklmnopqrstuvwxyz1234567890'
+var = 'abcdefghijklmnopqrstuvwxyz'
+nn = [1,2,3,4,5,6,7,8,9,0]
+while i&lt;3:
+    n1 = random.randint(0,15)
+    n2 = random.randint(16,25)
+    name = "".join(itertools.chain(*random.sample(str1,n1)))
+    addr = "".join(itertools.chain(*random.sample(str1,n2)))
+    comp = "".join(itertools.chain(*random.sample(var,n2)))
+    #**********************customer**************************
+    param_c={'id':i,'name':name,'addr':addr,'tel':random.randint(999999999,999999999999),'comp':comp,'year':random.randint(0,50)}
+    ww = 'insert into customer values($id,\'$name\',\'$addr\',$tel,\'$comp\',$year)'
+    pp = string.Template(ww)
+    sql2 = pp.substitute(param_c)
+    cursor.execute(sql2)
+    print i
+    i += 1
+    time.sleep(30)
+conn.commit()
+cursor.close()
+conn.close()
+</code></pre>
+
+<p>3、为多个用户顺序创建备份作业</p>
+
+<pre><code>#-*-coding=utf-8
+import time
+from splinter import Browser
+file1 = open('/home/irene/Documents/python/userpasswd')#打开userpasswd文件
+i=0
+while i &lt; 50:
+    browser = Browser()
+    browser.visit('192.168.88.183/dbackup')#访问页面
+    m = file1.readline()#逐行读取文件
+    uname = m[10:len(m)-1]#截取字符串
+    print uname
+    browser.fill('username',uname)#向页面输入文字
+    m = file1.readline()
+    passwd = m[8:len(m)-1]
+    print passwd
+    browser.fill('password',passwd)
+    browser.find_by_name('Submit').click()#单击按钮
+    i +=1
+    assert browser.is_element_present_by_id('treeNodeId1')
+    browser.find_link_by_href('javascript:void(0)')[1].click()
+    browser.find_link_by_text('进入').click()
+    browser.find_link_by_href('BackupWizardOracle.php?type=1').click()
+    browser.find_by_tag('button')[0].click()#备份资源类型
+    browser.find_by_tag('button')[3].click()#备份方法
+    browser.find_by_tag('input')[24].click()#选择存储服务
+    browser.find_by_tag('button')[6].click()#设备
+    browser.find_by_tag('input')[29].click()#设置作业执行时间
+    ti = browser.find_by_id('hour')
+    ti.find_by_xpath("//option[@value='16']").click()
+    browser.find_by_tag('button')[9].click()#作业信息
+    alert = browser.get_alert()#处理弹出框
+    alert.accept()
+    browser.find_by_tag('button')[12].click()#提交作业
+    browser.quit()
+file1.close()
+</code></pre>
+
+<p>4、批量注册用户</p>
+
+<pre><code>import time
+import random
+import itertools
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.183/dbackup')
+time.sleep(3)
+browser.fill('username','admin')
+browser.fill('password','admin')
+browser.find_by_name('Submit').click()
+time.sleep(3)
+str1 = 'abcdefghijklmnopqrstuvwxwy0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+fobj = open('/home/irene/Documents/python/userpasswd','w')
+i=0
+while i&lt;200:
+    na = browser.find_by_id('Navigate1')
+    na.click()
+    na.find_by_tag('a')[2].click()
+    time.sleep(3)
+    nu = random.randint(5,16)
+    np = random.randint(10,29)
+    name = "".join(itertools.chain(*random.sample(str1,nu)))
+    passwd = "".join(itertools.chain(*random.sample(str1,np)))+str(i)
+    browser.fill('username',name)
+    browser.fill('password',passwd)
+    browser.fill('confirmpassword',passwd)
+    browser.fill('email','3r543@se.com')
+    browser.find_by_id('telephone').fill(passwd)
+    browser.find_by_id('RegisterBut').click()
+    time.sleep(3)
+    alert = browser.get_alert()
+    alert.accept()
+    i +=1
+    print i
+    fobj.write('username: '+name+'\n')
+    fobj.write('passwd: '+passwd+'\n')
+    time.sleep(30)
+fobj.close()
+browser.quit()
+</code></pre>
+
+<p>5、迪备oracle(备份资源类型<em>备份方法</em>设备<em>作业信息)组合备份
+共有12</em>3+4=40种情况。没考虑第一次备份、非归档备份、关联存储服务器、计划作业、备份策略、出错后弹出框的处理、优先级、是否发送错误邮件、产出结果。只好根据作业名称来查看备份情况。每跑一次需要20分钟左右！</p>
+
+<pre><code>#-*-coding=utf-8
+import time
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.185/dbackup')#访问页面
+browser.fill('username','dingjia')#向页面输入文字
+browser.fill('password','dingjia123')
+browser.find_by_name('Submit').click()#单击按钮
+assert browser.is_element_present_by_id('treeNodeId1')
+browser.find_link_by_href('javascript:void(0)')[1].click()
+browser.find_link_by_text('进入').click()
+
+#dlog是否删除归档日志
+def fun(type,method,equipment,jobname,dlog):
+    browser.find_link_by_href('BackupWizardOracle.php?type=1').click()
+    time.sleep(3)
+    #备份资源类型
+    print type
+    browser.find_by_id(type).click()
+    time.sleep(4)
+    #是否备份表空间
+    if(type=='tablespaceRadio'):
+        browser.find_by_id('tablespaceChecbox').click()
+        time.sleep(2)
+    #是否备份数据文件
+    if(type=='datafileRadio'):
+        browser.find_by_id('datafileChecbox').click()
+        time.sleep(2)
+    #是否删除归档日志
+    if(dlog=='n'):
+        browser.find_by_id('archivedlogCheckbox').click()
+        time.sleep(2)
+    browser.find_by_tag('button')[0].click()#下一步
+    #备份方法
+    browser.find_by_id(method).click()
+    browser.find_by_tag('button')[3].click()#下一步
+    time.sleep(5)
+    #设备
+    browser.find_by_id(equipment).click()
+    browser.find_by_tag('button')[6].click()#下一步
+    time.sleep(2)
+    #作业信息
+    browser.find_by_id('jobName').fill(jobname)
+    browser.find_by_tag('button')[9].click()#下一步
+    time.sleep(2)
+    #作业摘要
+    browser.find_by_tag('button')[12].click()#提交作业
+    time.sleep(5)
+
+if __name__ == "__main__":
+    #---------------------数据库---------------------
+    print '数据库(删除归档)--完全备份--本地'
+    fun('databaseRadio','fullRadio','diskRadio','DFD0','')
+    print '数据库(删除归档)--差异增量备份--本地'
+    fun('databaseRadio','differenceRadio','diskRadio','DDD1','')
+    print '数据库(删除归档)--累积增量增量备份--本地'
+    fun('databaseRadio','accumulationRadio','diskRadio','DAD1','')
+    print '数据库(删除归档)--完全备份--存储服务器'
+    fun('databaseRadio','fullRadio','ftpRadio','DFF1','')
+    print '数据库(删除归档)--差异增量备份--存储服务器'
+    fun('databaseRadio','differenceRadio','ftpRadio','DDF1','')
+    print '数据库(删除归档)--累积增量增量备份--存储服务器'
+    fun('databaseRadio','accumulationRadio','ftpRadio','DAF1','')
+    print '数据库(不删除归档)--完全备份--本地'
+    fun('databaseRadio','fullRadio','diskRadio','DFDn','n')
+    print '数据库(不删除归档)--差异增量备份--本地'
+    fun('databaseRadio','differenceRadio','diskRadio','DDDn','n')
+    print '数据库(不删除归档)--累积增量增量备份--本地'
+    fun('databaseRadio','accumulationRadio','diskRadio','DADn','n')
+    print '数据库(不删除归档)--完全备份--存储服务器'
+    fun('databaseRadio','fullRadio','ftpRadio','DFFn','n')
+    print '数据库(不删除归档)--差异增量备份--存储服务器'
+    fun('databaseRadio','differenceRadio','ftpRadio','DDFn','n')
+    print '数据库(不删除归档)--累积增量增量备份--存储服务器'
+    fun('databaseRadio','accumulationRadio','ftpRadio','DAFn','n')
+
+    #---------------------表空间-----------------------
+    print '表空间(删除归档)--完全备份--本地'
+    fun('tablespaceRadio','fullRadio','diskRadio','TFD1','')
+    print '表空间(删除归档)--差异增量备份--本地'
+    fun('tablespaceRadio','differenceRadio','diskRadio','TDD1','')
+    print '表空间(删除归档)--累积增量增量备份--本地'
+    fun('tablespaceRadio','accumulationRadio','diskRadio','TAD1','')
+    print '表空间(删除归档)--完全备份--存储服务器'
+    fun('tablespaceRadio','fullRadio','ftpRadio','TFF1','')
+    print '表空间(删除归档)--差异增量备份--存储服务器'
+    fun('tablespaceRadio','differenceRadio','ftpRadio','TDF1','')
+    print '表空间(删除归档)--累积增量增量备份--存储服务器'
+    fun('tablespaceRadio','accumulationRadio','ftpRadio','TAF1','')
+    print '表空间(不删除归档)--完全备份--本地'
+    fun('tablespaceRadio','fullRadio','diskRadio','TFDn','n')
+    print '表空间(不删除归档)--差异增量备份--本地'
+    fun('tablespaceRadio','differenceRadio','diskRadio','TDDn','n')
+    print '表空间(不删除归档)--累积增量增量备份--本地'
+    fun('tablespaceRadio','accumulationRadio','diskRadio','TDAn','n')
+    print '表空间(不删除归档)--完全备份--存储服务器'
+    fun('tablespaceRadio','fullRadio','ftpRadio','TFFn','n')
+    print '表空间(不删除归档)--差异增量备份--存储服务器'
+    fun('tablespaceRadio','differenceRadio','ftpRadio','TDFn','n')
+    print '表空间(不删除归档)--累积增量增量备份--存储服务器'
+    fun('tablespaceRadio','accumulationRadio','ftpRadio','TAFn','n')
+
+    #---------------------数据文件---------------------
+    print '数据文件(删除归档)--完全备份--本地'
+    fun('datafileRadio','fullRadio','diskRadio','DFFD1','')
+    print '数据文件(删除归档)--差异增量备份--本地'
+    fun('datafileRadio','differenceRadio','diskRadio','DFDD1','')
+    print '数据文件(删除归档)--累积增量增量备份--本地'
+    fun('datafileRadio','accumulationRadio','diskRadio','DFAD1','')
+    print '数据文件(删除归档)--完全备份--存储服务器'
+    fun('datafileRadio','fullRadio','ftpRadio','DFFF1','')
+    print '数据文件(删除归档)--差异增量备份--存储服务器'
+    fun('datafileRadio','differenceRadio','ftpRadio','DFDF1','')
+    print '数据文件(删除归档)--累积增量增量备份--存储服务器'
+    fun('datafileRadio','accumulationRadio','ftpRadio','DFAF1','')
+    print '数据文件(不删除归档)--完全备份--本地'
+    fun('datafileRadio','fullRadio','diskRadio','DFFDn','n')
+    print '数据文件(不删除归档)--差异增量备份--本地'
+    fun('datafileRadio','differenceRadio','diskRadio','DFDDn','n')
+    print '数据文件(不删除归档)--累积增量增量备份--本地'
+    fun('datafileRadio','accumulationRadio','diskRadio','DFADn','n')
+    print '数据文件(不删除归档)--完全备份--存储服务器'
+    fun('datafileRadio','fullRadio','ftpRadio','DFFFn','n')
+    print '数据文件(不删除归档)--差异增量备份--存储服务器'
+    fun('datafileRadio','differenceRadio','ftpRadio','DFDFn','n')
+    print '数据文件(不删除归档)--累积增量增量备份--存储服务器'
+    fun('datafileRadio','accumulationRadio','ftpRadio','DFAFn','n')
+
+    #---------------------归档日志---------------------
+    print '归档日志(删除归档)--差异增量备份--本地'
+    fun('archivedlogRadio','differenceRadio','diskRadio','ADD1','')
+    print '归档日志(删除归档)--差异增量备份--存储服务器'
+    fun('archivedlogRadio','differenceRadio','ftpRadio','ADF1','')
+    print '归档日志(不删除归档)--差异增量备份--本地'
+    fun('archivedlogRadio','differenceRadio','diskRadio','ADDn','n')
+    print '归档日志(不删除归档)--差异增量备份--存储服务器'
+    fun('archivedlogRadio','differenceRadio','ftpRadio','ADFn','n')
+browser.quit()
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">wangsx</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-13T12:31:27+08:00" pubdate data-updated="true">May 13<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/zi-dong-hua-ce-shi/'>自动化测试</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/" title="Previous Post: oracle10g DG 的搭建">&laquo; oracle10g DG 的搭建</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93/" title="Next Post: 使用putty自带的pscp.exe实现windows和linux间的文件传输">使用putty自带的pscp.exe实现windows和linux间的文件传输 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

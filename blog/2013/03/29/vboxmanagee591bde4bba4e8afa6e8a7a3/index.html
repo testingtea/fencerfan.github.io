@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VBoxManage命令详解 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="VBoxManage [-v|-version] 显示virtualbox的版本号
+VBoxManage -nologo 隐藏logo
+VBoxManage -convertSettings 允许自动转换设置文件
+VBoxManage -convertSettingsBackup &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">VBoxManage命令详解</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T16:04:49+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>VBoxManage [-v|-version] 显示virtualbox的版本号
+VBoxManage -nologo 隐藏logo
+VBoxManage -convertSettings 允许自动转换设置文件
+VBoxManage -convertSettingsBackup 允许自动转换设置文件，并在转换前作备份
+VBoxManage -convertSettingsIgnore 允许自动转换设置文件，但是不保存结果</p>
+
+<p>VBoxManage list vms|runningvms 显示列表虚拟机|正在运行的虚拟机
+|ostypes|hostdvds virtualbox支持的系统类型|宿主机的光盘驱动器
+|hostfloppies 宿主机的软盘驱动器
+|hostifs|hostinfo 宿主机的网络接口|宿主机的信息
+|hdds|dvds 已注册的虚拟硬盘|已注册的虚拟光盘
+|floppies|usbhost 已注册的虚拟软盘|宿主机的USB设备
+|usbfilters USB筛选器
+|systemproperties 虚拟机的基本信息</p>
+
+<p>VBoxManage showvminfo |显示指定虚拟机的信息
+[-details] 显示详细信息
+[-statistics] 显示统计信息
+[-machinereadable] 以清晰的格式显示虚拟机信息</p>
+
+<p>VBoxManage registervm将指定文件所在的虚拟机添加到列表</p>
+
+<p>VBoxManage unregistervm |从虚拟机列表清除指定的虚拟机
+[-delete] 从虚拟机列表删除指定的虚拟机</p>
+
+<p>VBoxManage createvm -name 创建指定名称的虚拟机
+[-register] 将创建的虚拟机添加到列表
+[-basefolder 指定虚拟机的基础目录
+[-settingsfile ] 指定虚拟机配置文件的基础目录
+[-uuid] 创建指定uuid的虚拟机</p>
+
+<p>VBoxManage modifyvm 编辑指定的虚拟机的配置
+[-name ] 修改虚拟机的名称
+[-ostype ]修改虚拟机的操作系统类型
+[-memory ] 修改虚拟机的内存大小
+[-vram ] 修改虚拟机的显存大小
+[-acpi on|off] 启动或禁止acpi电源管理接口
+[-ioapic on|off] 启动或禁止I/O APIC电源管理接口
+[-pae on|off] 启动或禁止CPU的PAE支持，PAE是
+Physical Address Extension : 物理地址扩展
+[-hwvirtex on|off|default]启动或禁止CPU的硬件虚拟化支持
+[-nestedpaging on|off] 开启或关闭CPU的嵌套页面列表支持
+[-monitorcount ] 设置显示器数目，VRDP多用户模式时 [-bioslogofadein on|off] 开启或关闭bioslogo渐显效果
+[-bioslogofadeout on|off] 开启或关闭bioslogo渐隐效果
+[-bioslogodisplaytime ]设置bioslogo显示时间（以毫秒为单位)
+[-bioslogoimagepath ]设置bioslogo图像路径，用于自定义bioslogo
+[-biosbootmenu disabled| 设置是否显示bios启动菜单 关闭
+menuonly| 只菜单
+messageandmenu] 信息和菜单
+[-biossystemtimeoffset ] 设置bios系统时间补偿（以毫秒为单位）
+[-biospxedebug on|off] 打开或关闭biospxe调试
+[-boot none|floppy|dvd|disk|net>] 设置启动顺序
+[-hd none||] 为虚拟机添加三个IDE设备之一（第2个主盘被vm保留作为光驱，不能占用）在三个IDE中，你可以指定（硬盘）的vdi文件名或者它的UUID
+[-idecontroller PIIX3|PIIX4] 设置IDE控制器的类型
+[-sata on|off] 开启或关闭SATA硬盘控制器
+[-sataportcount ] 设置虚拟机最多支持的SATA控制器数目
+[-sataport none| 没有硬盘连接到SATA控制器
+| 指定uuid的硬盘连接到SATA控制器
+] 指定文件名的硬盘连接到SATA控制器
+[-sataideemulation ] 指定一个SATA设备工作在IDE兼容模式，IDE设备编号是1-4，SATA设备编号是1-30
+[-dvd none| 不连接DVD光驱
+| 指定UUID的DVD光驱连接
+| 将指定的光盘映像文件挂接到DVD光驱
+host:] 将宿主机的DVD光驱挂接到虚拟机的DVD光驱
+[-dvdpassthrough on|off]打开|关闭虚拟机里光盘的刻录功能
+[-floppy disabled| 不连接软驱
+empty| 连接软驱但不插入软盘
+| 指定UUID的软驱连接
+| 将指定的软盘映像文件挂接到软驱驱
+host:] 将宿主机的软驱驱挂接到虚拟机的软驱
+[-nic none| 虚拟机不添加网卡
+null| 虚拟机有网卡但不连接
+nat| 网络连接使用NAT模式
+hostif| 网络连接使用桥接模式
+intnet] 网络连接使用内部网络模式
+[-nictype Am79C970A| 虚拟机连接AMD PCNet PCI II网卡
+Am79C973| 虚拟机连接AMD PCNet FAST III网卡（默认）
+82540EM| 虚拟机连接Intel PRO/1000 MT Desktop网卡
+82543GC] 虚拟机连接Intel PRO/1000 T Server网卡
+[-cableconnected on|off]插入或拔出网线
+[-nictrace on|off] 开启或关闭网络追踪
+[-nictracefile ] 将网络流量追踪数据保存到文件
+[-nicspeed ] 设置网络连接的速度
+[-hostifdev none| 不连接到主机网络接口
+] 桥接模式下连接到指定的主机接口
+[-intnet ] 内网模式下为虚拟机指定内部网络名称
+[-natnet | 配置NAT网络接口的地址
+default] 默认NAT网络接口的地址是10.0.x.0/24
+[-macaddress auto| 自动生成虚拟网卡的MAC地址
+] 指定虚拟网卡的MAC地址
+[-uart off| 不启用虚拟串口
+_ ]启用虚拟串口，并设置虚拟串口的I/O参数和IRQ参数
+[-uartmode disconnected| 启用虚拟串口，但不连接到宿主机的串口
+server | 在宿主机创建PIPE通道，并将虚拟机串口连接到这个通道
+client | 不创建PIPE通道，而是将虚拟机串口连接到已存在的通道
+] 将虚拟机串口连接到宿主机的串口
+[-gueststatisticsinterval ] 配置虚拟机静态时间间隔
+[-audio none| 虚拟机不连接声卡
+null| 将虚拟机的声卡连接到空的声音设备
+dsound] 将虚拟机的声卡连接到宿主机的声卡
+[-audiocontroller ac97| 将虚拟机声卡虚拟为ICH AC97声卡
+sb16] 将虚拟机声卡虚拟为soundblaster 16声卡
+[-clipboard disabled| 不共享剪贴板
+hosttoguest| 将宿主机的剪贴板共享给虚拟机
+guesttohost| 将虚拟机的剪贴板共享给宿主机
+bidirectional] 宿主机和虚拟机共使用一个剪贴板
+[-vrdp on|off] 开启|关闭virtualbox内置的VRDP服务器
+[-vrdpport default| 使用默认的vrdp端口3389_</p>
+
+<p>] 指定vrdp端口
+[-vrdpaddress ] 指定VRDP主机地址
+[-vrdpauthtype null| 不用授权，任何客户机都可以连接到VRDP服务器
+external| 只有宿主机的用户才可以连接到VRDP服务器
+guest] 只有虚拟机的用户才可以连接到VRDP服务器
+[-vrdpmulticon on|off] 打开|关闭VRDP多用户连接模式
+[-vrdpreusecon on|off] 打开|关闭VRDP断线重连
+[-usb on|off] 打开|关闭虚拟USB控制器
+[-usbehci on|off] 打开|关闭虚拟USB2.0控制器
+[-snapshotfolder default| 将系统快照保存到默认文件夹] 将系统快照保存到指定文件夹</p>
+
+<p>VBoxManage startvm |开启指定UUID|名称的虚拟机
+[-type gui|vrdp] 设置虚拟机标准显示设备GUI界面|VRDP</p>
+
+<p>VBoxManage controlvm |改变正在运行的虚拟机的状态
+pause| 暂停，这时虚拟机窗口显示灰色
+resume| 恢复暂停的虚拟机
+reset| 复位
+poweroff| 强行关闭
+acpipowerbutton| 关机
+acpisleepbutton| 使虚拟机处于睡眠状态
+savestate| 保存状态然后关闭，相当于休眠
+keyboardputscancode [ &hellip;] 键盘扫描码设置
+setlinkstate on|off 连接|断开网络连接
+usbattach |</p>
+
+<p>连接到指定UUDI|地址的USB设备
+usbdetach |断开指定UUDI|地址的USB设备
+dvdattach none| 不连接虚拟DVD光驱
+| 连接到指定UUID的DVD光驱
+| 连接到指定名称的DVD映像文件
+host: 连接到宿主机的DVD光驱
+floppyattach none| 不连接虚拟软驱
+| 连接到指定UUID的虚拟软驱
+| 连接到指定名称的软盘映像文件
+host: 连接到宿主机的软驱setvideomodehint 设置虚拟机的屏幕分辨率 水平像素
+垂直像素
+颜色深度
+[display] 刷新频率
+setcredentials 指定VRDP自动连接参数 用户名</p>
+
+<p>密码
+域
+[-allowlocallogon] 允许|禁止本地登陆</p>
+
+<p>VBoxManage discardstate|丢弃指定UUID|名称的虚拟机的保存状态</p>
+
+<p>VBoxManage adoptstate|将虚拟机从指定的保存状态中恢复</p>
+
+<p>VBoxManage snapshot |为指定的虚拟机拍快照
+take 为快照取名
+[-desc ]| 给快照添加描述
+discard | | 丢弃指定的快照
+discardcurrent -state| 恢复到最近的快照
+-all | 恢复到倒数第二个快照
+edit || 编辑指定的快照
+-current 编辑当前快照
+[-newname ] 修改快照名称
+[-newdesc ] 修改快照描述
+showvminfo| 显示快照的虚拟机信息</p>
+
+<p>VBoxManage registerimage disk|dvd|floppy 注册硬盘、光盘、软盘映像文件
+[-type normal| 注册为普通类型（可创建快照，可读写）
+immutable| 注册为只读类型（相当于加了硬盘卡）
+writethrough] 注册为可写类型（这种类型不能创建快照）
+(disk only) (注册类型选项只适用于硬盘）</p>
+
+<p>VBoxManage unregisterimage disk| 从虚拟介质管理器删除指定的硬盘
+dvd| 从虚拟介质管理器删除指定的DVD光盘
+floppy 从虚拟介质管理器删除指定的软盘
+| 删除时指定UUID
+删除时指定映像文件</p>
+
+<p>VBoxManage showvdiinfo|显示指定UUID|名称虚拟硬盘的信息</p>
+
+<p>VBoxManage createvdi -filename 创建指定名称的虚拟硬盘
+-size 指定虚拟硬盘的大小（以兆为单位）
+[-static] 创建固定大小的虚拟硬盘
+[-comment ] 添加一段解释性文字
+[-register] 注册新创建的虚拟硬盘
+[-type normal| 注册类型 普通（可以创建快照）
+writethrough] 注册类型 可写（不能创建快照）
+(default: normal) 默认是普通类型
+VBoxManage modifyvdi| compact 压缩指定的虚拟硬盘</p>
+
+<p>VBoxManage clonevdi|克隆指定的VDI虚拟硬盘</p>
+
+<p>VBoxManage convertdd [-static] 将raw硬盘转换成vdi虚拟硬盘
+VBoxManage convertdd [-static] stdin 将标准输入参数指定的设备转换成vdi虚拟硬盘，比如：dd if=/dev/sda1 | VBoxManage convertdd stdin /media/disk/C.vdi</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">liangzhongxing</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T16:04:49+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/xu-ni-ji/'>虚拟机</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/22/e585b1e4baabe7a381e79b98e4b8ade5889be5bbbae69687e4bbb6e5b9b6e68c82e8bdbd/" title="Previous Post: 共享磁盘中创建文件并挂载">&laquo; 共享磁盘中创建文件并挂载</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters/" title="Next Post: （原创）启动Oracle时提示：ORA-01078:failure in processing system parameters">（原创）启动Oracle时提示：ORA-01078:failure in processing system parameters &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/03/29/vboxmanagee591bde4bba4e8afa6e8a7a3/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

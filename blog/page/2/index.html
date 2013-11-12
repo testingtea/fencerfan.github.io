@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="DocBook 是一种基于SGML/XML的、面向结构的文档撰写模式，由OASIS的DocBook技术委员会维护。尤其适用于关于计算机硬件和软件的书籍和论文（绝不限于这些应用），其主要结构符合一般概念所构成的&#8221;书&#8221;，是一种易于理解、广泛应用和非常受欢迎的模式。 LaTeX &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/28/docbooke4b88elatexe79a84e6af94e8be83/">DocBook与Latex的比较</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-28T02:50:07+08:00" pubdate data-updated="true">Aug 28<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/08/28/docbooke4b88elatexe79a84e6af94e8be83/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/08/28/docbooke4b88elatexe79a84e6af94e8be83/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>DocBook</strong> 是一种基于SGML/XML的、面向结构的文档撰写模式，由OASIS的DocBook技术委员会维护。尤其适用于关于计算机硬件和软件的书籍和论文（绝不限于这些应用），其主要结构符合一般概念所构成的&#8221;书&#8221;，是一种易于理解、广泛应用和非常受欢迎的模式。</p>
+
+<p><strong>LaTeX</strong> 是一种基于TeX的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）开发，是当今世界上最流行和使用最为广泛的TEX宏集。非常适用于生成高印刷质量的科技和数学类文档，同样适用于生成从简单的信件到完整书籍的所有其他种类的文档。即便使用者并不熟悉TEX，也可在短时间内生成高质量的文档。对于生成复杂的数学式，LATEX表现得更为出色。</p>
+
+<p>DocBook和LaTex存在共同点：</p>
+
+<ul>
+<li><p>内容与格式分离</p></li>
+<li><p>内容高度结构化</p></li>
+<li><p>平台无关</p></li>
+<li><p>发布过程可以自动化</p></li>
+<li><p>易于版本控制</p></li>
+<li><p>可以生成多种形式的文档</p></li>
+</ul>
+
+
+<p>但是，在文档撰写生成过程中，两者又存在各自的优点和不足：</p>
+
+<ul>
+<li><p><strong>特殊符号输入，如_、$、\等：</strong>DocBooK 可直接输入；LaTex 不能直接输入。</p></li>
+<li><p><strong>文档修改：</strong>DocBook 需要打开相关文件查找修改内容进行修改，耗时长；LaTex 可直接在生成文件中双击修改内容进入修改界面，方便快捷。</p></li>
+<li><p><strong>语法结构：</strong>DocBook 采用xml语言，内容较多时不易于区分标签内容，容易产生视觉疲劳；LaTex 采用更为简易的结构语言，各标签以不同底色显示区分，内容结构清晰，便于查看。</p></li>
+<li><p><strong>生成速度：</strong>DocBook 需在cmd内依次输入指令生成相应文件，耗时长；LaTex 可直接点击生成按钮，快速生成相应文件。</p></li>
+<li><p><strong>输出效果：</strong>DocBook 生成的HTML效果较好；LaTex生成的PDF效果较好。</p></li>
+<li><p><strong>图片排版：</strong>若页面图片过大，DocBook 中将出现大量留白；LaTex 通过自动调整图片位置避免页面留白。</p></li>
+<li><p><strong>文档格式：</strong>DocBook 需修改相关的样式表；LaTex 可直接在tex主文件中进行相应配置。</p></li>
+</ul>
+
+
+<p>简单的说，LaTex 长于图形排版，DocBook 长于图书的快捷组织。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/21/pythone5a49ae78988e69cace7aea1e79086-pythonbrew/">Python多版本管理-pythonbrew</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-21T09:09:23+08:00" pubdate data-updated="true">Aug 21<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/08/21/pythone5a49ae78988e69cace7aea1e79086-pythonbrew/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/08/21/pythone5a49ae78988e69cace7aea1e79086-pythonbrew/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>一、安装Pythonbrew</h2>
+
+<p><strong>安装前确保系统有以下包，在Ubuntu11.10中测试通过，其他系统可能依赖的包会有所不同</strong>(参考：<a href="https://github.com/utahta/pythonbrew/issues/81">https://github.com/utahta/pythonbrew/issues/81</a>)</p>
+
+<pre><code>$ sudo apt-get install curl build-essential libbz2-dev libsqlite3-dev zlib1g-dev libxml2-dev libxslt1-dev libreadline5 libgdbm-dev libgdb-dev libxml2 libssl-dev tk-dev libgdbm-dev libexpat1-dev libncursesw5-dev
+</code></pre>
+
+<p>1、使用easy_install工具安装，用命令：which easy_install查看是否安装该工具；没有输出则没安装，需要先安装easy_install</p>
+
+<pre><code>$ sudo easy_install pythonbrew
+</code></pre>
+
+<p>2、或者使用<a href="https://pypi.python.org/pypi/pythonbrew/">官网</a>推荐的方法安装：</p>
+
+<pre><code>curl -kL http://xrl.us/pythonbrewinstall | bash
+</code></pre>
+
+<p>以上命令把Pythonbrew自动安装在~/.pythonbrew目录下；</p>
+
+<h2>二、Pythonbrew配置</h2>
+
+<p>运行：</p>
+
+<pre><code>$ pythonbrew_install
+</code></pre>
+
+<p>会提示把下面内容添加到~/.bashrc文件中（Please add the following line to the end of your ~/.bashrc）,不用运行上面的命令手动把下面内容添加到文件中就可以了；</p>
+
+<pre><code>[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] &amp;&amp; source "$HOME/.pythonbrew/etc/bashrc"
+</code></pre>
+
+<h2>三、使用Pythonbrew</h2>
+
+<p>1、查看可安装的Python版本</p>
+
+<pre><code>$ pythonbrew list --know
+</code></pre>
+
+<p>2、安装需要的Python版本，需要安装curl工具；安装会自动完成；</p>
+
+<pre><code>$ pythonbrew install 2.7.5
+</code></pre>
+
+<p>3、查看已经安装的Python版本，后面有*号表示正在使用的版本</p>
+
+<pre><code>$ pythonbrew list
+</code></pre>
+
+<p>4、选择一个python版本使用，只在当前终端有效</p>
+
+<pre><code>$ pythonbrew use 2.7.5
+</code></pre>
+
+<p>5、选择python2.7.5版本作为系统默认版本使用，会把该版本的路径添加到PATH中</p>
+
+<pre><code>$ pythonbrew switch 2.7.5
+</code></pre>
+
+<p>6、取消pythonbrew选择的版本</p>
+
+<pre><code>$ pythonbrew off
+</code></pre>
+
+<p>7、清理安装后的版本的源码和安装包</p>
+
+<pre><code>$ pythonbrew cleanup
+</code></pre>
+
+<p>8、指定Python版本运行文件</p>
+
+<pre><code>$ pythonbrew py -p 2.7.5 test.py
+</code></pre>
+
+<p>9、删除制定Python版本</p>
+
+<pre><code>$ pythonbrew uninstall 2.7.5
+</code></pre>
+
+<h2>四、使用virtualenv的功能，创建虚拟环境</h2>
+
+<p><strong>确保系统中安装有zlib包，否则创建过程中会报错：</strong></p>
+
+<p><strong>Traceback (most recent call last): File “/home/username/.pythonbrew/etc/virtualenv/virtualenv.py”, line 19, in <module> import zlib ImportError: No module named zlib</strong></p>
+
+<p>在Ubuntu11.10 64bit系统，使用以下命令安装</p>
+
+<pre><code>$ sudo apt-get install zlib1g-dev
+</code></pre>
+
+<p>1、首先选择一个python版本</p>
+
+<pre><code>$ pythonbrew switch 2.7.5
+</code></pre>
+
+<p>2、创建虚拟环境</p>
+
+<pre><code>$ pythonbrew venv create test_env
+</code></pre>
+
+<p>3、启用虚拟环境，启用后会显示：<code>(test_env)alexzhou@alexzhou:~``/python_workspace``$</code></p>
+
+<pre><code>$ pythonbrew venv use test_env
+</code></pre>
+
+<p>4、退出虚拟环境</p>
+
+<pre><code>$ deactivate
+</code></pre>
+
+<p>5、虚拟环境列表</p>
+
+<pre><code>$ pythonbrew venv list
+</code></pre>
+
+<p>6、在虚拟环境中使用pip工具安装Python工具，为了避免使用到系统环境的pip工具，也就是说只能在虚拟环境中使用，在~/.bashrc文件末尾加入以下内容</p>
+
+<pre><code>export PIP_REQUIRE_VIRTUALENV=true
+</code></pre>
+
+<p>或者也可以用下面的设定，让系統的 <code>pip</code> 自动使用启动中的虚拟环境。</p>
+
+<pre><code>export PIP_RESPECT_VIRTUALENV=true
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/26/e68a80e69cafe69687e6a1a3e7bc96e8be91e6b3a8e6848fe4ba8be9a1b9/">技术文档编辑注意事项</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T15:05:35+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/26/e68a80e69cafe69687e6a1a3e7bc96e8be91e6b3a8e6848fe4ba8be9a1b9/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/26/e68a80e69cafe69687e6a1a3e7bc96e8be91e6b3a8e6848fe4ba8be9a1b9/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>用户手册维护过程中的心得体会：</p>
+
+<ol>
+<li><p> 在编辑过程中随时检查有无文字拼写或中英标点混输的错误。</p></li>
+<li><p> 手册中同类型操作的描述语言应统一，避免一会用“单击进入页面”一会用“点击打开界面”等情况。</p></li>
+<li><p> 描述应简洁、准确、流畅，以节约阅读者的时间。</p></li>
+<li><p> 标记与标记之间不应出现多余的空格或tab键或回车键，避免生成文档时出现排版错误。</p></li>
+<li><p> xml中空格和换行都将作为原始内容被处理，需克服用换行或缩进使文件内容清晰可读的书写习惯。</p></li>
+<li><p> xml中标记均成对出现，最好同时输入起始标记或结束标记，以免文档编辑过程中忘记。</p></li>
+<li><p> 在维护过程中，对生成文件和xml文件进行内容比较，避免因xml内容的摆放错误而导致对应手册内容未显示的问题。</p></li>
+<li><p> 所有的标记不能交叉使用，必须以嵌套的方式进行编辑。</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/18/e59ca8ubuntu12-10e4b88ae5ae89e8a385kvm/">在ubuntu12.10上安装KVM</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-18T16:46:07+08:00" pubdate data-updated="true">Jul 18<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/18/e59ca8ubuntu12-10e4b88ae5ae89e8a385kvm/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/18/e59ca8ubuntu12-10e4b88ae5ae89e8a385kvm/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+<li><p> 查看CPU的兼容性
+egrep -c &lsquo;(vmx|svm)&rsquo; /proc/cpuinfo</p></li>
+<li><p>  安装KVM相关的Packages
+sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils</p>
+
+<ul>
+<li><p><em>libvirt-bin</em> provides libvirtd which you need to administer qemu and kvm instances using libvirt</p></li>
+<li><p><em>qemu-kvm</em> (<em>kvm</em> in Karmic and earlier) is the backend</p></li>
+<li><p><em>ubuntu-vm-builder</em> powerful command line tool for building virtual machines</p></li>
+<li><p><em>bridge-utils</em> provides a bridge from your network to the virtual machines</p></li>
+<li><p>检查KVM是否成功安装
+sudo kvm-ok</p></li>
+<li><p>添加用户到libvirtd和kvm组
+sudo adduser scutech libvirtd
+sudo adduser scutech kvm</p></li>
+<li><p>校验
+virsh -c qemu:///system list</p></li>
+<li><p>安装KVM图形管理Console
+sudo apt-get install virt-manager virt-viewer
+在进行这一步操作时报错： Failed to fetch *************libgvnc-1.0-0.0.5.1-1ubuntu2_amd04.deb Hash Sum mismatch
+换了几个软件源，还是有这个错，后来上ubuntu的官网上自己下载了，下载装完之后再执行上面的命令即可安装成功
+<a href="http://packages.ubuntu.com/raring/amd64/libgvnc-1.0-0/download">libgvnc-1.0-0_0.5.1-1ubuntu2_amd64.deb下载 </a></p></li>
+<li><p>配置KVM虚拟网络桥接模式
+a、sudo apt-get install libcap2-bin
+b、配置qemu-kvm继承CAP——NET——ADMIN capability
+for 64-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu-system-x86_64
+for 32-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu
+c、修改/etc/security/capability.conf，添加cap_net_admin USER-NAME-HERE
+d、安装bridge-utils $sudo apt-get install bridge-utils
+e、修改/etc/network/interfaces文件，添加br0信息
+auto br0
+iface br0 inet dhcp
+bridge_ports eth0
+bridge_stp off
+bridge_fd 0
+bridge_maxwait 0
+f、重启电脑</p></li>
+<li><p>创建和安装Spice Server &amp;Clientfor KVM
+a、安装和配置Spice Server和Client Packageds
+$ sudo apt-get install libspice-client-glib-2.0-1 libspice-client-gtk-2.0-1 libspice-server1 python-spice-client-gtk qemu-kvm-spice spice-client spice-client-gtk python-spice-client-gtk build-essential libspice-server1 libspice-protocol-dev
+b、以下是可能会用到的Optional Packages：
+$ sudo apt-get install libavcodec-dev libasound-dev libpng12-dev libfreetype6-dev libxrandr-dev libsdl-dev libnss3-dev libxfixes-dev intltool libssl-dev libgtk2.0-dev python-gtk-vnc python-gtk2 python-gtk2-dev libssl-dev libpulse-dev libpixman-1-dev libjpeg-turbo8-dev libsasl2-dev libusb-1.0-0 libusb-1.0-0-dev libgudev-1.0-dev gobject-introspection python-dev slirp libpixman-1-0（可能有一些包的版本不对）</p></li>
+<li><p>到此安装完毕。在Dash Home那里输入Virtual Machine Manager即可看到KVM了</p></li>
+<li><p>以上是参照网友的方法安装的，其中一些道理也不大明白，还需进一步学习 <a href="http://blog.sina.com.cn/s/blog_5932bf4601016xfj.html">网友的方法</a></p></li>
+</ul>
+</li>
+</ol>
+
+
+<p>KVM的使用：</p>
+
+<ol>
+<li><p> vbox的vdi文件转为kvm默认qcow2格式文件
+VBoxManage clonehd -format raw asianux4-disk1.vdi asianux4.img(有进度条)
+qemu-img convert -f raw asianux4.img -O qcow2 asianux4.qcow2 (没进度条)</p></li>
+<li><p> 启动qcow2文件
+kvm  asianux4.qcow2</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/18/firefoxselenium-ide/">Firefox+Selenium IDE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-18T16:26:00+08:00" pubdate data-updated="true">Jul 18<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/18/firefoxselenium-ide/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/18/firefoxselenium-ide/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>安装：
+刚开始在windows上安装，firefox5，selenium1.2。装完之后点击Selenium IDE buttons，总是说You don&rsquo;t have installed Selenium IDE!现在发现原来是selenium1.2版本不支持firefox5引起的。后来到公司，看到firefox是18.0，又在addons那里安装，l列表中显示的是selenium1.2版本的，装完还是有一样问题，最后到Selenium IDE的官网上查看，现在selenium已经更新到2点多的版本了，上面也写了那个版本新增了对firefox*的支持，最后现在目前的最新版本Selenium2.2，解决了问题！
+<a href="http://docs.seleniumhq.org/download/">Selenium IDE官网下载</a></p>
+
+<p>source的format问题
+刚开始，以为在format clipboard那里选择source的语言，但是无论我选了什么，source显示的都是HTML语言。在options的format里看到的是 want the formats back?Click to read &hellip;.。后来打开options，将Enable experimental features勾上即可！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/18/e7b1bbunixe7b3bbe7bb9fe5a682e4bd95e5889de5a78be58c96shell/">类unix系统如何初始化shell</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-18T10:36:29+08:00" pubdate data-updated="true">Jul 18<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/18/e7b1bbunixe7b3bbe7bb9fe5a682e4bd95e5889de5a78be58c96shell/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/18/e7b1bbunixe7b3bbe7bb9fe5a682e4bd95e5889de5a78be58c96shell/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Shell的配置文件</h2>
+
+<p>当我们在linux中打开一个shell的时候，系统会读取相关的配置文件来初始化shell(其他unix-like OS也一样)。配置文件包括以下这些：</p>
+
+<h3>1. 全局配置(对所有用户都有效)</h3>
+
+<pre><code>/etc/profile
+/etc/bash.bashrc
+</code></pre>
+
+<h3>2. 当前用户配置(仅对当前登录用户有效)</h3>
+
+<pre><code>~/.bashrc
+~/.bash_profile
+~/.bash_login
+~/.profile
+</code></pre>
+
+<h2>Shell的分类</h2>
+
+<p>shell分为login shell和non-login shell两种</p>
+
+<h3>1.Login Shell</h3>
+
+<p><a href="http://www.thegeekstuff.com/2008/10/execution-sequence-for-bash_profile-bashrc-bash_login-profile-and-bash_logout/">借用《鸟哥的linux私房菜》中的定义</a>：取得 bash 時需要完整的登入流程的，就稱為 login shell。舉例來說，你要由 tty1 ~ tty6 登入，需要輸入使用者的帳號與密碼，此時取得的 bash 就稱為『 login shell 』囉；</p>
+
+<p>除过上面获取login shell的方式外，我们还可以通过在non-login shell中运行</p>
+
+<pre><code>bash --login
+</code></pre>
+
+<p>来得到一个login shell。login shell启动时的配置文件读取流程如下：
+借用另一博客 <a href="http://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files">‘Execution sequence for .bash_profile, .bashrc, .bash_login, .profile and .bash_logout’</a> 中的伪代码示例：</p>
+
+<p><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" /></p>
+
+<pre><code>execute /etc/profile
+IF ~/.bash_profile exists THEN
+    execute ~/.bash_profile
+ELSE
+    IF ~/.bash_login exist THEN
+        execute ~/.bash_login
+    ELSE
+        IF ~/.profile exist THEN
+            execute ~/.profile
+        END IF
+    END IF
+END IF
+</code></pre>
+
+<p><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" /></p>
+
+<p>当我们退出或者注销login shell时，也有需要执行如下流程：</p>
+
+<pre><code>IF ~/.bash_logout exists THEN
+    execute ~/.bash_logout
+END IF
+</code></pre>
+
+<h3>2.Non-Login Shell</h3>
+
+<p>继续借用《鸟哥的linux私房菜》中的定义：取得 bash 介面的方法不需要重複登入的舉動，舉例來說，(1)你以 X window 登入 Linux 後， 再以 X 的圖形化介面啟動終端機，此時那個終端介面並沒有需要再次的輸入帳號與密碼，那個 bash 的環境就稱為 non-login shell了。(2)你在原本的 bash 環境下再次下達 bash 這個指令，同樣的也沒有輸入帳號密碼， 那第二個 bash (子程序) 也是 non-login shell 。</p>
+
+<p>譬如在Ubuntu中，我们启动的Gnome Terminal，在默认情况下就是一个non-login shell。non-login shell启动时的配置文件读取流程：</p>
+
+<pre><code>execute /etc/bash.bashrc
+IF ~/.bashrc exists THEN
+    execute ~/.bashrc
+END IF
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086/">Python字符串处理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-12T11:02:20+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>一、截取字符串中的内容</h3>
+
+<p>1、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的：{AC76BA86-7AD7-2052-7B44-AB0000000001} 包括大括号</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &lsquo;MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001}&rsquo;
+re.findall(r&#8217;{[^}]*}&lsquo;, text)
+[&rsquo;{AC76BA86-7AD7-2052-7B44-AB0000000001}&lsquo;]</p></blockquote></blockquote></blockquote>
+
+<p>[^}] 是指不是 } 的字符， {[^}]*} 是指由 { 开始、 } 结束的至少0个不是 } 的字符</p>
+
+<p>或者</p>
+
+<p>re.findall(r&#8217;{.*?}&lsquo;, text)</p>
+
+<p>注意：{.<em>} 和{.</em>?}的区别，前者是贪婪模式，后者是非贪婪模式</p>
+
+<p>2、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的： AC76BA86-7AD7-2052-7B44-AB0000000001 不包括大括号</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &lsquo;MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} &rsquo;
+re.findall(r&#8217;(?&lt;={).<em>?(?=})&lsquo;, text)
+[&#8216;AC76BA86-7AD7-2052-7B44-AB0000000001&rsquo;]
+re.findall(r&#8217;(?&lt;={)[^}]</em>(?=})&lsquo;, text)
+[&#8216;AC76BA86-7AD7-2052-7B44-AB0000000001&rsquo;]
+(?&lt;={) 匹配左边是 { 的位置
+(?=}) 匹配右边是 } 的位置</p></blockquote></blockquote></blockquote>
+
+<h3>二、匹配字符串，并且截取匹配的内容</h3>
+
+<p>1、匹配“dbackup-agent_2.2.8763.15.exe”，并且截取“7896”</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &ldquo;dbackup-agent_2.2.8763.15.exe&rdquo;
+handle = re.compile(r&#8217;dbackup-agent_2.2.([0-9]{4}).15.exe&#8217;)
+m = handle.match(text)
+m.group(0)
+&lsquo;dbackup-agent_2.2.8763.15.exe&rsquo;
+m.group(1)
+&lsquo;8763&rsquo;</p></blockquote></blockquote></blockquote>
+
+<p>其中：group(0)表示匹配到的整个字符串，group(1)表示正则表达式中第1个括号匹配的字符，group(2)表示正则表达式中第2个括号匹配的字符,一次类推；</p>
+
+<p>正则表达式：([0-9]{4}) ，是指匹配4个0到9的数字</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/">Linux的分区类型</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-05T17:01:44+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>测试鼎甲奥备需要多了解这方面的内容。</p>
+
+<p><strong>一、分区类型</strong></p>
+
+<p>1、/分区。用于存储系统文件。
+2、swap，即交换分区，也是一种文件系统，它的作用是作为Linux的虚拟内存。
+在Windows下，虚拟内存是一个文件：pagefile.sys；而Linux下，虚拟内存需要使用独立分区，这样做的目的据说是为了提高虚拟内存的性能。
+3、/home：是用户文件夹所在的地方。如果独立划分/home，即使Ubuntu不能启动，也可以用Live CD启动来取得自己的文件资料。
+4、/boot：包含了操作系统的内核和在启动系统过程中所要用到的文件。
+在很多老旧的教程中，都会让用户在/boot目录上挂载一个大小为100MB左右的独立分区，并推荐把该/boot放在硬盘的前面——即1024柱面之前。事实上，那是Lilo无法引导1024柱面后的操作系统内核的时代的遗物了。当然，也有人说，独立挂载/boot的好处是可以让多个Linux共享一个/boot。
+其实，无论是基于上述的哪种理由，都没有必要把/boot分区独立出来。首先，Grub可以引导1024柱面后的Linux内核；其次，即使是安装有多个Linux，也完全可以不共享/boot。因为/boot目录的大小通常都非常小，大约20MB，分一个100MB的分区无疑是一种浪费，而且还把把硬盘分的支离破碎的，不方便管理。另外，如果让两个Linux共享一个/boot，每次升级内核，都会导致Grub的配置文件冲突，带来不必要的麻烦。而且，不独立/boot分区仅仅占用了根目录下的大约20MB左右的空间，根本不会对根目录的使用造成任何影响。
+但值得注意的是，随着硬盘容量的增大，无法引导Linux内核的现象再次出现，这也就是著名的137GB限制。很遗憾，Grub是无法引导137GB之后的分区中的Linux内核的。如果你不巧遇到了这样的情况，你就要考虑把/boot独立挂载到位于137GB前方的独立分区中，或者索性就把 Linux的分区都往前移动，让根目录所在分区位于137GB之前。
+5、/usr/local：是 Linux系统存放软件的地方。
+建议把/opt，/usr或/usr/local独立出来的教程，基本上也是非常老的了。使用Ubuntu时，我们一般都是使用系统的软件包管理器安装软件，很少自己编译安装软件。而建议独立/usr，/opt，/usr/local的理由无非是为了重装系统时不再重新编译软件而直接使用早先编译的版本。不过对于大多数普通用户来说，这个建议通常是没有意义的。
+6、/var：是系统日志记录分区。
+7、/tmp分区，用来存放临时文件。
+建议把/var和/tmp独立出来的教程通常是面向服务器的。因为高负载的服务器通常会产生很多日志文件、临时文件，这些文件经常改变，因此把/var，/tmp独立出来有利于提高服务器性能。但如果你用Ubuntu是做桌面的，或从来不关心过系统日志这东西，就没有必要独立的为/var和/tmp挂载分区。</p>
+
+<p>还有些老旧的教程中建议把Linux安装在主分区中，或在/boot下挂载一个主分区。事实上，这也是不需要的。Linux的所有分区都可以位于逻辑分区中。所以请放心的把Linux安装在逻辑分区中吧。</p>
+
+<p><strong>二、文件系统（分区格式）</strong></p>
+
+<p>Linux的文件系统（分区格式）主要有ext3、ReiserFS、XFS、JFS等。同时Linux也可以读写使用FAT、FAT32和NTFS文件系统的分区。</p>
+
+<p>Ubuntu默认的文件系统是ext3。</p>
+
+<p>或许有人会告诉你其他文件系统会有什么什么优点，ext3会有什么什么不好，但如果你对文件系统并不了解的话，我的建议就是使用默认的ext3，默认的设置可能不一定是性能最好的，但对普通用户一定是最稳定最安全最适合的。</p>
+
+<p>最大分区大小：ext3是4TB，ReiseFS是16TB。FAT32在Windows XP和Windows 2000里的最大分区是32GB；而Linux中的FAT32则可以支持到2TB。
+最大文件大小：ext3是2GB－4GB，ReiseFS是8TB，FAT32是4GB。</p>
+
+<p><strong>三、安装Linux的分区划分方案建议</strong></p>
+
+<p>1、只安装一个Ubuntu
+如果你准备在硬盘里只安装Ubuntu一个操作系统的话，建议你采用三分区方案：
+1）“/”分区：使用ext3文件系统；分区容量为10GB－15GB。
+2）“swap”分区：用于交换空间。内存小于或等于 512MB，swap分区容量为内存大小的2倍；内存大于512MB的，swap分区容量等于内存大小。
+3）“/home”分区：使用ext3文件系统；分区容量为“/”和“swap”以外的剩余空间</p>
+
+<p>在linux系统中至少必须有两个挂载点(磁盘分区)，分别是 / 及 swap ，其余是否要将其他的挂载点独立分割出来则视你的规划需求而定。可参考以下建议：</p>
+
+<p>swap的大小约等同你的内存大小，或稍大</p>
+
+<p>2、初次接触的新手或硬盘空间有限 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 可用空间 &ndash; swap大小后的所有空间
+swap /dev/hda2 大约内存大小 建议至少512Mb</p>
+
+<p>3、高级用户 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)</p>
+
+<p>4、高级用户 Server的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)
+/var /dev/hda6 视服务器功能决定大小</p>
+
+<p><strong>四、分区号简要说明</strong></p>
+
+<p>Linux 规定了主分区（Primary）以及扩展分区（extend）占用 1 至 16 号码中的前 4 个号码。以第一个 IDE 硬盘为例说明，主分区以及扩展分区占用了 hda1、hda2、hda3、hda4（该号一般为扩展分区所用），而逻辑分区占用了 hda5 到 hda16 等 12 个号码。因此，Linux 下面每一个硬盘总共最多有 16 个分区。
+因此 hda1- hda4 是主区的意思。 hda5以后是逻辑分区！！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/">Linux Ntp时间同步服务器搭建与使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-30T23:01:25+08:00" pubdate data-updated="true">Jun 30<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有时为了测试需要，要多台服务器时间一致（同步），ntp服务器可以帮你一个大忙。本文以Ubuntu 12.10为例说明，Ubuntu 12.10作为ntp服务器，其他linux作为ntp客户端。</p>
+
+<p>一、服务端</p>
+
+<p>1、在线安装ntp
+apt-get install ntp</p>
+
+<p>2、安装后默认启动服务，如果没有启动，手动启动。
+/etc/init.d/ntp start</p>
+
+<p>3、vi /etc/ntp.conf，修改ntp.conf文件，其中192.168.88.0为ntp同步的网段，ntp服务器、客户端都在该网段以内：</p>
+
+<p>restrict default nomodify notrap noquery
+restrict 127.0.0.1
+restrict 192.168.88.0 mask 255.255.255.0 nomodify
+server 0.pool.ntp.org
+server 1.pool.ntp.org
+server 2.pool.ntp.org
+server  127.127.1.0     # local clock
+fudge   127.127.1.0 stratum 10</p>
+
+<p>driftfile /var/lib/ntp/drift
+broadcastdelay  0.008
+keys            /etc/ntp/keys</p>
+
+<p>4、重启ntp服务
+/etc/init.d/ntp restart</p>
+
+<p>二、客户端</p>
+
+<p>1、先设置ntp服务器时间，如2013年6月25日16:53:00
+date -s &ldquo;2013-6-25 16:53:00&rdquo;
+hwclock -w</p>
+
+<p>2、用ntpdate命令使客户端与ntp服务器时间同步，如果不存在这个命令，则先安装apt-get install ntp或yum install ntp。假设服务端的IP为192.168.88.167，使客户端与ntp服务器时间同步的命令如下：</p>
+
+<p>ntpdate 192.168.88.167</p>
+
+<p>3、修改crontab设置定时同步。vi /etc/crontab</p>
+
+<p>30 01 * * * /usr/sbin/ntpdate 192.168.88.167</p>
+
+<p>系统便会在每天早上1点30分自动将系统时间同步到ntp服务器的时间。</p>
+
+<p>这里crontab的时间是指客户端的时间，同步后与ntp服务器的时间一致。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/">主机资源监控&#8211;New Relic</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-09T14:22:16+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>缺点是，监控的主机要连接到Internet；</p>
+
+<p>官方地址：<a href="https://rpm.newrelic.com">https://rpm.newrelic.com</a></p>
+
+<p>使用方法：</p>
+
+<p>1、注册一个帐号，并且登录；</p>
+
+<p>2、在左则导航栏选择“Servers”，按照教程在所要监控的主机上安装newrelic工具；</p>
+
+<p>3、安装成功后，过几分钟刷新页面就可以看在基本的资源使用信息了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

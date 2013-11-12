@@ -1,0 +1,1953 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="一、Bwm Linux流量监控软件bwm （支持64位系统） Bandwidth Monitor NG (简称为 Bwm-NG)是一个简单的网络和磁盘带宽监视程序，可在Linux、BSD、Solaris等平台上运行。它支持各种各样的检测元件，用于收集各种统计数据，包括/proc/net/dev、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/page/3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/09/linuxe4b889e6acbee5a5bde794a8e7bd91e7bb9ce79b91e68ea7e8bdafe4bbb6efbc88bwm-ng-e38081iftope38081iptrafefbc89/">Linux三款好用网络监控软件（bwm-ng 、iftop、iptraf）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-09T13:52:31+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/06/09/linuxe4b889e6acbee5a5bde794a8e7bd91e7bb9ce79b91e68ea7e8bdafe4bbb6efbc88bwm-ng-e38081iftope38081iptrafefbc89/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/06/09/linuxe4b889e6acbee5a5bde794a8e7bd91e7bb9ce79b91e68ea7e8bdafe4bbb6efbc88bwm-ng-e38081iftope38081iptrafefbc89/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>一、Bwm</h2>
+
+<p>Linux流量监控软件bwm （支持64位系统）</p>
+
+<p>Bandwidth Monitor NG (简称为 Bwm-NG)是一个简单的网络和磁盘带宽监视程序，可在Linux、BSD、Solaris等平台上运行。它支持各种各样的检测元件，用于收集各种统计数据，包括/proc/net/dev、netstat、getifaddr、sysctl、kstat、 /proc/diskstats /proc/partitions、 IOKit、 devstat 、 libstatgrab等。接口或设备可以黑白方式列示，这样用户就可以只查看感兴趣的数据。Bwm-NG支持多种输出选项，如图形、纯文本、CVS及 HTML等。</p>
+
+<p>查看流量命令：bwm-ng -d （按u键可切换流量单位）</p>
+
+<p>软件下载地址</p>
+
+<p>32位</p>
+
+<p>wget <a href="http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/bwm-ng-0.5-2.el5.rf.i386.rpm">http://apt.sw.be/redhat/el5/en/i386/rpmforge/RPMS/bwm-ng-0.5-2.el5.rf.i386.rpm</a></p>
+
+<p>centos 5</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/5/x86_64/bwm-ng-0.5-9.el5.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/5/x86_64/bwm-ng-0.5-9.el5.x86_64.rpm</a></p>
+
+<p>centos6</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/bwm-ng-0.6-6.el6.1.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/6/x86_64/bwm-ng-0.6-6.el6.1.x86_64.rpm</a></p>
+
+<p>wget <a href="http://jaist.dl.sourceforge.net/project/bwmng/bwmng/0.6/bwm-ng-0.6.tar.gz">http://jaist.dl.sourceforge.net/project/bwmng/bwmng/0.6/bwm-ng-0.6.tar.gz</a></p>
+
+<p>报错</p>
+
+<p>error: Failed dependencies:</p>
+
+<p>libstatgrab.so.6()(64bit) is needed by bwm-ng-0.5-9.el5.x86_64</p>
+
+<p>centos 6x 补丁包！</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/libstatgrab-0.17-1.el6.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/6/x86_64/libstatgrab-0.17-1.el6.x86_64.rpm</a></p>
+
+<p>centos 5x 补丁包！</p>
+
+<p>wget <a href="http://dl.fedoraproject.org/pub/epel/5/x86_64/libstatgrab-0.13-4.el5.x86_64.rpm">http://dl.fedoraproject.org/pub/epel/5/x86_64/libstatgrab-0.13-4.el5.x86_64.rpm</a></p>
+
+<p>安装步骤如下：</p>
+
+<p>1.解压</p>
+
+<p>tar -xvf bwm-ng-0.6.tar.gz</p>
+
+<p>2.进入安装目录</p>
+
+<p>cd bwm-ng-0.6</p>
+
+<p>3.编译安装</p>
+
+<p>./configure</p>
+
+<p>make</p>
+
+<p>make install</p>
+
+<p>4.执行命令</p>
+
+<p>bwm-ng</p>
+
+<p>设你使用的是‘curses’输出方式，那么将会用到 ‘a’, ‘t’和‘u’这三个命令键：</p>
+
+<p>‘a’-在全部传感器接口和选定接口间转换 (bwm-ng.conf)</p>
+
+<p>‘t’-在 rate, max (峰值), sum (程序启动后的总吞吐量),以及30秒平均值之间切换。</p>
+
+<p>‘u’-显示bytes/bits/packets/errors</p>
+
+<h2>二、iftop</h2>
+
+<p>iftop是类似于top的实时流量监控工具。</p>
+
+<p>iftop可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等，详细的将会在后面的使用参数中说明。</p>
+
+<p>CentOS系统：</p>
+
+<p>yum install flex byacc  libpcap ncurses ncurses-devel</p>
+
+<p>wget <a href="ftp://fr2.rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/iftop-0.17-1.el5.rf.i386.rpm">ftp://fr2.rpmfind.net/linux/dag/redhat/el5/en/i386/dag/RPMS/iftop-0.17-1.el5.rf.i386.rpm</a></p>
+
+<p>rpm -ivh iftop-0.17-1.el5.rf.i386.rpm</p>
+
+<p>centos6x</p>
+
+<p>wget <a href="ftp://ftp.muug.mb.ca/mirror/fedora/epel/6/x86_64/iftop-1.0-0.1.pre2.el6.x86_64.rpm">ftp://ftp.muug.mb.ca/mirror/fedora/epel/6/x86_64/iftop-1.0-0.1.pre2.el6.x86_64.rpm</a></p>
+
+<p>centos5x</p>
+
+<p>wget <a href="http://pkgs.repoforge.org/iftop/_buildlogs/iftop-0.17-1.el5.rf.x86_64.ok.log.gz">http://pkgs.repoforge.org/iftop/_buildlogs/iftop-0.17-1.el5.rf.x86_64.ok.log.gz</a></p>
+
+<p>wget <a href="http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/iftop-0.17-1.el5.rf.x86_64.rpm">http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS/iftop-0.17-1.el5.rf.x86_64.rpm</a></p>
+
+<p>直接运行： iftop</p>
+
+<p>iftop相关参数</p>
+
+<p>常用的参数</p>
+
+<p>-i设定监测的网卡，如：# iftop -i eth1</p>
+
+<p>-B 以bytes为单位显示流量(默认是bits)，如：# iftop -B</p>
+
+<p>-n使host信息默认直接都显示IP，如：# iftop -n</p>
+
+<p>-N使端口信息默认直接都显示端口号，如: # iftop -N</p>
+
+<p>-F显示特定网段的进出流量，如# iftop -F 10.10.1.0/24或# iftop -F 10.10.1.0/255.255.255.0</p>
+
+<p>-h（display this message），帮助，显示参数信息</p>
+
+<p>-p使用这个参数后，中间的列表显示的本地主机信息，出现了本机以外的IP信息;</p>
+
+<p>-b使流量图形条默认就显示;</p>
+
+<p>-f这个暂时还不太会用，过滤计算包用的;</p>
+
+<p>-P使host信息及端口信息默认就都显示;</p>
+
+<p>-m设置界面最上边的刻度的最大值，刻度分五个大段显示，例：# iftop -m 100M</p>
+
+<p>进入iftop画面后的一些操作命令(注意大小写)</p>
+
+<p>按h切换是否显示帮助;</p>
+
+<p>按n切换显示本机的IP或主机名;</p>
+
+<p>按s切换是否显示本机的host信息;</p>
+
+<p>按d切换是否显示远端目标主机的host信息;</p>
+
+<p>按t切换显示格式为2行/1行/只显示发送流量/只显示接收流量;</p>
+
+<p>按N切换显示端口号或端口服务名称;</p>
+
+<p>按S切换是否显示本机的端口信息;</p>
+
+<p>按D切换是否显示远端目标主机的端口信息;</p>
+
+<p>按p切换是否显示端口信息;</p>
+
+<p>按P切换暂停/继续显示;</p>
+
+<p>按b切换是否显示平均流量图形条;</p>
+
+<p>按B切换计算2秒或10秒或40秒内的平均流量;</p>
+
+<p>按T切换是否显示每个连接的总流量;</p>
+
+<p>按l打开屏幕过滤功能，输入要过滤的字符，比如ip,按回车后，屏幕就只显示这个IP相关的流量信息;</p>
+
+<p>按L切换显示画面上边的刻度;刻度不同，流量图形条会有变化;</p>
+
+<p>按j或按k可以向上或向下滚动屏幕显示的连接记录;</p>
+
+<p>按1或2或3可以根据右侧显示的三列流量数据进行排序;</p>
+
+<p>按&lt;根据左边的本机名或IP排序;</p>
+
+<p>按>根据远端目标主机的主机名或IP排序;</p>
+
+<p>按o切换是否固定只显示当前的连接;</p>
+
+<p>按f可以编辑过滤代码，这是翻译过来的说法，我还没用过这个！</p>
+
+<p>按!可以使用shell命令，这个没用过！没搞明白啥命令在这好用呢！</p>
+
+<p>按q退出监控。</p>
+
+<h2>三、IPTRAF</h2>
+
+<p>IPTraf的是一个IP网络的网络监控工具。它截取网络上的数据包，并给出了当前的IP流量在它的各条信息。IPTraf的返回的信息包括：</p>
+
+<p>总计，IP，TCP，UDP，ICMP和非IP字节数</p>
+
+<p>TCP源地址和目的地址和端口</p>
+
+<p>TCP包和字节计数</p>
+
+<p>TCP标志状态</p>
+
+<p>UDP源和目的地信息</p>
+
+<p>ICMP类型信息</p>
+
+<p>OSPF的源和目的地信息</p>
+
+<p>TCP和UDP服务统计</p>
+
+<p>接口数据包计数</p>
+
+<p>接口IP校验和错误计数</p>
+
+<p>界面活性指标</p>
+
+<p>局域网站统计</p>
+
+<p>IPTraf的可以用来监控一个IP网络上的负载，最常用的类型的网络服务，程序的TCP连接，以及其他。</p>
+
+<p>IPTraf的是一个纯软件的分析仪。它利用内置的原始数据包捕获的Linux内核，允许它被用于广泛的以太网卡，支持FDDI适配器，支持ISDN适配器，令牌环网，异步SLIP / PPP接口和其他网络设备的接口。不需要特殊的硬件要求。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/23/linuxe7b3bbe7bb9fe58685e5ad98e79b91e68ea7e585a8e99da2e8aeb2e8a7a3efbc9afreee591bde4bba4/">Linux系统内存监控全面讲解：free命令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-23T10:30:54+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/23/linuxe7b3bbe7bb9fe58685e5ad98e79b91e68ea7e585a8e99da2e8aeb2e8a7a3efbc9afreee591bde4bba4/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/23/linuxe7b3bbe7bb9fe58685e5ad98e79b91e68ea7e585a8e99da2e8aeb2e8a7a3efbc9afreee591bde4bba4/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Windows系统中查看内存的使用情况很简单，想必大家都已经耳熟能详了，那么在Linux系统如何查看内存使用情况呢？下面和大家分享在Linux系统下查看内存使用情况的free命令：</p>
+
+<p>[root@scs-2 tmp]# free
+total used free shared buffers cached
+Mem: 3266180 3250004 16176 0 110652 2668236
+&ndash;/+ buffers/cache: 471116 2795064
+Swap: 2048276 80160 1968116</p>
+
+<p>下面是对这些数值的解释：</p>
+
+<p>total:总计物理内存的大小。</p>
+
+<p>used:已使用多大。</p>
+
+<p>free:可用有多少。</p>
+
+<p>Shared:多个进程共享的内存总额。</p>
+
+<p>Buffers/cached:磁盘缓存的大小。</p>
+
+<p>第三行(&ndash;/+ buffers/cached):</p>
+
+<p>used:已使用多大。</p>
+
+<p>free:可用有多少。</p>
+
+<p>第四行就不多解释了。</p>
+
+<p>区别：第二行(mem)的used/free与第三行(&ndash;/+ buffers/cache) used/free的区别。 这两个的区别在于使用的角度来看，第一行是从OS的角度来看，因为对于OS，buffers/cached 都是属于被使用，所以他的可用内存是16176KB,已用内存是3250004KB,其中包括，内核（OS）使用+Application(X, oracle,etc)使用的+buffers+cached.</p>
+
+<p>第三行所指的是从应用程序角度来看，对于应用程序来说，buffers/cached 是等于可用的，因为buffer/cached是为了提高文件读取的性能，当应用程序需在用到内存的时候，buffer/cached会很快地被回收。</p>
+
+<p><a href="http://blog.chinaunix.net/uid-10697776-id-3292165.html">Linux Buffers和Cached的区别</a>：</p>
+
+<p>buffers是为块设备设计的缓冲。比如磁盘读写，把分散的写操作集中进行，减少磁盘I/O，从而提高系统性能。比如入U盘里cp一个文件，但是U盘读写指示灯未闪动，过了一会儿才闪动。卸载时会清空缓冲，所以有时卸载一个设备需要等待几秒。</p>
+
+<p>    cached是缓存读取过的内容，下次再读时，如果在缓存中命中，则直接从缓存读取，否则读取磁盘。由于缓存空间有限，过一段时间以后没用的缓存会被移动到swap里面，所以有时看到物理内存还有很多，swap就被利用了。</p>
+
+<p>所以从应用程序的角度来说，可用内存=系统free memory+buffers+cached。</p>
+
+<p>如上例：</p>
+
+<p>2795064=16176+110652+2668236</p>
+
+<p>接下来解释什么时候内存会被交换，以及按什么方交换。 当可用内存少于额定值的时候，就会开会进行交换。</p>
+
+<p>如何看额定值：</p>
+
+<p>cat /proc/meminfo
+[root@scs-2 tmp]# cat /proc/meminfo
+MemTotal: 3266180 kB
+MemFree: 17456 kB
+Buffers: 111328 kB
+Cached: 2664024 kB
+SwapCached: 0 kB
+Active: 467236 kB
+Inactive: 2644928 kB
+HighTotal: 0 kB
+HighFree: 0 kB
+LowTotal: 3266180 kB
+LowFree: 17456 kB
+SwapTotal: 2048276 kB
+SwapFree: 1968116 kB
+Dirty: 8 kB
+Writeback: 0 kB
+Mapped: 345360 kB
+Slab: 112344 kB
+Committed_AS: 535292 kB
+PageTables: 2340 kB
+VmallocTotal: 536870911 kB
+VmallocUsed: 272696 kB
+VmallocChunk: 536598175 kB
+HugePages_Total: 0
+HugePages_Free: 0
+Hugepagesize: 2048 kB</p>
+
+<p>用free -m查看的结果：</p>
+
+<p>[root@scs-2 tmp]# free -m
+total used free shared buffers cached
+Mem: 3189 3173 16 0 107 2605
+&ndash;/+ buffers/cache: 460 2729
+Swap: 2000 78 1921</p>
+
+<p>查看/proc/kcore文件的大小（内存镜像）：</p>
+
+<p>[root@scs-2 tmp]# ll -h /proc/kcore
+-r——– 1 root root 4.1G Jun 12 12:04 /proc/kcore</p>
+
+<p>备注：占用内存的测量</p>
+
+<p>测量一个进程占用了多少内存，Linux系统为我们提供了一个很方便的方法，/proc目录为我们提供了所有的信息，实际上top等工具也通过这里来获取相应的信息。</p>
+
+<p>/proc/meminfo 机器的内存使用信息
+/proc/pid/maps pid为进程号，显示当前进程所占用的虚拟地址。
+/proc/pid/statm 进程所占用的内存
+[root@localhost ~]# cat /proc/self/statm
+654 57 44 0 0 334 0</p>
+
+<p>输出解释</p>
+
+<p>CPU 以及CPU0。。。的每行的每个参数意思（以第一行为例）为：</p>
+
+<p>参数 解释 /proc//status</p>
+
+<p>Size (pages) 任务虚拟地址空间的大小 VmSize/4</p>
+
+<p>Resident(pages) 应用程序正在使用的物理内存的大小 VmRSS/4</p>
+
+<p>Shared(pages) 共享页数 0</p>
+
+<p>Trs(pages) 程序所拥有的可执行虚拟内存的大小 VmExe/4</p>
+
+<p>Lrs(pages) 被映像到任务的虚拟内存空间的库的大小 VmLib/4</p>
+
+<p>Drs(pages) 程序数据段和用户态的栈的大小 （VmData+ VmStk ）4</p>
+
+<p>dt(pages) 04</p>
+
+<p>查看机器可用内存</p>
+
+<p>/proc/28248/>free
+total used free shared buffers cached
+Mem: 1023788 926400 97388 0 134668 503688
+&ndash;/+ buffers/cache: 288044 735744
+Swap: 1959920 89608 1870312</p>
+
+<p>我们通过free命令查看机器空闲内存时，会发现free的值很小。这主要是因为，在Linux系统中有这么一种思想，内存不用白不用，因此它尽可能的cache和buffer一些数据，以方便下次使用。但实际上这些内存也是可以立刻拿来使用的。</p>
+
+<p>所以 空闲内存=free+buffers+cached=total-used</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/21/linux-display-e58f98e9878fe8aebee7bdae/">Linux DISPLAY 变量设置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-21T09:21:51+08:00" pubdate data-updated="true">May 21<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/21/linux-display-e58f98e9878fe8aebee7bdae/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/21/linux-display-e58f98e9878fe8aebee7bdae/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Linux/Unix类操作系统上, DISPLAY用来设置将图形显示到何处. 直接登陆图形界面或者登陆命令行界面后使用startx启动图形, DISPLAY环境变量将自动设置为:0:0, 此时可以打开终端, 输出图形程序的名称(比如xclock)来启动程序, 图形将显示在本地窗口上, 在终端上输入printenv查看当前环境变量, 输出结果中有如下内容:</p>
+
+<p>DISPLAY=:0.0</p>
+
+<pre><code>  使用xdpyinfo可以查看到当前显示的更详细的信息.
+
+   DISPLAY环境变量格式如下
+   host:NumA.NumB
+</code></pre>
+
+<p>host指Xserver所在的主机主机名或者ip地址, 图形将显示在这一机器上, 可以是启动了图形界面的Linux/Unix机器, 也可以是安装了Exceed, X-Deep/32等Windows平台运行的Xserver的Windows机器. 如果Host为空, 则表示Xserver运行于本机, 并且图形程序(Xclient)使用unix socket方式连接到Xserver, 而不是TCP方式. 使用TCP方式连接时, NumA为连接的端口减去6000的值, 如果NumA为0, 则表示连接到6000端口; 使用unix socket方式连接时则表示连接的unix socket的路径, 如果为0, 则表示连接到/tmp/.X11-unix/X0 . NumB则几乎总是0.</p>
+
+<pre><code>   如果使用su username或者su - username切换到别的用户, 并且使用命令
+</code></pre>
+
+<p>export DISPLAY=:0.0</p>
+
+<pre><code>   设置DISPLAY环境变量, 运行图形程序(如xclock)时会收到如下错误:
+</code></pre>
+
+<p>Xlib: connection to &ldquo;:0.0&rdquo; refused by server
+Xlib: No protocol specified</p>
+
+<p>Error: Can&rsquo;t open display: :0.0</p>
+
+<pre><code>   这是因为Xserver默认情况下不允许别的用户的图形程序的图形显示在当前屏幕上. 如果需要别的用户的图形显示在当前屏幕上, 则应以当前登陆的用户, 也就是切换身份前的用户执行如下命令
+</code></pre>
+
+<p>xhost +</p>
+
+<pre><code>   这个命令将允许别的用户启动的图形程序将图形显示在当前屏幕上.
+
+   在2台Linux机器之间, 如果设置服务器端配置文件/etc/ssh/sshd_config中包含
+</code></pre>
+
+<p>X11Forwarding no</p>
+
+<pre><code>   客户端配置文件/etc/ssh/ssh_config包含
+</code></pre>
+
+<p>ForwardX11 yes</p>
+
+<p>则从客户端ssh到服务器端后会自动设置DISPLAY环境变量, 允许在服务器端执行的图形程序将图形显示在客户端上. 在服务器上查看环境变量显示如下(这个结果不同的时候并不相同)</p>
+
+<p>DISPLAY=localhost:10.0</p>
+
+<pre><code>   在客户机上用netstat -lnp可以看到有程序监听了6010端口
+</code></pre>
+
+<p>tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN     4827/1</p>
+
+<pre><code>   如果希望允许远程机器上的图形程序将图形显示在本地机器的Xserver上, 除了要设置远端机器的DISPLAY环境变量以外, 还需要设置本地机器的Xserver监听相应的TCP端口. 而现在的Linux系统出于安全的考虑, 默认情况下不再监听TCP端口. 可通过修改/etc/X11/xinit/xserverrc文件, 将
+</code></pre>
+
+<p>exec /usr/bin/X11/X -dpi 100 -nolisten tcp</p>
+
+<p>修改为</p>
+
+<p>exec /usr/bin/X11/X -dpi 100</p>
+
+<p>允许在直接使用startx启动图形时启动对TCP端口的监听.</p>
+
+<p>修改/etc/kde3/kdm/kdmrc, 将</p>
+
+<p>ServerArgsLocal=-nolisten tcp</p>
+
+<p>修改为</p>
+
+<p>ServerArgsLocal=</p>
+
+<p>允许kdm作为显示管理器时, 启动会话时监听相应的TCP端口.</p>
+
+<p>修改/etc/gdm/gdm.conf, 在[Security]一节增加</p>
+
+<p>DisallowTCP=false</p>
+
+<p>或者在登陆窗口选择&#8221;Options&#8221; &ndash;> &ldquo;Configure Login Manager&hellip;&#8221;的Security页面, 取消&#8221;Deny TCP connections to Xserver&rdquo;, 允许gdm作为显示管理器时, 启动会话时监听相应的TCP端口.</p>
+
+<p><a href="http://blog.sina.com.cn/s/blog_75acbe0b010199p7.html">http://blog.sina.com.cn/s/blog_75acbe0b010199p7.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/ubuntu-servere4b88be5a682e4bd95e5ae89e8a385e59bbee5bda2e7958ce99da2/">Ubuntu Server下如何安装图形界面</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T16:30:44+08:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/17/ubuntu-servere4b88be5a682e4bd95e5ae89e8a385e59bbee5bda2e7958ce99da2/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/17/ubuntu-servere4b88be5a682e4bd95e5ae89e8a385e59bbee5bda2e7958ce99da2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一,连接网络，确保网络通畅.</p>
+
+<p>二,进入图形界面的命令是startX，敲击后会有安装xinit的提示,输入如下命令:</p>
+
+<p>sudo apt-get install xinit</p>
+
+<p>安装完，终端由黑色界面变成白底黑字。出现X型的鼠标指针。</p>
+
+<p>三,安装环境管理器</p>
+
+<p>sudo apt-get install gdm</p>
+
+<p>四,安装桌面环境</p>
+
+<p>sudo apt-get install Kbuntu-desktop</p>
+
+<p>如果只想装界面的核心环境，或者网速比较曼的话，可以</p>
+
+<p>sudo apt-get install gnome-core或者kde-corexface4</p>
+
+<p>五,如果你装的是CORE的，那么你还需要做以下的工作:</p>
+
+<p>1.安装新立得软件包管理器:</p>
+
+<p>sudo apt-get install gsynaptic</p>
+
+<p>2.安装中文支持（能够显示中文):</p>
+
+<p>sudo apt-get install language-support-zh</p>
+
+<p>3.从新立得软件包管理器中选择中文输入法支持和中文界面支持</p>
+
+<p>4.使用新立得软件包管理器安装其他你想要的软件</p>
+
+<p>六,重新启动，即可见图形登陆界面。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4/">Dataguard主库恢复后备库的重建步骤</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-15T18:18:15+08:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+<li><p> 主库操作操作(open+archived_log)
+$ rman target=/
+RMAN>BACKUP DATABASE PLUS ARCHIVELOG;
+$ sqlplus sys/dingjia as sysdba
+SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+将orcl_stby.ctl拷贝到备库的/tmp目录下
+将主库rman备份之后的文件拷贝到备库的恢复日志目录下，如：/u01/app/oracle/flash_recovery_area/ORA10G/backupset</p></li>
+<li><p> 备库机器操作
+$ sqlplus sys/dingjia as sysdba
+SQL>shutdown immediate;
+删除备库的控制文件control*
+$ rman
+RMAN>connect target
+RMAN>restore controlfile from &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+RMAN>startup force mount;
+RMAN>restore database;</p></li>
+<li><p> 最后重启主备库，按顺序启动dataguard即可！</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93/">使用putty自带的pscp.exe实现windows和linux间的文件传输</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T15:29:42+08:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/14/e4bdbfe794a8puttye887aae5b8a6e79a84pscp-exee5ae9ee78eb0windowse5928clinuxe997b4e79a84e69687e4bbb6e4bca0e8be93/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在我们的日常性能测试中，难免会遇到需要进行基准测试。</p>
+
+<p>这时候，通常我们会采用搭建ftp进行文件上传和下载来获取当前两台计算机之间的网络传输基准数据。</p>
+
+<p>接下来要介绍的是使用putty自带的pscp.exe来实现windows和linux间的文件传输，该方法可在无法搭建ftp时，快速简便进行基准测试，由于是经过加密后传输的，所以不能作为正常传输速度基准测试的数据，只能作为加密传输速度基准测试的数据。用法基本与scp命令相同。</p>
+
+<p>首先下载putty，官方下载地址为：</p>
+
+<p><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</a></p>
+
+<p>1.下载putty.zip并解压</p>
+
+<p>2.cmd命令行进入putty目录</p>
+
+<p>3.将文件上传至linux系统，pscp 本地文件 用户名@IP：上传目录</p>
+
+<p>如：pscp c:\agent.log  root@192.168.88.172:/root</p>
+
+<p>4.将文件下载至windows系统，pscp 用户名@IP：下载文件路径  存放文件路径</p>
+
+<p>如：pscp root@192.168.88.172:/root/agent.log  c:\download</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/">初学python代码整理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-13T12:31:27+08:00" pubdate data-updated="true">May 13<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/05/13/e5889de5ada6pythone4bba3e7a081e695b4e79086/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>目录：
+1、 登录迪备并循环增加存储服务器记录(python+splinter+iframe)
+2、向oracle定时插入数据
+3、 为多个用户顺序创建备份作业
+4、批量注册用户
+5、迪备oracle(备份资源类型<em>备份方法</em>设备*作业信息)组合备份</p>
+
+<p>1、登录迪备并循环增加存储服务器记录(python+splinter+iframe)</p>
+
+<pre><code>import time
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.183/dbackup')
+time.sleep(3)
+if browser.find_by_id('lhgfrm_lhgdgId'):
+    with browser.get_iframe('lhgfrm_lhgdgId') as frame:
+        frame.find_by_id('trialRadio').click()
+        frame.find_by_id('continue').click()
+browser.fill('username','admin')
+browser.fill('password','admin')
+browser.find_by_name('Submit').click()
+time.sleep(8)
+na = browser.find_by_id('Navigate5')
+na.click()
+na.find_by_tag('a')[2].click()
+time.sleep(3)
+browser.fill('strFTPName','python')
+browser.find_by_id('hostInput').find_by_tag('input').fill('192.168.88.183')
+browser.fill('textfield','python')
+browser.find_by_id('Submit').click()
+time.sleep(3)
+alter = browser.get_alert()##这两句的意思是处理弹出框
+alter.accept()
+time.sleep(3)
+browser.quit()
+</code></pre>
+
+<p>2、向oracle定时插入数据</p>
+
+<pre><code>import cx_Oracle
+import random
+import itertools
+import string
+import time
+conn = cx_Oracle.connect("irene","password","127.0.0.1:1521/scutech")
+cursor = conn.cursor()
+sql1 = "create table customer(id number(5),name varchar2(30),addr varchar2(50),tel number(20),comp varchar2(50),year number(2))"
+i=0
+str1 = 'abcdefghijklmnopqrstuvwxyz1234567890'
+var = 'abcdefghijklmnopqrstuvwxyz'
+nn = [1,2,3,4,5,6,7,8,9,0]
+while i&lt;3:
+    n1 = random.randint(0,15)
+    n2 = random.randint(16,25)
+    name = "".join(itertools.chain(*random.sample(str1,n1)))
+    addr = "".join(itertools.chain(*random.sample(str1,n2)))
+    comp = "".join(itertools.chain(*random.sample(var,n2)))
+    #**********************customer**************************
+    param_c={'id':i,'name':name,'addr':addr,'tel':random.randint(999999999,999999999999),'comp':comp,'year':random.randint(0,50)}
+    ww = 'insert into customer values($id,\'$name\',\'$addr\',$tel,\'$comp\',$year)'
+    pp = string.Template(ww)
+    sql2 = pp.substitute(param_c)
+    cursor.execute(sql2)
+    print i
+    i += 1
+    time.sleep(30)
+conn.commit()
+cursor.close()
+conn.close()
+</code></pre>
+
+<p>3、为多个用户顺序创建备份作业</p>
+
+<pre><code>#-*-coding=utf-8
+import time
+from splinter import Browser
+file1 = open('/home/irene/Documents/python/userpasswd')#打开userpasswd文件
+i=0
+while i &lt; 50:
+    browser = Browser()
+    browser.visit('192.168.88.183/dbackup')#访问页面
+    m = file1.readline()#逐行读取文件
+    uname = m[10:len(m)-1]#截取字符串
+    print uname
+    browser.fill('username',uname)#向页面输入文字
+    m = file1.readline()
+    passwd = m[8:len(m)-1]
+    print passwd
+    browser.fill('password',passwd)
+    browser.find_by_name('Submit').click()#单击按钮
+    i +=1
+    assert browser.is_element_present_by_id('treeNodeId1')
+    browser.find_link_by_href('javascript:void(0)')[1].click()
+    browser.find_link_by_text('进入').click()
+    browser.find_link_by_href('BackupWizardOracle.php?type=1').click()
+    browser.find_by_tag('button')[0].click()#备份资源类型
+    browser.find_by_tag('button')[3].click()#备份方法
+    browser.find_by_tag('input')[24].click()#选择存储服务
+    browser.find_by_tag('button')[6].click()#设备
+    browser.find_by_tag('input')[29].click()#设置作业执行时间
+    ti = browser.find_by_id('hour')
+    ti.find_by_xpath("//option[@value='16']").click()
+    browser.find_by_tag('button')[9].click()#作业信息
+    alert = browser.get_alert()#处理弹出框
+    alert.accept()
+    browser.find_by_tag('button')[12].click()#提交作业
+    browser.quit()
+file1.close()
+</code></pre>
+
+<p>4、批量注册用户</p>
+
+<pre><code>import time
+import random
+import itertools
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.183/dbackup')
+time.sleep(3)
+browser.fill('username','admin')
+browser.fill('password','admin')
+browser.find_by_name('Submit').click()
+time.sleep(3)
+str1 = 'abcdefghijklmnopqrstuvwxwy0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+fobj = open('/home/irene/Documents/python/userpasswd','w')
+i=0
+while i&lt;200:
+    na = browser.find_by_id('Navigate1')
+    na.click()
+    na.find_by_tag('a')[2].click()
+    time.sleep(3)
+    nu = random.randint(5,16)
+    np = random.randint(10,29)
+    name = "".join(itertools.chain(*random.sample(str1,nu)))
+    passwd = "".join(itertools.chain(*random.sample(str1,np)))+str(i)
+    browser.fill('username',name)
+    browser.fill('password',passwd)
+    browser.fill('confirmpassword',passwd)
+    browser.fill('email','3r543@se.com')
+    browser.find_by_id('telephone').fill(passwd)
+    browser.find_by_id('RegisterBut').click()
+    time.sleep(3)
+    alert = browser.get_alert()
+    alert.accept()
+    i +=1
+    print i
+    fobj.write('username: '+name+'\n')
+    fobj.write('passwd: '+passwd+'\n')
+    time.sleep(30)
+fobj.close()
+browser.quit()
+</code></pre>
+
+<p>5、迪备oracle(备份资源类型<em>备份方法</em>设备<em>作业信息)组合备份
+共有12</em>3+4=40种情况。没考虑第一次备份、非归档备份、关联存储服务器、计划作业、备份策略、出错后弹出框的处理、优先级、是否发送错误邮件、产出结果。只好根据作业名称来查看备份情况。每跑一次需要20分钟左右！</p>
+
+<pre><code>#-*-coding=utf-8
+import time
+from splinter import Browser
+browser = Browser()
+browser.visit('http://192.168.88.185/dbackup')#访问页面
+browser.fill('username','dingjia')#向页面输入文字
+browser.fill('password','dingjia123')
+browser.find_by_name('Submit').click()#单击按钮
+assert browser.is_element_present_by_id('treeNodeId1')
+browser.find_link_by_href('javascript:void(0)')[1].click()
+browser.find_link_by_text('进入').click()
+
+#dlog是否删除归档日志
+def fun(type,method,equipment,jobname,dlog):
+    browser.find_link_by_href('BackupWizardOracle.php?type=1').click()
+    time.sleep(3)
+    #备份资源类型
+    print type
+    browser.find_by_id(type).click()
+    time.sleep(4)
+    #是否备份表空间
+    if(type=='tablespaceRadio'):
+        browser.find_by_id('tablespaceChecbox').click()
+        time.sleep(2)
+    #是否备份数据文件
+    if(type=='datafileRadio'):
+        browser.find_by_id('datafileChecbox').click()
+        time.sleep(2)
+    #是否删除归档日志
+    if(dlog=='n'):
+        browser.find_by_id('archivedlogCheckbox').click()
+        time.sleep(2)
+    browser.find_by_tag('button')[0].click()#下一步
+    #备份方法
+    browser.find_by_id(method).click()
+    browser.find_by_tag('button')[3].click()#下一步
+    time.sleep(5)
+    #设备
+    browser.find_by_id(equipment).click()
+    browser.find_by_tag('button')[6].click()#下一步
+    time.sleep(2)
+    #作业信息
+    browser.find_by_id('jobName').fill(jobname)
+    browser.find_by_tag('button')[9].click()#下一步
+    time.sleep(2)
+    #作业摘要
+    browser.find_by_tag('button')[12].click()#提交作业
+    time.sleep(5)
+
+if __name__ == "__main__":
+    #---------------------数据库---------------------
+    print '数据库(删除归档)--完全备份--本地'
+    fun('databaseRadio','fullRadio','diskRadio','DFD0','')
+    print '数据库(删除归档)--差异增量备份--本地'
+    fun('databaseRadio','differenceRadio','diskRadio','DDD1','')
+    print '数据库(删除归档)--累积增量增量备份--本地'
+    fun('databaseRadio','accumulationRadio','diskRadio','DAD1','')
+    print '数据库(删除归档)--完全备份--存储服务器'
+    fun('databaseRadio','fullRadio','ftpRadio','DFF1','')
+    print '数据库(删除归档)--差异增量备份--存储服务器'
+    fun('databaseRadio','differenceRadio','ftpRadio','DDF1','')
+    print '数据库(删除归档)--累积增量增量备份--存储服务器'
+    fun('databaseRadio','accumulationRadio','ftpRadio','DAF1','')
+    print '数据库(不删除归档)--完全备份--本地'
+    fun('databaseRadio','fullRadio','diskRadio','DFDn','n')
+    print '数据库(不删除归档)--差异增量备份--本地'
+    fun('databaseRadio','differenceRadio','diskRadio','DDDn','n')
+    print '数据库(不删除归档)--累积增量增量备份--本地'
+    fun('databaseRadio','accumulationRadio','diskRadio','DADn','n')
+    print '数据库(不删除归档)--完全备份--存储服务器'
+    fun('databaseRadio','fullRadio','ftpRadio','DFFn','n')
+    print '数据库(不删除归档)--差异增量备份--存储服务器'
+    fun('databaseRadio','differenceRadio','ftpRadio','DDFn','n')
+    print '数据库(不删除归档)--累积增量增量备份--存储服务器'
+    fun('databaseRadio','accumulationRadio','ftpRadio','DAFn','n')
+
+    #---------------------表空间-----------------------
+    print '表空间(删除归档)--完全备份--本地'
+    fun('tablespaceRadio','fullRadio','diskRadio','TFD1','')
+    print '表空间(删除归档)--差异增量备份--本地'
+    fun('tablespaceRadio','differenceRadio','diskRadio','TDD1','')
+    print '表空间(删除归档)--累积增量增量备份--本地'
+    fun('tablespaceRadio','accumulationRadio','diskRadio','TAD1','')
+    print '表空间(删除归档)--完全备份--存储服务器'
+    fun('tablespaceRadio','fullRadio','ftpRadio','TFF1','')
+    print '表空间(删除归档)--差异增量备份--存储服务器'
+    fun('tablespaceRadio','differenceRadio','ftpRadio','TDF1','')
+    print '表空间(删除归档)--累积增量增量备份--存储服务器'
+    fun('tablespaceRadio','accumulationRadio','ftpRadio','TAF1','')
+    print '表空间(不删除归档)--完全备份--本地'
+    fun('tablespaceRadio','fullRadio','diskRadio','TFDn','n')
+    print '表空间(不删除归档)--差异增量备份--本地'
+    fun('tablespaceRadio','differenceRadio','diskRadio','TDDn','n')
+    print '表空间(不删除归档)--累积增量增量备份--本地'
+    fun('tablespaceRadio','accumulationRadio','diskRadio','TDAn','n')
+    print '表空间(不删除归档)--完全备份--存储服务器'
+    fun('tablespaceRadio','fullRadio','ftpRadio','TFFn','n')
+    print '表空间(不删除归档)--差异增量备份--存储服务器'
+    fun('tablespaceRadio','differenceRadio','ftpRadio','TDFn','n')
+    print '表空间(不删除归档)--累积增量增量备份--存储服务器'
+    fun('tablespaceRadio','accumulationRadio','ftpRadio','TAFn','n')
+
+    #---------------------数据文件---------------------
+    print '数据文件(删除归档)--完全备份--本地'
+    fun('datafileRadio','fullRadio','diskRadio','DFFD1','')
+    print '数据文件(删除归档)--差异增量备份--本地'
+    fun('datafileRadio','differenceRadio','diskRadio','DFDD1','')
+    print '数据文件(删除归档)--累积增量增量备份--本地'
+    fun('datafileRadio','accumulationRadio','diskRadio','DFAD1','')
+    print '数据文件(删除归档)--完全备份--存储服务器'
+    fun('datafileRadio','fullRadio','ftpRadio','DFFF1','')
+    print '数据文件(删除归档)--差异增量备份--存储服务器'
+    fun('datafileRadio','differenceRadio','ftpRadio','DFDF1','')
+    print '数据文件(删除归档)--累积增量增量备份--存储服务器'
+    fun('datafileRadio','accumulationRadio','ftpRadio','DFAF1','')
+    print '数据文件(不删除归档)--完全备份--本地'
+    fun('datafileRadio','fullRadio','diskRadio','DFFDn','n')
+    print '数据文件(不删除归档)--差异增量备份--本地'
+    fun('datafileRadio','differenceRadio','diskRadio','DFDDn','n')
+    print '数据文件(不删除归档)--累积增量增量备份--本地'
+    fun('datafileRadio','accumulationRadio','diskRadio','DFADn','n')
+    print '数据文件(不删除归档)--完全备份--存储服务器'
+    fun('datafileRadio','fullRadio','ftpRadio','DFFFn','n')
+    print '数据文件(不删除归档)--差异增量备份--存储服务器'
+    fun('datafileRadio','differenceRadio','ftpRadio','DFDFn','n')
+    print '数据文件(不删除归档)--累积增量增量备份--存储服务器'
+    fun('datafileRadio','accumulationRadio','ftpRadio','DFAFn','n')
+
+    #---------------------归档日志---------------------
+    print '归档日志(删除归档)--差异增量备份--本地'
+    fun('archivedlogRadio','differenceRadio','diskRadio','ADD1','')
+    print '归档日志(删除归档)--差异增量备份--存储服务器'
+    fun('archivedlogRadio','differenceRadio','ftpRadio','ADF1','')
+    print '归档日志(不删除归档)--差异增量备份--本地'
+    fun('archivedlogRadio','differenceRadio','diskRadio','ADDn','n')
+    print '归档日志(不删除归档)--差异增量备份--存储服务器'
+    fun('archivedlogRadio','differenceRadio','ftpRadio','ADFn','n')
+browser.quit()
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/">Oracle10g DG 的搭建</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T11:14:02+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>此次搭建过程主要参考：<a href="http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php">http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php</a></p>
+
+<p><a href="http://www.5ienet.com/note/html/dg/index.shtml">http://www.5ienet.com/note/html/dg/index.shtml</a></p>
+
+<p>前提：</p>
+
+<ul>
+<li><p>两台已经装有oracle的linux机器。本次使用的是centos3_x86</p></li>
+<li><p>主库上装有oracle服务及添加了一个名ora10g的实例</p></li>
+<li><p>从库仅安装了oracle服务</p></li>
+<li><p>为了方便，主从库oracle的安装路径完全一致。主库上的ORACLE_HOME=/u01/app/oracle</p></li>
+</ul>
+
+
+<p>详细步骤：</p>
+
+<p>主库服务设置</p>
+
+<ol>
+<li> 归档日志
+****检查主库的实例是否为归档状态
+SQL>SELECT log_mode FROM v$database;
+LOG_MODE</li>
+</ol>
+
+
+<hr />
+
+<p>NOARCHIVELOG
+SQL>
+****如果是非归档状态，将其更换为归档状态
+SQL>SHUTDOWN IMMEDIATE;SQL>STARTUP MOUNT;</p>
+
+<p>SQL>ALTER DATABASE ARCHIVELOG;</p>
+
+<p>SQL>ALTER DATABASE OPEN;</p>
+
+<p>****启动数据库的force logging</p>
+
+<p>SQL>ALTER DATABSE FORCE LOGGING;</p>
+
+<ol>
+<li> 初始化参数
+<strong><strong>检查db_name和db_unique_name这两个参数，这次将这两个参数都设置为ora10g
+SQL>show parameter db_name;
+NAME                  TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;        &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_name            string                  ora10gSQL>show parameter db_unique_name;
+NAME                                TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;                      &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_unique_name            string                  ora10g
+</strong></strong>主从库的db_name一致，可是db_unique_name不能相同，因为主从库的db-unique_name会在dg_config当作log_archive_config参数。这个例子里，将从库的db_unique_name设置为“ora10g_stby”。</li>
+</ol>
+
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_CONFIG=&lsquo;DG_CONFIG=(ORA10G,ORA10G_STBY)&rsquo;;
+****设置合适的远程归档日志路径。这个例子里，把flash_recover_area当作本地路径，或者你自己也可以指定一个特定的路径。指定SERVICE和DB_UNIQUE_NAME为了给从库路径做参考</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_2=‘SERVICE=ora10g_stby NOAFFIRM ASYNC VALID=(ONLINE_LOGFILES,PRIMARY_ROLE)           DB_UNIQUE_NAME=ORA10G_STBY&#8217;;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_STATE_2=ENABLE;</p>
+
+<p>****LOG_ARCHIVE_FORMAT和LOG_ARCHIVE_MAX_PROCESSES参数要合理设置，REMOTE_LOGIN_PASSWORDFILE 要设置为EXCLUSIVE。</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_FORMAT=‘%t<em>%s</em>%r.arc&#8217; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_MAX_PROCESSES=30;</p>
+
+<p>SQL>ALTER SYSTEM SET REMOTE_LOGIN_PASSWORDFILE=EXCLUSIVE SCOPE=SPFILE;
+<strong><strong>除了之前的设置，还要确保主库和备库能互换角色。为了使互换角色能正常使用，需要设置如下参数。调整*_CONVERT参数用于解释主备库文件名和路径不同的地方。</strong></strong>
+SQL>ALTER SYSTEM SET FAL_SERVER=ORA10G_STBY;</p>
+
+<p>SQL>ALTER SYSTEM SET DB_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;</p>
+
+<p>****记住，一些参数是不会立即生效的，所以需要重启数据库以确保他们能起作用。</p>
+
+<ol>
+<li><p> 服务设置
+<strong><strong>主备库都需要“$ORACLE_HOME/network/admin/tnsnames.ora”文件。你可以用Network Configuration Utility(netca)或者手动创建。
+</strong></strong>主库的tnsnames.ora</p>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)
+ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+<strong><strong>备库的tnsname.ora</strong></strong>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+<p>ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)</p></li>
+<li><p> 备份主库
+****如果你使用duplicate模式去创建从库，则这一步是不必要的。基于备份的duplicate，或者手动恢复，都要备份主库。$ rman target = /
+RMAN> BACKUP DATABASE PLUS ARCHIVELOG;</p></li>
+<li><p> 生成从库的控制文件和pfile文件
+****在主库同步如下命令生成备库的控制文件SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/ora10g_stby.ctl&rsquo;;</p></li>
+</ol>
+
+
+<p><strong><strong>由spfile文件生成备库的参数文件。
+SQL>CREATE PFILE=&lsquo;/tmp/iniora10g_stby.ora&rsquo; FROM SPFILE;
+</strong></strong>修改与备库有关的参数，因为备库是复制过来的，所以只需修改如下参数：</p>
+
+<p><em>.db_unique_name=&lsquo;ORA10G_STBY&rsquo;
+</em>.fal_server=&lsquo;ORA10G&rsquo;
+*.log_archive_dest_2=&lsquo;SERVICE=ora10g ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ORA10G&rsquo;</p>
+
+<p>(以上是原文翻译，不过在我实践的过程中，我的备库是值安装了oracle服务，并没有oracle实例。所以$ORACLE_HOME/admin下的某些路径会不存在，那么则需看清楚生成的iniora10g_stby.ora中存在哪些路径。如果文件中有，而备库机器实际上没有该路径的话，则需手动添加。如有不符合的路径，也许手动更改该路径或修改ora文件)</p>
+
+<p>从库服务设置</p>
+
+<ol>
+<li> 拷贝文件
+****在从库添加必要的路径$ mkdir -p /u01/app/oracle/oradata/ORA10G
+$ mkdir -p /u01/app/oracle/flash_recovery_area/ORA10G
+$ mkdir -p /u01/app/oracle/admin/ORA10G/adump</li>
+</ol>
+
+
+<p>****将文件从主库拷贝到从库</p>
+
+<p>$ # Standby controlfile to all locations.
+$ scp oracle@192.168.88.185:/tmp/ora10g_stby.ctl /u01/app/oracle/oradata/ORA10G/control01.ctl
+$ cp /u01/app/oracle/oradata/ORA10G/control01.ctl /u01/app/oracle/flash_recovery_area/ORA10G/control02.ctl$ # Archivelogs and backups
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/archivelog /u01/app/oracle/flash_recovery_area/ORA10G
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/backupset /u01/app/oracle/flash_recovery_area/ORA10G</p>
+
+<p>$ # Parameter file.
+$ scp oracle@192.168.88.185:/tmp/initORA10G_stby.ora /tmp/initORA10G_stby.ora</p>
+
+<p>$ # Remote login password file.
+$ scp oracle@192.168.88.185:$ORACLE_HOME/dbs/orapwORA10G $ORACLE_HOME/dbs</p>
+
+<ol>
+<li><p> 启动listener(监听程序)
+<strong><strong>主备库的listener如下：
+</strong></strong>主库：</p>
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+(SID_NAME = ora10g)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC0))
+)
+)
+****备库：
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Or</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+
+<h1>(GLOBAL_DBNAME = ORA10G_STBY)</h1>
+
+<p>(ORACLE_HOME = /u01/app/oracle)
+(SID_NAME = ora10g)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+)
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+)
+)
+ADR_BASE_LISTENER = /u01/app/oracle
+ENABLE_GLOBAL_DYNAMIC_ENDPOINT_LISTENER = ON
+启动监听
+$lsnrctl start</p></li>
+<li><p> 恢复从库
+****在备库通过修改了的pfile文件生成spfile$export ORACLE_SID=ora10g
+$sqlplus / as sysdba
+SQL>CREATE SPFILE FROM PFILE=&lsquo;/tmp/initora10g_stby.ora&rsquo;;</p></li>
+</ol>
+
+
+<p>****恢复备份的文件</p>
+
+<p>$ export ORACLE_SID=ora10g
+$ rman target=/
+RMAN>STARTUP MOUNT;
+RMAN>RESTORE DATABASE;</p>
+
+<ol>
+<li> 添加redo日志
+****添加备库的online redo logs。SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</li>
+</ol>
+
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>****除了online redo logs之外，你还要生成在主备库两边都生成standby redo logs为了使它们能够进行角色转换。备库的redo logs至少和online redo log一样大
+SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>设置DG的同步</p>
+
+<ol>
+<li><p> 在备库启动同步设置
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;</p></li>
+<li><p> 如果你需要取消同步，用如下命令
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p></li>
+<li><p> 如果你希望的话，可以自己设置同步时间。
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DELAY 30 DISCONNECT FROM SESSION;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE NODELAY DISCONNECT FROM SESSION;</p></li>
+</ol>
+
+
+<p>测试日志的传输</p>
+
+<ol>
+<li><p> 在主库，检查最后的归档日志(archived redo log)和强制切换日志
+SQL>ALTER SESSION SET nls_date_format=&lsquo;DD-MON-YYYY HH24:MI:SS&rsquo;;
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;
+SQL>ALTER SYSTEM SWITCH LOGFILE;</p></li>
+<li><p> 在备库检查归档日志是否已经改变
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;</p></li>
+</ol>
+
+
+<p>。。。。。。。DG搭建已告一段落，可以进行正常的同步了。后面的还未实践过，暂且编写这么多，此次属于第一次搭建DG，有不足之处希望各位多多指出。</p>
+
+<p>主备库的启动关闭顺序</p>
+
+<p>启动顺序：先standby，后primary</p>
+
+<p>关闭顺序：先primary，后standby</p>
+
+<p>启动实例：</p>
+
+<p>SQL>startup nomount;</p>
+
+<p>SQL>alter database mount stadby database;</p>
+
+<p>SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p>
+
+<p>SQL>alter database recover managed standby database disconnect from session</p>
+
+<p>在备库启动监听</p>
+
+<p>$lsnrctl start</p>
+
+<p>在主库启动实例</p>
+
+<p>SQL>startup</p>
+
+<p>在主库启动监听</p>
+
+<p>$lsnrctl start</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/">linux下.sh文件语法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T16:56:49+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/04/03/linuxe4b88b-she69687e4bbb6e8afade6b395/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>一、开头</strong>
+程序必须以下面的行开始（必须方在文件的第一行）：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>符号#!用来告诉系统它后面的参数是用来执行该文件的程序。在这个例子中我们使用/bin/sh来执行程序。</p>
+
+<p>当编写脚本完成时，如果要执行该脚本，还必须使其可执行。要使编写脚本可执行：
+编译 chmod +x filename 这样才能用./filename 来运行</p>
+
+<p><strong>二、注释</strong>
+在进行shell编程时，以#开头的句子表示注释，直到这一行的结束。我们真诚地建议您在程序中使用注释。
+如果您使用了注释，那么即使相当长的时间内没有使用该脚本，您也能在很短的时间内明白该脚本的作用及工作原理。</p>
+
+<p><strong>三、变量</strong>
+在其他编程语言中您必须使用变量。在shell编程中，所有的变量都由字符串组成，并且您不需要对变量进行声明。要赋值给一个变量，您可以这样写：</p>
+
+<h1>!/bin/sh</h1>
+
+<h1>对变量赋值：</h1>
+
+<p>a=”hello world”</p>
+
+<h1>现在打印变量a的内容：</h1>
+
+<p>echo “A is:”
+echo $a
+有时候变量名很容易与其他文字混淆，比如：
+num=2
+echo “this is the $numnd”
+这并不会打印出”this is the 2nd”，而仅仅打印”this is the “，因为shell会去搜索变量numnd的值，但是这个变量时没有值的。可以使用花括号来告诉shell我们要打印的是num变量：
+num=2
+echo “this is the ${num}nd”
+这将打印： this is the 2nd</p>
+
+<p><strong>四、环境变量</strong>
+由export关键字处理过的变量叫做环境变量。我们不对环境变量进行讨论，因为通常情况下仅仅在登录脚本中使用环境变量。</p>
+
+<p><strong>五、Shell命令和流程控制</strong>
+在shell脚本中可以使用三类命令：</p>
+
+<p><strong>1、Unix 命令:</strong>
+虽然在shell脚本中可以使用任意的unix命令，但是还是由一些相对更常用的命令。这些命令通常是用来进行文件和文字操作的。
+常用命令语法及功能
+echo “some text”: 将文字内容打印在屏幕上
+ls: 文件列表
+wc –l filewc -w filewc -c file: 计算文件行数计算文件中的单词数计算文件中的字符数
+cp sourcefile destfile: 文件拷贝
+mv oldname newname : 重命名文件或移动文件
+rm file: 删除文件
+grep ‘pattern’ file: 在文件内搜索字符串比如：grep ’searchstring’ file.txt
+cut -b colnum file: 指定欲显示的文件内容范围，并将它们输出到标准输出设备比如：输出每行第5个到第9个字符cut -b5-9 file.txt千万不要和cat命令混淆，
+这是两个完全不同的命令
+cat file.txt: 输出文件内容到标准输出设备（屏幕）上
+file somefile: 得到文件类型
+read var: 提示用户输入，并将输入赋值给变量
+sort file.txt: 对file.txt文件中的行进行排序
+uniq: 删除文本文件中出现的行列比如： sort file.txt | uniq
+expr: 进行数学运算Example: add 2 and 3expr 2 “+” 3
+find: 搜索文件比如：根据文件名搜索find . -name filename -print
+tee: 将数据输出到标准输出设备(屏幕) 和文件比如：somecommand | tee outfile
+basename file: 返回不包含路径的文件名比如： basename /bin/tux将返回 tux
+dirname file: 返回文件所在路径比如：dirname /bin/tux将返回 /bin
+head file: 打印文本文件开头几行
+tail file : 打印文本文件末尾几行
+sed: Sed是一个基本的查找替换程序。可以从标准输入（比如命令管道）读入文本，并将
+结果输出到标准输出（屏幕）。该命令采用正则表达式（见参考）进行搜索。不要和shell中的通配符相混淆。比如：将linuxfocus替换为 LinuxFocus ：cat text.file | sed ’s/linuxfocus/LinuxFocus/’ >newtext.fileawk: awk 用来从文本文件中提取字段。缺省地，字段分割符是空格，可以使用-F指定其他分割符。
+catfile.txt | awk -F, ‘{print $1 “,” $3}’这里我们使用，作为字段分割符，同时打印第一个和第三个字段。如果该文件内容如下： Adam Bor, 34, IndiaKerryMiller, 22, USA命令输出结果为：Adam Bor, IndiaKerry Miller, USA</p>
+
+<p><strong>2、概念: 管道, 重定向和 backtick</strong>
+这些不是系统命令，但是他们真的很重要。
+管道 (|) 将一个命令的输出作为另外一个命令的输入。
+grep “hello” file.txt | wc -l
+在file.txt中搜索包含有”hello”的行并计算其行数。
+在这里grep命令的输出作为wc命令的输入。当然您可以使用多个命令。
+重定向：将命令的结果输出到文件，而不是标准输出（屏幕）。</p>
+
+<blockquote><p>写入文件并覆盖旧文件</p>
+
+<blockquote><p>加到文件的尾部，保留旧文件内容。
+反短斜线
+使用反短斜线可以将一个命令的输出作为另外一个命令的一个命令行参数。
+命令：
+find . -mtime -1 -type f -print
+用来查找过去24小时（-mtime –2则表示过去48小时）内修改过的文件。如果您想将所有查找到的文件打一个包，则可以使用以下linux 脚本：</p>
+
+<h1>!/bin/sh</h1>
+
+<h1>The ticks are backticks (`) not normal quotes (‘):</h1>
+
+<p>tar -zcvf lastmod.tar.gz <code>find . -mtime -1 -type f -print</code></p></blockquote></blockquote>
+
+<p><strong>3、流程控制</strong>
+“if” 表达式 如果条件为真则执行then后面的部分：
+if ….; then
+….
+elif ….; then
+….
+else
+….
+fi
+大多数情况下，可以使用测试命令来对条件进行测试。比如可以比较字符串、判断文件是否存在及是否可读等等…
+通常用” [ ] “来表示条件测试。注意这里的空格很重要。要确保方括号的空格。
+[ -f &ldquo;somefile&rdquo; ] ：判断是否是一个文件
+[ -x &ldquo;/bin/ls&rdquo; ] ：判断/bin/ls是否存在并有可执行权限
+[ -n &ldquo;$var&rdquo; ] ：判断$var变量是否有值
+[ &ldquo;$a&rdquo; = &ldquo;$b&rdquo; ] ：判断$a和$b是否相等
+执行man test可以查看所有测试表达式可以比较和判断的类型。
+直接执行以下脚本：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>if [ &ldquo;$SHELL&rdquo; = &ldquo;/bin/bash&rdquo; ]; then
+echo “your login shell is the bash (bourne again shell)”
+else
+echo “your login shell is not bash but $SHELL”
+fi
+变量$SHELL包含了登录shell的名称，我们和/bin/bash进行了比较。
+快捷操作符
+熟悉C语言的朋友可能会很喜欢下面的表达式：
+[ -f &ldquo;/etc/shadow&rdquo; ] &amp;&amp; echo “This computer uses shadow passwors”
+这里 &amp;&amp; 就是一个快捷操作符，如果左边的表达式为真则执行右边的语句。
+您也可以认为是逻辑运算中的与操作。上例中表示如果/etc/shadow文件存在则打印” This computer uses shadow passwors”。同样或操作(||)在shell编程中也是可用的。这里有个例子：</p>
+
+<h1>!/bin/sh</h1>
+
+<p>mailfolder=/var/spool/mail/james
+[ -r &ldquo;$mailfolder&rdquo; ]‘ ‘{ echo “Can not read $mailfolder” ; exit 1; }
+echo “$mailfolder has mail from:”
+grep “<sup>From</sup> ” $mailfolder
+该脚本首先判断mailfolder是否可读。如果可读则打印该文件中的”From” 一行。如果不可读则或操作生效，打印错误信息后脚本退出。这里有个问题，那就是我们必须有两个命令：
+◆打印错误信息
+◆退出程序
+我们使用花括号以匿名函数的形式将两个命令放到一起作为一个命令使用。一般函数将在下文提及。
+不用与和或操作符，我们也可以用if表达式作任何事情，但是使用与或操作符会更便利很多。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/">Oracle用户管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T16:35:01+08:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time>
+        
+           | <a href="/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一、用户的概念
+　　用户，即user,通俗的讲就是访问oracle数据库的“人”。在oracle中，可以对用户的各种安全参数进行控制，以维护数据库的安全性，这些概念包括模式(schema)、权限、角色、存储设置、空间限额、存取资源限制、数据库审计等。每个用户都有一个口令，使用正确的用户/口令才能登录到数据库进行数据存取。</p>
+
+<p>二、用户默认表空间
+　　表空间是信息存储的最大逻辑单位、当用户连接到数据库进行资料存储时，若未指出数据的目标存储表空间时，则数据存储在用户的默认表空间中。比如：create table mytable(id varchar2(20),name varchar2(100));这条语句创建了一个表mytable,并将其存储在当前用户的默认表空间中，若要指定表空间，则：create table mytable(id varchar2(20),name varchar2(100)) tablespace tbs1;。用户的默认表空间可以在创建用户时指定，也可以使用aler user命令进行指定，具体语法见后面的介绍。</p>
+
+<p>三、用户临时表空间
+　　临时表空间主要用于order by语句的排序以及其它一些中间操作。在oracle9i之前，可以指定用户使用不同的临时表空间，从9i开始，临时表空间是通用的，所的用户都使用TEMP作为临时表空间。</p>
+
+<p>四、用户资源文件
+　　用户资源文件用来对用户的资源存取进行限制，包括：cpu使用时间限制、内存逻辑读个数限制、每个用户同时可以连接的会话数据限制、一个会话的空间和时间限制、一个会话的持续时间限制、每次会话的专用ＳＧＡ空间限制。</p>
+
+<p>五、用户表空间限额
+　　表空间存储限制是用户在某一个表空间中可以使用的存储空间总数。在创建或修改用户时，可以由参数quota指出。若用户在向表空间存储数据时，超出了此限额，则会产生错误。错误信息如：&#8217;ORA-01536:space quota exceeded for tablespace tablespacename..&lsquo;。可以通过查询字典dba_ts_quotas查看表空间限额信息。</p>
+
+<p>六、创建用户资源文件
+　　创建用户资源文件的语法如下：
+CREATE PROFILE filename LIMIT
+SESSION_PER_USER integer
+CPU_PER_SESSION integer
+USER_PER_CALL integer
+CONNECT_TIME integer
+&hellip;&hellip;
+基中：
+SESSION_PER_USER: 用户可以同时连接的会话数量限额；
+CPU_PER_SESSION:用户在一次数据库会期间可占用的CPU时间总量限额，单位为百分之一秒；
+USER_PER_CALL:用户一次ＳＱＬ调用可用的ＣＰＵ时间总量限额，单位为百分之一秒；
+LOGICAL_READS_PER_SESSION：在一次数据库会话期间能够读取的数据库块的个数限额；
+LOGICAL_READS_PER_CALL:一次ＳＱＬ调用可以读取的数据库块数限额；
+IDLE_TIME：用户连接到数据库后的可空闲时间限额，单位为分钟，若空闲时间超过此值，则连接被断开；
+CONNECT_TIME:一次连接的时间总量限额，单位为分钟，连接时间超过此值时，连接被断开；
+PRIVATE_SGA：用户么有的ＳＧＡ区的大小，单位为数据库块，默认值为UNLIMITED；
+COMPOSITE_LIMIT：这是一项由上述限制参数构成的组合资源项。举例来说，假设资源设置如下：
+　　IDLE_TIME 20</p>
+
+<pre><code>CONNECT_TIME 120
+CPU_PER_CALL 750
+COMPOSITE_LIMT 800
+</code></pre>
+
+<p>那么，当会话空间超过20分钟，或者连接时间超过120分钟，又或者执行一个ＳＱＬ耗费超过7.5秒，再或者这几个资源限制加起来的总数超过800，则系统自动终止会话。
+FAILED_LOGIN_ATTEMPTS:用户登录时，允许用户名/密码校验失败致使用登录失败的次数限额，超过该次数，帐户被锁定；
+PASSWORD_LIFE_TIME：口令有效时间，单位为天数，超过这一时间，拒绝登录，须重新设置口令，默认值为UNLIMITED；
+PASSWORD_REUSE_TIME:一个失效口令经过多少天后才可重新利用，默认为UNLIMITED；
+PASSWORD_REUSE_MAX：一个口令可重复使用的次数；
+PASSWORD_LOCK_TIME:当登录失败达到FAILED_LOGIN_ATTEMPS时，帐户被锁定，该参数用于设定被锁定的天数；
+下面举例如下：
+1)创建一个用户资源文件
+create profile tax_users limit
+session_per_user 3
+cpu_per_session UNLIMITED
+connect_time 30
+logical_reads_per_session DEFAULT
+logical_reads_per_call 1000
+private_sga 15K
+composite_limit 500000
+password_life_time 90
+2)查询用户资源文件信息
+sql>select *from dba_profile where profile = &lsquo;tax_users&rsquo;
+3)指定用户资源文件给用户
+sql>alter user us1 profile tax_users</p>
+
+<p>七、创建、修改、删除用户
+1.创建用户
+　　创建用户的详细语法请查询oracle的官方参数文档，这里介绍典型的语法。语法如下：
+CREATE USER username
+IDENTIFIED BY password
+DEFAULT TABLESPACE tablespace
+TEMPORARY TABLESPACE tablespace
+PROFILE profile
+QUOTA integer|UNLIMITED ON tablespace
+各选项含义如下：
+IDENTIFIED BY password：用户口令；
+DEFAULT TABLESPACE tablespace:默认表空间；
+TEMPORARY TABLESPACE tablespace：临时表空间；
+PROFILE profile|DEFAULT：用户资源文件；
+QUOTA integer[K|M]|UNLIMITED ON tablespace：用户在表空间上的空间使用限额，可以指定多个表空间的限额。
+举例：
+CREATE USER us1 IDENTITIED BY abc123
+DEFAULT TABLESPACE user01
+TEMPORARY TABLESPACE temp
+PROFILE DEFAULT
+QUOTA 1000M ON user01;</p>
+
+<p>2.修改用户
+　　修改用户的语法是与创建用户的语法类似的，主要是CREATE USER　变成　ALTER USER，具体请参考oracle文档。</p>
+
+<p>3.删除用户
+  删除用户，是将用户及用户所创建的schema对象从数据库删除。如下：
+SQL>DROP USER us1;
+若用户us1含有schema对象，则无上述语句将执行失败，须加入关键字CASCADE才能删除，意思是连并其对象一起删除，如下：
+SQL>DROP USER us1 CASCADE;</p>
+
+<p>八、用户管理命令
+ORACLE中数据字典视图分为3大类,     用前缀区别，分别为：USER，ALL 和 DBA，许多数据字典视图包含相似的信息。</p>
+
+<p>USER_*:有关用户所拥有的对象信息，即用户自己创建的对象信息</p>
+
+<p>ALL_*：有关用户可以访问的对象的信息，即用户自己创建的对象的信息加上其他用户创建的对象但该用户有权访问的信息</p>
+
+<p>DBA_*：有关整个数据库中对象的信息</p>
+
+<p>（这里的*可以为TABLES， INDEXES， OBJECTS， USERS等。</p>
+
+<p>1.查看所有用户：
+select * from dba_user;
+select * from all_users;
+select * from user_users;
+2.查看用户系统权限：
+select * from dba_sys_privs;
+select * from all_sys_privs;
+select * from user_sys_privs;
+3.查看用户对象权限：
+select * from dba_tab_privs;
+select * from all_tab_privs;
+select * from user_tab_privs;
+4.查看所有角色：
+select * from dba_roles;
+5.查看用户所拥有的角色：
+select * from dba_role_privs;
+select * from user_role_privs;</p>
+
+<p>6.查看当前用户的缺省表空间
+select username,default_tablespace from user_users;</p>
+
+<p>7.查看某个角色的具体权限，如grant connect,resource,create session,create view to TEST;查看RESOURCE具有那些权限，用SELECT * FROM DBA_SYS_PRIVS WHERE GRANTEE=&lsquo;RESOURCE&rsquo;;</p>
+
+<p>例：
+限制user1用户只允许100个并发连接
+SQL> alter system set resource_limit=true;</p>
+
+<p>System altered</p>
+
+<p>SQL> create profile profile_user1 limit sessions_per_user 100;</p>
+
+<p>Profile created</p>
+
+<p>SQL> ALTER USER user1 profile profile_user1;</p>
+
+<p>User altered</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

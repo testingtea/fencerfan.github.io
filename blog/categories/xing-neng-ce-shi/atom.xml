@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 性能测试 | Scutech QA Blog]]></title>
+  <link href="http://fencerfan.github.io/blog/categories/xing-neng-ce-shi/atom.xml" rel="self"/>
+  <link href="http://fencerfan.github.io/"/>
+  <updated>2013-11-07T20:33:12+08:00</updated>
+  <id>http://fencerfan.github.io/</id>
+  <author>
+    <name><![CDATA[Scutech QA]]></name>
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[主机资源监控--New Relic]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/"/>
+    <updated>2013-06-09T14:22:16+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic</id>
+    <content type="html"><![CDATA[<p>缺点是，监控的主机要连接到Internet；</p>
+
+<p>官方地址：<a href="https://rpm.newrelic.com">https://rpm.newrelic.com</a></p>
+
+<p>使用方法：</p>
+
+<p>1、注册一个帐号，并且登录；</p>
+
+<p>2、在左则导航栏选择“Servers”，按照教程在所要监控的主机上安装newrelic工具；</p>
+
+<p>3、安装成功后，过几分钟刷新页面就可以看在基本的资源使用信息了。</p>
+]]></content>
+  </entry>
+  
+</feed>

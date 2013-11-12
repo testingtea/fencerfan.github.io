@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Solaris操作系统(李金钗) - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="Solaris是一个由SUN公司原创的类Unix操作系统，它从1993年开始就取代了先前的SunOS.不过从Oracle公司在2010年2月将Sun公司收购后，我们现在都称它为Oracle Solaris。
+Solaris最引人注目的是它的可伸缩性和发明了很多别的系统没有的创新的功能， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Solaris操作系统(李金钗)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T17:03:53+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Solaris是一个由SUN公司原创的类Unix操作系统，它从1993年开始就取代了先前的SunOS.不过从Oracle公司在2010年2月将Sun公司收购后，我们现在都称它为Oracle Solaris。
+Solaris最引人注目的是它的可伸缩性和发明了很多别的系统没有的创新的功能，如DTrace,ZFS和Time Slider，特别是在SPARC系统。Solaris支持基于SPARC和x86平台和Sun与其他销售商贩卖的服务器，另外他们也正在努力移植到其他平台。Solaris兼容单Unix规格。
+Solaris一直都收费直到2005年6月Sun小型机使用CDDL执照发布了大部分代码和创建了OpenSolaris开源项目。有了OpenSolaris，Sun围绕这个系统建立了开发者与使用者社区。在2010年2月Oracle收购Sun小型机后，Oracle决定不再继续OpenSolaris的发布和那时的开发模式。就在Oracle公司打算公布这一消息的前十天，消息泄漏了，Garrett D&#8217;Amore公布了illumos项目，这个项目创建了Solaris内核的一个分支，这个分支发布了之后，一直流行甚至取代了Oracle Solaris。
+在2010年8月，Oracle不再公开提供Solaris内核源码更新，很快地又将Solaris11变为私有操作系统，代码不再公开。然而，在Oracle Technology Network，企业合作伙伴仍可以访问到开发Solaris源码。Oracle公司提供Solaris11开源部分的下载。
+目录
+1 历史
+2 支持的架构
+2.1 其他平台
+3 安装与使用选项
+3.1 安装后的使用
+3.2 不安装的使用
+4 桌面环境
+5 使用许可
+6 历史版本
+7 发布产品
+8 更多
+9 参考
+10 外部链接</p>
+
+<p>Solaris
+公司／开发商：Oracle公司
+使用开发语言：C
+所属OS家族：Unix
+目前工作状态：当前流行可用
+源码类型：开闭源混合
+第一次发布：1992年6月
+最新稳定版本：11.1（发布于3个月前的2012年10月26日）
+适用的目标市场：工作站，服务器
+使用语言：英语
+使用的编程语言：C
+支持的平台：SPARC,IA-32,X86-64,PowerPC(只能用Solaris 2.5.1)
+内核类型：Monolithic
+默认用户接口程序：OpenSolaris桌面或者CDE或者GNOME
+许可证：多样
+管方网址：
+历史
+1987年，AT&amp;T公司和Sun公司联合声明了他们将一起合作一个将那时市场上最受欢迎的多种Unix系统合并的项目。这个项目就是Unix系统V版本4(SVR4).
+1991年9月4日，Sun对外发表一个基于SVR4的系统会取代起源于伯克利的Unix-SunOS 4。这个系统在内部称为SunOS 5，一个新的推向市场的名字同时推出：Solaris 2。虽然SunOS 4.1.x小版本的发布名称是沿用Sun公司的Solaris 1，但是后来只有用Solaris名字去指定基于SVR4的SunOS 5.0及后来版本。
+这个新的品牌的主要调整是它不只包含SunOS,也包含了用户窗口图形界面和网络计算功能。在Solaris的版本号中包含了SunOS小版本号，比如，Solaris 2.5合并了SunOS 5.4,在Solaris 2.6之后，Sun的版本数字命名去掉了“2.”前面的号，所以说Solaris 7即SunOS 5.7，最新版本SunOS 5.11.1组成了Solaris 11.1的核心。</p>
+
+<p>支持架构
+Solaris使用一套公用的基本代码用于它所支持的所有平台：SPARC和i86pc(包括x86与x86_64)
+Solaris在支持很多CPU与CPU的对称的多处理的良好适用方面有较多的好评。它一直都集成了Sun的SPARC硬件（包括Solaris 7以来支持64位的SPARC）和市场上的组合包。这是很多可靠操作系统的基础，但这些系统得在非常昂贵的PC硬件商品上运行。从Solaris2.1开始就已经支持x86系统且在Solaris10之后也开始支持64位的x86，这让Sun公司可以充分利用买到的基于x86_64架构的64位CPU。Sun公司的Solaris在它自己的基于AMD Opteron和英特尔的Xeon处理器x64位工作站和服务器与Sun公司自己生产的x86系统（比如戴尔，Hewlett-Packard和IBM)上的使用占有很大的市场分额。从2009年开始，以下计算机品牌在他们的x86服务器系统上都开始支持Solaris了：
+Dell&mdash;测试，验证和最优化Solaris和OpenSolaris，以所有的Dell 软件中的其中一个选择来销售
+IBM-它也发布了Solaris和Solaris子分支，支持基于x86的IBM系统x服务器与BladeCenter服务器
+Intel
+Hewlett-Packard-销售和提供Solaris在ProLiant服务器上的软件技术支持</p>
+
+<p>其他平台
+Solaris2.5.1包含支持了PowerPC平台，但是在Solaris 2.6版本之后就不再移植了。在2006年二月，Blastwave社区开发商开始移植PowerPC的工作，它们将这工作称为Polaris。在2006年10月，一个基于Blastwave工作和Sun Labs&#8217;Project Pulsar的openSolaris社区项目，这个项目将Solaris2.5.1的相关部分集成到OpenSolaris，并且第一次发布了它的官方源码。
+移植成功到英特尔奔腾架构在1997年正式公布但移植成功系统从来没有进入市场。Solaris也支持linux平台的应用程序接口。这让Solaris可以在x86系统运行Linux二进制。这功能被称为Linux应用Solaris容器。</p>
+
+<p>安装与使用说明
+Solaris可以通过很多预安装软件组来安装。个人使用系统没必要安装Solaris。额外的软件，像Apache,MySQl等等也可以在sun免费软件等地方获取安装包来安装。
+安装说明
+Solaris可以从物理介质或者网络中获取安装在desktop或者服务器。
+Solaris可以在平台的字符后台上交互式安装，没有视图显示与鼠标。
+在局域网中，个人工作站或者手提，只要控制台可用，Solaris也可以在用图形界面来安装。
+Solaris可以通过网络自动安装。系统管理员可以通过脚本与配置文件自定义安装，包括安装配置第三方软件，不用购买额外的软件管理。
+当安装完成，操作系统会放在安装出现时一样的操作系统。应用程序会独立安装在本地系统或者通过网络从远程机器上mount进来。</p>
+
+<p>不安装系统的使用
+Solaris不在机器上安装操作系统也可以使用
+Soaris在无硬盘环境或者只用作交换分区的的内部中通过一个远程服务器提供一个OS镜像来启动。在这种配置下，操作系统仍会运行。不过运行时应用程序可能就不是放在本地。那些需要快速安装的生意或者教育机构可以使用这种方法。</p>
+
+<p>授权条款
+Solaris通过OpenSolaris项目在CDDL上发布了源码。CDDL是一个OSI允许的授权。
+OpenSolaris在2005年六月14日开始实施，二进制与源版本都可以免费下载，且都已赋权。那些新功能的源码也加入到OpenSolaris项目中。Sun公司也声明了以后Solaris的发布也可以从OpenSolaris中获取得到。
+版本历史
+Solaris现在有更多很好的功能比如DTrace等等
+Solaris版本的更新也相继发布，按照从过来到现在时间排序，Solaris发布了以下版本：
+Solaris 版本 SunOS 核心版本 發佈日期 最後支援日[6]
+SPARC x86
+1.x 4.1.x 1991年-1994年 &ndash; 2003年9月
+2.0 5.0 1992年6月 &ndash; 1999年9月
+2.1 5.1 1992年1月 1993年5月 1999年4月
+2.2 5.2 1993年5月 &ndash; 1999年5月
+2.3 5.3 1993年11月 &ndash; 2002年6月
+2.4 5.4 1994年11月 2003年9月
+2.5 5.5 1995年11月 2003年12月
+2.5.1 5.5.1 1996年5月 2005年9月
+2.6 5.6 1997年7月 2006年7月
+7 5.7 1998年11月 2008年8月
+8 5.8 2000年2月 2012年3月
+9 5.9 2002年5月28日 2003年1月10日 2014年10月
+10 5.10 2005年1月31日 &ndash;
+11 Express 2010.11 5.11 2010年11月15日 &ndash;
+11 5.11 2011年11月9日 &ndash;</p>
+
+<p>更多
+Blastwave-用于Sparc与x86/AMD64位Solaris8的软件安装包
+操作系统的比较
+OpenCSW-Blastwave的软件分支
+操作系统
+Sun管理中心</p>
+
+<p>参照文献</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">jinchaili</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T17:03:53+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ying-wen-fan-yi/'>英文翻译</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/22/solaris-e6938de4bd9ce7b3bbe7bb9f/" title="Previous Post: Solaris 操作系统(马美玲)">&laquo; Solaris 操作系统(马美玲)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/02/22/ibm-aix/" title="Next Post: IBM_AIX操作系统(李小桃)">IBM_AIX操作系统(李小桃) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/02/22/solarise6938de4bd9ce7b3bbe7bb9f/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 数据库 | Scutech QA Blog]]></title>
+  <link href="http://fencerfan.github.io/blog/categories/shu-ju-ku/atom.xml" rel="self"/>
+  <link href="http://fencerfan.github.io/"/>
+  <updated>2013-11-07T20:33:12+08:00</updated>
+  <id>http://fencerfan.github.io/</id>
+  <author>
+    <name><![CDATA[Scutech QA]]></name>
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle热备份的原理]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/"/>
+    <updated>2013-09-25T17:26:17+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086</id>
+    <content type="html"><![CDATA[<p>文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。</p>
+
+<p><a href="http://www.linuxidc.com/Linux/2012-01/52398.htm">http://www.linuxidc.com/Linux/2012-01/52398.htm</a></p>
+
+<p>1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态，oracle数据块可能在不断的被修改，被读写，使用操作系统命令复制数据文件时，是根据操作系统块大小进行copy的，也就是说复制一个操作系统块的时候，首先锁定这个块，复制完成以后，解锁这个块，这样这个块在复制前和复制后是一致的。但是对于一个Oracle数据库来说，一个块要分成几次进行复制，有可能在复制一个操作系统数据块的时候，另外一个操作系统数据块被改变了，导致oracle数据块在复制到备份介质以后，前一半是没有改动过的，后一半是改动过的，数据块的状态就出现了不一致的情况，这时候备份也就是无效的，这叫做分离数据块现象。</p>
+
+<p>2、为了修复分离数据块现象，我们在备份某个表空间或者数据文件的的时候，首先发出begin backup命令，通知数据库我要开始开始备份了，在没有发出end backup命令之前，只要是进程修改了被备份的表空间所包含的数据块，oracle就会把该数据块中所包含的所有的数据行的数据生成重做记录，记录到日志文件中。</p>
+
+<p>通过发出begin backup以后，第一次修改数据块中的数据行之前，在联机重做日志文件中记录数据块的修改前的数据，这样在需要恢复数据的时候，发现某个数据块是分离的，就会利用日志文件里的重做记录的数据对整个数据块进行恢复</p>
+
+<p>3、备份表空间中的所有的被修改过的数据块的所有数据行都被保存在了联机重做日志文件中，而不是只记录被修改的数据行的记录，因此在热备份过程中，会发现生成的联机重做日志文件的量比较大，这取决于业务的繁忙程度，例如DML量比较大，那么产生的日志会非常的多</p>
+
+<p>4、发出begin backup命令以后，oracle会对被备份的表空间所对应的数据文件触发文件级别的检查点进程，将内存中属于该表空间的所有脏数据块写入数据文件，检查点结束以后，数据文件头部（第一个和第一个数据块）的检查点SCN和日志序列号都不在变化，直至发出end backup，数据文件头部的SCN和日志序列号才被更新</p>
+
+<p>5、在热备份的过程中，数据文件头部的SCN和日志序列号被冻结，但是数据文件本身还是最新的，和正常一样的更新和使用，DML更新了某个表，这些更新都会被写入到数据文件中去。冻结数据文件头部的SCN号和日志序列号，是为了将来使用热备份进行恢复的时候，能够知道应该从哪里开始应用重做记录，也就是备份的数据文件头部所记录的SCN和日志序列号，定位到日志文件中，从日志文件中找到开始的SCN，向后应用所有的日志文件</p>
+
+<p>6、发出end backup命令以后，所有的数据文件的头部SCN号和日志序列号更新到最新，因为数据文件本身就是最新的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dataguard主库恢复后备库的重建步骤]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4/"/>
+    <updated>2013-05-15T18:18:15+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/05/15/dataguarde4b8bbe5ba93e681a2e5a48de5908ee5a487e5ba93e79a84e9878de5bbbae6ada5e9aaa4</id>
+    <content type="html"><![CDATA[<ol>
+<li><p> 主库操作操作(open+archived_log)
+$ rman target=/
+RMAN>BACKUP DATABASE PLUS ARCHIVELOG;
+$ sqlplus sys/dingjia as sysdba
+SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+将orcl_stby.ctl拷贝到备库的/tmp目录下
+将主库rman备份之后的文件拷贝到备库的恢复日志目录下，如：/u01/app/oracle/flash_recovery_area/ORA10G/backupset</p></li>
+<li><p> 备库机器操作
+$ sqlplus sys/dingjia as sysdba
+SQL>shutdown immediate;
+删除备库的控制文件control*
+$ rman
+RMAN>connect target
+RMAN>restore controlfile from &lsquo;/tmp/orcl_stby.ctl&rsquo;;
+RMAN>startup force mount;
+RMAN>restore database;</p></li>
+<li><p> 最后重启主备库，按顺序启动dataguard即可！</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oracle10g DG 的搭建]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba/"/>
+    <updated>2013-04-07T11:14:02+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/04/07/oracle10g-dg-e79a84e690ade5bbba</id>
+    <content type="html"><![CDATA[<p>此次搭建过程主要参考：<a href="http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php">http://www.oracle-base.com/articles/11g/data-guard-setup-11gr2.php</a></p>
+
+<p><a href="http://www.5ienet.com/note/html/dg/index.shtml">http://www.5ienet.com/note/html/dg/index.shtml</a></p>
+
+<p>前提：</p>
+
+<ul>
+<li><p>两台已经装有oracle的linux机器。本次使用的是centos3_x86</p></li>
+<li><p>主库上装有oracle服务及添加了一个名ora10g的实例</p></li>
+<li><p>从库仅安装了oracle服务</p></li>
+<li><p>为了方便，主从库oracle的安装路径完全一致。主库上的ORACLE_HOME=/u01/app/oracle</p></li>
+</ul>
+
+
+<p>详细步骤：</p>
+
+<p>主库服务设置</p>
+
+<ol>
+<li> 归档日志
+****检查主库的实例是否为归档状态
+SQL>SELECT log_mode FROM v$database;
+LOG_MODE</li>
+</ol>
+
+
+<hr />
+
+<p>NOARCHIVELOG
+SQL>
+****如果是非归档状态，将其更换为归档状态
+SQL>SHUTDOWN IMMEDIATE;SQL>STARTUP MOUNT;</p>
+
+<p>SQL>ALTER DATABASE ARCHIVELOG;</p>
+
+<p>SQL>ALTER DATABASE OPEN;</p>
+
+<p>****启动数据库的force logging</p>
+
+<p>SQL>ALTER DATABSE FORCE LOGGING;</p>
+
+<ol>
+<li> 初始化参数
+<strong><strong>检查db_name和db_unique_name这两个参数，这次将这两个参数都设置为ora10g
+SQL>show parameter db_name;
+NAME                  TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;        &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_name            string                  ora10gSQL>show parameter db_unique_name;
+NAME                                TYPE                 VALUE
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;                      &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;       &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+db_unique_name            string                  ora10g
+</strong></strong>主从库的db_name一致，可是db_unique_name不能相同，因为主从库的db-unique_name会在dg_config当作log_archive_config参数。这个例子里，将从库的db_unique_name设置为“ora10g_stby”。</li>
+</ol>
+
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_CONFIG=&lsquo;DG_CONFIG=(ORA10G,ORA10G_STBY)&rsquo;;
+****设置合适的远程归档日志路径。这个例子里，把flash_recover_area当作本地路径，或者你自己也可以指定一个特定的路径。指定SERVICE和DB_UNIQUE_NAME为了给从库路径做参考</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_2=‘SERVICE=ora10g_stby NOAFFIRM ASYNC VALID=(ONLINE_LOGFILES,PRIMARY_ROLE)           DB_UNIQUE_NAME=ORA10G_STBY';</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_DEST_STATE_2=ENABLE;</p>
+
+<p>****LOG_ARCHIVE_FORMAT和LOG_ARCHIVE_MAX_PROCESSES参数要合理设置，REMOTE_LOGIN_PASSWORDFILE 要设置为EXCLUSIVE。</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_FORMAT=‘%t<em>%s</em>%r.arc' SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_ARCHIVE_MAX_PROCESSES=30;</p>
+
+<p>SQL>ALTER SYSTEM SET REMOTE_LOGIN_PASSWORDFILE=EXCLUSIVE SCOPE=SPFILE;
+<strong><strong>除了之前的设置，还要确保主库和备库能互换角色。为了使互换角色能正常使用，需要设置如下参数。调整*_CONVERT参数用于解释主备库文件名和路径不同的地方。</strong></strong>
+SQL>ALTER SYSTEM SET FAL_SERVER=ORA10G_STBY;</p>
+
+<p>SQL>ALTER SYSTEM SET DB_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET LOG_FILE_NAME_CONVERT=&lsquo;ORA10G_STBY&rsquo;,&lsquo;ORA10G&rsquo; SCOPE=SPFILE;</p>
+
+<p>SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;</p>
+
+<p>****记住，一些参数是不会立即生效的，所以需要重启数据库以确保他们能起作用。</p>
+
+<ol>
+<li><p> 服务设置
+<strong><strong>主备库都需要“$ORACLE_HOME/network/admin/tnsnames.ora”文件。你可以用Network Configuration Utility(netca)或者手动创建。
+</strong></strong>主库的tnsnames.ora</p>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)
+ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+<strong><strong>备库的tnsname.ora</strong></strong>
+
+<h1>tnsnames.ora Network Configuration File: /u01/app/oracle//network/admin/tnsnames.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+<p>ORA10G =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.185)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ORA10G)
+)
+)
+ORA10G_STBY =
+(DESCRIPTION =
+(ADDRESS_LIST =
+(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.88.238)(PORT = 1521))
+)
+(CONNECT_DATA =
+(SERVICE_NAME = ora10g)
+)
+)</p></li>
+<li><p> 备份主库
+****如果你使用duplicate模式去创建从库，则这一步是不必要的。基于备份的duplicate，或者手动恢复，都要备份主库。$ rman target = /
+RMAN> BACKUP DATABASE PLUS ARCHIVELOG;</p></li>
+<li><p> 生成从库的控制文件和pfile文件
+****在主库同步如下命令生成备库的控制文件SQL>ALTER DATABASE CREATE STANDBY CONTROLFILE AS &lsquo;/tmp/ora10g_stby.ctl&rsquo;;</p></li>
+</ol>
+
+
+<p><strong><strong>由spfile文件生成备库的参数文件。
+SQL>CREATE PFILE=&lsquo;/tmp/iniora10g_stby.ora&rsquo; FROM SPFILE;
+</strong></strong>修改与备库有关的参数，因为备库是复制过来的，所以只需修改如下参数：</p>
+
+<p><em>.db_unique_name=&lsquo;ORA10G_STBY&rsquo;
+</em>.fal_server=&lsquo;ORA10G&rsquo;
+*.log_archive_dest_2=&lsquo;SERVICE=ora10g ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=ORA10G&rsquo;</p>
+
+<p>(以上是原文翻译，不过在我实践的过程中，我的备库是值安装了oracle服务，并没有oracle实例。所以$ORACLE_HOME/admin下的某些路径会不存在，那么则需看清楚生成的iniora10g_stby.ora中存在哪些路径。如果文件中有，而备库机器实际上没有该路径的话，则需手动添加。如有不符合的路径，也许手动更改该路径或修改ora文件)</p>
+
+<p>从库服务设置</p>
+
+<ol>
+<li> 拷贝文件
+****在从库添加必要的路径$ mkdir -p /u01/app/oracle/oradata/ORA10G
+$ mkdir -p /u01/app/oracle/flash_recovery_area/ORA10G
+$ mkdir -p /u01/app/oracle/admin/ORA10G/adump</li>
+</ol>
+
+
+<p>****将文件从主库拷贝到从库</p>
+
+<p>$ # Standby controlfile to all locations.
+$ scp oracle@192.168.88.185:/tmp/ora10g_stby.ctl /u01/app/oracle/oradata/ORA10G/control01.ctl
+$ cp /u01/app/oracle/oradata/ORA10G/control01.ctl /u01/app/oracle/flash_recovery_area/ORA10G/control02.ctl$ # Archivelogs and backups
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/archivelog /u01/app/oracle/flash_recovery_area/ORA10G
+$ scp -r oracle@192.168.88.185:/u01/app/oracle/flash_recovery_area/ORA10G/backupset /u01/app/oracle/flash_recovery_area/ORA10G</p>
+
+<p>$ # Parameter file.
+$ scp oracle@192.168.88.185:/tmp/initORA10G_stby.ora /tmp/initORA10G_stby.ora</p>
+
+<p>$ # Remote login password file.
+$ scp oracle@192.168.88.185:$ORACLE_HOME/dbs/orapwORA10G $ORACLE_HOME/dbs</p>
+
+<ol>
+<li><p> 启动listener(监听程序)
+<strong><strong>主备库的listener如下：
+</strong></strong>主库：</p>
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Oracle configuration tools.</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+(SID_NAME = ora10g)
+(ORACLE_HOME = /u01/app/oracle/)
+(PROGRAM = extproc)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC0))
+)
+)
+****备库：
+
+<h1>listener.ora Network Configuration File: /u01/app/oracle//network/admin/listener.ora</h1>
+
+<h1>Generated by Or</h1>
+
+SID_LIST_LISTENER =
+(SID_LIST =
+(SID_DESC =
+(SID_NAME = PLSExtProc)
+(ORACLE_HOME = /u01/app/oracle)
+(PROGRAM = extproc)
+)
+(SID_DESC =
+
+<h1>(GLOBAL_DBNAME = ORA10G_STBY)</h1>
+
+<p>(ORACLE_HOME = /u01/app/oracle)
+(SID_NAME = ora10g)
+)
+)
+LISTENER =
+(DESCRIPTION_LIST =
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = TCP)(HOST = localhost.localdomain)(PORT = 1521))
+)
+(DESCRIPTION =
+(ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+)
+)
+ADR_BASE_LISTENER = /u01/app/oracle
+ENABLE_GLOBAL_DYNAMIC_ENDPOINT_LISTENER = ON
+启动监听
+$lsnrctl start</p></li>
+<li><p> 恢复从库
+****在备库通过修改了的pfile文件生成spfile$export ORACLE_SID=ora10g
+$sqlplus / as sysdba
+SQL>CREATE SPFILE FROM PFILE=&lsquo;/tmp/initora10g_stby.ora&rsquo;;</p></li>
+</ol>
+
+
+<p>****恢复备份的文件</p>
+
+<p>$ export ORACLE_SID=ora10g
+$ rman target=/
+RMAN>STARTUP MOUNT;
+RMAN>RESTORE DATABASE;</p>
+
+<ol>
+<li> 添加redo日志
+****添加备库的online redo logs。SQL>ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;</li>
+</ol>
+
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/online_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>****除了online redo logs之外，你还要生成在主备库两边都生成standby redo logs为了使它们能够进行角色转换。备库的redo logs至少和online redo log一样大
+SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo01.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo02.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo03.log&rsquo;) SIZE 50M;</p>
+
+<p>SQL>ALTER DATABASE ADD STANDBY LOGFILE (&lsquo;/u01/app/oracle/oradata/ora10g/standby_redo04.log&rsquo;) SIZE 50M;</p>
+
+<p>设置DG的同步</p>
+
+<ol>
+<li><p> 在备库启动同步设置
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DISCONNECT FROM SESSION;</p></li>
+<li><p> 如果你需要取消同步，用如下命令
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p></li>
+<li><p> 如果你希望的话，可以自己设置同步时间。
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE DELAY 30 DISCONNECT FROM SESSION;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCLE;
+SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE NODELAY DISCONNECT FROM SESSION;</p></li>
+</ol>
+
+
+<p>测试日志的传输</p>
+
+<ol>
+<li><p> 在主库，检查最后的归档日志(archived redo log)和强制切换日志
+SQL>ALTER SESSION SET nls_date_format=&lsquo;DD-MON-YYYY HH24:MI:SS&rsquo;;
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;
+SQL>ALTER SYSTEM SWITCH LOGFILE;</p></li>
+<li><p> 在备库检查归档日志是否已经改变
+SQL>SELECT sequence#,applied,deleted,name from v$archived_log;</p></li>
+</ol>
+
+
+<p>。。。。。。。DG搭建已告一段落，可以进行正常的同步了。后面的还未实践过，暂且编写这么多，此次属于第一次搭建DG，有不足之处希望各位多多指出。</p>
+
+<p>主备库的启动关闭顺序</p>
+
+<p>启动顺序：先standby，后primary</p>
+
+<p>关闭顺序：先primary，后standby</p>
+
+<p>启动实例：</p>
+
+<p>SQL>startup nomount;</p>
+
+<p>SQL>alter database mount stadby database;</p>
+
+<p>SQL>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;</p>
+
+<p>SQL>alter database recover managed standby database disconnect from session</p>
+
+<p>在备库启动监听</p>
+
+<p>$lsnrctl start</p>
+
+<p>在主库启动实例</p>
+
+<p>SQL>startup</p>
+
+<p>在主库启动监听</p>
+
+<p>$lsnrctl start</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle用户管理]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086/"/>
+    <updated>2013-04-03T16:35:01+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/04/03/oraclee794a8e688b7e7aea1e79086</id>
+    <content type="html"><![CDATA[<p>一、用户的概念
+　　用户，即user,通俗的讲就是访问oracle数据库的“人”。在oracle中，可以对用户的各种安全参数进行控制，以维护数据库的安全性，这些概念包括模式(schema)、权限、角色、存储设置、空间限额、存取资源限制、数据库审计等。每个用户都有一个口令，使用正确的用户/口令才能登录到数据库进行数据存取。</p>
+
+<p>二、用户默认表空间
+　　表空间是信息存储的最大逻辑单位、当用户连接到数据库进行资料存储时，若未指出数据的目标存储表空间时，则数据存储在用户的默认表空间中。比如：create table mytable(id varchar2(20),name varchar2(100));这条语句创建了一个表mytable,并将其存储在当前用户的默认表空间中，若要指定表空间，则：create table mytable(id varchar2(20),name varchar2(100)) tablespace tbs1;。用户的默认表空间可以在创建用户时指定，也可以使用aler user命令进行指定，具体语法见后面的介绍。</p>
+
+<p>三、用户临时表空间
+　　临时表空间主要用于order by语句的排序以及其它一些中间操作。在oracle9i之前，可以指定用户使用不同的临时表空间，从9i开始，临时表空间是通用的，所的用户都使用TEMP作为临时表空间。</p>
+
+<p>四、用户资源文件
+　　用户资源文件用来对用户的资源存取进行限制，包括：cpu使用时间限制、内存逻辑读个数限制、每个用户同时可以连接的会话数据限制、一个会话的空间和时间限制、一个会话的持续时间限制、每次会话的专用ＳＧＡ空间限制。</p>
+
+<p>五、用户表空间限额
+　　表空间存储限制是用户在某一个表空间中可以使用的存储空间总数。在创建或修改用户时，可以由参数quota指出。若用户在向表空间存储数据时，超出了此限额，则会产生错误。错误信息如：'ORA-01536:space quota exceeded for tablespace tablespacename..&lsquo;。可以通过查询字典dba_ts_quotas查看表空间限额信息。</p>
+
+<p>六、创建用户资源文件
+　　创建用户资源文件的语法如下：
+CREATE PROFILE filename LIMIT
+SESSION_PER_USER integer
+CPU_PER_SESSION integer
+USER_PER_CALL integer
+CONNECT_TIME integer
+&hellip;&hellip;
+基中：
+SESSION_PER_USER: 用户可以同时连接的会话数量限额；
+CPU_PER_SESSION:用户在一次数据库会期间可占用的CPU时间总量限额，单位为百分之一秒；
+USER_PER_CALL:用户一次ＳＱＬ调用可用的ＣＰＵ时间总量限额，单位为百分之一秒；
+LOGICAL_READS_PER_SESSION：在一次数据库会话期间能够读取的数据库块的个数限额；
+LOGICAL_READS_PER_CALL:一次ＳＱＬ调用可以读取的数据库块数限额；
+IDLE_TIME：用户连接到数据库后的可空闲时间限额，单位为分钟，若空闲时间超过此值，则连接被断开；
+CONNECT_TIME:一次连接的时间总量限额，单位为分钟，连接时间超过此值时，连接被断开；
+PRIVATE_SGA：用户么有的ＳＧＡ区的大小，单位为数据库块，默认值为UNLIMITED；
+COMPOSITE_LIMIT：这是一项由上述限制参数构成的组合资源项。举例来说，假设资源设置如下：
+　　IDLE_TIME 20</p>
+
+<pre><code>CONNECT_TIME 120
+CPU_PER_CALL 750
+COMPOSITE_LIMT 800
+</code></pre>
+
+<p>那么，当会话空间超过20分钟，或者连接时间超过120分钟，又或者执行一个ＳＱＬ耗费超过7.5秒，再或者这几个资源限制加起来的总数超过800，则系统自动终止会话。
+FAILED_LOGIN_ATTEMPTS:用户登录时，允许用户名/密码校验失败致使用登录失败的次数限额，超过该次数，帐户被锁定；
+PASSWORD_LIFE_TIME：口令有效时间，单位为天数，超过这一时间，拒绝登录，须重新设置口令，默认值为UNLIMITED；
+PASSWORD_REUSE_TIME:一个失效口令经过多少天后才可重新利用，默认为UNLIMITED；
+PASSWORD_REUSE_MAX：一个口令可重复使用的次数；
+PASSWORD_LOCK_TIME:当登录失败达到FAILED_LOGIN_ATTEMPS时，帐户被锁定，该参数用于设定被锁定的天数；
+下面举例如下：
+1)创建一个用户资源文件
+create profile tax_users limit
+session_per_user 3
+cpu_per_session UNLIMITED
+connect_time 30
+logical_reads_per_session DEFAULT
+logical_reads_per_call 1000
+private_sga 15K
+composite_limit 500000
+password_life_time 90
+2)查询用户资源文件信息
+sql>select *from dba_profile where profile = &lsquo;tax_users&rsquo;
+3)指定用户资源文件给用户
+sql>alter user us1 profile tax_users</p>
+
+<p>七、创建、修改、删除用户
+1.创建用户
+　　创建用户的详细语法请查询oracle的官方参数文档，这里介绍典型的语法。语法如下：
+CREATE USER username
+IDENTIFIED BY password
+DEFAULT TABLESPACE tablespace
+TEMPORARY TABLESPACE tablespace
+PROFILE profile
+QUOTA integer|UNLIMITED ON tablespace
+各选项含义如下：
+IDENTIFIED BY password：用户口令；
+DEFAULT TABLESPACE tablespace:默认表空间；
+TEMPORARY TABLESPACE tablespace：临时表空间；
+PROFILE profile|DEFAULT：用户资源文件；
+QUOTA integer[K|M]|UNLIMITED ON tablespace：用户在表空间上的空间使用限额，可以指定多个表空间的限额。
+举例：
+CREATE USER us1 IDENTITIED BY abc123
+DEFAULT TABLESPACE user01
+TEMPORARY TABLESPACE temp
+PROFILE DEFAULT
+QUOTA 1000M ON user01;</p>
+
+<p>2.修改用户
+　　修改用户的语法是与创建用户的语法类似的，主要是CREATE USER　变成　ALTER USER，具体请参考oracle文档。</p>
+
+<p>3.删除用户
+  删除用户，是将用户及用户所创建的schema对象从数据库删除。如下：
+SQL>DROP USER us1;
+若用户us1含有schema对象，则无上述语句将执行失败，须加入关键字CASCADE才能删除，意思是连并其对象一起删除，如下：
+SQL>DROP USER us1 CASCADE;</p>
+
+<p>八、用户管理命令
+ORACLE中数据字典视图分为3大类,     用前缀区别，分别为：USER，ALL 和 DBA，许多数据字典视图包含相似的信息。</p>
+
+<p>USER_*:有关用户所拥有的对象信息，即用户自己创建的对象信息</p>
+
+<p>ALL_*：有关用户可以访问的对象的信息，即用户自己创建的对象的信息加上其他用户创建的对象但该用户有权访问的信息</p>
+
+<p>DBA_*：有关整个数据库中对象的信息</p>
+
+<p>（这里的*可以为TABLES， INDEXES， OBJECTS， USERS等。</p>
+
+<p>1.查看所有用户：
+select * from dba_user;
+select * from all_users;
+select * from user_users;
+2.查看用户系统权限：
+select * from dba_sys_privs;
+select * from all_sys_privs;
+select * from user_sys_privs;
+3.查看用户对象权限：
+select * from dba_tab_privs;
+select * from all_tab_privs;
+select * from user_tab_privs;
+4.查看所有角色：
+select * from dba_roles;
+5.查看用户所拥有的角色：
+select * from dba_role_privs;
+select * from user_role_privs;</p>
+
+<p>6.查看当前用户的缺省表空间
+select username,default_tablespace from user_users;</p>
+
+<p>7.查看某个角色的具体权限，如grant connect,resource,create session,create view to TEST;查看RESOURCE具有那些权限，用SELECT * FROM DBA_SYS_PRIVS WHERE GRANTEE=&lsquo;RESOURCE&rsquo;;</p>
+
+<p>例：
+限制user1用户只允许100个并发连接
+SQL> alter system set resource_limit=true;</p>
+
+<p>System altered</p>
+
+<p>SQL> create profile profile_user1 limit sessions_per_user 100;</p>
+
+<p>Profile created</p>
+
+<p>SQL> ALTER USER user1 profile profile_user1;</p>
+
+<p>User altered</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[（原创）启动Oracle时提示：ORA-01078:failure in processing system parameters]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters/"/>
+    <updated>2013-03-29T16:07:12+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/03/29/efbc88e58e9fe5889befbc89e590afe58aa8oraclee697b6e68f90e7a4baefbc9aora-01078failure-in-processing-system-parameters</id>
+    <content type="html"><![CDATA[<p>一、使用环境
+操作系统：OEL 6.3 x64
+数据库：Oracle 11.2.0.1.0
+数据库主目录：/u01/app/oracle/product/10.2.0/</p>
+
+<p>二、问题描述
+用sys用户登录sqlplus后，用startup命令启动Oracle时提示：
+ORA-01078:failure in processing system parameters
+LRM-00109: could not open parameter file &lsquo;/u01/app/oracle/product/11.2.0/db_1/dbs/initorcl.ora&rsquo;</p>
+
+<p>三、错误原因
+在oracle9i、10g、11g最近几个版本中，数据库默认使用spfile启动数据库，如果spfile不存在，则就会出现上述错误。</p>
+
+<p>四、解决方法
+方法一：</p>
+
+<p>用find /u01 -name pfile命令查找pfile文件的位置，/u01/app/oracle/admin/orcl/pfile/
+将$ORACLE_BASE/admin/orcl/pfile目录下的init.ora.2212013132036形式的文件copy 到$ORACLE_HOME/dbs目录下命名为initorcl.ora即可。</p>
+
+<p>（注：initorcl.ora中的orcl为你的实例名 ORACLE_SID，这里我的SID为：center）</p>
+
+<p>方法二：
+将$ORACLE_HOME/dbs目录下spflieorcl.ora改名为spfilecenter.ora即可。（注：spfilecenter.ora中的center为环境变量中设置的SID，我的是center）</p>
+]]></content>
+  </entry>
+  
+</feed>

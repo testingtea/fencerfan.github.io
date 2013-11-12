@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Linux的分区类型 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="测试鼎甲奥备需要多了解这方面的内容。 一、分区类型 1、/分区。用于存储系统文件。
+2、swap，即交换分区，也是一种文件系统，它的作用是作为Linux的虚拟内存。
+在Windows下，虚拟内存是一个文件：pagefile.sys；而Linux下，虚拟内存需要使用独立分区， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Linux的分区类型</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-05T17:01:44+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>测试鼎甲奥备需要多了解这方面的内容。</p>
+
+<p><strong>一、分区类型</strong></p>
+
+<p>1、/分区。用于存储系统文件。
+2、swap，即交换分区，也是一种文件系统，它的作用是作为Linux的虚拟内存。
+在Windows下，虚拟内存是一个文件：pagefile.sys；而Linux下，虚拟内存需要使用独立分区，这样做的目的据说是为了提高虚拟内存的性能。
+3、/home：是用户文件夹所在的地方。如果独立划分/home，即使Ubuntu不能启动，也可以用Live CD启动来取得自己的文件资料。
+4、/boot：包含了操作系统的内核和在启动系统过程中所要用到的文件。
+在很多老旧的教程中，都会让用户在/boot目录上挂载一个大小为100MB左右的独立分区，并推荐把该/boot放在硬盘的前面——即1024柱面之前。事实上，那是Lilo无法引导1024柱面后的操作系统内核的时代的遗物了。当然，也有人说，独立挂载/boot的好处是可以让多个Linux共享一个/boot。
+其实，无论是基于上述的哪种理由，都没有必要把/boot分区独立出来。首先，Grub可以引导1024柱面后的Linux内核；其次，即使是安装有多个Linux，也完全可以不共享/boot。因为/boot目录的大小通常都非常小，大约20MB，分一个100MB的分区无疑是一种浪费，而且还把把硬盘分的支离破碎的，不方便管理。另外，如果让两个Linux共享一个/boot，每次升级内核，都会导致Grub的配置文件冲突，带来不必要的麻烦。而且，不独立/boot分区仅仅占用了根目录下的大约20MB左右的空间，根本不会对根目录的使用造成任何影响。
+但值得注意的是，随着硬盘容量的增大，无法引导Linux内核的现象再次出现，这也就是著名的137GB限制。很遗憾，Grub是无法引导137GB之后的分区中的Linux内核的。如果你不巧遇到了这样的情况，你就要考虑把/boot独立挂载到位于137GB前方的独立分区中，或者索性就把 Linux的分区都往前移动，让根目录所在分区位于137GB之前。
+5、/usr/local：是 Linux系统存放软件的地方。
+建议把/opt，/usr或/usr/local独立出来的教程，基本上也是非常老的了。使用Ubuntu时，我们一般都是使用系统的软件包管理器安装软件，很少自己编译安装软件。而建议独立/usr，/opt，/usr/local的理由无非是为了重装系统时不再重新编译软件而直接使用早先编译的版本。不过对于大多数普通用户来说，这个建议通常是没有意义的。
+6、/var：是系统日志记录分区。
+7、/tmp分区，用来存放临时文件。
+建议把/var和/tmp独立出来的教程通常是面向服务器的。因为高负载的服务器通常会产生很多日志文件、临时文件，这些文件经常改变，因此把/var，/tmp独立出来有利于提高服务器性能。但如果你用Ubuntu是做桌面的，或从来不关心过系统日志这东西，就没有必要独立的为/var和/tmp挂载分区。</p>
+
+<p>还有些老旧的教程中建议把Linux安装在主分区中，或在/boot下挂载一个主分区。事实上，这也是不需要的。Linux的所有分区都可以位于逻辑分区中。所以请放心的把Linux安装在逻辑分区中吧。</p>
+
+<p><strong>二、文件系统（分区格式）</strong></p>
+
+<p>Linux的文件系统（分区格式）主要有ext3、ReiserFS、XFS、JFS等。同时Linux也可以读写使用FAT、FAT32和NTFS文件系统的分区。</p>
+
+<p>Ubuntu默认的文件系统是ext3。</p>
+
+<p>或许有人会告诉你其他文件系统会有什么什么优点，ext3会有什么什么不好，但如果你对文件系统并不了解的话，我的建议就是使用默认的ext3，默认的设置可能不一定是性能最好的，但对普通用户一定是最稳定最安全最适合的。</p>
+
+<p>最大分区大小：ext3是4TB，ReiseFS是16TB。FAT32在Windows XP和Windows 2000里的最大分区是32GB；而Linux中的FAT32则可以支持到2TB。
+最大文件大小：ext3是2GB－4GB，ReiseFS是8TB，FAT32是4GB。</p>
+
+<p><strong>三、安装Linux的分区划分方案建议</strong></p>
+
+<p>1、只安装一个Ubuntu
+如果你准备在硬盘里只安装Ubuntu一个操作系统的话，建议你采用三分区方案：
+1）“/”分区：使用ext3文件系统；分区容量为10GB－15GB。
+2）“swap”分区：用于交换空间。内存小于或等于 512MB，swap分区容量为内存大小的2倍；内存大于512MB的，swap分区容量等于内存大小。
+3）“/home”分区：使用ext3文件系统；分区容量为“/”和“swap”以外的剩余空间</p>
+
+<p>在linux系统中至少必须有两个挂载点(磁盘分区)，分别是 / 及 swap ，其余是否要将其他的挂载点独立分割出来则视你的规划需求而定。可参考以下建议：</p>
+
+<p>swap的大小约等同你的内存大小，或稍大</p>
+
+<p>2、初次接触的新手或硬盘空间有限 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 可用空间 &ndash; swap大小后的所有空间
+swap /dev/hda2 大约内存大小 建议至少512Mb</p>
+
+<p>3、高级用户 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)</p>
+
+<p>4、高级用户 Server的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)
+/var /dev/hda6 视服务器功能决定大小</p>
+
+<p><strong>四、分区号简要说明</strong></p>
+
+<p>Linux 规定了主分区（Primary）以及扩展分区（extend）占用 1 至 16 号码中的前 4 个号码。以第一个 IDE 硬盘为例说明，主分区以及扩展分区占用了 hda1、hda2、hda3、hda4（该号一般为扩展分区所用），而逻辑分区占用了 hda5 到 hda16 等 12 个号码。因此，Linux 下面每一个硬盘总共最多有 16 个分区。
+因此 hda1- hda4 是主区的意思。 hda5以后是逻辑分区！！</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">liangzhongxing</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-05T17:01:44+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cao-zuo-xi-tong/'>操作系统</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/" title="Previous Post: Linux ntp时间同步服务器搭建与使用">&laquo; Linux ntp时间同步服务器搭建与使用</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086/" title="Next Post: Python字符串处理">Python字符串处理 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

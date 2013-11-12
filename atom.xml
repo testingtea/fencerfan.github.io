@@ -4,7 +4,7 @@
   <title><![CDATA[Scutech QA Blog]]></title>
   <link href="http://fencerfan.github.io/atom.xml" rel="self"/>
   <link href="http://fencerfan.github.io/"/>
-  <updated>2013-11-07T17:59:52+08:00</updated>
+  <updated>2013-11-07T20:33:12+08:00</updated>
   <id>http://fencerfan.github.io/</id>
   <author>
     <name><![CDATA[Scutech QA]]></name>
@@ -18,12 +18,835 @@
     <link href="http://fencerfan.github.io/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/"/>
     <updated>2013-11-07T17:38:00+08:00</updated>
     <id>http://fencerfan.github.io/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github</id>
-    <content type="html"><![CDATA[<pre><code>我们部门一段时间来通过在内部架设WordPress来书写内部博客，大部分同事分享了很多在工作中遇到问题的解决方法和自己在工作中的心得，也真正达到了我们最初建立该博客的目的。
+    <content type="html"><![CDATA[<p>我们部门一段时间来通过在内部架设WordPress来书写内部博客，大部分同事分享了很多在工作中遇到问题的解决方法和自己在工作中的心得，也真正达到了我们最初建立该博客的目的。</p>
 
-为了让我们的博客的价值有更多的体现和减少占用公司内部的资源，我们决定放弃使用WordPress将测试部的博客迁移到GitHub（Octpress+GitHub），望各位同事多为这个“新家”添砖加瓦。
+<p>为了让我们的博客的价值有更多的体现和减少占用公司内部的资源，我们决定放弃使用WordPress将测试部的博客迁移到GitHub（Octpress+GitHub），望各位同事多为这个“新家”添砖加瓦。</p>
 
-顺祝各位同事身体健康，工作顺意！
+<p>顺祝各位同事身体健康，工作顺意！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[解决Linux常见的乱码问题]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/"/>
+    <updated>2013-11-06T09:40:54+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298</id>
+    <content type="html"><![CDATA[<p>大家使用Linux，主要还是用中文界面，经常碰到中文乱码的情况。下面是常见的乱码解决办法：</p>
+
+<p><strong>1、ssh或者telnet远程登录乱码</strong>
+查看环境变量LANG，改成中文编码utf8，试过一下en_US.utf8和zh_CN.utf8都可以，并且设置SSH或者Telnet客户端工具编码，要保持一致。
+例如，常见的工具SecureCRT中设置：会话选项&mdash;外观&mdash;字符编码&mdash;utf8</p>
+
+<p><strong>2、图形化窗口中的终端乱码</strong>
+修改环境变量LANG即可，用命令LANG=zh_CN.utf8,en_US.utf8也可以，只不过有些字显示的效果不太一样，有的大，有的字体不一样。
+另外终端其实也是一个软件，它的编码也要和环境变量LANG的编码要一致。用Ubuntu 12.04举例，在终端的“终端”菜单有一个“设定字符编码”，可设定所需的编码，如UTF-8</p>
+
+<p><strong>3、VIM下的乱码</strong>
+这主要和两个因素有关：
+一就是文件原始的编码，原始编码的设置是在VIM的配置文件里设置的。
+二与终端有关，比如我们在终端显示一个文件，cat /tmp/helloworld.txt，所以终端的编码要和文本原始编码要一致，设置同2。</p>
+
+<p><strong>4、tty登录乱码</strong>
+这个需要安装中文接口软件的支持，如zhcon，要安装相应的软件，具体结论还有待实践。</p>
+
+<p><strong>5、将man的内容重定向出现乱码</strong>
+用man，我们能够查看到好多有用的信息，但是有时候想把man中的内容保存在文本中，方便以后查看。
+比如把iptables的信息保存在iptables.txt中：man iptables > iptables.txt
+但是这样操作的结果有时候却差强人意，有好多乱码，解决的办法是：man iptables | col -b > iptables.txt
+col的作用是将输入的内容进行转换过滤后输出，-b就是不显示回退键。</p>
+
+<p><strong>6、从windows拷过来的文本文件在Linux下打开出现乱码</strong>
+之所以出现乱码是因为windows下中文的编码一般为gbk，而Linux下中文编码一般为 utf8，所以在 windows下正常打开的文件，到Linux下很可能出现乱码。
+解决办法：使用命令iconv对文本内容编码进行转换
+iconv -f gbk -tutf8 原文本.txt > 新文本.txt
+这个方法灰常好用！</p>
+
+<p><strong>7、挂载U盘后，U盘中文目录名或文件名为乱码</strong>
+正常挂载：mount /dev/sdb1 /mnt/usb ，然后使用ls /mnt/usb发现U盘上中文目录和文件名都是乱码。
+解决办法：在挂载时加上字符集参数 mount -o iocharset=utf8 /dev/sdb1 /mnt/usb</p>
+
+<p><strong>8、从Windows的IE/360等浏览器导出html书签到Linux的Firefox浏览器中文书签名称变成乱码</strong>
+从Windows的IE/360等浏览器导出html书签，拷贝到Ubuntu 12.04下，导入后发现中文书签名称全变成乱码。用了很多转换方法都不行，包括把Windows的IE/360等浏览器的字符编码设为跟Linux的Firefox的一致再导出导入，还是有乱码。
+最后萌生了一个想法，在Ubuntu下双击html书签，可以打开为网页（因为这是一个html后缀文件），发现书签列表都显示为中文！再尝试把这个网页另存为新的html文件，之后再导入新文件到书签，成功了！问题由此解决～
+其他版本的Linux及浏览器有待验证。</p>
+
+<p>还有其他乱码情况，会在以后逐步发现解决，欢迎同学们补充，待续&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数据的备份，看似很简单其实不简单]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/"/>
+    <updated>2013-11-05T14:25:17+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95</id>
+    <content type="html"><![CDATA[<p>转自<a href="http://www.linuxdiyf.com/bbs/thread-308474-1-1.html">http://www.linuxdiyf.com/bbs/thread-308474-1-1.html</a></p>
+
+<p>“备份”是人们进入电脑时代必然遇到的问题，除了个人数据，还有生产生活中其他方面只要涉及到数据安全的皆需备份。
+备份除了要求有数据以外，还要确保数据安全性，所以不是一般的复制粘贴或cp能搞定的。
+windows下可以用goodsync或其他一些备份工具。
+linux中使用rsync可以使备份目录和源目录完全一致：
+rsync -auv &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样即可实现备份到目录PATH下的目的，还能即时看到备份过程，如有错误会在终端返回。
+如需传输时进行压缩处理使用参数 -Z ;如需传输时确保数据完全一致可以用参数 -c 。如：
+rsync -auv -c &mdash;delete &mdash;progress /PATH/备份的文件或目录 /PATH/ //这样可以在备份时采取HASH校验使备份的数据和原始数据完全一致防止有被恶意篡改（如感染病毒）或磁盘损坏造成数据不一致，只是如果有大量数据校验肯定会拖慢备份速度。</p>
+
+<p>扩展阅读：
+1. 如上所述，采取rsync加-c参数可校验数据完整性，但是会拖慢备份速度。其实也可以先备份再采取其他的方法来进行数据校验，如md5sum shaxsun(x=1,256,512等);rsync只是忠实的同步数据，数据不完整一般是上面提到的病毒感染或磁盘损坏（包括文件系统损坏）和一些其它硬件问题如内存损坏造成的，与rsync无关。下面会说到如何校验数据。
+首先：cd到备份源目录中，递归建立一个有备份目录所有数据的hash文档;校验时这个文件要一并复制到备份目的目录的同级目录中以做校验用。
+find -type f -print0 | xargs -0 md5sum >|/path/md5 //md5这个文件名可以任意指定
+校验： md5sum -c md5 //如无意外，在一大片“确定”后即返回终端，如有不符的则返回错误提示。
+md5sum -c md5 >/path/hash //把校验结果输出到一个名为hash的文件中，可以通过查询该文件得知具体出错的文件是那几个，避免因快速刷屏看不到究竟是哪几个文件没有同步完整。
+cat /path/hash | grep 失败 //查询到出错的具体文件，如无错误则直接返回终端</p>
+
+<ol>
+<li><p>由于备份通常使用USB或esata等接口来进行数据传输，难免因为机器故障导致数据不完整，常见的就是写缓存和设备占用无法移除而采取了暴力移除的方法。这样直接导致数据未写完，轻则当前数据不完整，重则破坏文件系统造成更大的损失。
+windows中可以用微软工具包里面有个 sync.exe 的工具来完成回写;若仍无法移除的则要保存其他工作后注销系统再拔除设备。
+linux中：当然也会出现写缓存和不能安全移除设备的问题，不过解决很简单，sync（回写）、然后 umount 卸载挂载目录即可直接拔除了。</p></li>
+<li><p>要经常检查文件系统
+windows：使用chkdsk或图形的方法，（以XP为例）打开磁盘管理-右击某希望检查的分区-属性-工具-开始检查-勾选（自动修复文件系统错误和扫描并试图恢复坏扇区）-然后开始查错
+linux：umount 卸载挂载点（必须的，目的是让fsck独占设备避免检测时其他程序还在读写从而造成数据错误）后根据备份磁盘的文件系统类型进行fsck 例：
+一般mbr的磁盘可以用 sudo fdisk -l 来查询到设备号，gpt磁盘可以用 parted /dev/sdx (x=b、c、d&hellip;)然后按p来查询，或其他工具。
+sudo fsck -t ext4 /dev/sdb1 //检查一个设备识别为/dev/sdb1的，ext4文件系统的磁盘。
+sudo ntfsfix /dev/sdb1 //检查一个ntfs分区的设备</p></li>
+</ol>
+
+
+<p>结语:从插入设备开始备份到校验数据整个过程完成才能称做一次完整的备份过程。本人就因为内存损坏致使同步数据总是有问题，幸好明白数据要校验这个道理才能保证数据安全性，否则备份到头来成了做无用功。校验的时候没问题最好，若有问题则要考虑上面提到的因素。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《你的灯亮着吗》读后感]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/"/>
+    <updated>2013-11-04T09:29:49+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2</id>
+    <content type="html"><![CDATA[<p>看了《你的灯亮了吗？》这本书受益匪浅，从中学到的不是技术知识，但学到的比技术知识更重要，学到的是种种思维方式。这部作品通过几个很有意思的小故事引发人们对“问题定义和解决”的思考。其中印象最深的是汽车过隧道的那个小故事，为了防止隧道意外断电导致交通事故，所以在进入隧道口前打一标语，“请打开你的灯”，但是有时候有新问题，就是出隧道忘记关灯，当人们返程时，车灯不亮，引发出一新问题，于是又要解决这个问题，聪明人想到，“你的灯亮了吗？”这个标语，不但可以警醒开车的人要开灯，还可以提醒人关灯。这让我想到在我们平时的测试工作中，测试人员要如何站在开发者角度和用户角度思考问题，开发人员开发出来的产品，有可能是根据用户需求来的，但是，有可能在开发过程中，开发的都是按照正常程序来开发的，或许没有考虑到一些意外情况，这些情况并没有处理。又或者是开发的程序在不同系统上不兼容，这只是列出来的一小部分可能性，并且都是真是存在的。而测试人员拿到test，不要单纯地根据开发人员写的测试来测试，不要一开始就接受他的思路，那样会限制到测试的广泛面或者说全面性，根据产品功能，首先应该站在用户角度考虑自己的测试步骤或者是测试功能，然后再结合开发人员写的test，综合处理下，或者找同组测试人员讨论下测试需要注意到的，或者是否有漏掉的关键，写成测试用例后，再进行测试，测试过程中要记录测试过程和测试结果，有利于开发人员的信息采集，有条件不要直接告诉开发人员，先自己主动探索问题出现的可能性，看是否是自己误操作还是有什么漏洞在测试用例中没写全的，可以提升自己本身测试技能，还可以增加对产品的内在熟悉程度。当我们遇到问题时，我们首先要分析出问题的本质，从各个相关角度去分析这个问题，然后去想办法解决这个问题，直到各方面满意，没有做不到，只有想不到。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《你的灯亮着吗》读后感]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/"/>
+    <updated>2013-11-01T18:28:08+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f</id>
+    <content type="html"><![CDATA[<p>    通过电梯的例子，说明首先要清楚地认识到什么是真正是问题，而比利的故事，比利在对那个投标事件不断的了解内情时，每次都以为自己已经找到这件事情的答案，但是每次都会有新的了解和答案，比利对这件事的总结就是你永远也不能肯定你有了一个正确的定义，但是永远不要放弃寻求它的努力</p>
+
+<p>   同时从丹解决打印机精确度问题的故事中，得出“每种解决方法都会带来新的问题”，永远都不能消灭问题，问题，解决方法以及新的问题编织成了一条无穷无尽的锁链，如果在对问题的理解中，想不出至少3种可能出错的地方，那么你并没有真正地理解这个问题，其中作者通过橱窗里面的标牌上写的语句的例子来说明把问题表述清楚的必要性，因为如果你没有把问题表述到位时，可能会由于其他人理解歧义的原因导致严重的损失，从教室里的雪茄烟雾的例子里作者表达了当别人能够很好解决自己的问题的时候，千万不要代替他们去解决，例如例子中的老师明白到教室里吸烟问题就留给相关的人去处理，比如吸烟者和不吸烟者他们自己去处理问题。因为和问题有厉害关系的群体不仅对问题有着更多的了解和感受，而且当他们找到自己的解决方法之后，就会很投入地去执行这个方法。接着通过停车场的例子说明如果想让一个人去解决某个问题时，最好就是让他也感受到这个问题</p>
+
+<p>   而珍妮特和灰脸先生的故事里一开始珍妮特认为是由于灰脸先生的原因导致自己签证不成功，但是后来珍妮特意识到问题的根源在于自己，后来珍妮特通过聊天了解灰脸先生从而可以成功签证。从这个例子中作者表述了遇到问题时先别急着下定论，先弄清楚问题是从哪儿来的，可能问题的根源就在自己的身上。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《你的灯亮着吗？》读后感]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/10/24/e3808ae4bda0e79a84e7ad89e4baaee79d80e59097efbc9fe3808be8afbbe5908ee6849f/"/>
+    <updated>2013-10-24T09:26:40+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/10/24/e3808ae4bda0e79a84e7ad89e4baaee79d80e59097efbc9fe3808be8afbbe5908ee6849f</id>
+    <content type="html"><![CDATA[<p>       这是一本有二十个小故事串联起来的书。这本书不厚，总共才121页，但是却是本值得回味的书。</p>
+
+<p>      书本是围绕着“问题”而展开的，每一章抛出一个问题，然后用不同的身份和站在不同的角度去观摩问题，列出问题出现的原因，分析之后，选取一个最优的方案去解决问题。但是不得不说，刚开始觉得这事一本难读的书。拿第一章来说，开篇就举了个电梯慢且拥挤的问题。作者分析了事件发生的原因，参与者(房东和房客)以及非参与者(其他人)解决问题的思路。还没看完就已开始发懵了，引发的问题的原因及解决方案原来有这么多种组合，我也绝对想不到房东还可以把大楼烧了，以获取火灾保险费！还有一个觉得这本书难读的原因是，第一章的最后，没有给出电梯慢且拥挤的解决方法！现阶段对于我来讲，遇到问题总是想着马上解决问题，而少有停下脚步来思考，害怕浪费太多时间在于思考上，最终都没能得出一个好的解决问题的方法，有时甚至祈祷有人遇到和自己同样的问题，复制他的步骤则可解决问题。久而久之，小问题是可以解决了，但是缺少发散性的思考，无法很好的举一反三，最终得到的劳动结果却似事倍功半！</p>
+
+<p>        万事开头难还真是千真万确，坚持看完前面三章之后，发现章节与章节之间并不完全独立，而是以递进的手法讲述该如何去发现和解决问题，很大篇幅都是在描写发现和分析问题。看完整本书后发现，找到问题固然重要，但是发现真正的问题才是重中之重！要做到这点，需要深思熟虑，全方位考虑，甚至连小概率事件都需囊括在解决方案中。</p>
+
+<p>       读完这本书后，进行了一次头脑风暴，对自己冲击很大，书上描述的毕竟跟以前的处事方法大相径庭，自我否定是一个艰难的过程，但是对于测试来说，停下来思考未必是一件坏事。很多问题有因必有果，bug是果，因则是程序编写的不得当！测试方法上有条结论是一个bug的周围必定会存在或多或少相同或类似的bug，仔细分析bug出现的前因后果，不仅能找到bug的根源，在这过程当中，还可了解代码编写风格，这对于测试来说，无疑是件好事。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《你的灯亮着吗？》读书笔记]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/10/23/e3808ae4bda0e79a84e781afe4baaee79d80e59097efbc9fe3808be8afbbe4b9a6e7ac94e8aeb0/"/>
+    <updated>2013-10-23T23:32:42+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/10/23/e3808ae4bda0e79a84e781afe4baaee79d80e59097efbc9fe3808be8afbbe4b9a6e7ac94e8aeb0</id>
+    <content type="html"><![CDATA[<p>这是我第一次看《你的灯亮着吗？》这本书，有种耳目一新的感觉，因为它用各种生动、幽默的方式去教人们思考问题，解决问题。
+刚开始看有些费劲，可能是中英文语义差异的问题，有空下来会再仔细体会温伯格大师的思想精髓，有机会再看看英文版。
+全文表面上在不断地讲故事，分析事例，从中可以学到很多道理：
+<em>从多角度去思考和解决问题；</em>
+<em>尝试站在任何人的立场对待问题；</em>
+<em>不要把问题复杂化；</em>
+<em>去掉约定俗成的思考习惯；</em>
+<em>不要把科学问题单纯看成技术性的，应该融入人文；</em>
+<em>不敢去叫板大众都认为已解决的问题，那你思考问题也没啥意义了；</em>
+<em>……</em></p>
+
+<p>读书喜欢摘录一些比较精辟的语句，细细品味。</p>
+
+<p>不识庐山真面目，只缘身在此山中。如果我们无法跳出作为个人的境地，还停留在不断地接受问题、不断地“发现问题”、不断地“解决问题”的怪圈中，我们永远无法知道自己“需要什么”和“正在干些什么”。 这让我不由自主地联想到工作中一些问题，计算机技术人员（如开发、测试）也容易陷入一些误区，只是机械式地去发现问题、接受问题、解决问题，有没想过问题为什么会产生呢？这样不断地循环到底起到什么作用呢？打个比方，如盲人摸象，只看到一个部位，没有了全局的视野，最后还是不知道这只是什么动物。回到现实，如果一个软件项目每个人都只看到冰山一角，一接触到软件就是到处去搜刮它存在的问题，或者一接到问题就是迷头迷脑地修改，改完又测试，测试完又提交问题……这样好像让人进入轮回一样，一片天昏地暗。这样的模式下最常见的问题就是解决了这里的问题，那里又出问题，有如地鼠游戏的地鼠那么让人讨厌。</p>
+
+<p>如果说不够清晰，好吧，再说个具体一点的：一个测试人员测试软件，发现一个服务器空间统计不正确，马上向开发人员提，开发马上修改。但糟了，改完这个发现另一个页面删除这个服务器后的空间统计又出问题，好吧，再改~改完以为可以松口气了，别得意呢，界面上把删除的服务器再添加一个完全一样的回来，发现统计和显示又是另一回事喔，原来两次添加的服务器的元数据主键ID不一样！怎么改都有点顾此失彼的感觉。这是大家就应该想想，到底问题出在谁身上，出在哪里？为什么会有问题发生呢？如果我们离开庐山，在远远的山头遥望，庐山美景不就尽收眼底啦？所以开发测试人员这时如果稍停减速，一起在全局角度看问题说不定有答案哩。是软件架构问题？是元数据设计问题？是测试缺乏全面性？是测试没按照开发吩咐去做？抑或是公司丢失了一些信息？</p>
+
+<p><strong>待续&hellip;</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[项目配套资金申请流程及相关注意事项]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/10/10/e9a1b9e79baee9858de5a597e8b584e98791e794b3e8afb7e6b581e7a88be58f8ae79bb8e585b3e6b3a8e6848fe4ba8be9a1b9/"/>
+    <updated>2013-10-10T17:44:31+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/10/10/e9a1b9e79baee9858de5a597e8b584e98791e794b3e8afb7e6b581e7a88be58f8ae79bb8e585b3e6b3a8e6848fe4ba8be9a1b9</id>
+    <content type="html"><![CDATA[<p>项目配套资金申报流程</p>
+
+<ol>
+<li><p> 登录科技项目申报系统客户端填写科技计划项目配套资助审批表。</p></li>
+<li><p> 预准备相关申报附件。</p></li>
+<li><p> 打印全套资料（无需装订），并送交审批部门进行初步审核。</p></li>
+<li><p> 根据审核意见进行相应修改。</p></li>
+<li><p> 打印装订成册后，递交上级主管部门（火炬服务中心—前栋7楼706室伍小姐），同时在系统上提交申请。</p></li>
+</ol>
+
+
+<p>项目配套资金所需附件</p>
+
+<ol>
+<li><p> 与上级有关部门签订的任务书或合同书</p></li>
+<li><p> 上级有关部门的立项通知书或项目经费下达通知书及拨款凭证</p></li>
+<li><p> 近期国税、地税银行缴款电子回单或有关申报凭证</p></li>
+<li><p> 上年度财务审计报告及近期财务报表</p></li>
+<li><p> 原申报项目的全套资料</p></li>
+<li><p> 企业营业执照副本</p></li>
+<li><p> 企业自筹资金到款凭证</p></li>
+</ol>
+
+
+<h3>注意事项</h3>
+
+<ul>
+<li><p>配套资金申请额比例：市级=项目拨付资金×50%   省级=项目拨付资金×70%</p></li>
+<li><p>打印后文件必须清晰可读。</p></li>
+<li><p>项目合同书、立项文件、拨款到账回单必须为原件的扫描/复印件，装订后每一页均需加盖单位公章。</p></li>
+<li><p>经费预算表内，申请配套资金用途应主要集中在设备费、材料费、测试费三项；申请经费不应用于办公用品等非项目研发相关的开销，专利申请、外部科研合作费（已包含在项目资金内）不应再次出现；人员费比例不应超过申请经费总额的30%。</p></li>
+<li><p>所有需其他部门（如：财务、行政等）提供的资料需提前告知以预留准备时间，一次性给出所需资料清单以免耽误他人工作进度。</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle热备份的原理]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086/"/>
+    <updated>2013-09-25T17:26:17+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/09/25/oraclee783ade5a487e4bbbde79a84e58e9fe79086</id>
+    <content type="html"><![CDATA[<p>文章是Oracle爱好者的摘要，理解不一定完全准确，自己去实践是最重要的。</p>
+
+<p><a href="http://www.linuxidc.com/Linux/2012-01/52398.htm">http://www.linuxidc.com/Linux/2012-01/52398.htm</a></p>
+
+<p>1、Oracle中的数据块大小通常是OS块大小的整数倍，在用系统命令直接复制数据文件到备份介质的过程中，数据库一直可用的状态，oracle数据块可能在不断的被修改，被读写，使用操作系统命令复制数据文件时，是根据操作系统块大小进行copy的，也就是说复制一个操作系统块的时候，首先锁定这个块，复制完成以后，解锁这个块，这样这个块在复制前和复制后是一致的。但是对于一个Oracle数据库来说，一个块要分成几次进行复制，有可能在复制一个操作系统数据块的时候，另外一个操作系统数据块被改变了，导致oracle数据块在复制到备份介质以后，前一半是没有改动过的，后一半是改动过的，数据块的状态就出现了不一致的情况，这时候备份也就是无效的，这叫做分离数据块现象。</p>
+
+<p>2、为了修复分离数据块现象，我们在备份某个表空间或者数据文件的的时候，首先发出begin backup命令，通知数据库我要开始开始备份了，在没有发出end backup命令之前，只要是进程修改了被备份的表空间所包含的数据块，oracle就会把该数据块中所包含的所有的数据行的数据生成重做记录，记录到日志文件中。</p>
+
+<p>通过发出begin backup以后，第一次修改数据块中的数据行之前，在联机重做日志文件中记录数据块的修改前的数据，这样在需要恢复数据的时候，发现某个数据块是分离的，就会利用日志文件里的重做记录的数据对整个数据块进行恢复</p>
+
+<p>3、备份表空间中的所有的被修改过的数据块的所有数据行都被保存在了联机重做日志文件中，而不是只记录被修改的数据行的记录，因此在热备份过程中，会发现生成的联机重做日志文件的量比较大，这取决于业务的繁忙程度，例如DML量比较大，那么产生的日志会非常的多</p>
+
+<p>4、发出begin backup命令以后，oracle会对被备份的表空间所对应的数据文件触发文件级别的检查点进程，将内存中属于该表空间的所有脏数据块写入数据文件，检查点结束以后，数据文件头部（第一个和第一个数据块）的检查点SCN和日志序列号都不在变化，直至发出end backup，数据文件头部的SCN和日志序列号才被更新</p>
+
+<p>5、在热备份的过程中，数据文件头部的SCN和日志序列号被冻结，但是数据文件本身还是最新的，和正常一样的更新和使用，DML更新了某个表，这些更新都会被写入到数据文件中去。冻结数据文件头部的SCN号和日志序列号，是为了将来使用热备份进行恢复的时候，能够知道应该从哪里开始应用重做记录，也就是备份的数据文件头部所记录的SCN和日志序列号，定位到日志文件中，从日志文件中找到开始的SCN，向后应用所有的日志文件</p>
+
+<p>6、发出end backup命令以后，所有的数据文件的头部SCN号和日志序列号更新到最新，因为数据文件本身就是最新的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最小化Linux系统安装]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385/"/>
+    <updated>2013-09-06T16:21:39+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/09/06/e69c80e5b08fe58c96linuxe7b3bbe7bb9fe5ae89e8a385</id>
+    <content type="html"><![CDATA[<p><strong>安装CentOS 5.9:</strong></p>
+
+<ol>
+<li><p> 基于vbox虚拟机，虚拟机内存1 G，虚拟硬盘大小8 G</p></li>
+<li><p> 虚拟网卡使用host only方式</p></li>
+<li><p> 创建卷组centos</p></li>
+<li><p> 独立的boot分区</p></li>
+<li><p> home, root和swap分区皆是卷组centos的逻辑卷</p></li>
+<li><p> 保持boot，home，root和swap大小合理</p></li>
+<li><p> 关闭selinux</p></li>
+<li><p> 关闭防火墙</p></li>
+<li><p> 最小化安装</p></li>
+</ol>
+
+
+<p><strong>练习时间：</strong></p>
+
+<p>14：30开始 16：30结束，请将整个过程书面化记录下来，作为测试结果来提交。</p>
+
+<p><strong>课后作业：</strong></p>
+
+<p>IBM 101系列培训</p>
+
+<p><a href="http://www/">http://www</a>.ibm.com/developerworks/cn/linux/l-lpic1-v3-map/</p>
+
+<p><strong>分区参考在本案：</strong></p>
+
+<p>boot分区最多 100M</p>
+
+<p>swap分区与虚拟内存相等 1024M</p>
+
+<p>home 用户自定义</p>
+
+<p>根分区 1G-2G (最少要150–250MB)</p>
+
+<p><strong>完成情况（按提交顺序，按作业情况阐述判断）：</strong></p>
+
+<ol>
+<li><p> 刘亚东   分区不合理****</p></li>
+<li><p> 卢世龙  分区不合理</p></li>
+<li><p> 李金钗  分区不合理（另描述不够全面）</p></li>
+<li><p> 郑志腾   </p></li>
+<li><p> 王水仙  分区不合理</p></li>
+<li><p> 李小桃   </p></li>
+<li><p> 马美玲  不合格，描述不清楚</p></li>
+<li><p> 梁仲兴   超时  合格</p></li>
+<li><p> 汪胜任   超时 不合格 还有图形化界面 分区不合理</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[DocBook与Latex的比较]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/08/28/docbooke4b88elatexe79a84e6af94e8be83/"/>
+    <updated>2013-08-28T02:50:07+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/08/28/docbooke4b88elatexe79a84e6af94e8be83</id>
+    <content type="html"><![CDATA[<p><strong>DocBook</strong> 是一种基于SGML/XML的、面向结构的文档撰写模式，由OASIS的DocBook技术委员会维护。尤其适用于关于计算机硬件和软件的书籍和论文（绝不限于这些应用），其主要结构符合一般概念所构成的&#8221;书&#8221;，是一种易于理解、广泛应用和非常受欢迎的模式。</p>
+
+<p><strong>LaTeX</strong> 是一种基于TeX的排版系统，由美国计算机学家莱斯利·兰伯特（Leslie Lamport）开发，是当今世界上最流行和使用最为广泛的TEX宏集。非常适用于生成高印刷质量的科技和数学类文档，同样适用于生成从简单的信件到完整书籍的所有其他种类的文档。即便使用者并不熟悉TEX，也可在短时间内生成高质量的文档。对于生成复杂的数学式，LATEX表现得更为出色。</p>
+
+<p>DocBook和LaTex存在共同点：</p>
+
+<ul>
+<li><p>内容与格式分离</p></li>
+<li><p>内容高度结构化</p></li>
+<li><p>平台无关</p></li>
+<li><p>发布过程可以自动化</p></li>
+<li><p>易于版本控制</p></li>
+<li><p>可以生成多种形式的文档</p></li>
+</ul>
+
+
+<p>但是，在文档撰写生成过程中，两者又存在各自的优点和不足：</p>
+
+<ul>
+<li><p><strong>特殊符号输入，如_、$、\等：</strong>DocBooK 可直接输入；LaTex 不能直接输入。</p></li>
+<li><p><strong>文档修改：</strong>DocBook 需要打开相关文件查找修改内容进行修改，耗时长；LaTex 可直接在生成文件中双击修改内容进入修改界面，方便快捷。</p></li>
+<li><p><strong>语法结构：</strong>DocBook 采用xml语言，内容较多时不易于区分标签内容，容易产生视觉疲劳；LaTex 采用更为简易的结构语言，各标签以不同底色显示区分，内容结构清晰，便于查看。</p></li>
+<li><p><strong>生成速度：</strong>DocBook 需在cmd内依次输入指令生成相应文件，耗时长；LaTex 可直接点击生成按钮，快速生成相应文件。</p></li>
+<li><p><strong>输出效果：</strong>DocBook 生成的HTML效果较好；LaTex生成的PDF效果较好。</p></li>
+<li><p><strong>图片排版：</strong>若页面图片过大，DocBook 中将出现大量留白；LaTex 通过自动调整图片位置避免页面留白。</p></li>
+<li><p><strong>文档格式：</strong>DocBook 需修改相关的样式表；LaTex 可直接在tex主文件中进行相应配置。</p></li>
+</ul>
+
+
+<p>简单的说，LaTex 长于图形排版，DocBook 长于图书的快捷组织。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python多版本管理-pythonbrew]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/08/21/pythone5a49ae78988e69cace7aea1e79086-pythonbrew/"/>
+    <updated>2013-08-21T09:09:23+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/08/21/pythone5a49ae78988e69cace7aea1e79086-pythonbrew</id>
+    <content type="html"><![CDATA[<h2>一、安装Pythonbrew</h2>
+
+<p><strong>安装前确保系统有以下包，在Ubuntu11.10中测试通过，其他系统可能依赖的包会有所不同</strong>(参考：<a href="https://github.com/utahta/pythonbrew/issues/81">https://github.com/utahta/pythonbrew/issues/81</a>)</p>
+
+<pre><code>$ sudo apt-get install curl build-essential libbz2-dev libsqlite3-dev zlib1g-dev libxml2-dev libxslt1-dev libreadline5 libgdbm-dev libgdb-dev libxml2 libssl-dev tk-dev libgdbm-dev libexpat1-dev libncursesw5-dev
 </code></pre>
+
+<p>1、使用easy_install工具安装，用命令：which easy_install查看是否安装该工具；没有输出则没安装，需要先安装easy_install</p>
+
+<pre><code>$ sudo easy_install pythonbrew
+</code></pre>
+
+<p>2、或者使用<a href="https://pypi.python.org/pypi/pythonbrew/">官网</a>推荐的方法安装：</p>
+
+<pre><code>curl -kL http://xrl.us/pythonbrewinstall | bash
+</code></pre>
+
+<p>以上命令把Pythonbrew自动安装在~/.pythonbrew目录下；</p>
+
+<h2>二、Pythonbrew配置</h2>
+
+<p>运行：</p>
+
+<pre><code>$ pythonbrew_install
+</code></pre>
+
+<p>会提示把下面内容添加到~/.bashrc文件中（Please add the following line to the end of your ~/.bashrc）,不用运行上面的命令手动把下面内容添加到文件中就可以了；</p>
+
+<pre><code>[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] &amp;&amp; source "$HOME/.pythonbrew/etc/bashrc"
+</code></pre>
+
+<h2>三、使用Pythonbrew</h2>
+
+<p>1、查看可安装的Python版本</p>
+
+<pre><code>$ pythonbrew list --know
+</code></pre>
+
+<p>2、安装需要的Python版本，需要安装curl工具；安装会自动完成；</p>
+
+<pre><code>$ pythonbrew install 2.7.5
+</code></pre>
+
+<p>3、查看已经安装的Python版本，后面有*号表示正在使用的版本</p>
+
+<pre><code>$ pythonbrew list
+</code></pre>
+
+<p>4、选择一个python版本使用，只在当前终端有效</p>
+
+<pre><code>$ pythonbrew use 2.7.5
+</code></pre>
+
+<p>5、选择python2.7.5版本作为系统默认版本使用，会把该版本的路径添加到PATH中</p>
+
+<pre><code>$ pythonbrew switch 2.7.5
+</code></pre>
+
+<p>6、取消pythonbrew选择的版本</p>
+
+<pre><code>$ pythonbrew off
+</code></pre>
+
+<p>7、清理安装后的版本的源码和安装包</p>
+
+<pre><code>$ pythonbrew cleanup
+</code></pre>
+
+<p>8、指定Python版本运行文件</p>
+
+<pre><code>$ pythonbrew py -p 2.7.5 test.py
+</code></pre>
+
+<p>9、删除制定Python版本</p>
+
+<pre><code>$ pythonbrew uninstall 2.7.5
+</code></pre>
+
+<h2>四、使用virtualenv的功能，创建虚拟环境</h2>
+
+<p><strong>确保系统中安装有zlib包，否则创建过程中会报错：</strong></p>
+
+<p><strong>Traceback (most recent call last): File “/home/username/.pythonbrew/etc/virtualenv/virtualenv.py”, line 19, in <module> import zlib ImportError: No module named zlib</strong></p>
+
+<p>在Ubuntu11.10 64bit系统，使用以下命令安装</p>
+
+<pre><code>$ sudo apt-get install zlib1g-dev
+</code></pre>
+
+<p>1、首先选择一个python版本</p>
+
+<pre><code>$ pythonbrew switch 2.7.5
+</code></pre>
+
+<p>2、创建虚拟环境</p>
+
+<pre><code>$ pythonbrew venv create test_env
+</code></pre>
+
+<p>3、启用虚拟环境，启用后会显示：<code>(test_env)alexzhou@alexzhou:~``/python_workspace``$</code></p>
+
+<pre><code>$ pythonbrew venv use test_env
+</code></pre>
+
+<p>4、退出虚拟环境</p>
+
+<pre><code>$ deactivate
+</code></pre>
+
+<p>5、虚拟环境列表</p>
+
+<pre><code>$ pythonbrew venv list
+</code></pre>
+
+<p>6、在虚拟环境中使用pip工具安装Python工具，为了避免使用到系统环境的pip工具，也就是说只能在虚拟环境中使用，在~/.bashrc文件末尾加入以下内容</p>
+
+<pre><code>export PIP_REQUIRE_VIRTUALENV=true
+</code></pre>
+
+<p>或者也可以用下面的设定，让系統的 <code>pip</code> 自动使用启动中的虚拟环境。</p>
+
+<pre><code>export PIP_RESPECT_VIRTUALENV=true
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[技术文档编辑注意事项]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/26/e68a80e69cafe69687e6a1a3e7bc96e8be91e6b3a8e6848fe4ba8be9a1b9/"/>
+    <updated>2013-07-26T15:05:35+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/26/e68a80e69cafe69687e6a1a3e7bc96e8be91e6b3a8e6848fe4ba8be9a1b9</id>
+    <content type="html"><![CDATA[<p>用户手册维护过程中的心得体会：</p>
+
+<ol>
+<li><p> 在编辑过程中随时检查有无文字拼写或中英标点混输的错误。</p></li>
+<li><p> 手册中同类型操作的描述语言应统一，避免一会用“单击进入页面”一会用“点击打开界面”等情况。</p></li>
+<li><p> 描述应简洁、准确、流畅，以节约阅读者的时间。</p></li>
+<li><p> 标记与标记之间不应出现多余的空格或tab键或回车键，避免生成文档时出现排版错误。</p></li>
+<li><p> xml中空格和换行都将作为原始内容被处理，需克服用换行或缩进使文件内容清晰可读的书写习惯。</p></li>
+<li><p> xml中标记均成对出现，最好同时输入起始标记或结束标记，以免文档编辑过程中忘记。</p></li>
+<li><p> 在维护过程中，对生成文件和xml文件进行内容比较，避免因xml内容的摆放错误而导致对应手册内容未显示的问题。</p></li>
+<li><p> 所有的标记不能交叉使用，必须以嵌套的方式进行编辑。</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在ubuntu12.10上安装KVM]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/18/e59ca8ubuntu12-10e4b88ae5ae89e8a385kvm/"/>
+    <updated>2013-07-18T16:46:07+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/18/e59ca8ubuntu12-10e4b88ae5ae89e8a385kvm</id>
+    <content type="html"><![CDATA[<ol>
+<li><p> 查看CPU的兼容性
+egrep -c &lsquo;(vmx|svm)&rsquo; /proc/cpuinfo</p></li>
+<li><p>  安装KVM相关的Packages
+sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils</p>
+
+<ul>
+<li><p><em>libvirt-bin</em> provides libvirtd which you need to administer qemu and kvm instances using libvirt</p></li>
+<li><p><em>qemu-kvm</em> (<em>kvm</em> in Karmic and earlier) is the backend</p></li>
+<li><p><em>ubuntu-vm-builder</em> powerful command line tool for building virtual machines</p></li>
+<li><p><em>bridge-utils</em> provides a bridge from your network to the virtual machines</p></li>
+<li><p>检查KVM是否成功安装
+sudo kvm-ok</p></li>
+<li><p>添加用户到libvirtd和kvm组
+sudo adduser scutech libvirtd
+sudo adduser scutech kvm</p></li>
+<li><p>校验
+virsh -c qemu:///system list</p></li>
+<li><p>安装KVM图形管理Console
+sudo apt-get install virt-manager virt-viewer
+在进行这一步操作时报错： Failed to fetch *************libgvnc-1.0-0.0.5.1-1ubuntu2_amd04.deb Hash Sum mismatch
+换了几个软件源，还是有这个错，后来上ubuntu的官网上自己下载了，下载装完之后再执行上面的命令即可安装成功
+<a href="http://packages.ubuntu.com/raring/amd64/libgvnc-1.0-0/download">libgvnc-1.0-0_0.5.1-1ubuntu2_amd64.deb下载 </a></p></li>
+<li><p>配置KVM虚拟网络桥接模式
+a、sudo apt-get install libcap2-bin
+b、配置qemu-kvm继承CAP——NET——ADMIN capability
+for 64-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu-system-x86_64
+for 32-bit:$sudo setcap cap_net_admin=ei /usr/bin/qemu
+c、修改/etc/security/capability.conf，添加cap_net_admin USER-NAME-HERE
+d、安装bridge-utils $sudo apt-get install bridge-utils
+e、修改/etc/network/interfaces文件，添加br0信息
+auto br0
+iface br0 inet dhcp
+bridge_ports eth0
+bridge_stp off
+bridge_fd 0
+bridge_maxwait 0
+f、重启电脑</p></li>
+<li><p>创建和安装Spice Server &amp;Clientfor KVM
+a、安装和配置Spice Server和Client Packageds
+$ sudo apt-get install libspice-client-glib-2.0-1 libspice-client-gtk-2.0-1 libspice-server1 python-spice-client-gtk qemu-kvm-spice spice-client spice-client-gtk python-spice-client-gtk build-essential libspice-server1 libspice-protocol-dev
+b、以下是可能会用到的Optional Packages：
+$ sudo apt-get install libavcodec-dev libasound-dev libpng12-dev libfreetype6-dev libxrandr-dev libsdl-dev libnss3-dev libxfixes-dev intltool libssl-dev libgtk2.0-dev python-gtk-vnc python-gtk2 python-gtk2-dev libssl-dev libpulse-dev libpixman-1-dev libjpeg-turbo8-dev libsasl2-dev libusb-1.0-0 libusb-1.0-0-dev libgudev-1.0-dev gobject-introspection python-dev slirp libpixman-1-0（可能有一些包的版本不对）</p></li>
+<li><p>到此安装完毕。在Dash Home那里输入Virtual Machine Manager即可看到KVM了</p></li>
+<li><p>以上是参照网友的方法安装的，其中一些道理也不大明白，还需进一步学习 <a href="http://blog.sina.com.cn/s/blog_5932bf4601016xfj.html">网友的方法</a></p></li>
+</ul>
+</li>
+</ol>
+
+
+<p>KVM的使用：</p>
+
+<ol>
+<li><p> vbox的vdi文件转为kvm默认qcow2格式文件
+VBoxManage clonehd -format raw asianux4-disk1.vdi asianux4.img(有进度条)
+qemu-img convert -f raw asianux4.img -O qcow2 asianux4.qcow2 (没进度条)</p></li>
+<li><p> 启动qcow2文件
+kvm  asianux4.qcow2</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Firefox+Selenium IDE]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/18/firefoxselenium-ide/"/>
+    <updated>2013-07-18T16:26:00+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/18/firefoxselenium-ide</id>
+    <content type="html"><![CDATA[<p>安装：
+刚开始在windows上安装，firefox5，selenium1.2。装完之后点击Selenium IDE buttons，总是说You don&rsquo;t have installed Selenium IDE!现在发现原来是selenium1.2版本不支持firefox5引起的。后来到公司，看到firefox是18.0，又在addons那里安装，l列表中显示的是selenium1.2版本的，装完还是有一样问题，最后到Selenium IDE的官网上查看，现在selenium已经更新到2点多的版本了，上面也写了那个版本新增了对firefox*的支持，最后现在目前的最新版本Selenium2.2，解决了问题！
+<a href="http://docs.seleniumhq.org/download/">Selenium IDE官网下载</a></p>
+
+<p>source的format问题
+刚开始，以为在format clipboard那里选择source的语言，但是无论我选了什么，source显示的都是HTML语言。在options的format里看到的是 want the formats back?Click to read &hellip;.。后来打开options，将Enable experimental features勾上即可！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[类unix系统如何初始化shell]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/18/e7b1bbunixe7b3bbe7bb9fe5a682e4bd95e5889de5a78be58c96shell/"/>
+    <updated>2013-07-18T10:36:29+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/18/e7b1bbunixe7b3bbe7bb9fe5a682e4bd95e5889de5a78be58c96shell</id>
+    <content type="html"><![CDATA[<h2>Shell的配置文件</h2>
+
+<p>当我们在linux中打开一个shell的时候，系统会读取相关的配置文件来初始化shell(其他unix-like OS也一样)。配置文件包括以下这些：</p>
+
+<h3>1. 全局配置(对所有用户都有效)</h3>
+
+<pre><code>/etc/profile
+/etc/bash.bashrc
+</code></pre>
+
+<h3>2. 当前用户配置(仅对当前登录用户有效)</h3>
+
+<pre><code>~/.bashrc
+~/.bash_profile
+~/.bash_login
+~/.profile
+</code></pre>
+
+<h2>Shell的分类</h2>
+
+<p>shell分为login shell和non-login shell两种</p>
+
+<h3>1.Login Shell</h3>
+
+<p><a href="http://www.thegeekstuff.com/2008/10/execution-sequence-for-bash_profile-bashrc-bash_login-profile-and-bash_logout/">借用《鸟哥的linux私房菜》中的定义</a>：取得 bash 時需要完整的登入流程的，就稱為 login shell。舉例來說，你要由 tty1 ~ tty6 登入，需要輸入使用者的帳號與密碼，此時取得的 bash 就稱為『 login shell 』囉；</p>
+
+<p>除过上面获取login shell的方式外，我们还可以通过在non-login shell中运行</p>
+
+<pre><code>bash --login
+</code></pre>
+
+<p>来得到一个login shell。login shell启动时的配置文件读取流程如下：
+借用另一博客 <a href="http://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files">‘Execution sequence for .bash_profile, .bashrc, .bash_login, .profile and .bash_logout’</a> 中的伪代码示例：</p>
+
+<p><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" /></p>
+
+<pre><code>execute /etc/profile
+IF ~/.bash_profile exists THEN
+    execute ~/.bash_profile
+ELSE
+    IF ~/.bash_login exist THEN
+        execute ~/.bash_login
+    ELSE
+        IF ~/.profile exist THEN
+            execute ~/.profile
+        END IF
+    END IF
+END IF
+</code></pre>
+
+<p><img src="http://common.cnblogs.com/images/copycode.gif" alt="复制代码" /></p>
+
+<p>当我们退出或者注销login shell时，也有需要执行如下流程：</p>
+
+<pre><code>IF ~/.bash_logout exists THEN
+    execute ~/.bash_logout
+END IF
+</code></pre>
+
+<h3>2.Non-Login Shell</h3>
+
+<p>继续借用《鸟哥的linux私房菜》中的定义：取得 bash 介面的方法不需要重複登入的舉動，舉例來說，(1)你以 X window 登入 Linux 後， 再以 X 的圖形化介面啟動終端機，此時那個終端介面並沒有需要再次的輸入帳號與密碼，那個 bash 的環境就稱為 non-login shell了。(2)你在原本的 bash 環境下再次下達 bash 這個指令，同樣的也沒有輸入帳號密碼， 那第二個 bash (子程序) 也是 non-login shell 。</p>
+
+<p>譬如在Ubuntu中，我们启动的Gnome Terminal，在默认情况下就是一个non-login shell。non-login shell启动时的配置文件读取流程：</p>
+
+<pre><code>execute /etc/bash.bashrc
+IF ~/.bashrc exists THEN
+    execute ~/.bashrc
+END IF
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python字符串处理]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086/"/>
+    <updated>2013-07-12T11:02:20+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/12/pythone5ad97e7aca6e4b8b2e5a484e79086</id>
+    <content type="html"><![CDATA[<h3>一、截取字符串中的内容</h3>
+
+<p>1、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的：{AC76BA86-7AD7-2052-7B44-AB0000000001} 包括大括号</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &lsquo;MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001}&rsquo;
+re.findall(r&#8217;{[^}]*}&lsquo;, text)
+[&rsquo;{AC76BA86-7AD7-2052-7B44-AB0000000001}&lsquo;]</p></blockquote></blockquote></blockquote>
+
+<p>[^}] 是指不是 } 的字符， {[^}]*} 是指由 { 开始、 } 结束的至少0个不是 } 的字符</p>
+
+<p>或者</p>
+
+<p>re.findall(r&#8217;{.*?}&lsquo;, text)</p>
+
+<p>注意：{.<em>} 和{.</em>?}的区别，前者是贪婪模式，后者是非贪婪模式</p>
+
+<p>2、截取： MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} 中的： AC76BA86-7AD7-2052-7B44-AB0000000001 不包括大括号</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &lsquo;MsiExec.exe /I{AC76BA86-7AD7-2052-7B44-AB0000000001} &rsquo;
+re.findall(r&#8217;(?&lt;={).<em>?(?=})&lsquo;, text)
+[&#8216;AC76BA86-7AD7-2052-7B44-AB0000000001&rsquo;]
+re.findall(r&#8217;(?&lt;={)[^}]</em>(?=})&lsquo;, text)
+[&#8216;AC76BA86-7AD7-2052-7B44-AB0000000001&rsquo;]
+(?&lt;={) 匹配左边是 { 的位置
+(?=}) 匹配右边是 } 的位置</p></blockquote></blockquote></blockquote>
+
+<h3>二、匹配字符串，并且截取匹配的内容</h3>
+
+<p>1、匹配“dbackup-agent_2.2.8763.15.exe”，并且截取“7896”</p>
+
+<blockquote><blockquote><blockquote><p>import re
+text = &ldquo;dbackup-agent_2.2.8763.15.exe&rdquo;
+handle = re.compile(r&#8217;dbackup-agent_2.2.([0-9]{4}).15.exe&#8217;)
+m = handle.match(text)
+m.group(0)
+&lsquo;dbackup-agent_2.2.8763.15.exe&rsquo;
+m.group(1)
+&lsquo;8763&rsquo;</p></blockquote></blockquote></blockquote>
+
+<p>其中：group(0)表示匹配到的整个字符串，group(1)表示正则表达式中第1个括号匹配的字符，group(2)表示正则表达式中第2个括号匹配的字符,一次类推；</p>
+
+<p>正则表达式：([0-9]{4}) ，是指匹配4个0到9的数字</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux的分区类型]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b/"/>
+    <updated>2013-07-05T17:01:44+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/07/05/linuxe79a84e58886e58cbae7b1bbe59e8b</id>
+    <content type="html"><![CDATA[<p>测试鼎甲奥备需要多了解这方面的内容。</p>
+
+<p><strong>一、分区类型</strong></p>
+
+<p>1、/分区。用于存储系统文件。
+2、swap，即交换分区，也是一种文件系统，它的作用是作为Linux的虚拟内存。
+在Windows下，虚拟内存是一个文件：pagefile.sys；而Linux下，虚拟内存需要使用独立分区，这样做的目的据说是为了提高虚拟内存的性能。
+3、/home：是用户文件夹所在的地方。如果独立划分/home，即使Ubuntu不能启动，也可以用Live CD启动来取得自己的文件资料。
+4、/boot：包含了操作系统的内核和在启动系统过程中所要用到的文件。
+在很多老旧的教程中，都会让用户在/boot目录上挂载一个大小为100MB左右的独立分区，并推荐把该/boot放在硬盘的前面——即1024柱面之前。事实上，那是Lilo无法引导1024柱面后的操作系统内核的时代的遗物了。当然，也有人说，独立挂载/boot的好处是可以让多个Linux共享一个/boot。
+其实，无论是基于上述的哪种理由，都没有必要把/boot分区独立出来。首先，Grub可以引导1024柱面后的Linux内核；其次，即使是安装有多个Linux，也完全可以不共享/boot。因为/boot目录的大小通常都非常小，大约20MB，分一个100MB的分区无疑是一种浪费，而且还把把硬盘分的支离破碎的，不方便管理。另外，如果让两个Linux共享一个/boot，每次升级内核，都会导致Grub的配置文件冲突，带来不必要的麻烦。而且，不独立/boot分区仅仅占用了根目录下的大约20MB左右的空间，根本不会对根目录的使用造成任何影响。
+但值得注意的是，随着硬盘容量的增大，无法引导Linux内核的现象再次出现，这也就是著名的137GB限制。很遗憾，Grub是无法引导137GB之后的分区中的Linux内核的。如果你不巧遇到了这样的情况，你就要考虑把/boot独立挂载到位于137GB前方的独立分区中，或者索性就把 Linux的分区都往前移动，让根目录所在分区位于137GB之前。
+5、/usr/local：是 Linux系统存放软件的地方。
+建议把/opt，/usr或/usr/local独立出来的教程，基本上也是非常老的了。使用Ubuntu时，我们一般都是使用系统的软件包管理器安装软件，很少自己编译安装软件。而建议独立/usr，/opt，/usr/local的理由无非是为了重装系统时不再重新编译软件而直接使用早先编译的版本。不过对于大多数普通用户来说，这个建议通常是没有意义的。
+6、/var：是系统日志记录分区。
+7、/tmp分区，用来存放临时文件。
+建议把/var和/tmp独立出来的教程通常是面向服务器的。因为高负载的服务器通常会产生很多日志文件、临时文件，这些文件经常改变，因此把/var，/tmp独立出来有利于提高服务器性能。但如果你用Ubuntu是做桌面的，或从来不关心过系统日志这东西，就没有必要独立的为/var和/tmp挂载分区。</p>
+
+<p>还有些老旧的教程中建议把Linux安装在主分区中，或在/boot下挂载一个主分区。事实上，这也是不需要的。Linux的所有分区都可以位于逻辑分区中。所以请放心的把Linux安装在逻辑分区中吧。</p>
+
+<p><strong>二、文件系统（分区格式）</strong></p>
+
+<p>Linux的文件系统（分区格式）主要有ext3、ReiserFS、XFS、JFS等。同时Linux也可以读写使用FAT、FAT32和NTFS文件系统的分区。</p>
+
+<p>Ubuntu默认的文件系统是ext3。</p>
+
+<p>或许有人会告诉你其他文件系统会有什么什么优点，ext3会有什么什么不好，但如果你对文件系统并不了解的话，我的建议就是使用默认的ext3，默认的设置可能不一定是性能最好的，但对普通用户一定是最稳定最安全最适合的。</p>
+
+<p>最大分区大小：ext3是4TB，ReiseFS是16TB。FAT32在Windows XP和Windows 2000里的最大分区是32GB；而Linux中的FAT32则可以支持到2TB。
+最大文件大小：ext3是2GB－4GB，ReiseFS是8TB，FAT32是4GB。</p>
+
+<p><strong>三、安装Linux的分区划分方案建议</strong></p>
+
+<p>1、只安装一个Ubuntu
+如果你准备在硬盘里只安装Ubuntu一个操作系统的话，建议你采用三分区方案：
+1）“/”分区：使用ext3文件系统；分区容量为10GB－15GB。
+2）“swap”分区：用于交换空间。内存小于或等于 512MB，swap分区容量为内存大小的2倍；内存大于512MB的，swap分区容量等于内存大小。
+3）“/home”分区：使用ext3文件系统；分区容量为“/”和“swap”以外的剩余空间</p>
+
+<p>在linux系统中至少必须有两个挂载点(磁盘分区)，分别是 / 及 swap ，其余是否要将其他的挂载点独立分割出来则视你的规划需求而定。可参考以下建议：</p>
+
+<p>swap的大小约等同你的内存大小，或稍大</p>
+
+<p>2、初次接触的新手或硬盘空间有限 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 可用空间 &ndash; swap大小后的所有空间
+swap /dev/hda2 大约内存大小 建议至少512Mb</p>
+
+<p>3、高级用户 Desktop的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)</p>
+
+<p>4、高级用户 Server的安装建议：
+挂载点 装置 说明
+/ /dev/hda1 15G
+/home /dev/hda2 最大的剩余空间
+/boot /dev/hda3 128MB左右
+swap /dev/hda5 大约内存大小(建议至少512MB)
+/var /dev/hda6 视服务器功能决定大小</p>
+
+<p><strong>四、分区号简要说明</strong></p>
+
+<p>Linux 规定了主分区（Primary）以及扩展分区（extend）占用 1 至 16 号码中的前 4 个号码。以第一个 IDE 硬盘为例说明，主分区以及扩展分区占用了 hda1、hda2、hda3、hda4（该号一般为扩展分区所用），而逻辑分区占用了 hda5 到 hda16 等 12 个号码。因此，Linux 下面每一个硬盘总共最多有 16 个分区。
+因此 hda1- hda4 是主区的意思。 hda5以后是逻辑分区！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux ntp时间同步服务器搭建与使用]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2/"/>
+    <updated>2013-06-30T23:01:25+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/06/30/linux-ntpe697b6e997b4e5908ce6ada5e69c8de58aa1e599a8e690ade5bbbae4b88ee4bdbfe794a8-2</id>
+    <content type="html"><![CDATA[<p>有时为了测试需要，要多台服务器时间一致（同步），ntp服务器可以帮你一个大忙。本文以Ubuntu 12.10为例说明，Ubuntu 12.10作为ntp服务器，其他linux作为ntp客户端。</p>
+
+<p>一、服务端</p>
+
+<p>1、在线安装ntp
+apt-get install ntp</p>
+
+<p>2、安装后默认启动服务，如果没有启动，手动启动。
+/etc/init.d/ntp start</p>
+
+<p>3、vi /etc/ntp.conf，修改ntp.conf文件，其中192.168.88.0为ntp同步的网段，ntp服务器、客户端都在该网段以内：</p>
+
+<p>restrict default nomodify notrap noquery
+restrict 127.0.0.1
+restrict 192.168.88.0 mask 255.255.255.0 nomodify
+server 0.pool.ntp.org
+server 1.pool.ntp.org
+server 2.pool.ntp.org
+server  127.127.1.0     # local clock
+fudge   127.127.1.0 stratum 10</p>
+
+<p>driftfile /var/lib/ntp/drift
+broadcastdelay  0.008
+keys            /etc/ntp/keys</p>
+
+<p>4、重启ntp服务
+/etc/init.d/ntp restart</p>
+
+<p>二、客户端</p>
+
+<p>1、先设置ntp服务器时间，如2013年6月25日16:53:00
+date -s &ldquo;2013-6-25 16:53:00&rdquo;
+hwclock -w</p>
+
+<p>2、用ntpdate命令使客户端与ntp服务器时间同步，如果不存在这个命令，则先安装apt-get install ntp或yum install ntp。假设服务端的IP为192.168.88.167，使客户端与ntp服务器时间同步的命令如下：</p>
+
+<p>ntpdate 192.168.88.167</p>
+
+<p>3、修改crontab设置定时同步。vi /etc/crontab</p>
+
+<p>30 01 * * * /usr/sbin/ntpdate 192.168.88.167</p>
+
+<p>系统便会在每天早上1点30分自动将系统时间同步到ntp服务器的时间。</p>
+
+<p>这里crontab的时间是指客户端的时间，同步后与ntp服务器的时间一致。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[主机资源监控--New Relic]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic/"/>
+    <updated>2013-06-09T14:22:16+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/06/09/e4b8bbe69cbae8b584e6ba90e79b91e68ea7-new-relic</id>
+    <content type="html"><![CDATA[<p>缺点是，监控的主机要连接到Internet；</p>
+
+<p>官方地址：<a href="https://rpm.newrelic.com">https://rpm.newrelic.com</a></p>
+
+<p>使用方法：</p>
+
+<p>1、注册一个帐号，并且登录；</p>
+
+<p>2、在左则导航栏选择“Servers”，按照教程在所要监控的主机上安装newrelic工具；</p>
+
+<p>3、安装成功后，过几分钟刷新页面就可以看在基本的资源使用信息了。</p>
 ]]></content>
   </entry>
   

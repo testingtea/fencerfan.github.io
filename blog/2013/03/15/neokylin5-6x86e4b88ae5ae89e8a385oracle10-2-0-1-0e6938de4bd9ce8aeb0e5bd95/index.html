@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>neokylin5.6x86上安装oracle10.2.0.1.0操作记录 - Scutech QA Blog</title>
+  <meta name="author" content="Scutech QA">
+
+  
+  <meta name="description" content="[root@localhost ~]# groupadd osinstall
+[root@localhost ~]# useradd -s /bin/bash -g osinstall -d /home/oracle -m oracle
+在oracle安装指导中查询所需要的包oraclehttp &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Scutech QA Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45516616-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scutech QA Blog</a></h1>
+  
+    <h2>Do it right the first time,every time.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="fencer.ming@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:fencerfan.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">neokylin5.6x86上安装oracle10.2.0.1.0操作记录</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-15T17:57:04+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2013</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://fencerfan.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>[root@localhost ~]# groupadd osinstall
+[root@localhost ~]# useradd -s /bin/bash -g osinstall -d /home/oracle -m oracle
+在oracle安装指导中查询所需要的包oracle<a href="http://docs.oracle.com/cd/B28359_01/install.111/b32285/toc.htm">http://docs.oracle.com/cd/B28359_01/install.111/b32285/toc.htm</a>
+The following or later version of packages for Asianux 3, Oracle Linux 5, and Red Hat Enterprise Linux 5 should be installed:
+binutils-2.17.50.0.6
+[root@localhost ~]# rpm -qa|grep binutils
+binutils-2.17.50.0.6-14.el5
+compat-libstdc++-33-3.2.3
+compat-libstdc++-33-3.2.3 (32 bit) OK
+[root@localhost ~]# rpm -qa|grep libstdc++
+compat-libstdc++-33-3.2.3-61
+[root@localhost ~]# rpm -qa|grep libstdc++
+compat-libstdc++-33-3.2.3-61
+elfutils-libelf-0.125
+[root@localhost ~]# rpm -qa|grep elfutils-libelf
+elfutils-libelf-0.137-3.el5
+elfutils-libelf-devel-0.125
+[root@localhost ~]# rpm -qa|grep elfutils-libelf-devel
+[root@localhost ~]#
+gcc-4.1.1
+[root@localhost ~]# rpm -qa|grep gcc
+gcc-4.1.2-50.el5.ns5.6.02
+gcc-c++-4.1.1
+[root@localhost ~]# rpm -qa|grep gcc
+gcc-c++-4.1.2-50.el5.ns5.6.02
+glibc-2.5-12
+glibc-2.5-12 (32 bit)
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-2.5-58.ns5.6.01
+glibc-common-2.5
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-common-2.5-58.ns5.6.01
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-common-2.5-58.ns5.6.01
+glibc-devel-2.5
+glibc-devel-2.5-12 (32 bit)
+[root@localhost ~]# rpm -qa|grep glibc
+glibc-devel-2.5-58.ns5.6.01
+libaio-0.3.106
+libaio-0.3.106 (32 bit)
+[root@localhost ~]# rpm -qa |grep libaio
+libaio-0.3.106-5
+libaio-devel-0.3.106
+[root@localhost ~]# rpm -qa |grep libaio-devel
+[root@localhost ~]#
+libgcc-4.1.1
+libgcc-4.1.1 (32 bit)
+[root@localhost ~]# rpm -qa |grep libgcc
+libgcc-4.1.2-50.el5.ns5.6.02
+libstdc++-4.1.1
+libstdc++-4.1.1 (32 bit)
+[root@localhost ~]# rpm -qa |grep libstdc++
+libstdc++-4.1.2-50.el5.ns5.6.02
+libstdc++-devel 4.1.1
+[root@localhost ~]# rpm -qa |grep libstdc++-devel
+libstdc++-devel-4.1.2-50.el5.ns5.6.02
+make-3.81
+[root@localhost ~]# rpm -qa |grep make
+make-3.81-3.el5
+numactl-devel-0.9.8.x86_64
+[root@localhost ~]# rpm -qa |grep numactl-devel
+sysstat-7.0.0</p>
+
+<p>检查过程中发现libaio-devel-0.3.106和elfutils-libelf-devel在操作系统中没有匹配到，需要下载
+[root@localhost ~]# wget <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm</a>
+&mdash;2013-03-11 07:38:39&mdash; <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/libaio-devel-0.3.106-5.i386.rpm</a>
+正在解析主机 centos.ustc.edu.cn&hellip; 202.141.160.110, 2001:da8:d800:95::110
+Connecting to centos.ustc.edu.cn|202.141.160.110|:80&hellip; 已连接。
+已发出 HTTP 请求，正在等待回应&hellip; 200 OK
+长度：11784 (12K) [application/x-redhat-package-manager]
+Saving to: `libaio-devel-0.3.106-5.i386.rpm&#8217;</p>
+
+<p>100%[=======================================>] 11,784 72.6K/s in 0.2s</p>
+
+<p>2013-03-11 07:38:39 (72.6 KB/s) &ndash; `libaio-devel-0.3.106-5.i386.rpm&#8217; saved [11784/11784]</p>
+
+<p>[root@localhost ~]# wget <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm</a>
+&mdash;2013-03-11 07:47:34&mdash; <a href="http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm">http://centos.ustc.edu.cn/centos/5/os/i386/CentOS/elfutils-libelf-devel-0.137-3.el5.i386.rpm</a>
+正在解析主机 centos.ustc.edu.cn&hellip; 202.141.160.110, 2001:da8:d800:95::110
+Connecting to centos.ustc.edu.cn|202.141.160.110|:80&hellip; 已连接。
+已发出 HTTP 请求，正在等待回应&hellip; 200 OK
+长度：25023 (24K) [application/x-redhat-package-manager]
+Saving to: `elfutils-libelf-devel-0.137-3.el5.i386.rpm&#8217;</p>
+
+<p>100%[=======================================>] 25,023 76.9K/s in 0.3s</p>
+
+<p>2013-03-11 07:47:35 (76.9 KB/s) &ndash; `elfutils-libelf-devel-0.137-3.el5.i386.rpm&#8217; saved [25023/25023]</p>
+
+<p>[root@localhost opt]# mkdir -p /opt/oracle
+[root@localhost opt]# chown -R oracle:osinstall /opt/oracle
+su &ndash; oracle
+vi .bash_profile</p>
+
+<h1>.bash_profile</h1>
+
+<h1>Get the aliases and functions</h1>
+
+<p>if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi</p>
+
+<h1>User specific environment and startup programs</h1>
+
+<p>PATH=$PATH:$HOME/bin</p>
+
+<p>export PATH</p>
+
+<p>unset USERNAME</p>
+
+<h1>added by oranavi</h1>
+
+<p>export ORACLE_BASE=/opt/oracle
+export ORACLE_HOME=/opt/oracle/product/10.2.0/db_1
+export ORACLE_SID=orcl10g
+export NLS_LANG=American_America.US7ASCII
+export ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+export PATH=$PATH:$ORACLE_HOME/bin
+export ORACLE_DOC=$ORACLE_HOME/doc
+CLASSPATH=$ORACLE_HOME/jre:$ORACLE_HOME/JRE
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jlib
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/rdbms/jlib
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jdbc/lib/classes12.jar
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/jdbc/lib/nls_charset12.jar
+export CLASSPATH
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:$ORACLE_HOME/ctx/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/jdbc/lib
+export LD_LIBRARY_PATH
+ulimit -n 65536 > /dev/null 2>&amp;1
+ulimit -u 16384 > /dev/null 2>&amp;1</p>
+
+<p>以oracle用户加载环境变量source .bash_profile
+进入安装包文件夹后执行$./runInstaller –ignoreSysprereqs（忽略版本号校验，也可以手工修改版本号）</p>
+
+<p>安装过程中校验结果：
+正在检查操作系统需求&hellip;
+要求的结果: redhat-3,redhat-4,SuSE-9,asianux-1,asianux-2 之一
+实际结果: redhat-Red Hat Enterprise Linux Server release 5.6 (Tikanga)
+检查完成。此次检查的总体结果为: 失败 &lt;&lt;&lt;&lt;
+问题: Oracle Database 10g 未在当前操作系统中经过认证。</p>
+
+<h1>建议案: 请确保在正确的平台上安装软件。</h1>
+
+<p>正在检查操作系统程序包需求&hellip;
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。</p>
+
+<h1>建议案: 请在继续安装之前, 安装所需的程序包。</h1>
+
+<p>检查内核参数
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。</p>
+
+<h1>建议案: 请按照操作系统特定的说明更新内核参数。</h1>
+
+<p>检查建议的 glibc 版本
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+OUI-18001: 不支持操作系统 &lsquo;Linux 版本 redhat-Red Hat Enterprise Linux Server rel
+ease 5.6 (Tikanga)&#8217;。
+建议案: 您实际上可能已经安装了比这些程序包更新的程序包, 如果是这样, 您可以成功地
+继续安装。如果不是这样, 建议您不要继续。要了解如何获得缺失的程序包, 请参阅自述文</p>
+
+<h1>件。</h1>
+
+<p>正在检查物理内存需求&hellip;
+要求的结果: 922MB
+实际结果: 1008MB</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查可用交换空间需求&hellip;
+要求的结果: 1512MB
+实际结果: 501MB
+检查完成。此次检查的总体结果为: 失败 &lt;&lt;&lt;&lt;
+问题: 系统没有所需的交换空间。</p>
+
+<h1>建议案: 请释放更多的交换空间来执行安装。</h1>
+
+<p>正在检查网络配置需求&hellip;
+检查完成。此次检查的总体结果为: 未执行 &lt;&lt;&lt;&lt;
+建议案: Oracle 支持在具有 DHCP 分配的公共 IP 地址的系统上进行安装。但应使用静态
+IP 地址来配置系统的主网络接口, 以便 Oracle 软件正常工作。有关在配置有 DHCP 的系</p>
+
+<h1>统上安装软件的详细信息, 请参阅 Installation Guide。</h1>
+
+<p>正在验证 ORACLE_BASE 的位置 (如果已设置)&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查 Oracle 主目录路径中的空格&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查是否进行了正确的系统清除&hellip;</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>正在检查 Oracle 主目录的不兼容性&hellip;
+实际结果: NEW_HOME</p>
+
+<h1>检查完成。此次检查的总体结果为: 通过</h1>
+
+<p>这里出现了swap空间不足的情况，估计影响不是太大，我虚拟机设置的物理内存为1G，swap设置为512M，期间停止过dbackup-agent服务，安装过程中只有校验结果出现过这里的提示，以后安装过程都正常，没有出现过告警或者错误的信息。</p>
+
+<p>[root@localhost db_1]# ./root.sh
+Running Oracle10 root.sh script&hellip;</p>
+
+<p>The following environment variables are set as:
+ORACLE_OWNER= oracle
+ORACLE_HOME= /opt/oracle/product/10.2.0/db_1</p>
+
+<p>Enter the full pathname of the local bin directory: [/usr/local/bin]:
+Copying dbhome to /usr/local/bin &hellip;
+Copying oraenv to /usr/local/bin &hellip;
+Copying coraenv to /usr/local/bin &hellip;
+Creating /etc/oratab file&hellip;
+Entries will be added to the /etc/oratab file as needed by
+Database Configuration Assistant when a database is created
+Finished running generic part of root.sh script.
+Now product-specific root actions will be performed.</p>
+
+<p>一路下一步后以root用户执行/opt/oracle/oraInventory/orainstRoot.sh和/opt/oracle/product/10.2.0/db_1/root.sh</p>
+
+<p>[root@localhost oraInventory]# ./orainstRoot.sh
+更改权限/opt/oracle/oraInventory 到 770.
+更改组名/opt/oracle/oraInventory 到 osinstall.
+脚本的执行已完成
+启动数据库
+[oracle@localhost ~]$ sqplus &ldquo;/as sysdba&rdquo;
+-bash: sqplus: command not found
+[oracle@localhost ~]$ /opt/oracle/product/10.2.0/db_1/bin/lsnrctl start</p>
+
+<p>LSNRCTL for Linux: Version 10.2.0.1.0 &ndash; Production on 11-MAR-2013 08:32:05</p>
+
+<p>Copyright &copy; 1991, 2005, Oracle. All rights reserved.</p>
+
+<p>TNS-01106: Listener using listener name LISTENER has already been started
+[oracle@localhost ~]$ sqlplus &ldquo;/as sysdba&rdquo;</p>
+
+<p>SQL*Plus: Release 10.2.0.1.0 &ndash; Production on Mon Mar 11 08:32:13 2013</p>
+
+<p>Copyright &copy; 1982, 2005, Oracle. All rights reserved.</p>
+
+<p>Connected to an idle instance.</p>
+
+<p>SQL> startup
+ORA-01078: failure in processing system parameters
+LRM-00109: could not open parameter file &lsquo;/opt/oracle/product/10.2.0/db_1/dbs/initorcl10g.ora&rsquo;
+报错信息显示不能打开参数文件
+重新到$ORACLE_BASE的参数文件中拷贝一份到$ORACLE_HOME中
+cp $ORACLE_BASE/pfile/init.ora.21120138212 $ORACLE_HOME/dbs/initorcl10g.ora
+SQL> startup
+ORACLE instance started.
+Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+ORA-01102: cannot mount database in EXCLUSIVE mode
+Oracle被异常关闭时，有资源没有被释放，一般有以下几种可能，
+1、 Oracle的共享内存段或信号量没有被释放；
+2、 Oracle的后台进程（如SMON、PMON、DBWn等）没有被关闭；
+3、 用于锁内存的文件lk<sid>和sgadef<sid>.dbf文件没有被删除。
+删除$ORACLE_HOME/dbs/lkORCL1ALL
+SQL> startup
+ORACLE instance started.
+Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+ORA-00205: error in identifying control file, check alert log for more info</p>
+
+<p>查看告警日志：
+tail -f $ORACLE_HOME/admin/bdump/alert*.log
+Mon Mar 11 09:13:22 2013
+Starting ORACLE instance (normal)
+LICENSE_MAX_SESSION = 0
+LICENSE_SESSIONS_WARNING = 0
+Picked latch-free SCN scheme 2
+Using LOG_ARCHIVE_DEST_10 parameter default value as USE_DB_RECOVERY_FILE_DEST
+Autotune of undo retention is turned on.
+IMODE=BR
+ILAT =18
+LICENSE_MAX_USERS = 0
+SYS auditing is disabled
+ksdpec: called for event 13740 prior to event group initialization
+Starting up ORACLE RDBMS Version: 10.2.0.1.0.
+System parameters with non-default values:
+processes = 150
+sga_target = 285212672
+control_files = /opt/oracle/oradata/orcl1all/control01.ctl, /opt/oracle/oradata/orcl1all/control02.ctl, /opt/oracle/oradata/orcl1all/control03.ctl
+db_block_size = 8192
+compatible = 10.2.0.1.0
+db_file_multiblock_read_count= 16
+db_recovery_file_dest = /opt/oracle/flash_recovery_area
+db_recovery_file_dest_size= 2147483648
+undo_management = AUTO
+undo_tablespace = UNDOTBS1
+remote_login_passwordfile= EXCLUSIVE
+db_domain =
+dispatchers = (PROTOCOL=TCP) (SERVICE=orcl110gXDB)
+job_queue_processes = 10
+background_dump_dest = /opt/oracle/admin/orcl1all/bdump
+user_dump_dest = /opt/oracle/admin/orcl1all/udump
+core_dump_dest = /opt/oracle/admin/orcl1all/cdump
+audit_file_dest = /opt/oracle/admin/orcl1all/adump
+db_name = orcl1all
+open_cursors = 300
+pga_aggregate_target = 94371840
+PMON started with pid=2, OS id=23738
+PSP0 started with pid=3, OS id=23740
+MMAN started with pid=4, OS id=23742
+DBW0 started with pid=5, OS id=23744
+LGWR started with pid=6, OS id=23746
+CKPT started with pid=7, OS id=23748
+SMON started with pid=8, OS id=23750
+RECO started with pid=9, OS id=23752
+CJQ0 started with pid=10, OS id=23754
+MMON started with pid=11, OS id=23756
+MMNL started with pid=12, OS id=23758
+Mon Mar 11 09:13:23 2013
+starting up 1 dispatcher(s) for network address &lsquo;(ADDRESS=(PARTIAL=YES)(PROTOCOL=TCP))&rsquo;&hellip;
+starting up 1 shared server(s) &hellip;
+Mon Mar 11 09:13:23 2013
+ALTER DATABASE MOUNT
+Mon Mar 11 09:13:23 2013
+ORA-00202: control file: &lsquo;/opt/oracle/oradata/orcl1all/control01.ctl&rsquo;
+ORA-27086: unable to lock file &ndash; already in use
+Linux Error: 11: Resource temporarily unavailable
+Additional information: 8
+Additional information: 16008
+Mon Mar 11 09:13:26 2013
+ORA-205 signalled during: ALTER DATABASE MOUNT&hellip;
+告警日志显示control01.ctl控制文件被锁定
+查看正在使用control10.ctl文件的PID
+[root@localhost ~]# fuser /opt/oracle/oradata/orcl1all/control01.ctl
+/opt/oracle/oradata/orcl1all/control01.ctl: 16004 16006 16008 16016 19487
+[root@localhost ~]# kill -9 16004 16006 16008 16016 19487
+杀掉锁进程后重启启动数据库
+[oracle@localhost orcl1all]$ sqlplus &ldquo;/as sysdba&rdquo;</p>
+
+<p>SQL*Plus: Release 10.2.0.1.0 &ndash; Production on Mon Mar 11 09:51:28 2013</p>
+
+<p>Copyright &copy; 1982, 2005, Oracle. All rights reserved.</p>
+
+<p>Connected to an idle instance.</p>
+
+<p>SQL> startup
+ORACLE instance started.</p>
+
+<p>Total System Global Area 285212672 bytes
+Fixed Size 1218992 bytes
+Variable Size 92276304 bytes
+Database Buffers 188743680 bytes
+Redo Buffers 2973696 bytes
+Database mounted.
+Database opened.
+SQL> exit</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">liuyd</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-15T17:57:04+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/xue-xi-bao-gao/'>学习报告</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/" data-via="" data-counturl="http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/14/e5ae89e8a385sql2000e587bae78eb0command-line-option-syntax-errortype-command-for-helpe8a7a3e586b3e58a9ee6b395/" title="Previous Post: 安装SQL2000出现command line option syntax error!type command /? for help解决办法">&laquo; 安装SQL2000出现command line option syntax error!type command /? for help解决办法</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/17/linuxe4b88be5889be5bbbaoraclee695b0e68daee5ba93orcl1e5ae9ee4be8b/" title="Next Post: linux下创建oracle数据库orcl1实例">linux下创建oracle数据库orcl1实例 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/07/ding-jia-ce-shi-bu-bo-ke-zheng-shi-qian-yi-dao-github/">鼎甲测试部博客正式迁移到GitHub</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/06/e8a7a3e586b3linuxe5b8b8e8a781e79a84e4b9b1e7a081e997aee9a298/">解决Linux常见的乱码问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/e695b0e68daee79a84e5a487e4bbbdefbc8ce79c8be4bcbce5be88e7ae80e58d95e585b6e5ae9ee4b88de7ae80e58d95/">数据的备份，看似很简单其实不简单</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f-2/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/01/e3808ae4bda0e79a84e781afe4baaee79d80e59097e3808be8afbbe5908ee6849f/">《你的灯亮着吗》读后感</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Scutech QA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scutech';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/';
+        var disqus_url = 'http://fencerfan.github.io/blog/2013/03/15/neokylin5-6x86e4b88ae5ae89e8a385oracle10-2-0-1-0e6938de4bd9ce8aeb0e5bd95/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

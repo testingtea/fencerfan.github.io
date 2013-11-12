@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 功能测试 | Scutech QA Blog]]></title>
+  <link href="http://fencerfan.github.io/blog/categories/gong-neng-ce-shi/atom.xml" rel="self"/>
+  <link href="http://fencerfan.github.io/"/>
+  <updated>2013-11-07T20:33:12+08:00</updated>
+  <id>http://fencerfan.github.io/</id>
+  <author>
+    <name><![CDATA[Scutech QA]]></name>
+    <email><![CDATA[fencer.ming@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[测试部内部博客开通]]></title>
+    <link href="http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95/"/>
+    <updated>2013-01-31T18:40:29+08:00</updated>
+    <id>http://fencerfan.github.io/blog/2013/01/31/e6b58be8af95</id>
+    <content type="html"><![CDATA[<p><img src="http://getyourbizsavvy.com/wp-content/uploads/2011/10/2560666767_82edc1b3fb.jpg" alt="" /></p>
+
+<p><strong>        在新的一年里希望各位测试部的兄弟姐妹们，能在这个内部博客上书写自己的生活或工作上的所得，让写作成为一种习惯，更成为一种推动进步的动力。</strong></p>
+
+<p><strong>        最后以乔布斯的“Stay Hungry，Stay Foolish.”与各位共勉。</strong></p>
+
+<p><strong>                                                                                                                     樊立明</strong></p>
+
+<p><strong>                                                                                                                     2013.01.31</strong></p>
+]]></content>
+  </entry>
+  
+</feed>
